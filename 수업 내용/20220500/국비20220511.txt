@@ -37,7 +37,7 @@ border-radius = 모서리를 둥글게
 2. 깃허브 계정 만들기
 
 git init 깃 저장소 생성(local)
-git add.
+git add .
 git commit -m "up"
 
 git remote add origin 본인 원격 저장소
