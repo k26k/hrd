@@ -1,0 +1,15 @@
+/* 외부 스타일 */
+body{
+    background-color: #ffe;
+    /* font-size: 19px;  */
+    /* 16px = 표준 크기 */
+}
+h2{
+    color: blue;
+    /*font-family:"궁서체";*/
+}
+p{
+    color: green;/*글자 색상*/
+    font-size: 18px; /*글씨 크기*/
+    font-family: "바탕체";/*글꼴*/
+}

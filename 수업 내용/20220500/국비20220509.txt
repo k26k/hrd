@@ -1,0 +1,69 @@
+이번주 내용
+1. html 웹 언어
+2. css 언어
+
+Hyper Text Markup Language
+
+마크: 태그를 사용 본문과 제목, 이미지, 링크를 구분하는 골격
+
+웹 편집기
+노트패드, 비주얼 스튜디오 코드, 브라켓
+통합 개발 환경  IDE - 비주얼 스튜디오, 서브라임 텍스트
+
+<태그 (속성=변수)>
+
+w3schools
+https://code.visualstudio.com/
+https://github.com/kiyongee2/html_css_pdf
+
+목록(list) 태그
+
+순서 없는 목록(ul-<ul>)
+
+웹 개발 기초
+<ul>
+<li>html</li>
+<li>css</li>
+<li>자바스크립트</li>
+</ul>
+
+순서 있는 목록(ol-<ol>)
+
+웹 개발 기초
+<ol>
+<li>html</li>
+<li>css</li>
+<li>자바스크립트</li>
+</ol>
+
+웹 만들어서 뿌리는게 서비스
+서비스 하는게 서버
+받는게 클라이언트
+서버(서버 프로그램, 서비스 하는 주체(콘텐츠)) - 클라이언트(웹브라우저)
+
+http = Hyper Text Transfer Protrocol
+
+윈도우
+맥os
+리눅스
+
+url = 파일의 위치 - 웹 주소(ip, 도메인)
+
+http://127.0.0.1:5500/day001/list2.html
+프로토콜, 로컬 호스트(컴퓨터) ip 주소, 5500 포트 넘버, 파일 위치
+
+db 서버 포트 - 보통 3306
+ftp 서버 포트 - 21 . 22
+
+<dl> description(설명) list
+    <dt> description title
+    <dd> description data
+
+
+
+
+
+
+
+
+

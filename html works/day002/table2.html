@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>표의 셀 병합</title>
+    <style>
+        table, td{
+            border: 1px solid #ccc;
+            margin: 20px;
+        }
+        td{
+            width: 100px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 2행 3열의 표 만들기 -->
+    <table>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="3"></td>
+            <!-- colspan = 수평 열 합치기 -->
+        </tr>
+    </table>
+    <!-- 2행 3열의 표 만들기 -->
+    <table>
+        <tr>
+            <td rowspan="2"></td>
+            <!-- rowspan = 수직 행 합치기 -->
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</body>
+</html>

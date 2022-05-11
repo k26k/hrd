@@ -1,0 +1,45 @@
+<a> = 하이퍼 링크 태그
+속성으론 href, target, rel이 있다
+href = "주소" : 하이퍼 링크 주소
+target = "_blank" : 새 창으로 씌움
+rel = 현재 문서와 링크한 문서와의 관계를 나타냄
+
+메인 페이지 - 메뉴(홈, 상품소개, 질문/답변)
+<nav>...</nav>
+
+https://sports.news.naver.com/wfootball/vod/index?id=939762
+https://sports.news.naver.com/video?id=939762
+https://sports.news.naver.com/wfootball/vod/index?uCategory=wfootball&category=epl&id=939762&redirect=true
+
+스타일 태그
+
+내부 스타일
+<head>
+<style>
+    태그{
+        속성: 속성값;
+        속성: 속성값;
+        속성: 속성값;
+        ...
+    }
+</style>
+</head>
+
+외부 스타일
+<head>
+    <link rel="stylesheet" href="css 스타일 파일 위치">
+</head>
+
+
+폰트 색상
+1. 사전에 정의된 기본 색상 black, white 등 - 216개
+2. rgb(255, 255, 255) - white 2^24승
+3. 16진수 표기법 - #ffffff(#fff) = white
+
+
+
+
+
+
+
+

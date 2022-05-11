@@ -1,0 +1,22 @@
+/* 메뉴 스타일 */
+nav a{
+    text-decoration: none;
+    color: #000;
+}
+/* 표 스타일 */
+table{
+    border: 3px solid #ccc;
+    border-collapse: collapse;
+    width: 500px;
+}
+th{
+    border: 3px solid #f90;
+    height: 40px;
+}
+td{
+    border: 1px solid #ccc;
+    height: 20px;
+}
+th, td{
+    text-align: center;
+}

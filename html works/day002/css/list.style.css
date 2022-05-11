@@ -1,0 +1,6 @@
+ul li{
+    list-style: none;
+}
+ol li{
+    list-style-image: url("./dot.png");
+}

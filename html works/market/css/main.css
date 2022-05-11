@@ -1,0 +1,34 @@
+/* 메뉴 스타일 */
+nav a{
+    text-decoration: none;
+    color: #000;
+}
+/* 표 스타일 (질의 응답) */
+table{
+    border: 3px solid #ccc;
+    border-collapse: collapse;
+    width: 500px;
+}
+th{
+    border: 3px solid #f90;
+    height: 40px;
+}
+td{
+    border: 1px solid #ccc;
+    height: 20px;
+}
+th, td{
+    text-align: center;
+}
+/* 로그인 스타일 */
+.tbl_login{
+    border: 3px solid #393;
+    width: auto;
+    height: auto;
+}
+.tbl_login td, .tbl_login th{
+    border: 2px solid #2c2;
+    width: 100px;
+    height: auto;
+    padding: 3px;
+}

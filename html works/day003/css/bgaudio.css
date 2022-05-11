@@ -1,0 +1,13 @@
+.bgaudio{
+    width: 400px;
+    height: 300px;
+    background: url(../../images/healing.jpg) no-repeat;
+    background-size: contain;
+    vertical-align: bottom;
+}
+#audiooo{
+    height: auto;
+    width: auto;
+    border: 2px solid #ccc;
+    vertical-align: bottom;
+}
