@@ -1,4 +1,4 @@
-
+﻿
 
 표 여백 종류
 바깥 여백 - margin
@@ -35,6 +35,9 @@ border-radius = 모서리를 둥글게
 깃허브 사용법
 1. git software 설치
 2. 깃허브 계정 만들기
+
+git config --global user.name "계정"
+git config --global user.email 이메일
 
 git init 깃 저장소 생성(local)
 git add .

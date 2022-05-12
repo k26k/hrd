@@ -1,0 +1,14 @@
+블록(block) 레벨 요소 - div, p, h
+인라인(inline) 레벨 요소 - img, span
+display
+display:flex;
+
+
+
+
+
+
+
+
+
+

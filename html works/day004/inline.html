@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인라인 레벨 요소</title>
+    <style>
+        #container{
+            border: 2px solid #00f;
+            width: 400px;
+            /* display: block; */
+            /* block = 수직배치 */
+            /* display: inline; */
+            /* inline = 수평배치 */
+            display:flex;
+            /* flex: none; */
+            /* 기본 */
+            flex: wrap;
+            /* 수직 정렬 */
+            /* flex-direction: column; */
+            /* align-items: baseline; */
+        }
+        .pic{
+            /* display: none; */
+            /* none으로 설정할시 안보임 */
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div>
+            <img src="../images/bear.jpg" alt="">
+            <img class="pic" src="../images/cat.jpg" alt="">
+            <img src="../images/photo.jpg" alt="">
+        </div>
+        
+    </div>
+</body>
+</html>

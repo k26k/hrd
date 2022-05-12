@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 폼</title>
+</head>
+<body>
+    <h2>로그인</h2>
+    <!-- method는 생략할 수 없음 -->
+    <form action="loginProcess.jsp" method="post">
+        <p>
+            <label>아이디</label>
+            <input type="text" name="userid" size="10">
+            <!-- size로 크기를 조정 가능 -->
+        </p>
+        <p>
+            <label>비밀번호</label>
+            <input type=password name="password" size="15">
+        </p>
+        <input type="submit" value="로그인">
+    </form>
+</body>
+</html>

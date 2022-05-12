@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인라인 레벨 요소</title>
+    <style>
+        div{
+            width: 1000px;
+            border: 1px solid #aaa;
+        }
+        .pic1{
+            display: none;
+            /* display: none; 으로 설정할시 안보임 */
+            /* 공간과 사진이 같이 사라짐 */
+        }
+        .pic2{
+            visibility: hidden;
+            /* visibility: hidden; 으로 설정할시 안보임 */
+            /* 공간은 여백으로 유지되고 사진만 사라짐 */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img src="../images/bear.jpg" alt="">
+        <img src="../images/cat.jpg" alt="" class="pic1">
+        <img src="../images/photo.jpg" alt="">
+    </div>
+    <div>
+        <img src="../images/bear.jpg" alt="">
+        <img src="../images/cat.jpg" alt="" class="pic2">
+        <img src="../images/photo.jpg" alt="">
+    </div>
+    
+</body>
+</html>

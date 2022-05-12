@@ -1,3 +1,27 @@
+*{
+    margin: 0;
+    /* padding: 0; */
+}
+#container{
+    width: 800px;
+    margin: auto;
+    border: 1px solid #000;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+#description{
+    margin: 10px 0px 0px 0px;
+    border: 1px solid #000;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+#receipe{
+    margin: 10px 0px 0px 0px;
+    border: 1px solid #000;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
 /* 메뉴 스타일 */
 nav a{
     text-decoration: none;
