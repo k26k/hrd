@@ -1,0 +1,28 @@
+참고자료 6강pdf
+
+객체(개체) 배치
+1. display : inline, block, inline-block(속성이 들어간 수평), none, flex(반응형 웹에서 중요)
+   일률적으로 행(row)과 열(column)에 배치하는 경우
+
+2. float : left, right (왼쪽과 오른쪽으로 배치하는 경우 - 속성이 유지가 됨)
+   clear : both (해제)
+
+3. position - absolute(완전 독립), relative, fixed
+
+float는 각각 개별 적용이 가능해서 display에 비해 더 자유로운 배치가 가능함
+
+외부폰트 연결방법
+
+구글웹폰트
+구글에 구글폰트 검색
+fonts.google.com
+
+영어로 검색 nanum 검색
+nanum pen script 선택
+추가해서 우상단에 공유
+
+html <link>태그로 연결
+ccs에 적용 - @import
+
+textarea.html 에
+textarea 뒤에 autofocus 추가하면 커서가 생김
