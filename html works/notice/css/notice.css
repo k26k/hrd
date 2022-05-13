@@ -1,0 +1,22 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+#wrap{
+    width: 250px;
+    height: 350px;
+    border: 2px solid #ccc;
+    margin: 0 auto;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+h3{
+    color: #00f;
+    padding: 10px;
+}
+ul{
+    list-style-type: none;
+}
+ul li{
+    margin: 20px 5px;
+}

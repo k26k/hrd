@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>select 태그</title>
+    <link rel="stylesheet" href="./css/select.css">
+</head>
+<body>
+    <div id="content">
+        <form action="" method="post">
+            <fieldset>
+                <legend>수강 신청</legend>
+                <ul>
+                    <li>
+                        <label for="cid" class="reg">학과번호</label>
+                        <input type="text" name="cid" required>
+                        <!-- <input type="text" name="cid" id="cid"> -->
+                        <!-- 자바스크립트의 경우 id="cid"도 사용 -->
+                        <!-- required가 있으면 데이터가 있어야 전송이 가능 -->
+                    </li>
+                    <li>
+                        <label for="name" class="reg">이름</label>
+                        <input type="text" name="name" required>
+                    </li>
+                    <li>
+                        <label for="major" class="reg">학과</label>
+                        <select name="major" id="major" required>
+                            <option value="mechanic">기계공학과</option>
+                            <option value="life" selected>생명공학과</option>
+                            <option value="electric">전기전자공학과</option>
+                            <option value="software">소프트웨어공학과</option>
+                            <!-- selected가 있으면 기본으로 선택됨 -->
+                        </select>
+                    </li>
+                    <li>
+                        <label for="profile" class="reg">이력서 첨부</label>
+                        <input type="file" name="profile" id="profile">
+                    </li>
+                </ul>
+                <p>
+                    <!-- <input type="submit" value="신청"> -->
+                    <button type="submit">신청</button>
+                </p>
+            </fieldset>
+        </form>    
+    </div>
+</body>
+</html>

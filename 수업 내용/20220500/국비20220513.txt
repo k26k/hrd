@@ -26,3 +26,9 @@ ccs에 적용 - @import
 
 textarea.html 에
 textarea 뒤에 autofocus 추가하면 커서가 생김
+
+포지셔닝(positioning)
+float: left / rignt
+position: absolute(브라우저 위치) / relative(객체간 관계에 의해서 정의됨) / fixed
+
+

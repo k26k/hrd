@@ -1,0 +1,25 @@
+#content{
+    width: 600px;
+    margin: 50px auto;
+}
+ul{
+    list-style-type: none;
+}
+ul li{
+    margin: 20px;
+}
+.reg{
+    width: 100px;
+    float: left;
+}
+ul li input{
+    width: 150px;
+    height: 30px;
+}
+#major{
+    width: 160px;
+    height: 30px;
+}
+button{
+    margin-left: 50px;
+}
