@@ -1,0 +1,27 @@
+선택자를 이용해서 요소를 세세하게 선택할수 있음
+
+프로젝트(웹, 앱) 서비스(배포)
+배포란? 서비스할 자료를 서버컴퓨터로 이동하는것
+
+로컬 컴퓨터 -> 서버 컴퓨터
+파일전송 프로그램 필요
+종류(app. webapp)
+
+https://filezilla-project.org/download.php?type=client#close
+사용했음
+
+http://leea.dothome.co.kr/
+
+selector(선택자)
+- 태그, id, class, *
+다양한 선택자
+
+a > b - 자식 선택자 a요소 안의 b요소
+a + b - 인접 선택자 a요소 다음의 b요소
+a ~ b - 형제 선택자 a요소와 같은 계층의 b요소
+
+[속성] 선택자
+input type 사용시
+input[type="submit"] 이러면 type="submit" 속성과 속성값을 가진 input태그에만 적용됨
+
+:active는 :hover아래여야함

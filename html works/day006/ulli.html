@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2단 메뉴와 3단 메뉴</title>
+    <style>
+        body ul li ul li a{
+            text-decoration-line: none;
+        }
+        body > ul{
+            list-style: square;
+        }
+        /* 부모태그(parent)공백으로 띄우면 후손까지 모두 적용 */
+        /* > 를 붙이면 바로 밑에 자식(child)만 적용 */
+    </style>
+</head>
+<body>
+    <ul>
+        <li>
+            <a href="#">메뉴1</a>
+            <ul>
+                <li><a href="#">메뉴1_1</a></li>
+                <li><a href="#">메뉴1_3</a></li>
+                <li><a href="#">메뉴1_2</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">메뉴2</a>
+            <ul>
+                <li><a href="#">메뉴2_1</a></li>
+                <li><a href="#">메뉴2_3</a></li>
+                <li><a href="#">메뉴2_2</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">메뉴3</a>
+            <ul>
+                <li><a href="#">메뉴3_1</a></li>
+                <li><a href="#">메뉴3_3</a></li>
+                <li><a href="#">메뉴3_2</a></li>
+            </ul>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="#" >메뉴4</a>
+            <ul>
+                <li>
+                    <a href="#" >메뉴4_1</a>
+                    <ul>
+                        <li>   
+                            <a href="#">메뉴4_1_1</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</body>
+</html>

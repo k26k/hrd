@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+        td{
+            border: 1px solid #ccc;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* tr:first-child{
+            background-color:#f00;
+        }
+        tr:last-child{
+            background-color:#00f;
+        } */
+        /* 처음, 마지막 요소 선택 */
+
+        tr:nth-child(2n){
+            background-color:#f00;
+            height: 100px;
+        }
+        /* 짝수 선택 */
+        tr:nth-child(2n+1){
+            background-color:#00f;
+        }
+        /* 홀수 선택 */
+        tr td:nth-child(2n){
+            background-color:#0f0;
+            width: 150px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <h1>건강에 좋은 건강 식품</h1>
+    <table>
+        <tr>
+            <td>블루베리</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>귀리</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>토마토</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>적포도주</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>견과류</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>제로콜라</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</body>
+</html>

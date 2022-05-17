@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가상 선택자</title>
+    <style>
+        input:disabled{
+            border: 2px solid #f00;
+            border-radius: 3px;
+        }
+        /* 비활성화시 적용 */
+        input[type="radio"]:checked + span{
+            color: #00f;
+        }
+    </style>
+</head>
+<body>
+    <form method="post">
+        <fieldset>
+            <legend>사용자 정보</legend>
+            <label for="">이름<input type="text" enabled></label>
+            <!-- enabled 붙으면 사용가능 -->
+            <label for="">이름<input type="text" disabled></label>
+            <!-- disabled 붙으면 사용불가 -->
+        </fieldset>
+        <fieldset>
+            <legend>신청 과목</legend>
+            <p>이 달에 신청할 과목을 선택하세요</p>
+            <label for="subject">
+                <input type="radio" name="subject" value="speaking"><span>회화</span>
+            </label>
+            <label for="subject">
+                <input type="radio" name="subject" value="grammer"><span>문법</span>
+            </label>
+            <label for="subject">
+                <input type="radio" name="subject" ><span>작문</span>
+            </label>
+        </fieldset>
+    </form>
+    <form method="post">
+
+    </form>
+</body>
+</html>

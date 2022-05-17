@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>폼</title>
+</head>
+<body>
+    <form action="#" method="post">
+        <fieldset>
+            <legend>type 속성</legend>
+            <p><label for="uid">아이디 : </label><input type="text" id="uid"  
+                autocomplete="on" required autofocus></p>
+            <!-- autocomplete="on" = 자동완성 기능 -->
+            <!-- autofocus 창 실행 후 처음 커서 위치 지정-->
+            <p>비밀번호 : <input type="password"  placeholder="영어, 숫자 포함 8자리 이상"></p>
+            <!-- placeholder 인풋칸에 뜨는 힌트 -->
+            <p>검색 : <input type="search" disabled></p>
+            <!-- disabled 사용시 인풋 사용 못함 -->
+            <p>이메일 : <input type="email" title="이메일" value="test@@" readonly></p>
+            <!-- 커서를 인풋 칸에 두면 타이틀 표시가 뜨고 tts로 읽을때 타이틀 내용을 읽어줌 -->
+            <!-- value 인풋값을 미리 넣어둠 -->
+            <!-- readonly 인풋값 변경 불가 -->
+            <p>전화번호 : 
+                <select name="" id="">
+                    <option value="">지역번호</option>
+                    <option value="" selected>02</option>
+                    <option value="">031</option>
+                    <option value="">032</option>
+                    <option value="">044</option>
+                </select>
+                <input type="text"></p>
+            <p>컬러선택 : <input type="color"></p>
+            <p>수량 : <input type="number" min="1" max="10" value="1"></p>
+            <p>만족도 : <input type="range" min="1" max="10" value="10"></p>
+            <p>
+                <label for="yes">예</label><input type="radio" name="recived" id="yes" checked="checked">
+                <label for="no">아니요</label><input type="radio" id="no" name="recived">
+            </p>
+            <p>html <input type="checkbox" checked="checked"></p>
+            <p><input type="submit" value="전송"></p>
+            <p><input type="reset" value="취소"></p>
+            <p><input type="button" value="확인"></p>
+            <p><button type="button" onclick="alert('동의해주셔서 감사합니다.')">확인</button></p>
+            <!-- onclick="alert('알림창 내용')"사용시 알림창이 뜸-->
+            <p><input type="image" src="../images01/bt.png"></p>
+            <p><input type="file" multiple></p>
+            <!-- multiple 사용시 파일 복수 선택 가능 -->
+        </fieldset>
+    </form>
+</body>
+</html>

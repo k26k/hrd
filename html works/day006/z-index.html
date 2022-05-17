@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>요소 쌓는 순서</title>
+    <style>
+        #z1{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 100px;
+            left: 160px;
+            background-color: red;
+            z-index: 3;
+        }
+        #z2{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 130px;
+            left: 130px;
+            background-color: blue;
+            z-index: 2;
+        }
+        #z3{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 160px;
+            left: 100px;
+            background-color: green;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="z1"></div>
+    <div id="z2"></div>
+    <div id="z3"></div>
+</body>
+</html>

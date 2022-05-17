@@ -1,0 +1,11 @@
+@charset "utf-8";
+
+.btxt{
+    color: red;
+}
+.ctxt{
+    color: blue;
+}
+.atxt{
+    font-weight: bold;
+}

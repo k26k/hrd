@@ -1,0 +1,31 @@
+element
+
+<map name="맵이름">
+    <area shape="rect"> 사각형
+    <area shape="circle"> 원형
+</map>
+<img usemap="#맵이름" alt="">
+
+position
+요소 쌓는 순서를 정하는 zindex값
+
+배치(position)
+float : left | right
+clear : left | right | both
+
+position : absolute | relative | fixed
+
+css에서 overflow 속성은 요소 박스에 내용이 더 길때 어떻게 보일지를 선택하는 속성이다.
+- visible : 특정 요소가 박스를 넘어가도 그대로 보여준다.
+- hidden : invisible 부모요소의 범위를 넘어가는 자식요소의 부분은 보이지 않는다.
+- auto : 내용이 넘치면 스크롤 바를 표시한다.
+
+프로젝트(웹사이트)
+이름 - dream-jeju / css, images
+메인페이지(인덱스)
+제주여행
+레드향 소개
+Q&A(질문/답변)
+About Me자기소개
+
+git clone http:///github.com/kiyongee2/html_css_pdf

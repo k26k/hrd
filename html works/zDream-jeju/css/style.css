@@ -1,0 +1,190 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* header 영역 */
+#container{
+    width: 1200px;
+    margin: 0 auto;
+}
+#header{
+    height: 80px;
+    background: #080;
+}
+#header #logo{
+    width: 300px;
+    float: left;
+    padding: 15px 30px;
+}
+#header #logo a{
+    color: #ff0;
+    text-decoration: none;
+}
+#header nav{
+    width: 800px;
+    float: right;
+}
+#header #topMenu{
+    text-align: right;
+    list-style: none;
+    margin-right: 50px;
+    padding: 15px 20px;
+}
+#header #topMenu li{
+    display: inline-block;
+    margin: 15px 15px 15px 15px;
+}
+#header #topMenu li a{
+    text-decoration: none;
+    color: #fff;
+}
+
+/* bottomMenu 영역 */
+#bottomMenu{
+    width: 1200px;
+    margin: 30px auto;
+    border-top: 2px solid #333;
+}
+#bottomMenu ul{
+    list-style:none;
+    margin: 10px 10px 10px 50px;
+}
+#bottomMenu ul li{
+    display: inline-block;  
+    margin: 10px 0px;
+    border-right: 1px solid #333;
+    padding: 0 15px 0 5px;
+}
+#bottomMenu ul li:last-child{
+    border-right: none;
+}
+/* 구체적으로 선택 가능한 last-child 선택자 */
+#bottomMenu ul li a{
+    color: #333;
+    text-decoration: none;
+}
+
+
+/* index 스타일 */
+#contents{
+    width: 1000px;
+    margin: 30px auto;
+} 
+#contents section div{
+    margin: 30px 10px;
+}
+#contents #healing{
+    height: 300px;
+    margin: 30px 10px;
+}
+#contents #healing img{
+    margin-right: 20px;
+    float: left;
+    border-radius: 20px;
+}
+#contents #healing p{
+    line-height: 2em;
+}
+#contents #activity{
+    height: 300px;
+    margin: 30px 10px;
+}
+#contents #activity img{
+    margin-right: 20px;
+    float: left;
+    border-radius: 20px;
+}
+#contents #activity p{
+    line-height: 2em;
+}
+#sightseeing{
+    width: 1000px;
+    margin: 10px;
+}
+#sightseeing ul{
+    list-style: square;
+    margin:  30px 0 0 25px;
+}
+#sightseeing ul li{
+    margin: 10px;
+}
+
+/* product 스타일 */
+#product{
+    width: 1000px;
+    margin: 30px auto;
+}
+#product #description{
+    border: 2px solid #ddd;
+    width: 800px;
+    padding: 20px 60px;
+    margin: 0 auto 20px auto;
+    border-radius: 20px 20px 0 0;
+    line-height: 2;
+}
+#product #description img{
+    border-radius: 5px;
+    margin: 10px;
+}
+#product #receipe{
+    border: 2px solid #ddd;
+    width: 800px;
+    padding: 20px 60px;
+    margin: 0 auto 20px auto;
+    line-height: 2;
+}
+#product #receipe ol{
+    margin: 10px;
+}
+#product #receipe ol li{
+    margin-left: 10px;
+}
+#product #package{
+    border: 2px solid #ddd;
+    width: 800px;
+    padding: 20px 60px;
+    margin: 0 auto 20px auto;
+    border-radius: 0 0 20px 20px;
+    line-height: 2;
+}
+#product #package table{
+    border-collapse: collapse;
+    width: 450px;
+}
+#product #package table th{
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+#product #package table td{
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+/* board 스타일 */
+#qna{
+    width: 1000px;
+    margin: 0 auto;
+}
+#qna h2{
+    margin: 30px 10px;
+}
+#qna table{
+    border-collapse: collapse;
+    margin: 10px 10px 10px 40px;
+    width: 800px;
+    text-align: center;
+}
+#qna table th, #qna table td{
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+#qna table th{
+    background-color: #eee;
+}
+
+
+
+
+
+
