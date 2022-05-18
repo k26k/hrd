@@ -1,0 +1,14 @@
+*{ margin: 0; padding: 0;}
+#image{ 
+    width: 640px; height: 426px; 
+    background: url(../../images/bg.jpg) no-repeat;
+    background-size: contain;
+    position: relative;
+}
+#text{
+    color: #fff;
+    font-weight: bold; font-size: 6em;
+    position: absolute; right: 80px; bottom: 107px;
+    text-shadow: 3px 3px #000;
+}
+

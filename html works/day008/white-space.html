@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>white-space 속성</title>
+    <style>
+        .white1{white-space: normal;}
+        /* 연속 공백과 줄바꿈이 하나의 공백으로 처리, 길면 줄바꿈 일어남 */
+        .white2{white-space: nowrap;}
+        /* 연속 공백과 줄바꿈이 하나의 공백으로 처리, 길어도 줄바꿈 없이 박스 밖으로 나감 */
+        .white3{white-space: pre;}
+        /* 연속 공백들과 줄바꿈이 소스 그대로 표현됨 */
+        .white4{white-space: pre-wrap;}
+        /* 연속 공백들과 줄바꿈이 소스 그대로 표현되나, 길면 줄바꿈 일어남 */
+        .white5{white-space: pre-line;}
+        /* 연속 공백들이 하나의 공백으로 처리, 줄바꿈은 소스 그대로 표현되나, 길면 줄바꿈 일어남 */
+        p{
+            border: 1px solid #ccc;
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <p class="white1">언니는 푸르른 산보다 민둥산을 좋아한다.
+        이마가 넓어서인지는 모르겠지만 아무튼 산꼭대기는 비어 있어야 한다.</p>
+    <p class="white2">언니는 푸르른 산보다 민둥산을 좋아한다.
+        이마가 넓어서인지는 모르겠지만 아무튼 산꼭대기는 비어 있어야 한다.</p>
+    <p class="white3">언니는 푸르른 산보다 민둥산을 좋아한다.
+        이마가 넓어서인지는 모르겠지만 아무튼 산꼭대기는 비어 있어야 한다.</p>
+    <p class="white4">언니는 푸르른 산보다 민둥산을 좋아한다.
+        이마가 넓어서인지는 모르겠지만 아무튼 산꼭대기는 비어 있어야 한다.</p>
+    <p class="white5">언니는 푸르른 산보다 민둥산을 좋아한다.
+        이마가 넓어서인지는 모르겠지만 아무튼 산꼭대기는 비어 있어야 한다.</p>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글꼴 속성</title>
+    <style>
+        .letter2{
+            letter-spacing: 5px;
+        }
+        .letter3{
+            letter-spacing: 2em;
+            /* 부모 기본 16 기준 2em=32px */
+        }
+        h1{
+            letter-spacing: 5px;
+        }
+        p{
+            text-transform: uppercase;
+        }
+        button{
+            width: 100px;
+            height: 50px;
+        }
+        button:hover{
+            text-transform: uppercase;
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>노트북</h1>
+    <p>1990년형 notebook은 안녕! <br> 잘가세요 고생하셨소~</p>
+    <p class="letter2">1990년형 노트북은 안녕! <br> 잘가세요 고생하셨소~</p>
+    <p class="letter3">1990년형 노트북은 안녕! <br> 잘가세요 고생하셨소~</p>
+    <button>abc</button>
+</body>
+</html>

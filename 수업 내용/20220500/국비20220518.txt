@@ -1,0 +1,13 @@
+letter-spacing : 자간(글자 간격)
+word-spacing : 단어 간격
+
+변형 속성
+transform:
+- rotate(각도) 지정한 각도만큼 시계방향으로 회전, 단위 deg(도)
+- translateX(거리) 지정한 거리만큼 수직으로 이동, 단위 px
+- translateY(거리) 지정한 거리만큼 수직으로 이동, 단위 px
+- scale(배율) 지정한 배율만큼 확대 축소, 1배 = 1
+
+
+
+

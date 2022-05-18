@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul{
+            width: 200px;
+            border: 1px solid #000;
+        }
+        .wrapping{
+            word-wrap:break-word;
+        }
+        .word-break{
+            word-break: break-all;
+            word-wrap: break-word;
+        }
+        .word{
+            word-break: keep-all;
+            word-wrap: break-word;
+        }
+        /* .word처럼 단어가 떨어지진 않고 둘 다 적는게 이상적 */
+    </style>
+</head>
+<body>
+    <ul>
+        <li><p>홍길동</p></li>
+        <li><p>이메일 : qwertyuiopasdfghjkl@qwertyuiopasdfghjkl.com</p></li>
+    </ul>
+    <ul class="wrapping">
+        <li><p>홍길동</p></li>
+        <li><p>이메일 : qwertyuiopasdfghjkl@qwertyuiopasdfghjkl.com</p></li>
+    </ul>
+    <ul class="word-break">
+        <li><p>홍길동</p></li>
+        <li><p>이메일 : qwertyuiopasdfghjkl@qwertyuiopasdfghjkl.com</p></li>
+    </ul>
+    <ul class="word">
+        <li><p>홍길동</p></li>
+        <li><p>이메일 : qwertyuiopasdfghjkl@qwertyuiopasdfghjkl.com</p></li>
+    </ul>
+</body>
+</html>

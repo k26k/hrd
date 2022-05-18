@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변형 속성</title>
+    <style>
+        div.b{
+            width: 150px;
+            height: 50px;
+            background-color: #0f0;
+            /* 속도 지연 */
+            transition-property: height, background-color, transform;
+            transition-duration: 5s, 5s, 5s;
+            /* 각 요소별 속도 설정 */
+            
+        }
+        .b:hover{
+            transform: rotate(90deg);
+            background-color: #f00;
+            height: 100px;
+        }
+        div.c{
+            width: 150px;
+            height: 50px;
+            background-color: #0f0;
+        }
+        div.c:hover{
+            transform: translateX(50px);
+        }
+        div.d{
+            width: 150px;
+            height: 50px;
+            background-color: #0f0;
+        }
+        div.d:hover{
+            transform: scale(1.5);
+        }
+    </style>
+</head>
+<body>
+    <h2>transform: rotate(30deg)</h2>
+    <div class="b"></div>
+    <h2>transform: translateX(50px)</h2>
+    <div class="c"></div>
+    <h2>transform: scale(1.5)</h2>
+    <div class="d"></div>
+</body>
+</html>

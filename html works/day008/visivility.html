@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>visivility 속성</title>
+    <style>
+        div{
+            margin: 10px; padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .hdd{ display: none;}
+        /* 차지하던 공간도 사라짐 */
+        .hdd2{ visibility: hidden;}
+        /* 차지하던 공간은 남음 */
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p><strong>이름 :</strong> 홍길동</p>
+        <p><strong>연락처 :</strong> 서울 종로구 세검정</p>
+    </div>
+    <div class="box">
+        <p><strong class="hdd">이름 :</strong> 홍길동</p>
+        <p><strong class="hdd">연락처 :</strong> 서울 종로구 세검정</p>
+    </div>
+    <div class="box">
+        <p><strong class="hdd2">이름 :</strong> 홍길동</p>
+        <p><strong class="hdd2">연락처 :</strong> 서울 종로구 세검정</p>
+    </div>
+</body>
+</html>

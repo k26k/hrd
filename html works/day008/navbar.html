@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display 속성</title>
+    <style>
+        ul{list-style: none;}
+        ul li{display: inline-block;}
+        ul li a{
+            display: block;
+            padding: 10px 20px ;
+            color: #000;
+            background-color: #ddd;
+            width: 100px;
+            border: 1px solid #000;
+        }
+        ul li a:link, ul li a:visited{
+            text-decoration: none;
+            color: #a0f;
+            background-color: #ddd;
+        }
+        ul li a:hover{
+            color: #fff;
+            background-color: #000;
+        }
+        ul li a:active{
+            color: #fff;
+            background-color: #f00;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="">메뉴1</a></li>
+            <li><a href="">메뉴2</a></li>
+            <li><a href="">메뉴3</a></li>
+            <li><a href="">메뉴4</a></li>
+        </ul>
+    </nav>
+</body>
+</html>
