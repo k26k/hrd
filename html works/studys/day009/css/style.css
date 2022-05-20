@@ -1,0 +1,10 @@
+body, header, div, footer, h1,p,ul,li{margin: 0px; padding: 0px;}
+li{list-style: none;}
+a{text-decoration: none; color: #444;}
+header{height: 40px; line-height: 40px; background: cornflowerblue;}
+#container{width: 600px; margin: 0 auto; min-height: calc(100vh - 80px);}
+.lnb{background: lightblue;}
+.lnb li{display: inline;}
+.lnb li a{display: inline-block; padding: 5px 20px; text-align: center;}
+.content_area{background: dodgerblue;}
+footer{height: 40px; line-height: 40px; text-align: center; background: lightgray;}

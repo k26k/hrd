@@ -1,0 +1,22 @@
+*{ margin: 0; padding: 0;}
+/* 모바일 기준 */
+#container{ 
+    width: 100%; margin: 0 auto;
+    background: #f00;
+}
+#container h1{
+    font-size: 2em;
+}
+header{height: 100px; border: 1px solid #fff;}
+section{height: 600px; border: 1px solid #fff;}
+footer{height: 100px; border: 1px solid #fff;}
+
+/* 태블릿 기준 */
+@media screen and (min-width: 780px) {
+    #container{background: #0f0;}
+}
+
+/* pc 기준 */
+@media screen and (min-width: 1024px) {
+    #container{background: #00f;}
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMAGE SPRITE</title>
+    <style>
+        li{display: inline; list-style: none; margin: 5px;}
+        .lnb li a{
+            display: inline-block;
+            padding-left: 30px;
+            text-decoration: none;
+            font: 25px Times;
+            color: #000;
+            background: url(./images/bg_sprite.png) no-repeat;
+            background-size: 26px 176px;
+        }
+        .lnb li:nth-child(1) a{background-position: 0 0;}
+        .lnb li:nth-child(2) a{background-position: 0 -50px;}
+        .lnb li:nth-child(3) a{background-position: 0 -100px;}
+        .lnb li:nth-child(4) a{background-position: 0 -150px;}
+    </style>
+</head>
+<body>
+    <ul class="lnb">
+        <li><a href="">Theater</a></li>
+        <li><a href="">Secret</a></li>
+        <li><a href="">Concert</a></li>
+        <li><a href="">Animal Farm</a></li>
+    </ul>
+</body>
+</html>

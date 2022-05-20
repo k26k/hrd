@@ -1,0 +1,27 @@
+*{ margin: 0; padding: 0;}
+body{ background-color: #bcf;}
+#container{ width: 320px; margin: 0 auto;}
+.card{
+    width: 300px; height: 500px; margin: 10px;
+    background: #fff; position: relative;
+}
+.card img{
+    width: 300px; height: 250px;
+    background-repeat: no-repeat; background-size:cover;
+}
+.word{
+    position: absolute;
+    top: 300px; left: 10px;
+    text-align: center;
+    padding: 10px;
+}
+@media screen and (min-width: 768px) {
+    #container{ width: 550px;}
+    .card{ width: 550px; height: 250px;}
+    .word{ top: 50px; left: 310px;}
+}
+@media screen and (min-width: 1740px) {
+    #container{ width: 1740px;}
+    .card{ display: inline-block;}
+    .word{ top: 50px; left: 310px;}
+}
