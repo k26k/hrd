@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>산술 연산자</title>
+</head>
+<body>
+    <script>
+        // 입력(변수에 값을 대입)
+        var num1 = 8, num2 = 5;
+        var result = 0;
+        // // 처리(연산)
+        // result = num1 + num2;
+        // // 출력
+        // document.write(result);
+
+        document.write("<br>");
+        result = num1 + num2;
+        document.write(result);
+        //덧셈
+
+        document.write("<br>");
+        result = num1 - num2;
+        document.write(result);
+        // 뺄셈
+
+        document.write("<br>");
+        result = num1 * num2;
+        document.write(result);
+        // 곱셈
+
+        document.write("<br>");
+        result = num1 / num2;
+        document.write(result);
+        // 나눗셈
+
+        document.write("<br>");
+        result = num1 % num2;
+        document.write(result);
+        // 나머지
+
+        document.write("<br>");
+        result = 0;
+        result ++;
+        document.write(result);
+        // 1 증가
+
+        document.write("<br>");
+        result = 0;
+        result --;
+        document.write(result);
+        // 1 감소
+
+        document.write("<br>");
+        result = 0;
+        result += 10;
+        document.write(result);
+        // 우측 숫자 만큼 증가
+
+        document.write("<br>");
+        result = 0;
+        result -= 10;
+        document.write(result);
+        // 우측 숫자 만큼 감소
+
+        document.write("<br>");
+        document.write("<br>");
+        result = 0;
+        document.write(result);
+        document.write("<br>");
+        document.write(result++);
+        document.write("<br>");
+        document.write(result);
+        // 1 증가 하지만 출력 후에 증가함
+
+        document.write("<br>");
+        document.write("<br>");
+        result = 0;
+        document.write(result);
+        document.write("<br>");
+        document.write(++result);
+        document.write("<br>");
+        document.write(result);
+        // 1 증가 증가하고 출력 됨
+
+        document.write("<br>");
+
+        /*
+        var mathScore = 70;
+        var engScore = 83;
+        var total = mathScore + engScore;
+        var avg = total / 2;
+        document.write("<br>");
+        document.write(total + ", " + avg);
+        // 중복 선언이 가능한 var보단 중복 선언이 허용되지 않는 let을 권장
+        */
+        
+
+        var mathScore = 70;
+        var engScore = 83;
+        let total = 0;
+        let avg = 0;
+        total = mathScore + engScore;
+        avg = total / 2;
+        document.write("<br>");
+        document.write(total + ", " + avg);
+        document.write("<br>");
+
+    </script>
+</body>
+</html>

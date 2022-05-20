@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>::after 가상 선택자</title>
+    <style>
+        /* ul .new::after{
+            해당 요소 뒤를 지정함
+            content: "end";
+            내용을 추가하는 요소
+        }
+        ul .new::before{
+            해당 요소 뒤를 지정함
+            content: "start";
+        } */
+        ul .new::after{
+            content: "new";
+            background-color: #f00;
+            border-radius: 7px;
+            box-shadow: 0 0 3px#f00;
+            color: #ff0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>상품목록</h2>
+        <ul>
+            <li class="new">라면</li>
+            <li>생수</li>
+            <li>두부</li>
+            <li class="new">커피</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>데이터 입력</title>
+    <style>
+        .redish{color: red}
+        .bluish{color: blue}
+        .greenish{color: green}
+    </style>
+</head>
+<body>
+    <script>
+        /*
+        // 입력
+        let number = prompt("수를 입력하세요", "1~30");
+        // prompt("입력칸 설명", "입력칸에 젹혀있을 내용");
+
+        // 출력
+        document.write(number);
+        */
+        
+        /*
+        let name = prompt("이름을 입력해 주세요");
+        if(name == null || name == ""){
+            document.write("이름을 입력해 주세요")
+        }else{
+            document.write(name + "님 환영 합니다!")
+            document.write("<br>")
+            document.write("<span class='redish'>" + name + "님 환영 합니다!</span>")
+            // span으로 스타일 추가 가능 쌍따옴표 홑따옴표 구분 주의
+        }
+        */
+        
+        let num1 = prompt("숫자 1을 입력해 주세요");
+        let num2 = prompt("숫자 2를 입력해 주세요");
+        if(num1 == null || num1 == "" || num2 == null || num2 == ""){
+            document.write("숫자를 잘 입력해 주세요")
+        }else{
+            document.write(
+                "<span class='redish'>" + num1 +"</span>"
+                + " + <span class='bluish'>" + num2 +"</span>"
+                + " = <span class='greenish'>" + num1 + num2 +"</span>"
+            )
+            document.write("<br>")
+        }
+        // prompt는 문자열로 받아와서 더해지지 않고 합쳐짐
+        
+
+    </script>
+</body>
+</html>

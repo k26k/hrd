@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변수의 선언과 사용</title>
+</head>
+<body>
+    <script>
+        var name;
+        // 이름이 네임인 변수를 선언
+        name = "손흥민";
+        // 값을 대입, 변수 초기화
+        var grade;
+        grade = 2;
+        //  '='는 대입 연산자
+        // var class = 3;
+        // 사전에 정의된 명령어, 즉 예약어는 변수명으로 선언 불가능
+        // var 3class = 3;
+        // 변수 명이 숫자+예약어인 경우도 안됨
+        var schoolClass = 3; 
+
+
+        for(i=0;i<5;i++){
+            document.write(grade + grade);
+            console.log(grade + grade);
+            document.write(name + "의 학년은 " + grade + grade + "학년");
+            console.log(name + "의 학년은 " + grade + grade + "학년");
+            document.write("<br>");
+            document.write(name + "의 학년은 " + (grade + grade) + "학년");
+            console.log(name + "의 학년은 " + (grade + grade) + "학년");
+            document.write("<br>");
+            document.write(name + "의 학년은 " + (grade + grade) + "학년 " + schoolClass + "반");
+            console.log(name + "의 학년은 " + (grade + grade) + "학년 " + schoolClass + "반");
+            document.write("<br>");
+            // 문자에서 +는 연결 연산자 
+            // 문자 + 숫자의 경우 숫자가 문자로 변환됨
+            // 숫자에서 +는 산술 연산자
+
+
+            document.write("<br>");
+        }
+
+        // 자료형을 알려주는 함수 typeof(변수명)
+        console.log(typeof(name));
+        // string 문자형
+        console.log(typeof(grade));
+        // number 숫자형
+        console.log(typeof(schoolClass));
+        //  number 숫자형
+        console.log(typeof(true));
+        // boolrean 논리형
+        
+    </script>
+</body>
+</html>

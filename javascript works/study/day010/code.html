@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <script>
+        /*
+            문자셋
+            - 유니코드(2바이트 16비트 2^16 65536개), 
+            - 아스키코드(1바이트 7비트 2^7 128개)
+                - 부호비트1, 영대28, 영소28,
+        */
+        var ch1 = 65;
+        console.log(ch1);
+        console.log(String.fromCharCode(ch1));
+
+        var ch2 = "bird";
+        console.log(ch2);
+        console.log(ch2.charCodeAt(0));
+
+        var ch3 = "나";
+        console.log(ch3);
+        console.log(ch3.charCodeAt(0));
+
+
+
+
+
+
+        let count=0;
+        for(i=0;i<=127;i++){
+            document.write(i+" = ")
+            document.write(String.fromCharCode(i) + "<br>");
+            count++;
+        }
+        document.write("<br>",count)
+        
+    </script>
+    
+</body>
+</html>
