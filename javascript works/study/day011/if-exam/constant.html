@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상수 사용</title>
+</head>
+<body>
+    <script>
+        // 입력(선언)
+        let month1 = 12;
+        // 변수로 선언
+
+        month1 = 10;
+
+        // 출력
+        console.log(month1);
+        // 정상 실행됨
+
+
+        // 입력(선언)
+        const MONTH2 = 12;
+        // 상수로 선언
+        // 상수는 변경해서는 안되는 값을 표현
+        // 상수는 대문자로 선언하는게 국룰
+
+        // MONTH2 = 10; 
+        // 값을 변경할 수 없음
+        // 상수에 값을 재할당시 런타임 오류가 남
+
+        // 출력
+        console.log(MONTH2);
+        console.log("1년은" + MONTH2 + "달이 있습니다");
+
+        // 원의 둘레와 넓이를 계산하는 프로그램 r^2*pi
+        // 원의 둘레 2*pi*r
+        // 원의 둘레 pi*r^2
+        const pi = 3.14
+        let radius = 4; // 반지름
+        var circum = 0.0; //원의 둘레
+        var circleArea = 0.0; //원의 부피
+
+        // let = radius 10;
+        // 컴파일 에러
+        // 실행전 알려줌
+        radius = prompt("반지름 입력");
+
+        circum = 2 * pi * radius;
+        console.log(circum);
+        //원의 넓이 연산후 출력
+
+        circleArea = pi * radius * radius;
+        console.log(circleArea);
+        //원의 부피 연산후 출력
+
+    </script>
+</body>
+</html>

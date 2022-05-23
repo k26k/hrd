@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>데이터 형 변환</title>
+</head>
+<body>
+    <script>
+        /*
+        형변환(type conversion)
+
+        문자형 -> 숫자형
+        - Number(문자) -> 정수, 실수
+        - parseInt(문자) -> 정수
+        - parseFloat(문자) -> 실수
+
+        숫자형 -> 문자형
+        - toString(숫자) -> 문자
+        */
+
+        // Number() 함수
+        let n1 = Number("10");
+        console.log(n1);
+
+        let n2 = Number("2.54");
+        console.log(n2);
+
+
+        // parseInt()
+        let n3 = parseInt("10");
+        console.log(n3);
+
+        // parseFloat()
+        let n4 = parseFloat("2.54");
+        console.log(n4);
+
+        // parseInt와 parseFloat은 숫자 뒤에 문자가 섞여도 변환 가능
+        // Number는 불가능 
+
+        // toString()
+        let val1 = 100;
+        let val2 = 1;
+        let str = val1.toString() + val2.toString();
+        console.log(str);
+        // 1001이 나옴
+
+
+    </script>
+</body>
+</html>

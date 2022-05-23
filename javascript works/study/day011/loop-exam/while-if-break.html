@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        let i = 0;
+
+        i = 0;
+        while(true){
+            i++;
+            console.log(i);
+            if (10<=i){
+                break;
+            } 
+        }
+        i = 0;
+        while(true){
+            i++;
+            console.log(i);
+            if (10<=i)break; // if문이 한 줄인 경우 코드블럭 생략 가능
+        }
+        */
+
+        while(true){
+            var key=prompt("계속 반복 할까요?", "y/n");
+            if(key==="y"){
+                window.alert("계속 반복합니다.");
+            }else if(key==="n"){
+                window.alert("반복을 중지합니다.");
+                break
+            }else {
+                window.alert("키를 잘못 누르셨습니다.");
+            }
+        }
+    </script>
+</body>
+</html>

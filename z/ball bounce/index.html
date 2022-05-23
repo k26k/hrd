@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공 튀기기</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/setup.js" defer></script>
+    <script>
+        function start(){
+            // containerHcontrol(document.getElementById("container"));
+            setInterval(containerHcontrol(), 100);
+        }
+    </script>
+</head>
+<body onload="start()">
+    <div id="container">
+        <head>
+
+        </head>
+        <main id="main">
+            <div id="home">
+
+            </div>
+            <div id="game">
+                <div id="display"></div>
+                <div id="controler"></div>
+            </div>
+            <div id="score">
+
+            </div>
+        </main>
+        <footer>
+
+        </footer>
+    </div>
+</body>
+</html>

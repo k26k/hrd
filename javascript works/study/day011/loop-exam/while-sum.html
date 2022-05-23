@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>while문 합계 구하기</title>
+</head>
+<body>
+    <script>
+        var sumV = 0;
+        sumV = sumV + 1; // 0 + 1 = 1
+        sumV = sumV + 2; // 1 + 2 = 3
+        sumV = sumV + 3; // 3 + 3 = 6
+        sumV = sumV + 4; // 6 + 4 = 10
+        sumV = sumV + 5; // 10 + 5 = 15
+        document.write(sumV);
+
+        var sumV2 = 0;
+        var i = 0;
+        while(i < 5){
+            i++;
+            sumV2+=i;
+            // document.write("<br>" + sumV2);
+        }
+        document.write("<br>" + sumV2);
+
+        // 결과물이 같음
+
+        var sumV3 = 0;
+        var i = 0;
+        while(i < 10){
+            i++;
+            document.write("<br>" + sumV3)
+            sumV3+=i;
+            document.write("+" + i + "=" + sumV3);
+        }
+
+    </script>
+</body>
+</html>
