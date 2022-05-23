@@ -1,7 +1,9 @@
 // window.addEventListener("resize", containerHcontrol());
-
+function setup(){
+    containerHcontrol();
+}
 // setTimeout(containerHcontrol(), 100);
-setInterval(containerHcontrol(), 100);
+// setInterval(containerHcontrol(), 100);
 // window.addEventListener('load', containerHcontrol());
 // body onload="somecode();"
 function containerHcontrol(containerE){

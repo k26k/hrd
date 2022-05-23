@@ -7,29 +7,23 @@
     <title>공 튀기기</title>
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/setup.js" defer></script>
-    <script>
-        let move=null;
-        function start(){
-            // containerHcontrol(document.getElementById("container"));
-            move = setInterval(containerHcontrol(), 100);
-        }
     </script>
 </head>
-<body onload="start()">
+<body>
     <div id="container">
         <head>
-
+            <nav id="quickMenu"></nav>
         </head>
         <main id="main">
-            <div id="home">
-
+            <div id="firstScreen">
+                <div id=""></div>
             </div>
-            <div id="game">
+            <div id="gameScreen">
                 <div id="display"></div>
                 <div id="controler"></div>
             </div>
-            <div id="score">
-
+            <div id="endScreen">
+                <div id="score"></div>
             </div>
         </main>
         <footer>
@@ -37,4 +31,7 @@
         </footer>
     </div>
 </body>
+<script>
+    setup();
+</script>
 </html>

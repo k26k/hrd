@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animation 속성</title>
+    <style>
+        p{
+            width: 100px; height: 100px;
+            padding: 10px; background: firebrick;
+            animation-name: sample;
+            animation-duration: 4s;
+            animation-fill-mode: forwards;
+            text-align: center;
+            vertical-align: middle;
+        }
+        @keyframes sample{
+            0%{
+                background: firebrick; 
+                -webkit-transform: translate(0, 0);
+                -moz-transform: translate(0, 0);
+                -ms-transform: translate(0, 0);
+                -o-transform: translate(0, 0);
+                transform: translate(0, 0);
+            }
+            50%{background: cornflowerblue; transform: translate(50px, 20px);}
+            100%{background: forestgreen; transform: translate(0, 0);}
+        }
+    </style>
+</head>
+<body>
+    <p>animaition..</p>
+</body>
+</html>

@@ -1,0 +1,15 @@
+h1, p, ul{margin: 0; padding: 0;}
+li{list-style-type: none;}
+.gallery{padding: 0;}
+.gallery li{
+    float: left; width: 150px;
+    margin-right: 10px;
+    text-align: center;
+}
+.gallery h3{padding: 5px;}
+.gallery li h3{background: #daa;}
+.gallery li + li h3{background: #abc;}
+.gallery li + li + li h3{background: #eba;}
+.gallery li + li + li + li h3{background: #aa7;}
+.gallery li p{padding: 10px; text-align: justify; font-size: 14px;}
+
