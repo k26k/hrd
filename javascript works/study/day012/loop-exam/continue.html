@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>continue문</title>
+</head>
+<body>
+    <script>
+        // 1부터 10까지의 자연수 중에서 5까지만 출력(break)
+        for(let i = 1; i <= 10; i++){
+            if(5<i){
+                break; // 반복문을 빠져나옴
+            }
+            console.log(i)
+        }
+        
+        // 1부터 10까지의 자연수 중에서 5를 제외한 수만 출력
+        for(let i = 1; i <= 10; i++){
+            if(i==5){
+                continue;
+            }
+            console.log(i)
+        }
+        // break; 는 반복문을 끝내고 빠져나옴 = 다음 반복이 실행되지 않음
+        // continue; 는 해당 명령어 아래의 명령어를 전부 생략하고 지나감 = 다음 반복이 바로 실행됨
+
+        // 1부터 10까지의 자연수 중에서 5까지만 출력(continue)
+        for(let i = 1; i <= 10; i++){
+            if(5<i){
+                continue; // 이후 명령어를 생략하고 다음 반복을 실행
+            }
+            console.log(i)
+        }
+    </script>        
+</body>
+</html>

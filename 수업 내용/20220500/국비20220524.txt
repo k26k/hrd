@@ -1,0 +1,54 @@
+지역변수(local), 매개변수
+지역변수는 블럭 안에서 생성, 사용
+블럭을 벗어나면 메모리 해제(소멸)
+
+전역변수(global)
+전역변수는 블럭 밖에서 생성, 블럭 안, 밖에서 사용
+블럭을 벗어나도 메모리 유지
+
+while, for{
+    if{
+        break문
+        continue문
+    }
+}
+break; 는 반복문을 끝냄
+continue; 는 해당 명령어 아래의 명령어를 전부 생략하고 지나감
+
+
+switch문
+
+switch(조건식 or 값){
+    case 조건1 or 값:
+        명령어;
+        break;
+    case 조건2 or 값:
+        명령어;
+        break;
+    case 조건3 or 값:
+        명령어;
+        break;
+    default:
+        명령어;
+        break;
+}
+
+if(조건1 or 값){
+    명령어;
+}else if(조건2 or 값){
+    명령어;
+}
+}else if(조건3 or 값){
+    명령어;
+}
+else{
+    명령어;
+}
+
+else if문과 유사하게 작동
+
+
+
+
+
+    

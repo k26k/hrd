@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-size: 2em; text-align: center; color: white;
+            background-color: blue; text-shadow: 2px 2px 0px #000;
+        }
+        span{color: yellow; font-weight: bold; font-size:1.3em; }
+    </style>
+</head>
+<body>
+    <script>
+        switch(parseInt(prompt("관심 세션을 선택해 주세요.", "1-마케팅, 2-개발, 3-디자인"))){
+            case 1:
+                document.write("마케팅 세션은 <span>201호</span>에서 진행 됩니다.");
+                break;
+            case 2:
+                document.write("개발 세션은 <span>203호</span>에서 진행 됩니다.");
+                break;
+            case 3:
+                document.write("디자인 세션은 <span>205호</span>에서 진행 됩니다.");
+                break;
+            default:
+                document.write("잘못 입력하셨습니다.");
+                break;
+        }
+
+    </script>
+    
+</body>
+</html>

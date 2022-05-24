@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3의 배수</title>
+</head>
+<body>
+    <script>
+        // 1부터 20까지 출력
+        for(let i = 1; i <= 20; i++){
+            console.log(i);
+        }
+
+        // 1부터 20중 2의 배수를 출력
+        for(let i = 1; i <= 20; i++){            
+            if(i%2 == 0){
+                console.log(i);
+            }
+        }
+
+        // 1부터 20중 3의 배수를 출력
+        for(let i = 1; i <= 20; i++){            
+            if(i%3 == 0){
+                console.log(i);
+            }
+        }
+        
+
+        time1F = new Date().getTime();
+        for(let i = 1; i <= 200; i++){            
+            if(i%3 == 0){
+                console.log(i);
+            }
+        }
+        time1E = new Date().getTime();
+
+        // 복수의 숫자를 출력하는게 아니고 수의 범위가 엄청 늘어난다면 이게 더 빠르지 않을까
+        time2F = new Date().getTime();
+        let numMax = 200;
+        let num = 3;
+        let numi = parseInt(numMax/num);
+        for(let i = 1; i <= numi; i++){
+            console.log(i*num);
+        }
+        time2E = new Date().getTime();
+
+        console.log(time1E - time1F);
+        console.log(time2E - time2F);
+
+        // new Date().getTime(); = 시간을 밀리초 값으로 반환
+
+        // 1부터 20까지의 수 중에서 3의 배수의 갯수를 출력
+        let count = 0;
+        for(let i = 1; i <= 20; i++){            
+            if(i%3 == 0){
+                count++;
+            }
+        }
+        console.log(count);
+    </script>
+    
+</body>
+</html>
