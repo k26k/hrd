@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onClick 속성</title>
+</head>
+<body>
+    <button type="button" onclick="fnCheck()">로그인</button>
+    <button type="button" onclick="fnCheck()">R+</button>
+    <button type="button" onclick="fnCheck()">R-</button>
+    <button type="button" onclick="fnCheck()">G+</button>
+    <button type="button" onclick="fnCheck()">G-</button>
+    <button type="button" onclick="fnCheck()">B+</button>
+    <button type="button" onclick="fnCheck()">B-</button>
+    <p id="demo"></p>
+    <script>
+        let colorR=0;
+        let colorG=0;
+        let colorB=0;
+
+        function fnCheck(){
+            // document.write("버튼 눌림");
+            // 화면에 버튼 눌림만 남음
+            // 현업에선 안씀
+
+            document.getElementById("demo").innerHTML += "버튼 눌림<br>";
+            document.getElementById("demo").innerHTML += "버튼 눌림<br>";
+
+            // 대신 선택자로 요소의 값을 가져와서 사용
+            // .innerHTML로 해당 요소 내부의 HTML을 변경함
+        }
+    </script>
+</body>
+</html>

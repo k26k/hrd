@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수의 정의와 호출</title>
+</head>
+<body>
+    <script>
+        // - 리턴이 없는 함수 -
+        // 매개변수가 없는 함수 생성
+        function sayHello(){
+            document.write("hello~<br>");
+        }
+        // 외부에서 받아오는 값이 없음
+
+        // 매개변수가 있는 함수 생성
+        function sayHelloName(name){
+            document.write(" hello~ " + name + "<br>");
+        }
+        // 외부에서 받아오는 값이 있음
+
+        // 함수 호출(메모리에 로드됨)
+        sayHello();
+        sayHelloName("아무개");
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나이 계산 프로그램</title>
+    <style>
+        .content{
+            width: 800px; margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h2>나이를 계산하는 프로그램</h2>
+        <input type="number" name="age" id="age" >
+        <button type="button" onclick="calcAge()">계산하기</button>
+        <hr>
+        <p id="demo"></p>
+    </div>
+    <script>
+        function calcAge(){
+            const CURRENT_YEAR = new Date().getFullYear();
+            // const CURRENT_YEAR = 2022;
+            // let birthYear = parseInt(prompt("출생 연도 입력"));
+            let birthYear = parseInt(document.getElementById("age").value);
+            console.log(CURRENT_YEAR);
+            document.getElementById("demo").innerHTML = CURRENT_YEAR-birthYear+1;
+        }
+    </script>
+</body>
+</html>

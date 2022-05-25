@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지역 변수의 유효 범위(scope)</title>
+</head>
+<body>
+    <h3>지역 변수의 유효 범위</h3>
+    <script>
+        // oneUp 함수 정의
+        function oneUp(){
+            let x = 1;
+            x += 1;
+            // x++;
+            return x;
+        }   
+
+        /*
+        let num = oneUp(); // 1번 호출
+        document.write(num);
+        document.write(x); // x는 함수 내부에만 존재하는 지역변수라 함수 밖에서 호출할 수 없음
+        */
+        
+        /* 
+        console.log(oneUp());
+        console.log(oneUp());
+         */
+        // 아무리 호출해도 값이 2만 나옴 새로운 함수가 필요
+    </script>
+</body>
+</html>

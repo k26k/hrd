@@ -4,14 +4,27 @@ body{ background-color: #000;}
 #quickMenu{width: 100%; height: 10%; min-height: 20px; border: 5px solid #000; background: #fff}
 #main{width: 100%; height: 80%; border: 5px solid #888; }
 footer{width: 100%; height: 10%; min-height: 20px; border: 5px solid #000; background: #fff}
+
+
+
 #firstScreen{
     width: 100%; height: 100%; margin: 0 auto; 
     border: 5px solid #f00; display: block; background: #fff
 }
+.startTitle{
+    font-size: 2em;
+    font-weight: bold;
+}
+/* #startButtom{
+
+} */
+
 #gameScreen{
     width: 100%; height: 100%; margin: 0 auto; 
     border: 5px solid #0f0; display: none; background: #fff
 }
+#block{width: 10px; height: 10px; background-color: #f00;}
+
 #endScreen{
     width: 100%; height: 100%; margin: 0 auto; 
     border: 5px solid #00f; display:none; background: #fff;

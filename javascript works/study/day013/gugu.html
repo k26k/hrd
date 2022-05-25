@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구구단 함수</title>
+</head>
+<body>
+    <script>
+        function guguBox(num,max){
+            let text="<div style='text-align: center; border: 1px solid #ccc; margin: 10px; padding: 10px; float:left;'><h2>"+num+"단</h2>";
+            for(i=1;i<=max;i++){
+                text += "<br>"+num+"x"+i+"="+num*i;
+            }
+            return text+"</div>";
+        }
+        document.write(guguBox(257,20));
+        document.write(guguBox(10,10));
+        for(let i=1;i<=9;i++){
+            document.write(guguBox(i,10));
+        }
+        
+    </script>
+</body>
+</html>

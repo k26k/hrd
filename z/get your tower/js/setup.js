@@ -46,6 +46,7 @@ function modeChange(mode){
         document.getElementById("firstScreen").style.display = "block";
     }else if(mode == 1){
         document.getElementById("gameScreen").style.display = "block";
+        setInterval(function(){containerHcontrol();}, 10)
     }else if(mode == 2){
         document.getElementById("endScreen").style.display = "block";
     }else{
@@ -54,15 +55,26 @@ function modeChange(mode){
     
 }
 
-setTimeout(function(){containerFit(window.innerHeight, document.getElementById("container"));}, 100);
-function containerFit(containerTargetHeight,containerEId){
-    // containerTargetHeight = window.innerHeight;
-    // containerEId = document.getElementById("container")
+// setTimeout(function(){containerFit(window.innerHeight, document.getElementById("container"));}, 100);
+// function containerFit(containerTargetHeight,containerEId){
+//     // containerTargetHeight = window.innerHeight;
+//     // containerEId = document.getElementById("container")
+//     if(window.innerHeight < containerTargetHeight-1 || containerTargetHeight+1 < window.innerHeight){
+//         containerTargetHeight = window.innerHeight;
+//         containerEId.style.height = (containerTargetHeight-2) + "px";
+        
+//     }
+//     setTimeout(function(){containerFit(containerTargetHeight, containerEId);}, 5);
+// }
+// setInterval(function(){containerHcontrol();}, 10);
+const containerEId = document.getElementById("container");
+let containerTargetHeight = window.innerHeight;
+// setInterval(function(){containerFit();}, 10);
+function containerFit(){
     if(window.innerHeight < containerTargetHeight-1 || containerTargetHeight+1 < window.innerHeight){
         containerTargetHeight = window.innerHeight;
         containerEId.style.height = (containerTargetHeight-2) + "px";
-        
     }
-    setTimeout(function(){containerFit(containerTargetHeight, containerEId);}, 5);
 }
-// setInterval(function(){containerHcontrol();}, 10);
+function blockMove(){}
+// window.onload = function() { window.addEventListener('resize', function() {containerEId.style.height = (containerTargetHeight-2) + "px";});}
