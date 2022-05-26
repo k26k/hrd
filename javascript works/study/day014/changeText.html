@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글자색 바꾸기</title>
+</head>
+<body>
+    <h1 onclick="changeText()" id="switch">Click on this text!</h1>
+
+    <script>
+        function changeText(){
+            // document.getElementById("switch").innerHTML = "Good job!!";
+            let element = document.getElementById("switch");
+            element.innerHTML = "Good job!!";
+            element.color = "#00f"
+        }
+    </script>
+</body>
+</html>

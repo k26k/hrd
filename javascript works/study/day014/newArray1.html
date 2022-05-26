@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배열의 선언과 사용</title>
+</head>
+<body>
+    <script>
+        // 비어있는 number라는 이름의 배열 선언
+        let number = new Array();
+        console.log("배열의 길이 : " + number.length); // 0개
+
+        // 입력(인덱스로 저장)
+        number[0] = 10;
+        number[1] = 20;
+        number[2] = 30;
+        number[3] = 40;
+
+        // 특정한 1개 검색(조회)
+        console.log(number[0]);
+
+        console.log("배열의 길이 : " + number.length); // 4개
+
+        // 자료 수정
+        number[1] = 50;
+
+        // 목록 조회
+        for(let i=0; i<number.length; i++){
+            document.write(number[i] + " ");
+        }
+
+        console.log(number[0] + number[2]);
+        console.log(number[1] > number[2]);
+
+        let sumV = 0;
+        for(let i=0; i<number.length; i++){
+            sumV += number[i];
+        }
+
+        console.log(sumV);
+    </script>
+</body>
+</html>
