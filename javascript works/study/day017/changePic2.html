@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트 함수</title>
+</head>
+<body>
+    <div>
+        <img src="./images/cup-1.png" id="pic" alt="">
+    </div>
+
+    <script>
+        let pic = document.getElementById("pic")
+        /*
+        pic.onclick = changePic;
+        // 온클릭 메소드를 부여함 함수 호출 괄호 없음에 주의
+        function changePic(){
+            pic.src = "./images/cup-2.png";
+        }
+        */
+
+        /*
+        pic.onclick = function(){
+            let num1 = pic.src.lastIndexOf("cup");
+            let num2 =pic.src[num1 + 4];
+            pic.src = "./images/cup-" + (3-num2) + ".png";
+        }
+        */
+        
+        pic.onclick = function(){
+            pic.src = "./images/cup-" + (3-pic.src[pic.src.lastIndexOf("cup-") + 4]) + ".png";
+        }
+
+        /*
+        let sw = false;
+        pic.onclick = function(){
+            if(sw == false){
+                sw = true;
+                pic.src = "./images/cup-2.png";
+            }else{
+                sw = false;
+                pic.src = "./images/cup-1.png";
+            }
+        }
+        */
+
+        // 이렇게도 가능
+    </script>
+</body>
+</html>

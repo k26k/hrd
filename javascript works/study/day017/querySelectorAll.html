@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>querySelector()함수 사용</title>
+    <style>
+        .city{
+            font-size: 0em;
+            color: rgb(255, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <h2>세계의 수도</h2>
+    <ul>
+        <li class="city">베를린</li>
+        <li class="city">도쿄</li>
+        <li class="city">베이징</li>
+        <li class="city">워싱턴</li>
+        <li class="city">베를린</li>
+        <li class="city">도쿄</li>
+        <li class="city">베이징</li>
+        <li class="city">워싱턴</li>
+    </ul>
+
+    <script>
+        let cityList = document.querySelectorAll(".city");
+        console.log(cityList);
+        // cityList[0].style.color="red";
+        for(let i=0; i<cityList.length; i++){
+            // cityList[i].style.color = "hsl(" + 255/cityList.length*(i+1) + ", 100, 100)";
+            // cityList[i].style.color = "hsl(100, 100, 100)";
+            console.log("hsl(" + 255/cityList.length*(i+1) + ", 100, 100)");
+            cityList[i].style.fontSize = 1 + i/cityList.length/2 + "em";
+        }
+    </script>
+</body>
+</html>

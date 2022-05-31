@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array 객체의 함수</title>
+    <script>
+        // Array.toString() - 배열 객체의 요소를 사이에 ","를 붙여서 문자열로 반환
+        let alphabet = ["a","b","c","d","e"];
+        document.write(alphabet);
+        console.log(alphabet);
+        document.write("<br>");
+
+        document.write(alphabet.toString());
+        console.log(alphabet.toString());
+        document.write("<br>");
+        // 문자열로 나옴
+
+        for(let i in alphabet){
+            document.write(alphabet[i]+" ");
+        }
+        document.write("<br>");
+        // 유사하지만 숫자 문자 객체 전부 출력 가능
+
+        // Array.sort() - 배열을 오름차순으로 정렬해서 대입해줌(배열 값이 바뀜)
+        let num1 = [1,2,3,4,5];
+        num1.sort();
+        document.write(num1.toString());
+        document.write("<br>");
+        // Array.reverse() - 배열을 역순으로 정렬해서 대입해줌(배열 값이 바뀜)
+        num1.reverse();
+        document.write(num1.toString());
+        document.write("<br>");
+        // 다른 사례
+        let num2 = [1,2,11,21,23,24,100,200,1000];
+        num2.sort();
+        document.write(num2.toString());
+        document.write("<br>");
+        // 1,100,1000,11,2,200,21,23,24로 정렬됨
+        // 근데 배열의 요소를 String 문자열로 변환 후 정렬해서 숫자는 정렬이 잘 안됨
+        // 실제 숫자 값이 아닌 글자순서로 정렬됨
+        
+        // 그래서 숫자 정렬에 다른 함수가 필요함
+        // sort(function) function에 숫자 크기 판별용 함수를 넣어서 정렬함
+        // Array.sort(function(a, b){return a-b;}) - 오름차순 정렬(큰 수가 뒤로)
+        // function(a, b){return a-b;}에서 리턴 값은 a-b이다
+        // a-b에서 결과가 음수면 a가 작다 판단해서 앞으로 가고 양수면 크다 판단해서 뒤로 가서 오름차순 정렬함
+        // Array.sort(function(a, b){return b-a;}) - 내림차순 정렬(작은 수가 뒤로)
+        // function(a, b){return b-a;}에서 리턴 값은 b-a이다
+        // b-a에서 결과가 음수면 a가 크다 판단해서 뒤로 가고 양수면 작다 판단해서 앞으로 가서 내림차순 정렬함
+        num2.sort(function(a, b){return a-b;});
+        document.write(num2.toString());
+        document.write("<br>");
+        // 1,2,11,21,23,24,100,200,1000로 정렬됨
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

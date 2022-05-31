@@ -1,0 +1,15 @@
+html pdf 업데이트 됨
+
+피그마 애니메이션 넣기   
+
+interaction.fig
+
+prototype에서 객체 클릭 후 interaction에서 애니메이션을 넣어줌
+
+flow starting point에서 첫 장면과 포인트 장면들을 설정 가능
+
+프레임 안에 프레임을 넣고 스크롤 할 수 있음
+
+
+
+

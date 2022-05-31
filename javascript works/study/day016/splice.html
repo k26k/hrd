@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>splice() function</title>
+    <script>
+        let animal = ["bear", "chicken", "dog", "horse"];
+
+        // 특정 인덱스에서 삭제
+        // delete animal["dog"];
+        animal.splice(2,1);
+
+        for(let i in animal){
+            console.log(animal[i]);
+        }
+
+        // 특정 인덱스에 추가
+        // animal[1] = "pig";
+        animal.splice(1, 0, "pig");
+        console.log(animal);
+
+        // 이렇게도 사용가능
+        animal.splice(1, 0, "cow", "cow", "cow", "cow");
+        console.log(animal);
+
+        // concat = 두 배열을 합치는(더하는) 함수
+        // join = 두 배열을 연결하는 함수
+        let number = [1, 2, 3];
+        let char = ["a", "b", "c"];
+
+        let list1 = number.concat(char);
+        console.log(list1)
+        
+        // join은 구분기호가 들어감
+        let list2 = number.join("-");
+        console.log(list2)
+        // 배열의 요소 1, 2, 3 사이에 구분기호 '-'이 들어간 한 덩어리의 1-2-3이 출력됨
+
+        let list3 = char.join(":");
+        console.log(list3)
+        
+        let list4 = char.join("");
+        console.log(list4)
+        // ""를 넣으면 요소 사이에 아무것도 안들어감
+
+        let list5 = char.join();
+        console.log(list5)
+        //  아무것도 안넣으면 요소 사이에 ','이 들어감
+
+        let list6 = number.join("").concat(char.join(""));
+        console.log(list6)
+
+    </script>
+</head>
+<body>
+</body>
+</html>

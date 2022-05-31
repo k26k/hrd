@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info 객체 만들기</title>
+    <script>
+        function Info(subject, credit){
+            this.subject = subject; // 과목
+            this.credit = credit; // 학점
+            this.printOut = function(){
+                return this.subject + "/" + this.credit + "학점";
+            }
+        }
+
+        let sub1 = new Info("html", 1);
+        console.log(sub1.subject);
+        console.log(sub1.credit);
+        console.log(sub1.printOut());
+        
+        let sub2 = new Info("css", 2);
+        console.log(sub2.subject);
+        console.log(sub2.credit);
+        console.log(sub2.printOut());
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

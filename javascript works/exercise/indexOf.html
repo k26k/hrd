@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>indexOf() function</title>
+    <script>
+        // indexOf()는 일치하면 0번의 위치를 반환 일치하지 않으면 -1을 반환
+        // 문자열은 특별한 1차원 배열
+        let str = "Hello world, wlcome world";
+        // console.log(str.indexOf("world")); // 6
+        let delWord = "world";
+        let delnum = str.indexOf(delWord);
+        // str.substring(str.indexOf(delWord),str.indexOf(delWord)+delWord.length);
+        // for(let i in delword)
+        console.log(str.substring(0,delnum)+str.substring(delnum+delWord.length));
+        // console.log(str.substring(0,delnum));
+        // console.log(str.substring(delnum));
+        let arr = [0,1,2,3,4,5];
+        console.log(arr.indexOf(4));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

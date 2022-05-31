@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container-out{
+            width: 500px; height: 250px; margin: 0 auto; 
+            box-sizing: border-box;
+            border: 5px solid #cdf; border-radius: 30px;
+            background-color: #222;
+            position: relative;
+        }
+        #container{
+            width: 80%; height: 80%; 
+            border: 1px solid #0f0;
+            position: absolute; top: 10%;  left: 10%;
+        }
+        .container-in{width: 20%; height: 100%;}
+        .dot-container{width: 50%; height: 100%;}
+        .dot-space1{height:30%; background: #ccc;}
+        .dot-space2{height:20%; background: #ccc;}
+        .dot{height:10%; background: #f00;}
+    </style>
+</head>
+<body>
+    <div id="container-out"><div id="container"></div></div>
+    
+    <script>
+        // let ledXY = [[, ], [, ], [, ], [, ], [, ], [, ], [, ]];
+        let ledSetData = "";
+        setInterval(ledControl,100);
+
+        function ledControl(){
+            const time = new Date();
+            let nowS = time.getSeconds();
+            if(nowS % 2 == 0){
+                // document.getElementsByClassName("dot").style.background = "#00f";
+                document.getElementsByClassName("dot")[0].style.background = "#f00";
+                document.getElementsByClassName("dot")[1].style.background = "#f00";
+                // console.log("on");
+            }else{
+                // document.getElementsByClassName("dot").style.background = "#003";
+                document.getElementsByClassName("dot")[0].style.background = "#600";
+                document.getElementsByClassName("dot")[1].style.background = "#600";
+                // console.log("off");
+            }
+        }
+
+        for(let i = 0; i < 4; i++){
+
+            if(i==2){
+                ledSetData += "<div class='container-in'>";
+                ledSetData += "<div class='dot-container'>";
+                for(let j = 0; j < 5; j++){
+                    if(j%2==1){
+                        ledSetData += "<div class='dot'>"
+                        ledSetData += "</div>"
+                    }else if(j==2){
+                        ledSetData += "<div class='dot-space2'>"
+                        ledSetData += "</div>"
+                    }else{
+                        ledSetData += "<div class='dot-space1'>"
+                        ledSetData += "</div>"
+                    }
+                }
+                ledSetData += "</div>";
+                ledSetData += "</div>";
+            }
+            ledSetData += "<div class='container-in'>";
+            ledSetData += "<div class='7seg-containder'>";
+            
+            ledSetData += "</div>";
+            ledSetData += "</div>";
+        }
+        document.getElementById("container").innerHTML = ledSetData;
+        
+    </script>
+</body>
+</html>

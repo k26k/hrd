@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5강 17쪽 실습 예제</title>
+    <script>
+        let numArray=[];
+        let sum = 0;
+        for(let i = 1; i<=10/2;i++){
+            numArray.push(i*2-1);
+        }
+        console.log(numArray, sum);
+        for(let i in numArray){
+            sum += numArray[i];
+        }
+        numArray.push(sum);
+        document.write(numArray.join(" "));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

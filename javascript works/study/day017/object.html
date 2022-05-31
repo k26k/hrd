@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내장 객체</title>
+    <script>
+        //  문자열.substring(a,b) - a위치부터 b위치 이전까지(b-1위치까지) 추출
+        //  문자열.substring(a) - a위치부터 끝까지 추출
+        let str1 = "Javascript";
+        console.log(str1.substring(4,9)); 
+        // J a v a s c r i p t에서 4~9-1 즉 4~8 s c r i p만 자름
+        // 0 1 2 3 4 5 6 7 8 9에서 4~9-1 즉 4~8 4 5 6 7 8만 자름
+        console.log(str1.substring(4)); 
+        // J a v a s c r i p t에서 4부터 끝까지 s c r i p t 자름
+        // 0 1 2 3 4 5 6 7 8 9에서 4부터 끝까지 4 5 6 7 8 9 자름
+
+        // 문자열.split("구분기호") - 문자열을 구분기호로 분리한 배열을 반환
+        let str2 = "Javascript_JQuery";
+        let division = str2.split("_");
+        console.log(division);
+        // ['Javascript', 'JQuery']으로 반환됨
+        let animals = "dog pig cat";
+        let animalList = animals.split(" ");
+        console.log(animalList);
+        console.log(animalList.length);
+        for(let i = 0; i < animalList.length; i++){
+            document.write(animalList[i]+" ");
+        }
+        document.write("<br>");
+        for(let i in animalList){
+            document.write(animalList[i]+" ");
+        }
+        
+        // 문자열.replace("a","b") - 특정 문자를 변경(대체) "a"를 "b"로 변경한 문자열을 반환
+        let str3 = "Javascript";
+        console.log(str3.replace("Java", "JQuery"));
+        // "JQueryscript"으로 반환됨
+
+        // 문자열.trim() - 문자열 앞 뒤의 공백을 제거한 문자열을 반환
+        let str4 = "  Jav as   cri p t               ";
+        console.log(str4.trim());
+        // "Jav as   cri p t"로 반환됨
+
+        // 문자열.toLowerCase() - 문자열을 소문자로 변경해서 반환
+        let str5 = "Javascript";
+        console.log(str5.toLowerCase());
+        // "javascript"로 반환됨
+
+        // 문자열.toUpperCase() - 문자열을 대문자로 변경해서 반환
+        let str6 = "Javascript";
+        console.log(str6.toUpperCase());
+        // "JAVASCRIPT"로 반환됨
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

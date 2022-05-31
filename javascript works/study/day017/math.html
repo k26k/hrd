@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math 객체의 함수</title>
+    <script>
+        // Math.max(a, b) - a, b중 큰거 반환
+        console.log(Math.max(10,20));
+        
+        // Math.min(a, b) - a, b중 작은거 반환
+        console.log(Math.min(10,20));
+        
+        // Math.round(x) a의 10^-1자리 즉 0 이하의 소수점에서 반올림해서 정수로 만듦
+        console.log(Math.round(11.25));
+        console.log(Math.round(11.62));
+        console.log(Math.round(13.45));
+
+
+        // 절대값 함수
+        function myAbs(x){
+            if(0 < x){
+                return x;
+            }else{
+                return -x;
+            }
+        }
+
+        // 거듭제곱 함수
+        function myPow(x, n){
+            let num = 1;
+            for(let i = 0; i<n; i++){
+                num *= x;
+            }
+            return num;
+        }
+
+        console.log(myAbs(10));
+        console.log(myAbs(-10));
+        console.log(myPow(2,10));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

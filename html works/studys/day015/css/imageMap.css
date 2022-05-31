@@ -1,0 +1,19 @@
+.hdd{
+    width: 0; height: 0; font-size: 0; line-height: 0;
+    text-indent: -9999px; overflow: hidden;
+    position: absolute; left: -9999px;
+}
+.insure{position: relative; max-width: 700px;}
+.insure img{width: 100%;}
+.insure a{
+    position: absolute;
+    display: block;
+    background: rgba(0,255,0,0.5);
+    /* background: rgba(0,255,0,0); */
+}
+.insure a.car{
+    width: 25%; height: 30%; left: 8%; top: 64%;
+}
+.insure .house{
+    width: 25%; height: 30%; left: 60%; top: 60%;
+}

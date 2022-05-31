@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체의 생성자 함수</title>
+</head>
+<body>
+    <script>
+        function Person(name, age, gender){
+            // 외부에서 입력한 매개변수를 객체에 저장함
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+            this.play = function(){
+                return "활을 매우 잘 쏩니다.";
+            }
+            this.medal = function(){
+                return "금메달을 땄습니다.";
+            }
+        }
+        let p1 = new Person("안산", 20, "female");
+        document.write("이름: " + p1.name + "<br>");
+        document.write("나이: " + p1.age + "<br>");
+        document.write("성별: " + p1.gender + "<br>");
+        document.write("특기: " + p1.play() + "<br>");
+        document.write("메달: " + p1.medal() + "<br>");
+
+        document.write("<br>");
+
+        let p2 = new Person("최민정", 25, "female");
+        document.write("이름: " + p2.name + "<br>");
+        document.write("나이: " + p2.age + "<br>");
+        document.write("성별: " + p2.gender + "<br>");
+        document.write("특기: " + p2.play() + "<br>");
+        document.write("메달: " + p2.medal() + "<br>");
+
+        document.write("<br>");
+        
+        let p3 = new Person("손흥민", 31, "male");
+        document.write("이름: " + p3.name + "<br>");
+        document.write("나이: " + p3.age + "<br>");
+        document.write("성별: " + p3.gender + "<br>");
+        document.write("특기: " + p3.play() + "<br>");
+        document.write("메달: " + p3.medal() + "<br>");
+
+        let person = [p1, p2, p3];
+        console.log(person[0]);
+        console.log(person[0].name);
+        for(let i in person){
+            console.log(person[i]);
+        }
+    </script>
+</body>
+</html>

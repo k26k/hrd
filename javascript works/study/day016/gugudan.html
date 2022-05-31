@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구구단</title>
+    <!-- <style>
+        table{border-collapse: collapse;}
+        td{border: 1px solid #ccc;}
+    </style> -->
+    <script>
+        let table = "<table id='tb'>";
+        for(let i = 2; i <= 3; i++){
+            table += "<tr>";
+            for(let j = 1; j <= 9; j++){
+                table += "<td>" + i + "x" + j + "=" + i*j + "</td>";
+            }
+            table += "</tr>";
+        }
+        document.write(table);
+
+        // let tableTag = document.getElementById("tb");
+        // tableTag.style.color = "red";
+        // document.getElementsByTagName("table").style. = "border-collapse: collapse;";
+        // document.getElementsByTagName("table").setAttribute("border-collapse", "collapse");
+        // tableTag.setAttribute("border-collapse", "collapse");
+        // document.getElementsByTagName("table").style.cssText = "border-collapse: collapse;";
+        // console.log(document.getElementById("tb"));
+        
+        // document.table.style.border_collapse = "collapse";
+        // document.getElementsByTagName("td").style = "border: 1px solid #ccc;";
+        // document.getElementsByName("td").style.border = "1px solid #ccc";
+        // document.getElementsByName("td").style.setAttribute("border", "1px solid #ccc");
+        // document.getElementsByClass("tdd").style.color = "#ccc";
+        // document.getElementsByClass("tdd").style.setAttribute("border", "1px solid #ccc");
+        // document.getElementsByClassName("tdd").setAttribute("border", "1px solid #ccc");
+        // document.getElementsByClassName("tdd").style.border = "1px solid #ccc";
+        document.getElementsByTagName("td").style.border= "1px solid #ccc";
+    </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,19 @@
+.hdd{
+    width: 0; height: 0; font-size: 0; line-height: 0;
+    text-indent: -9999px; overflow: hidden;
+    position: absolute; left: -9999px;
+}
+.insure{position: relative; max-width: 700px;}
+.insure img{width: 100%;}
+.insure a{
+    position: absolute;
+    display: block;
+    /* 위치를 확인해보기 위한 색깔지정 */
+    background: rgba(0, 255, 0, 0.5);
+}
+.insure a.car{
+    width: 25%; height: 29.7%; left: 8%; top: 64%;
+}
+.insure a.house{
+    width: 28%; height: 33.5%; left: 60%; top: 59%;
+}

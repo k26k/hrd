@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>addEventListener() 함수 사용</title>
+    <style>
+        #container{width: 30%; margin: 0 auto;}
+        #pic{width: 100%; border: 1px solid #f00;}
+    </style>
+    
+</head>
+<body>
+    <div id="container">
+        <img src="./images/easys-1.jpg" id="pic" alt="">
+    </div>  
+    <script>
+        let img = document.querySelector("#pic");
+        
+        /*
+        img.addEventListener("mouseover", changePicOver);
+        // 이벤트 이름 앞에 on을 생략
+        img.addEventListener("mouseout", changePicOut)
+
+        function changePicOver(){
+            img.src = "./images/easys-2.jpg";
+            console.log("changed");
+        }
+        function changePicOut(){
+            img.src = "./images/easys-1.jpg";
+            console.log("rechanged");
+        }
+        */
+
+        img.addEventListener("mouseover", function(){img.src = "./images/easys-2.jpg";});
+        img.addEventListener("mouseout", function(){img.src = "./images/easys-1.jpg";});
+        // 이렇게 별도의 함수 선언 없이 사용 가능
+    </script>  
+</body>
+</html>

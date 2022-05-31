@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지나온 날짜 계산하기</title>
+    <style>
+        #container{
+            width: 300px; height: 300px; margin: 0 auto; background: #def;
+            border: 2px solid #333; border-radius: 50%;
+            text-align: center;
+            position: relative;
+        }
+        h2{position: absolute; width: 100%; top: 30%; margin: 0 auto;}
+        p{position: absolute; width: 100%; bottom: 40%; margin: 0 auto;}
+        #day{color: red; font-size: 1.5em; font-weight: bold;}
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2>지금까지 몇 일?</h2>
+        <p>개강 이후 <span id="day"></span>일 지났습니다.</p>
+    </div>
+    <script>
+        let today = new Date();
+        let firstDay = new Date(2022, 5-1, 9);
+        let passedTime = today.getTime() - firstDay.getTime();
+        // passedTime %= 1000;
+        document.getElementById("day").innerHTML = Math.floor(passedTime/1000/60/60/24);
+    </script>
+</body>
+</html>

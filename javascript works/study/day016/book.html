@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>book 객체 생성</title>
+    <script>
+        let book = {
+            title : "반응형 웹",
+            author : "김광수",
+            pages : 600,
+            price : 30000,
+            info : function (){
+                // book을 객체 내부에선 this로 사용함
+                alert(this.title + " 책의 분량은 "+ this.pages +"쪽 입니다.");
+            }
+        }
+        document.write("책 제목: " + book.title + "<br>");
+        document.write("저자: " + book.author + "<br>");
+        document.write("장 수: " + book.pages + "<br>");
+        document.write("가격: " + book.price + "<br>");
+        book.info();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

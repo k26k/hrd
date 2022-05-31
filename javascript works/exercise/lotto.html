@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{width: 300px; margin: 50px auto; text-align: center; border: 1px solid #ccc;}
+        h2{width: 80%; margin: 0 auto; padding: 10px; background-color: #eee; border: 1px solid #ccc;}
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h3>실행결과</h3>
+        <h2>로또 추첨 번호</h2>
+        <p></p>
+    </div>
+    
+    <script>
+        const lottoMax=45;
+        const lottoNum=6;
+        let lottoArray = new Array(lottoNum);
+        for(let i=0; i<lottoNum; i++){
+            let randomNum = Math.floor(Math.random()*lottoMax+1);
+            let errorCheck = false;
+            for(let j=0; j<i; j++){
+                if(lottoArray[j]==randomNum){
+                    errorCheck=true;
+                    break;
+                }
+            }
+            if(errorCheck == false){
+                lottoArray[i]=randomNum;
+            }else{
+                i--;
+            }
+        }
+        document.querySelector("p").innerHTML = "결과 : " + lottoArray.toString();
+    </script>
+</body>
+</html>
