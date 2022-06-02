@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event 함수</title>
+    <style>
+        div{
+            height: 100px;
+            background: green;
+            margin: 20px;
+            color: #fff;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            let bt = document.querySelector("#bt");
+            let area = document.querySelector("#area");
+
+            bt.onclick = function(event){
+                console.log(event.target); // 이벤트 발생 객체 반환
+                console.log(event.type); // 이벤트 유형 - click
+                console.log(event.clientX); // 브라우저의 x좌표
+                console.log(event.clientY); // 브라우저의 y좌표
+                console.log(event.clientY); // 브라우저의 y좌표
+                console.log(event.screenX); // 모니터의 y좌표
+                console.log(event.screenY); // 모니터의 y좌표
+                // 클릭이 어디에서 발생했는지 알아냄
+            }
+
+            area.onclick = function(event){
+                console.log(event);
+                // 클릭시 발생한 이벤트의 속성을 전부 로그로 띄움
+            }
+        };
+    </script>
+</head>
+<body>
+    <button id="bt">클릭</button>
+    <div id="area">여기에 마우스 왼쪽, 가운데, 오른쪽 버튼을 클릭해 보세요</div>
+
+</body>
+</html>

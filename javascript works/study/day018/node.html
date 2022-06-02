@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function myFunction(){
+            let newItem = document.createElement("li");
+            let textNode = document.createTextNode("water");
+            newItem.appendChild(textNode);
+            // 요소.appendChild(노드)로 노드를 요소 맨 뒤에 추가함
+            // <li></li>에 "water"를 요소로 추가함
+            // = <li>water</li>
+            console.log(newItem);
+            let list = document.getElementById("myList");
+            list.appendChild(newItem);
+            console.log(newItem);
+            for(let i=0; i<10; i++){
+                list.appendChild(newItem);
+                console.log(list);
+            }
+            // 리스트 추가됨
+            list.insertBefore(newItem,list.childNodes[0]);
+            // 요소.insertBefore(노드,추가할 위치);
+        }
+    </script>
+</head>
+<body>
+    <ul id="myList">
+        <li>Coffe</li>
+        <li>Tea</li>
+    </ul>
+    <p>Click the button to insert an item to the list.</p>
+    <button onclick="myFunction()" >Tri it</button>
+    <button onclick="myFunction(); this.onclick = '';">Tri it</button>
+    <!-- 한번 실행 후 onclick을 ''로 초기화함 1회성 -->
+</body>
+</html>

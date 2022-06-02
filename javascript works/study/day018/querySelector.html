@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            let list1 = document.querySelector("#box1 > ul > li");
+            let list2 = document.querySelectorAll("#box2 > ul > li");
+            console.log(list1);
+            console.log(list2);
+            list1.style.background = "#f60";
+            list2[0].style.background = "#bbb";
+            list2.item(1).style.background = "#ddd";
+        }
+    </script>
+</head>
+<body>
+    <div id="box1">
+        <ul>
+            <li>내용1</li>
+            <li>내용2</li>
+            <li>내용3</li>
+        </ul>
+    </div>
+    <div id="box2">
+        <ul>
+            <li>내용1</li>
+            <li>내용2</li>
+            <li>내용3</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트 객체 메서드</title>
+    <script>
+        window.onload = function(){
+            let icox = document.getElementById("icox");
+            icox.onclick = function(){
+                alert("icox");
+                event.preventDefault();
+                // event.preventDefault(); 이후의 실행이 중지됨
+                // 이후에 실행 되어야 했던 하이퍼 링크의 실행이 중지됨
+            }
+        }
+    </script>
+</head>
+<body>
+    <div><a href="http://icoxpublish.com" id="icox">아이콕스</a></div>
+</body>
+</html>

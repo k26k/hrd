@@ -1,0 +1,10 @@
+속성 관련 함수
+
+getAttribute() - 가져오기
+setAttribute() - 변경하기
+
+node(노드) 추가
+
+요소.appendChild(노드);
+요소.insertBefore(노드, 추가할 위치);
+

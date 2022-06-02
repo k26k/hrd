@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setTimeout() 함수</title>
+    <script>
+        window.onclick = function(){
+            let pic = document.getElementById("pic");
+            pic.onclick = function(event){
+                let picCupIdx = parseInt(pic.src.lastIndexOf("cup-"))+4;
+                let num = parseInt(pic.src[picCupIdx]);
+                let str = "";
+                str += pic.src.substring(0, picCupIdx);
+                str += (3 - num).toString();
+                str += pic.src.substr(picCupIdx+1);
+                pic.src = str;
+            } 
+        };
+    </script>
+</head>
+<body>
+    <div><img src="./images/cup-1.png" id="pic" alt=""></div>
+</body>
+</html>

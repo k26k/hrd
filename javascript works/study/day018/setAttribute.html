@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>속성 관련 함수</title>
+    <script>
+        function myFunction(){
+            let element = document.querySelector(".input");
+            // .setAttribute("속성", "속성값");
+            // .getAttribute("속성"));
+            console.log(element.getAttribute("type"));
+            element.setAttribute("type", "button");
+            console.log(element.getAttribute("type"));
+        }
+    </script>
+</head>
+<body>
+    <input type="text" value="OK" class="input">
+    <p>입력상자를 버튼을 눌러 변경</p>
+    <button onclick="myFunction()">Try it</button>
+    
+</body>
+</html>
