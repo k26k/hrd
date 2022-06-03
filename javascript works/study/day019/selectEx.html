@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>option 요소 추가</title>
+    <script>
+        window.onload = function(){
+            let frm = document.frm;
+            let date = new Date;
+
+            let year = date.getFullYear();
+            for(let i=year; year-150<i; i--){
+                frm.y.add(new Option(i, i));
+                console.log(i)
+            }
+            for(let i=1; i<=12; i++){
+                frm.m.add(new Option(i, i));
+                console.log(i)
+            }
+            frm.sub.length = 3; // frm안의 sub의 option을 3개로 만듦 뒤에 있던 javascript랑 math가 짤림
+        }
+    </script>
+</head>
+<body>
+    <form action="#" name="frm">
+        <select name="y">
+            <option value="#">연도 선택</option>
+        </select>
+        <select name="m">
+            <option value="#">월 선택</option>
+        </select>
+        <select name="sub">
+            <option value="#">과목 선택</option>
+            <option value="#">html</option>
+            <option value="#">css</option>
+            <option value="#">javascript</option>
+            <option value="#">math</option>
+        </select>
+    </form>
+</body>
+</html>

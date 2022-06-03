@@ -1,0 +1,29 @@
+node(노드) 추가
+
+요소.appendChild(노드);
+요소.insertBefore(노드, 추가할 위치);
+
+태그 생성 - creatElement()
+태그 삽입 - appendChild()
+속성 생성 - creatAttribute()
+속성 삽입 - setAttributeNode();
+
+node(노드) 삭제
+
+태그 삭제 - 요소.removeChild(태그);
+속성 삭제 - 요소.removeAttribute(속성);
+
+
+
+DOM - Document Object Model
+- doument
+
+BOM - Browser Object Model
+- window, location
+
+
+
+오늘 하루 보이지 않기
+= cookie 쿠키 파일을 통해서 작동함
+
+

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항</title>
+    <style>
+        body{margin: 0; padding: 0;}
+        #content{
+            width: 380px; height: 379px; margin: 10px auto; padding: 0; 
+            box-sizing: border-box; border: 5px double skyblue; border-radius: 20px; 
+            position: relative;
+        }
+        #in{
+            width: 100%; height: 320px; border-radius: 15px;
+            background: #eff;
+            position: absolute; top: 0; z-index: 1;
+        }
+        #in h1{text-align: center; padding: 10px;}
+        #in ul{padding-left: 60px;}
+        button{
+            width: 100%; height: 80px; padding-top: 30px; border-radius: 0 0 15px 15px; 
+            border-color: #222; background: #222; font-size: 1.5em; color: #fff;
+            position: absolute; bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <div id="in">
+            <h1>공지사항</h1>
+            <ul>
+                <li>항목 1</li>
+                <li>항목 2</li>
+                <li>항목 3</li>
+                <li>항목 4</li>
+            </ul>
+        </div>
+        <button onclick="Javascript:window.close()">닫기</button>
+    </div>
+</body>
+</html>

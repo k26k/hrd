@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function myFunction(){
+            let list = document.getElementById("myList");
+            console.log(list.children);
+            console.log(list.children[0]);
+            console.log(list.children[0].nextElementSibling);
+
+            
+            // list.removeChild(list.children[0]);
+            // list의 자식요소를 지움(list의 0번째 자식)
+
+            // list.removeChild(list.lastChild);
+            // list의 자식요소를 지움(list의 마지막 자식)
+            // 근데 줄바꿈하면서 생긴 ul과 li 사이의 공백 때문에 text요소가 들어감
+            // 그래서 텍스트가 먼저 지워짐
+
+            // list.removeChild(list.nodeType("li").lastChild);
+            console.log(list.nodeType);
+
+            // list.removeChild(list.children[list.children.length-1]);
+            // 근데 이건 너무 번거롭다
+        }
+    </script>
+</head>
+<body>
+    <ul id="myList">
+        <li>Coffe</li>
+        <li>Tea</li>
+        <li>Milk</li>
+    </ul>
+    <p>Click the button to insert an item to the list.</p>
+    <button onclick="myFunction()" >Tri it</button>
+    <button onclick="myFunction(); this.onclick = '';">Tri it</button>
+    <!-- 한번 실행 후 onclick을 ''로 초기화함 1회성 -->
+</body>
+</html>
