@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .content{width: 800px; margin: 0 auto;}
+        .wrap *{
+            list-style: none;
+            border: 2px solid #ddd;
+            margin: 15px; padding: 10px;
+            /* display: block; */
+        }
+    </style>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("span").css("display","block");
+            $("span").parent().css({"color":"red", "border":"2px solid blue"});
+            // $("span").parent().next().css({"color":"red", "border":"2px solid orange"});
+            // $("ul li").eq(1).css({"color":"red", "border":"2px solid orange"});
+            $("ul li").has("span").next().css({"color":"red", "border":"2px solid orange"});
+        });
+    </script>
+</head>
+<body>
+    <div class="content">
+        <div class="wrap">
+            <ul>ul(grandparent)
+                <li>li(parent)
+                    <span>span</span>
+                </li>
+                <li>li</li>
+                <li>li</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery css()함수</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        div:nth-child(1){background: red;}
+        div:nth-child(2){background: blue;}
+        div:nth-child(3){background: green;}
+    </style>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("div").eq(0).css({"padding":"10px","text_align":"center"});
+            $("div").css("width",function(index){
+                return (index*100+100)+"px";
+            });
+        });
+        
+    </script>
+</head>
+<body>
+    <div>내용1</div>
+    <div>내용2</div>
+    <div>내용3</div>
+</body>
+</html>

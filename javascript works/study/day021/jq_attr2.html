@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery attr()함수</title>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            console.log($("#site > a:eq(0)").attr("href"));
+            $("#site > a:eq(1)").attr("href", "https://m.naver.com").text("네이버 모바일");
+            // $("#site > a").attr("title","새탭");
+            $("#site > a").attr("title",function(){
+                return "새탭"
+            });
+            
+        });
+    </script>
+</head>
+<body>
+    <div id="site">
+        <a href="http://www.daum.net" target="_blank">다음</a>
+        <a href="http://www.naver.com" target="_blank">네이버</a>
+        <a href="http://www.nate.com" target="_blank">네이트</a>
+    </div>
+</body>
+</html>

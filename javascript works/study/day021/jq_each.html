@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery attr() 함수</title>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(function(){
+            $("button").click(function(){
+                $("li").each(function(){
+                    console.log($(this).index(), $(this).text());
+                });
+                $("li").each(function(index, element){
+                    console.log(index, element);
+                    console.log($(element).text());
+                });
+                $("li").text(function(index, element){
+                    console.log(index, element);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <button>알림창 실행</button>
+    <ul>
+        <li>Coffe</li>
+        <li>Milk</li>
+        <li>Tea</li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html() 함수</title>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(function(){
+            $("#m1").html("바뀜");
+            $("#m2 > div").html(function(index, h){
+                console.log(h);
+                // return "dd";
+                return "index: "+index+", text: <strong>"+h+"</strong>";
+                // text로 하면 "<strong>h</strong>"로 되지만 html로 하면 태그가 잘 적용됨
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="m1"><strong>jQuery</strong></div>
+    <div id="m2">
+        <div><em>html</em></div>
+        <div><em>css</em></div>
+        <div><em>java script</em></div>
+    </div>
+    
+</body>
+</html>

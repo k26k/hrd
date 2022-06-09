@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 주요 탐색 함수</title>
+    <style>
+        *{margin: 5px;}
+    </style>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            // a.children() - a요소의 자식 요소 선택
+            // a.parent() - a요소의 부모 요소 선택
+            // a.next() - a요소의 다음 요소 선택
+            // a.filter(b) - a요소 중에서 b요소 선택
+            // a.has(b) - a요소 중에서 b요소 자식요소를 가진 요소 선택
+            // a.next() - a요소의 다음 요소를 선택
+
+            $("#m1").children().css("border", "2px solid red"); // 모든 자식요소 선택
+            $("#m2").children().children("span").css("border", "2px solid orange");
+            // 자식의 자식요소 중에서 span 선택
+            $("#m3 span").parent().css("border", "2px solid yellow"); //부모요소 선택 
+            $("#m4 > span.m").nextUntil("em").css("border", "2px solid green");
+            // #m4 > span.m 다음 요소 중에서 em전까지의 요소 선택
+            $("#m5 > span").filter(".m").css("border", "2px solid blue");
+            // #m5 > span 요소 중에서 .m이 있는 요소 필터링
+            $("#m6 > div").has("span").css("border", "2px solid navy");
+            // #m6 > div 요소 중에서 span 자식요소가 있는 요소 필터링
+            $("#m7 > span.m").next().css("border", "2px solid pink");
+            // #m7 > span.m 요소의 다음 요소 선택
+            $("#m7 > span.m").next().next().css("border", "2px solid brown");
+            // #m7 > span.m 요소의 다음 다음 요소 선택
+        });
+    </script>
+</head>
+<body>
+    <div id="m1">
+        <a href="">내용1_1</a><span>내용1_2</span>
+    </div>
+    <div id="m2">
+        <div>
+            <a href="">내용2_1</a><span>내용2_2</span>
+        </div>
+    </div>
+    <div id="m3">
+        <div><span>내용3_1</span></div>
+    </div>
+    <div id="m4">
+        <span class="m">내용4_1</span><span>내용4_2</span><span>내용4_3</span><em>내용4_4</em>
+    </div>
+    <div id="m5">
+        <span class="m">내용5_1</span><span>내용5_2</span><span>내용5_3</span>
+    </div>
+    <div id="m6">
+        <div><span>내용6_1</span></div>
+        <div>내용6_2</div>
+    </div>
+    <div id="m7">
+        <span class="m">내용6_1</span><span>내용6_2</span><span>내용6_3</span>
+    </div>
+</body>
+</html>

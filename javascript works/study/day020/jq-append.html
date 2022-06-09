@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery append</title>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(function(){
+                $("#btn1").click(function(){
+                    $("p").append("<br><b>텍스트추가</b>");
+                });
+                $("#btn2").click(function(){
+                    let ol= document.getElementsByTagName("ol");
+                    
+                    console.log(ol.querySelectAll());
+                    // console.log(document.getElementsByTagName("ol").getselectAll("li"));
+                    $("ol").append("<li>아이템"+ 1 +"</li>");
+                });
+            });    
+        });
+        
+    </script>
+</head>
+<body>
+    <p>이것은 문단입니다.</p>
+    <ol>
+        <li>아이템1</li>
+        <li>아이템2</li>
+        <li>아이템3</li>
+    </ol>
+    <button id="btn1">text 추가</button>
+    <button id="btn2">listItem 추가</button>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <title>forEach() 함수</title>
+</head>
+<body>
+    <h2>forEach() 함수</h2>
+    <p id="demo"></p>
+    <script>
+        let fruits = ["참외", "수박", "사과"]; // 배열 선언
+        let text = ""; // 변수 선언
+
+        fruits.forEach(myFunction); // fruits의 요소 각각에 myfunction 실행
+
+        function myFunction(value, index){ // fruits 배열 요소의 값과 위치를 받음
+            text += index+":"+value+",";
+        }
+        document.getElementById("demo").innerHTML = text;
+    </script>
+</body>
+</html>

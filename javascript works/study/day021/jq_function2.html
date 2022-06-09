@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 기타 탐색 함수</title>
+    <style>
+        *{margin: 5px;}
+    </style>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            // a.add(b) - a요소 선택 후 b요소 추가 선택
+            // a.addBack() - a요소 선택 후 부모 요소 추가 선택
+            // a.find(b) - a요소의 자식요소 중에서 b요소 선택
+            // a.filter(b) - a요소 중에서 b요소 선택
+            // a.b.end() - b요소 이전 a요소 선택
+            // a.b.c.end().end() - c요소 이전 이전 a요소 선택
+            // a.is(b) - a요소에 b요소가 있으면 true 없으면 false
+
+            $("#m1 > div").add("#m1 > p").css("border", "2px solid red");
+            // #m1 > div 요소 선택에 #m1 > p 요소를 추가로 선택
+            $("#m2").children("p").addBack().css("border", "2px solid orange");
+            // #m2 요소의 p 자식요소를 선택하고 부모 요소를 추가로 선택 
+            $("#m3").find("span").css("border", "2px solid yellow").end().find("em").css("border", "2px solid green");
+            // #m3의 자식 요소 중에서 span 요소를 선택하고 css를 적용한 이후에 
+            // 원래 선택했던 #m3으로 돌아와 #m3의 자식 요소 중에서 em 요소를 선택하고 css를 적용
+            if($("#m4").children().is("p")){
+                console.log("p요소가 맞다.");
+            }else{
+                console.log("p요소가 아니다.");
+            }
+            //  선택한 요소(#m4의 자식요소)에 p요소가 있으면 true반환 없으면 false 반환
+            $("#m5").children().children().children().css("border", "2px solid yellow")
+            .end().css("border", "2px solid green")
+            .end().css("border", "2px solid blue")
+            .end().css("border", "2px solid red");
+        });
+    </script>
+</head>
+<body>
+    <div id="m1">
+        <div>내용1_1</div><p>내용1_2</p>
+    </div>
+    <div id="m2">
+        <p>내용2</p>
+    </div>
+    <div id="m3">
+        <span>내용3_1</span><em>내용3_2</em>
+    </div>
+    <div id="m4">
+        <p>내용4</p>
+    </div>
+    <div id="m5">
+        <div>
+            <div>
+                <p>얍</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

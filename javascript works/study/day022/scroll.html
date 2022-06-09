@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스크롤 관련</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        #outer{
+            width: 500px; height: 500px;
+            margin: 0 auto;
+            border:  1px solid #333;
+            overflow: auto;
+        }
+        #inner{
+            width: 1000px; height: 1000px;
+            background: #f60;
+        }
+        #info{
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 300px;
+            margin-left: -550px;
+            text-align: right;
+        }
+    </style>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            let top = $("#outer").scrollTop();
+            let left = $("#outer").scrollLeft();
+            $("#info span").text("scrollTop: "+top+" / scrollLeft:"+left);
+
+            $("#outer").scroll(function(){
+                top = $("#outer").scrollTop();
+                left = $("#outer").scrollLeft();
+                $("#info span").text("scrollTop: "+top+" / scrollLeft:"+left);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <div id="inner"></div>
+    </div>
+    <div id="info">
+        <span></span>
+        <button>클릭</button>
+    </div>
+</body>
+</html>

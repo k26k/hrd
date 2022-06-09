@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event 연결 메서드</title>
+    <style>
+        #m7{padding: 10px; border: 3px solid #ccc;}
+    </style>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            // .on()을 사용한 방식
+            $("#m1 button").on("click",function(){
+                alert("button1");
+            });
+
+            // #m2 하위 button 요소 전부에 함수 적용
+            $("#m2").on("click", "button",function(){
+                alert("button2");
+            });
+
+            // 객체 리터럴 방식
+            $("#m3 button").on({
+                "mouseenter":function(){
+                    $("#m3 button").css("background", "#f00");
+                },"mouseleave":function(){
+                    $("#m3 button").css("background", "#ccc");
+                }
+            });
+
+            // 함수의 정의와 호출
+            function showEvent(){
+                alert("이벤트 연결");
+            }
+            $("#m4 button").on("click", showEvent);
+
+            // .off() 이벤트 제거
+            $("#m5 button").eq(1).on("click",function(){
+                alert("이벤트 추가");
+                $("#m5 button").eq(0).on("click",function(){
+                    alert("이벤트 실행");
+                });
+            });
+            $("#m5 button").eq(2).on("click",function(){
+                alert("이벤트 제거");
+                $("#m5 button").eq(0).off();
+            });
+            
+            // .on() 대신 .one() 한 번만 실행
+            $("#m6 button").one("click",function(){
+                alert("한 번만 실행");
+            });
+
+            $("#m7").on("click", function(){
+                // console.log("클릭");
+                console.log($(this).children().css("background-color"));
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="m1">
+        <button>클릭1</button>
+    </div>
+    <div id="m2">
+        <button>클릭2_1</button>
+        <button>클릭2_2</button>
+        <div>
+            <button>클릭2_3_1</button>
+        </div>
+    </div>
+    <div id="m3">
+        <button>클릭3</button>
+    </div>
+    <div id="m4">
+        <button>클릭4</button>
+    </div>
+    <div id="m5">
+        <button>클릭5 알람</button>
+        <button>클릭5 추가</button>
+        <button>클릭5 삭제</button>
+    </div>
+    <div id="m6">
+        <button>클릭6</button>
+    </div>
+    <div id="m7">
+        <p>클릭7</p>
+    </div>
+</body>
+</html>

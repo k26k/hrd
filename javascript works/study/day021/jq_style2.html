@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery width(), height()함수</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        div{margin: 20px; padding: 20px; background: #f60;}
+    </style>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("div").width("150px").height("150px");
+            console.log("width : "+$("div").width());
+            console.log("height : "+$("div").height());
+            console.log("innerWidth : "+$("div").innerWidth());
+            console.log("innerHeight : "+$("div").innerHeight());
+            console.log("outerWidth : "+$("div").outerWidth(true));
+            console.log("outerHeight : "+$("div").outerHeight(true));
+        });
+        
+    </script>
+</head>
+<body>
+    <div>내용</div>
+</body>
+</html>

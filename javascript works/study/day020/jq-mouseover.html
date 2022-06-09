@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mouseover(), mouseout()</title>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            // $("p").mouseover(function(){
+            //     $("p").css("background", "yellow");
+            // });
+            // $("p").mouseout(function(){
+            //     $("p").css("background", "lightgray");
+            // });
+
+            // on함수 사용
+            // $("p").on("mouseover", function(){
+            //     $("p").css("background", "yellow");
+            // });
+            // $("p").on("mouseout", function(){
+            //     $("p").css("background", "lightgray");
+            // });
+            // $("p").on("click", function(){
+            //     $("p").html("<img src='./images/cat.jpg'>");
+            // });
+
+            // {key1:value1, key2:value2} 이런 객체형으로 한번에 입력 가능
+            // $("p").on({
+            //     "mouseover": function(){
+            //         $("p").css("background", "yellow");
+            //     },
+            //     "mouseout": function(){
+            //         $("p").css("background", "lightgray");
+            //     },
+            //     "click": function(){
+            //     $("p").html("<img src='./images/cat.jpg'>");
+            //     }
+            // });
+            
+            // 걍 한 줄로 씀
+            $("p").on({
+                "mouseover": function(){$("p").css("background", "yellow");},
+                "mouseout": function(){$("p").css("background", "lightgray");},
+                "click": function(){$("p").html("<img src='./images/cat.jpg'>");}
+            });
+        });
+    </script>
+</head>
+<body>
+    <p style="text-align: center;">mouse<br>over</p>
+</body>
+</html>

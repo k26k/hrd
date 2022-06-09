@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery 선택자</title>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            // jquery 스타일 설정 방법
+            // $("선택자").css("속성", "속성값");
+            $("*").css("background", "skyblue");
+            // $("h2").css("color", "#ff0");
+            // $("h2").css("font-family", "궁서체");
+            $("h2").css({"color": "#ff0", "font-family": "궁서체"});
+            // 키와 밸류를 이용한 객체방식으로 한 번에 복수의 속성 설정 가능
+            $("#demo").css("font-size", "2em");
+            $(".list > li").css("margin", "15px");
+
+            // 탐색(가상) 선택자
+            $(".list li:odd").css("background", "yellow"); // :odd = 홀수  0 [1] 2 [3]
+            $(".list li:even").css("background", "gray"); // :even = 짝수 [0] 1 [2] 3
+            $(".list li:first").css("color", "red"); // :first 맨 처음 요소
+            $(".list li:last").css("color", "blue"); // :first 맨 마지막 요소
+        });
+    </script>
+</head>
+<body>
+    <h2>제이쿼리 선택자</h2>
+    <p id="demo">아이디 선택자</p>
+    <ul class="list">
+        <li>봄</li>
+        <li>여름</li>
+        <li>가을</li>
+        <li>겨울</li>
+    </ul>
+</body>
+</html>

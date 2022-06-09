@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>class속성 추가,삭제</title>
+    <style>
+        .red{color: red;}
+    </style>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(function(){
+            $("#btn1").on("click",function(){
+                $("p").addClass("red");
+            });
+            $("#btn2").on("click",function(){
+                $("p").removeClass("red");
+            });
+            $("#btn3").on("click",function(){
+                $("p").toggleClass("red");
+            });
+        });
+    </script>
+</head>
+<body>
+    <p>p요소에 클래스 속성을 추가합니다.</p>
+    <button type="button" id="btn1">p요소에 클래스 속성을 추가하는 버튼</button>
+    <br>
+    <button type="button" id="btn2">p요소의 클래스 속성을 제거하는 버튼</button>
+    <br>
+    <button type="button" id="btn3">p요소의 클래스 속성을 추가하거나 제거하는 버튼</button>
+</body>
+</html>

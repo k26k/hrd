@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form event</title>
+    <style>
+        *{margin: 5px;}
+        input[type="text"].on{background: #f00; color: #fff;}
+    </style>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            // focus(), blur() 이벤트
+            $("#m1 input").focus(function(){ // 해당 요소에 포커스가 들어오면 이벤트
+                $(this).addClass("on");
+            }).blur(function(){ // // 해당 요소에 포커스가 나가면 이벤트
+                $(this).removeClass("on");
+            });
+
+            // focusin(), focusout() 이벤트
+            $("#m2").focusin(function(){ // 해당 요소나 자식요소에 포커스가 들어오면 이벤트
+                $(this).children().addClass("on");
+            }).focusout(function(){ // // 해당 요소나 자식요소에 포커스가 나가면 이벤트
+                $(this).children().removeClass("on");
+            });
+
+            // change() 이벤트
+            let m3value = $("#m3 > input").val()
+            $("#m3 > input").change(function(){ // 해당 요소의 밸류값이 변경되면 이벤트
+                let c = confirm("값을 바꾸시겠습니까?");
+                console.log(c);
+                if(!c){
+                    $(this).val(m3value);
+                }else{
+                    m3value = $(this).val();
+                }
+            });
+
+            // .select()
+            $("#m4 input").select(function(){ // 해당 요소를 드래그하면 이벤트
+                console.log(a,b);
+                let v = $(this).val();
+                let size = v.length;
+                alert("["+v+"]"+size+"개를 선택하셨습니다.");
+            });
+
+            // .submit() form을 전송할때 일어나는 이벤트
+            // $(".frm").submit(function(){
+            //     if(!$("#id").val()){ // !$("#id").val() == $("#id").val()==""
+            //         alert("id none");
+            //         return false;
+            //     }else{
+            //         alert("id in");
+            //     }
+            //     if(!$("#pw").val()){
+            //         alert("pw none");
+            //         return false;
+            //     }else{
+            //         alert("pw in");
+            //     }
+            // });
+            $(".frm button").click(function(){
+                if(!$("#id").val()){ // !$("#id").val() == $("#id").val()==""
+                    alert("id none");
+                    return false;
+                }else{
+                    alert("id in");
+                }
+                if(!$("#pw").val()){
+                    alert("pw none");
+                    return false;
+                }else{
+                    alert("pw in");
+                }
+                $(".frm").submit();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="m1">
+        <input type="text" placeholder="값을 입력하세요.">
+    </div>
+    <div id="m2">
+        <input type="text" placeholder="값을 입력하세요.">
+    </div>
+    <div id="m3">
+        <span>값을 수정한 후 다음 입력 요소로 이동하세요.</span>
+        <input type="text" value="10">
+    </div>
+    <div id="m4">
+        <input type="text" value="텍스트를 드래그 하세요.">
+    </div>
+    <form action="#" method="post" class="frm">
+        <fieldset>
+            <legend>로그인</legend>
+            <div>
+                <label for="id">아이디</label>
+                <input type="text" id="id">
+            </div>
+            <p class="msg1">아이디를 입력하세요</p>
+            <div>
+                <label for="pw">비밀번호</label>
+                <input type="password" id="pw">
+            </div>
+            <p class="msg2">비밀번호를 입력하세요</p>
+            <button type="button">버튼</button>
+        </fieldset>
+    </form>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>addClass()함수</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        .box{border-bottom: 2px solid#ccc; text-align: center; padding: 20px;}
+        #m2{text-align: center;}
+        .circle0,
+        .circle1,
+        .circle2{
+            width: 200px; height: 200px;
+            margin: 10px; 
+            border: 4px solid #f60;
+            border-radius: 100px;
+            display: inline-block;
+            text-align: center;
+            line-height: 200px;
+            /* vertical-align: middle; */
+        }
+    </style>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(function(){
+            $("#m1").addClass("box");
+            $("#m2 > div").addClass(function(index){
+                return "circle"+index;
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="m1">
+        <div>jQuery</div>
+    </div>
+    <div id="m2">
+        <div>html</div>
+        <div>css</div>
+        <div>java script</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery attr() 함수3</title>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(function(){
+            // console.log($("div").attr("class")); 0번 하나만 나옴
+            $("div").each(function(index, element){
+                console.log(index+":"+element);
+                console.log(index+":"+$(this).attr("class"));
+                console.log(index+":"+$(this).html());
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="m1">내용1</div>
+    <div class="m2">내용2</div>
+    <div class="m3">내용3</div>
+</body>
+</html>

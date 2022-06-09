@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/triger.css">
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("button").eq(0).on("click", function(){
+                $("#con1").toggleClass("on");
+            });
+            $("button").eq(1).on("click", function(){
+                $("#con2").toggleClass("on");
+            });
+            $("button").eq(2).on("click", function(){
+                $("button").eq(0).trigger("click");
+                $("button").eq(1).trigger("click");
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="con1"></div>
+    <div id="con2"></div>
+    <button>버튼1</button>
+    <button>버튼2</button>
+    <button>all</button>
+</body>
+</html>

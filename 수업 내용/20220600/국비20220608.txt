@@ -1,0 +1,67 @@
+
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+
+
+
+기본 선택자
+- $("tag") = 태그 선택
+- $("#id") = 아이디 선택
+- $(".class") = 클래스 선택
+
+주요 함수
+- .click(function(){동작});
+- .css("css속성", "속성 값");
+- .css({"css속성1":"속성 값1", "css속성2":"속성 값2"});
+- .text("문자열");
+- .html("html 태그");
+- .append("html 태그");
+
+form 함수
+- .val() : 입력 상자의 값(value)
+
+기본 탐색 함수(교재 463쪽)
+- $(“div”).children() : div 요소의 자식 요소를 선택
+- $(“p”).parent() P : 요소의 부모 요소를 선택
+- $(“div.m”).next() : div.m 요소의 다음 요소를 선택
+- $(“div.m”).prev() : div.m 요소의 이전 요소를 선택
+- $(“div”).siblings(“p”) : div 요소의 형제 요소 중 p 요소를 선택
+- $(“div”).find(“span”) : div 요소의 하위 요소 중 span 요소를 선택
+- $(“div”).has(“span”) : div 요소 중 span 요소를 가지고 있는 요소를 선택
+- $(“div”).eq(0) : div 요소 중 index가 0인 요소를 선택
+- $(“div”).gt(0) : index가 0보다 큰 div 요소들을 선택
+- $(“div”).lt(3) : index가 3보다 작은 div 요소들을 선택
+
+a.children() - a요소의 자식 요소 선택
+a.parent() - a요소의 부모 요소 선택
+a.next() - a요소의 다음 요소 선택
+a.filter(b) - a요소 중에서 b요소 선택
+a.has(b) - a요소 중에서 b요소 자식요소를 가진 요소 선택
+a.next() - a요소의 다음 요소를 선택
+
+a.add(b) - a요소 선택 후 b요소 추가 선택
+a.addBack() - a요소 선택 후 부모 요소 추가 선택
+a.find(b) - a요소의 자식요소 중에서 b요소 선택
+a.filter(b) - a요소의 중에서 b요소 선택
+a.b.end() - b요소 이전 a요소 선택
+a.b.c.end().end() - c요소 이전 이전 a요소 선택
+a.is(b) - a요소에 b요소가 있으면 true 없으면 false
+
+
+배열 주요 함수
+- map() : 배열 내의 요소 각 각에 대하여 주어진 함수를 호출한 결과를 모아 새로운 배열을 반환
+
+배열의 복사
+a1 = [1, 2, 3];
+a2 = [];
+a2 = new Array(3);
+a2 = a1;
+a2 = [1, 2, 3];
+
+
+
+
+
+

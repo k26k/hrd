@@ -1,0 +1,31 @@
+a.prepend(b); - a요소 자식의 맨 앞에 b삽입
+a.append("<p>append</p>"); - a요소 자식의 맨 뒤에 b삽입
+a.before("<p>before</p>"); - a요소의 앞에 b삽입
+a.after("<p>after</p>"); - a요소의 뒤에 b삽입
+a.prependTo("#m2"); - b요소 자식의 맨 앞에 a삽입
+a.appendTo("#m2"); - b요소 자식의 맨 뒤에 a삽입
+a.insertBefore("#m2"); - b요소의 앞에 a삽입
+a.insertAfter("#m2"); - b요소의 뒤에 a삽입
+
+
+폼 관련 이벤트
+- a.focus(b) - a 요소에 포커스가 들어오면 이벤트 b 실행
+- a.blur(b) - a 요소에 포커스가 나가면 이벤트 b 실행
+- a.focusin(b) - a 요소나 a의 자식요소에 포커스가 들어오면 이벤트 b 실행
+- a.focusout(b) - a 요소나 a의 자식요소에 포커스가 나가면 이벤트 b 실행
+- a.change(b) - a 요소의 밸류값이 변경되면 이벤트 b 실행
+- a.select(b) - a 요소 밸류를 드래그하면 이벤트 b 실행
+
+
+
+
+
+
+
+
+
+
+
+
+
+

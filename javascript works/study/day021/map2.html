@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>map() 함수</title>
+</head>
+<body>
+    <h2>map() 함수</h2>
+    <p id="demo"></p>
+
+    <script>
+        const persons=[
+            {firstname:"Jobs", lastname:"Steve"},
+            {firstname:"그래", lastname:"장"},
+            {firstname:"Gates", lastname:"Bill"}
+        ];
+        // 객체 배열 생성
+
+        let peopleNames = persons.map(getFullName);
+
+        function getFullName(item){
+            return [item.firstname, item.lastname];
+        }
+        document.getElementById("demo").innerHTML = peopleNames;
+        console.log(peopleNames);
+    </script>
+</body>
+</html>

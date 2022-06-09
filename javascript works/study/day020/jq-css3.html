@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery 기본 필터 선택자</title>
+    <style>
+        table{border-collapse: collapse; width: 100%;}
+        td{border: 1px solid #ccc;}
+        li{color: #ccc; margin: 5px;}
+    </style>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("tr:even").css("background", "red"); // 짝수(0부터 시작)
+            $("tr:odd").css("background", "orange"); // 홀수(0부터 시작)
+            $("td:first").css("background", "yellow"); // 해당 요소의 처음
+            $("td:last").css("background", "green"); // 해당 요소의 마지막
+            $(":header").css("background", "blue"); // h1~h6 헤딩(제목)요소
+            $("li:eq(0)").css("background", "navy"); // index가 0인 요소
+            $("li:gt(1)").css("background", "purple"); // index가 1보다 큰 요소
+            $("li:lt(3)").css("border", "4px solid lightgray"); // index가 3보다 작은 요소
+            (function upDown(){
+                $("h2").slideToggle(2000,upDown); // 콜백함수
+            })();
+            // (function 함수명(){})(); 하면 해당 함수가 실행됨
+            $(":animated").css("border", "4px solid darkred"); // 움직이는 요소 선택
+        });
+        
+    </script>
+</head>
+<body>
+    <h1>제목1</h1>
+    <h2>제목2</h2>
+    <table>
+        <caption>기본 필터 선택자</caption>
+        <colgroup>
+            <col>
+            <col>
+            <col>
+        </colgroup>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>111</td>
+                <td>12</td>
+            </tr>
+        </tbody>
+    </table>
+    <ul>
+        <li class="bg">내용1</li>
+        <li class="bg">내용2</li>
+        <li class="bg">내용3</li>
+        <li>내용4</li>
+    </ul>
+</body>
+</html>

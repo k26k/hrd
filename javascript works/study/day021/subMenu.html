@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서브 메뉴</title>
+    <style>
+        .wrap .ul1{display: block; border: 2px solid #ccc;}
+        .wrap a{text-decoration: none;}
+    </style>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".btn1 a").on({
+                "mouseover":function(){
+                    let a = $(this);
+                    a.parents().next("ul").show();
+                }
+            });
+            $(".ul1").on({
+                "mouseout":function(){
+                    let a = $(this);
+                    // a.parent().hide();
+                    a.hide();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <p class="btn1"><a href="#">학교 안내</a></p>
+        <ul class="ul1">
+            <li>학교장 인사말</li>
+            <li>학교 연혁</li>
+            <li>찾아오시는 길</li>
+        </ul>
+    </div>
+</body>
+</html>

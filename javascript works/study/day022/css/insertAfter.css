@@ -1,0 +1,16 @@
+*{margin: 0; padding: 0;}
+#wrap{ width: 200px; margin: 30px auto;}
+#wrap .page{text-align: right; margin-bottom: 5px;}
+#wrap .page .page_n{margin-right: 10px;}
+#wrap .page button{
+    width: 20px; height: 20px; 
+    background: #666;
+    color: #fff;
+    border: none;
+    line-height: 20px;
+    overflow: hidden;
+}
+#wrap .vis{
+    width: 200px; height: 200px;
+    overflow: hidden;
+}

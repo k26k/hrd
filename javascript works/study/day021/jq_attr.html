@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery attr() 함수2</title>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(function(){
+            $("img").attr("width", "250px");
+            // $("button").click(function(){
+            //     // $a.attr("b", "c"); a요소 b속성의 값을 c로 바꿈
+            //     $("img").attr("width", "500px");
+            // });
+            // .on() 사용
+            // $("button").on("click", function(){
+            //     // $a.attr("b", "c"); a요소 b속성의 값을 c로 바꿈
+            //     $("img").attr("width", "500px");
+            // });
+            $("button").on("click", function(){
+                // $a.attr("b", "c"); a요소 b속성의 값을 c로 바꿈
+                // let h = $("img").attr("height");
+                // console.log(h);
+                $("img").attr("width", "500px");
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <button type="button">확대</button>
+    <br>
+    <img src="./images/cat.jpg" alt="고양이">
+    
+</body>
+</html>

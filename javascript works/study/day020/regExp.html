@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정규 표현식</title>
+    <script>
+        // 문자열의 일치 여부
+        // 방법1 - / 표현식 /
+        // 방법2 - / RegExp(표현식) 함수 사용 /
+        // 1번이 잘쓰임
+
+        // 방법1
+        let str1 = "Hellow World!";
+        let pat1 = /O/; // O를 찾는 정규 표현식
+        let pat2 = /o/; // o를 찾는 정규 표현식
+        let result1 = pat1.test(str1);
+        let result2 = pat2.test(str1);
+        console.log(result1);
+        console.log(result2);
+        // 대소문자 구분함
+
+        // 방법2
+        let pat3 = new RegExp("hello"); // 객체를 만들어서 찾음
+        let result3 = pat3.test(str1);
+        console.log(result3);
+
+        // 문자열 및 글자수 일치 방법
+        let id = "a123";
+        //  /[0-9A-Za-z]/ = 숫자, 알파벳 판별용 정규식
+        let regEx1 = /[0-9A-Za-z]{5}/; // 갯수가 달라서 false
+        let regEx2 = /[0-9A-Za-z]/; // 1개 찾음
+        let regEx3 = /[0-9A-Z]+/; // 모두 문자를 찾음
+        console.log(regEx1.test(id));
+        console.log(regEx2.test(id));
+        console.log(regEx3.test(id));
+
+        let pat4 = "World";
+        let result4 = str1.search(pat4); // 인덱스(위치) 나옴
+        console.log(result4);
+
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

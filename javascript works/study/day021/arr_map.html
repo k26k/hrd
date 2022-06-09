@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>map() 함수</title>
+</head>
+<body>
+    <h2>map() 함수</h2>
+    <p id="sqrt"></p>
+    <script>
+        const numbers = [4, 9, 16, 25];
+        // 배열 복사
+        let arr=[];
+        arr = numbers;
+        // console.log(arr);
+        // console.log(arr.toString());
+        let newArr = numbers.map(myFunction);
+        function myFunction(num){
+            return num*3;
+        }
+        document.write(newArr);
+        document.write("<br>");
+
+        let newArr2 = numbers.map(myFunction2);
+        function myFunction2(num){
+            return num*num;
+        }
+        document.write(newArr2);
+        document.write("<br>");
+
+        let arrT= new Array(10000000);
+        for(let i in arrT){
+            arrT[i] = i;
+        }
+        // for(let i=0; i<10000000; i++){
+        //     arrT.push(i)
+        // }
+        console.log(arrT);
+        let date = new Date;
+        let startTime = date.getTime();
+
+        for(let i=0; i<10000000; i++){
+            arrT[i]=arrT[i]/2;
+            arrT[i]=arrT[i]/5;
+        }
+        let enddate = new Date;
+        let endTime = enddate.getTime();
+        let useTime = endTime-startTime;
+        console.log(arrT);
+        console.log(useTime);
+    </script>
+</body>
+</html>
