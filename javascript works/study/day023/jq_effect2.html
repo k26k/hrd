@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 효과</title>
+    <link rel="stylesheet" href="./css/jq_effect2.css">
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#control a").click(function(){
+                let num = Number($(this).text()) - 1;
+                // text = string 이므로 Number를 사용해 숫자로 변환
+                console.log(num);
+                $(this).addClass("on").siblings().removeClass("on");
+                // .siblings() 이전에 선택한 요소를 제외한 형제 요소를 선택함
+                $("#pic > div").filter(":visible").stop(true).fadeOut(350).end()
+                .eq(num).stop(true).fadeIn(350);
+                // div 요소중 ":visible"값을 가진 요소를 선택
+            });
+            $("#control a:first").addClass("on").add("#pic > div:first").show();
+        });
+    </script>
+</head>
+<body>
+    <div id="visual">
+        <div id="pic">
+            <div><img src="./images/f1.jpg" alt="1"></div>
+            <div><img src="./images/f2.jpg" alt="2"></div>
+            <div><img src="./images/f3.jpg" alt="3"></div>
+            <div><img src="./images/f4.jpg" alt="4"></div>
+        </div>
+        <div id="control">
+            <a href="javascript:;">1</a>
+            <a href="javascript:;">2</a>
+            <a href="javascript:;">3</a>
+            <a href="javascript:;">4</a>
+        </div>
+    </div>
+</body>
+</html>

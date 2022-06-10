@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery animate2</title>
+    <link rel="stylesheet" href="./css/jq_animated2.css">
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            let w = $("#gnb ul li").width(); 
+            $("#gnb ul").append("<span></span>");
+            $("#gnb ul li").on({
+                "mouseenter focusin":function(){
+                    let idx = $(this).index();
+                    console.log(idx);
+                    $(this).find("a").addClass("on");
+                    $(this).siblings().find("a").removeClass("on")
+                    let l = parseInt($("#gnb span").css("left"));
+                    console.log(l);
+                    l=idx*150-l
+                    console.log(l);
+                    let t = 0;
+                    if(l<0){
+                        t=1000*(-l)/450;
+                    }else{
+                        t=1000*(l)/450;
+                    }
+                    console.log(t);
+                    // $("#gnb span").animate({left:(150*idx)}, 1000, "linear");
+                    // $("#gnb span").stop(true).animate({left:(150*idx)}, 1000, "linear");
+                    $("#gnb span").stop(true).animate({left:(150*idx)}, t, "linear");
+                }, "mouseleave":function(){
+                    $(this).find("a").removeClass("on");
+                }
+
+            });
+        });
+    </script>
+</head>
+<body>
+    <nav id="gnb">
+        <ul>
+            <li><a href="#">HTML</a></li>
+            <li><a href="#">CSS</a></li>
+            <li><a href="#">javascript</a></li>
+            <li><a href="#">jQuery</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

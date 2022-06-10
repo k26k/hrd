@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 효과3</title>
+    <link rel="stylesheet" href="./css/jq_effect3.css">
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".m").on({"mouseenter focusin":function(){
+                $(this).addClass("on").siblings().removeClass("on");
+                $(this).children("ul").show().end().siblings("ul").children("ul").hide();
+                console.log($(this).children("ul"));
+                console.log($(this).children("ul"));
+                console.log($(this).children("ul"));
+                console.log($(this).children("ul").show().end().siblings("ul").children("ul"));
+            },"mouseleave":function(){
+                $(this).removeClass("on");
+                $(this).children("ul").hide();
+            }});
+            $("*:not('#gnb a')").on("focus", function(){
+                $("#gnb ul").hide().add("#gnb .m").removeClass("on");
+                // console.log($(this));
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1><a href="#">기본 효과 메서드</a></h1>
+    <ul id="gnb">
+        <li class="m"><a href="#">메뉴1</a>
+            <ul>
+                <li><a href="#">메뉴1_1</a></li>
+                <li><a href="#">메뉴1_2</a></li>
+                <li><a href="#">메뉴1_3</a></li>
+                <li><a href="#">메뉴1_4</a></li>
+            </ul>
+        </li>
+        <li class="m"><a href="#">메뉴2</a>
+            <ul>
+                <li><a href="#">메뉴2_1</a></li>
+                <li><a href="#">메뉴2_2</a></li>
+                <li><a href="#">메뉴2_3</a></li>
+                <li><a href="#">메뉴2_4</a></li>
+            </ul>
+        </li>
+        <li class="m"><a href="#">메뉴3</a>
+            <ul>
+                <li><a href="#">메뉴3_1</a></li>
+                <li><a href="#">메뉴3_2</a></li>
+                <li><a href="#">메뉴3_3</a></li>
+                <li><a href="#">메뉴3_4</a></li>
+            </ul>
+        </li>
+        <li class="m"><a href="#">메뉴4</a>
+            <ul>
+                <li><a href="#">메뉴4_1</a></li>
+                <li><a href="#">메뉴4_2</a></li>
+                <li><a href="#">메뉴4_3</a></li>
+                <li><a href="#">메뉴4_4</a></li>
+            </ul>
+        </li>
+        <li class="m"><a href="#">메뉴5</a>
+            <ul>
+                <li><a href="#">메뉴5_1</a></li>
+                <li><a href="#">메뉴5_2</a></li>
+                <li><a href="#">메뉴5_3</a></li>
+                <li><a href="#">메뉴5_4</a></li>
+            </ul>
+        </li>
+    </ul>
+    <div id="visual"><a href="#">비주얼</a></div>
+</body>
+</html>

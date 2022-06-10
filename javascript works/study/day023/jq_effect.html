@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 효과</title>
+    <style>
+        *{margin: 5px;}
+        .box{
+            padding: 10px;
+            width: 200px; height: 200px;
+            border: 2px solid #333;
+            display: none;
+            box-sizing: border-box;
+        }
+        #m2{position: relative;}
+        /* #m2 .box{position: absolute; left: 300px;} */
+        #m2 > .box:nth-of-type(1){position: absolute; left: 300px; background: rgba(255,0,0,0.5);}
+        #m2 > .box:nth-of-type(2){position: absolute; left: 400px; background: rgba(0,255,0,0.3);}
+    </style>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#m1 button:eq(0)").click(function(){
+                $("#m1 .box").show();
+            });
+            $("#m1 button:eq(1)").click(function(){
+                $("#m1 .box").hide();
+            });
+            $("#m1 button:eq(2)").click(function(){
+                $("#m1 .box").toggle("fast", "swing");
+            });
+            $("#m2 button:eq(0)").click(function(){
+                $("#m2 .box").slideDown("fast", "swing");
+            });
+            $("#m2 button:eq(1)").click(function(){
+                $("#m2 .box").slideUp("slow", "swing");
+            });
+            $("#m2 button:eq(2)").click(function(){
+                $("#m2 .box:eq(0)").slideToggle(30000,"linear");
+                $("#m2 .box:eq(1)").slideToggle(30000, "swing");
+            });
+            $("#m3 button:eq(0)").click(function(){
+                $("#m3 .box").fadeIn(1000, "swing", function(){
+                    $(this).text("jQuery");
+                });
+            });
+            $("#m3 button:eq(1)").click(function(){
+                $("#m3 .box").fadeOut("fast", "swing", function(){
+                    $(this).text("내용3");
+                });
+            });
+            $("#m3 button:eq(2)").click(function(){
+                $("#m3 .box").fadeToggle("fast", "swing", function(){
+                    if($(this).css("display")=="none"){
+                        $(this).text("내용3");
+                    }else{
+                        $(this).text("jQuery");
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="m1">
+        <button>show</button>
+        <button>hide</button>
+        <button>toggle</button>
+        <div class="box">내용1</div>
+    </div>
+    <div id="m2">
+        <button>slideDown</button>
+        <button>slideUp</button>
+        <button>slideToggle</button>
+        <div class="box">내용2</div>
+        <div class="box">내용2</div>
+    </div>
+    <div id="m3">
+        <button>fadeIn</button>
+        <button>fadeOut</button>
+        <button>fadeToggle</button>
+        <div class="box">내용3</div>
+    </div>
+</body>
+</html>

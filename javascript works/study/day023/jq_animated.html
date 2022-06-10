@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery stop() 함수</title>
+    <style>
+        *{margin: 5px;}
+        div{
+            width: 100px; height: 100px;
+            background: #f60; position: relative;
+        }
+        .m1{overflow: hidden;}
+        .m1 span{position: relative; top: -50px;}
+    </style>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("button:eq(0)").click(function(){
+                $(".m0").animate({left:500}, "fast", "swing").animate({left:0}, "slow", "swing");
+            });
+            $("button:eq(1)").click(function(){
+                $(".m1 span").css("top",-50);
+                $(".m1").animate({left:500}, "fast", "swing").animate({left:0}, "slow", "swing", function(){
+                    $(this).find("span").animate({top:30},"fast","swing");
+                });
+            });
+            $("button:eq(2)").click(function(){
+                $(".m2").animate({left: "+=200"}, "fast", "linear");
+            });
+            $("button:eq(3)").click(function(){
+                $(".m3").animate({width:"toggle"}, "fast", "swing");
+                $(".m3").animate({width:"toggle"}, "fast", "swing");
+                $(".m3").animate({height:"toggle"}, "fast", "swing");
+                $(".m3").animate({height:"toggle"}, "fast", "swing");
+            });
+        });
+    </script>
+</head>
+<body>
+    <button>animated</button>
+    <div class="m0"></div>
+    <button>animated</button>
+    <div class="m1"><span>애니메이션</span></div>
+    <button>animated</button>
+    <div class="m2"></div>
+    <button>animated</button>
+    <div class="m3"></div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event object</title>
+    <link rel="stylesheet" href="./css/event_object.css">
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#title a").click(function(){
+                // $("#title").toggleClass("on")
+                // $("#list").toggleClass("on")
+
+                // toggle
+                if($(this).hasClass("on")){
+                    $("#title a").add($("#list")).removeClass("on")
+                }else{
+                    $("#title a").add($("#list")).addClass("on")
+                }
+            })
+            $("#list a").click(function(){
+                $("#title a").add($("#list")).removeClass("on")
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="select">
+        <div id="title"><a href="#">사이트 이동</a></div>
+        <ul id="list">
+            <li><a href="https://www.naver.com" target="_blank">네이버</a></li>
+            <li><a href="https://www.daum.net" target="_blank">다음</a></li>
+            <li><a href="https://www.nate.com" target="_blank">네이트</a></li>
+        </ul>
+    </div>
+    <div id="con"></div>
+</body>
+</html>
