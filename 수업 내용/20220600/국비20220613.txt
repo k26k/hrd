@@ -1,0 +1,105 @@
+class 변경으로 fontawesome 폰트 아이콘 변경 가능
+
+
+swiper - 이미지 슬라이드 라이브러리
+
+bootstrap - 이미지 슬라이드
+
+교재 538쪽
+
+https://swiperjs.com/demos
+- swiper 예시 사이트
+- 여기에서 core 클릭해서 소스 코드 볼 수 있음 
+
+swiper 사용시 주의점
+- 기본으로 적용되어있는 swiper 클래스는 변경없이 그대로 사용해야함
+
+
+자바스크립트 - 프론트, 백
+- 프론트 프레임워크: react, Vue
+- 백 프레임워크: spring
+
+$.ajax()
+- 비동기 통신방식
+- 새로운 자료가 필요할때 페이지를 새로 불러오지 않고 필요한 자료만 불러옴 = 서버 부담을 줄임
+
+code
+- 200, 304 : success
+- 404 : file error
+- 500 : code error
+
+
+jQuery의 반복문
+- $.each(function(index, obj){})
+
+
+<html>
+<p>
+<ul>
+<li>
+이런 태그는 데이터 처리가 힘듦
+
+데이터 처리
+- xml(Extensible Markup Language)
+<score>
+    <name>오상식</name>
+    <css>90</css>
+</score>
+
+- json(javascript object notation)
+[
+    {"key1":"value1", "key2":"value2"}, 
+    {"key1":"value1", "key2":"value2"}, 
+    {"key1":"value1", "key2":"value2"}
+]
+
+
+bootstrap - 웹사이트를 쉽게 만들 수 있게 도와주는 HTML, CSS, JS 라이브러리
+https://getbootstrap.com/docs/4.6/getting-started/introduction/
+
+
+글자 크기
+- 16px = 16픽셀
+- 1em = 부모 요소의 크기 1배율
+- 1rem = 브라우저 기준 단위. 브라우저 기본 글자 크기 기준 1rem = 16px
+
+Accordion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax 예제</title>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            let i = true;
+            $("button").click(function(){
+                console.log(i);
+                if(i==true){
+                    i = false;
+                    console.log(i);
+                    $.ajax({
+                        url: "./test.txt",
+                        dataType: "txt",
+                        success: function(data){ // data = test.txt 파일의 모든 데이터
+                            console.log(data);
+                            $("#demo").html("<h1>"+data+"</h1>")
+                        },
+                        error: function(xhr){ // 오류 발생시 처리
+                            // xhr.status = 파일 상태, xhr.errorText = 에러 내용
+                            console.error(xhr.status +"/"+ xhr.errorText);
+                        }
+                    }); 
+                }else{
+                    console.log(i);
+                    i = true;
+                    $.ajax({
+                        url: "./test2.txt",
+                        dataType: "txt",
+                        success: function(data){ // data = test.txt 파일의 모든 데이터
+                            console.log(data);
+                            $("#demo").html("<h1>"+data+"</h1>")
+                        },
+                        error: function(xhr){ // 오류 발생시 처리
+                            // xhr.status = 파일 상태, xhr.errorText = 에러 내용
+                            console.error(xhr.status +"/"+ xhr.errorText);
+                        }
+                    }); 
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="demo">
+        <h2>Let jQuery AJAX Change This Text</h2>
+    </div>
+    <button type="button">확인</button>
+</body>
+</html>
