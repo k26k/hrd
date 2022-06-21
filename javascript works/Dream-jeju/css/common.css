@@ -1,0 +1,86 @@
+*{margin: 0;padding: 0;}
+
+/* header 영역 */
+.container{width: 1000px; margin: 0 auto;}
+.header{height: 80px; background: #080;}
+.header .logo{width: auto; float: left; padding: 15px 0 15px 30px;}
+.header .logo a{color: #ff0; text-decoration: none;}
+.header i{color: #fff; font-size: 2em; display: none;}
+.header nav{width: 65%; float: right;}
+.header .topMenu{
+    text-align: right; list-style: none;
+    margin-right: 50px; padding: 15px 5px;
+}
+.header .topMenu li{display: inline-block; margin: 15px;}
+.header .topMenu li a{text-decoration: none; color: #fff;}
+
+/* bottomMenu 영역 */
+.bottomMenu{width: 100%; margin: 30px auto; border-top: 2px solid #333;}
+.bottomMenu ul{list-style:none; margin: 10px 10px 10px 50px;}
+.bottomMenu ul li{
+    display: inline-block; border-right: 1px solid #333;
+    margin: 10px 0px; padding: 0 15px 0 5px;
+}
+.bottomMenu ul li:last-child{border-right: none;}
+/* 구체적으로 선택 가능한 last-child 선택자 */
+.bottomMenu ul li a{color: #333; text-decoration: none;}
+
+
+/* index 스타일 */
+.contents{width: 96%; margin: 0 auto;} 
+/* .contents section>div{height: auto; margin: 30px 10px;} */
+.contents .healing{height: auto; margin: 50px 10px;}
+.contents .content-image{
+    width: auto; height: auto;
+    margin-right: 40px; float: left;
+    display: block;
+    border-radius: 20px; position: relative;
+    overflow: hidden;
+}
+.contents section h2{margin-bottom: 20px;}
+.contents .content-image img{display: block;}
+.contents .content-image p{
+    width: 100%; height: 20%; 
+    position: absolute; top: 80%;
+    text-align: center; color: #fff;
+    line-height: 300%; background: rgba(0,0,0,0.5);
+    display: none;
+}
+.contents .healing .content-ditail p{line-height: 2em;}
+.schedule h3{margin: 20px 0 20px 0;}
+.schedule li{list-style: none; margin-left: 50px;}
+.contents .activity{height: auto; margin: 50px 10px;}
+.contents .activity p{line-height: 2em;}
+.sightseeing{width: 96%; margin: 0 auto;}
+.sightseeing ul{list-style: square; margin:  50px 0 0 25px;}
+.sightseeing ul li{margin: 10px;}
+
+
+/* ======== 태블릿 ======== */
+@media all and (max-width:1000px) {
+    .container{width: 100%;}
+    .contents .content-image{width: 45%; margin-right: 10px;}
+    .contents .content-image img{width: 100%;}
+    .contents .content-ditail{width: 50%; margin-left: 10px; float: right;}
+    .contents section::after{content: ""; display: block; clear: both;}
+    .header .topMenu {width: 100%; margin: 0; text-align: left; padding: 15px 0;}
+    .header .topMenu li{width: 23%; margin: 15px 0; text-align: center;}
+}
+
+
+/* ======== 스마트폰 ======== */
+@media all and (max-width:600px) {
+    .contents .content-image{width: 100%; margin: 10px auto; display: block;}
+    .contents .content-ditail{width: 100%; margin: 30px auto; display: block;}
+    .contents section::after{content: ""; display: block; clear: both;}
+    .header .logo{width: 70%; text-align: center; float: right; padding: 15px 0; margin-right: 15%;}
+    .header .logo a{ width: 100%;}
+    h2{display: inline-block;}
+    .header .hdd{width: 15%; height: 100%; text-align: center; line-height: 250%; display: block; float: left;}
+    .header{overflow: visible;}
+    .header nav{display: none; width: 100%; overflow: visible; background: rgba(0, 100, 0, 0.7); margin-bottom: 15px;}
+    .header nav .topMenu li{float: left; width: 50%;}
+    .header nav .topMenu::after{content: ""; display: block; clear: both;}
+    .contents .content-image p{display: block;}
+    .contents .content-ditail{display: none;}
+}

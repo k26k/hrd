@@ -1,0 +1,8 @@
+resource
+- css : common.css
+- images
+- js : common.js
+- index.html
+- jeju-tour-이름.zip
+
+

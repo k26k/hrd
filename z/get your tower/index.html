@@ -6,31 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get Your Tower!</title>
     <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/setup.js" defer></script>
-    </script>
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script src="./js/setup.js"></script>
 </head>
 <body>
-    <div id="container">
+    <div class="container">
         <header>
-            <nav id="quickMenu"></nav>
+            <nav class="quickMenu"></nav>
         </header>
-        <main id="main">
-            <div id="firstScreen">
-                <div id="startTitle1" class="startTitle">GET</div>
-                <div id="startTitle2" class="startTitle">YOUR</div>
-                <div id="startTitle3" class="startTitle">TOWER</div>
-                <div id="startTitle4" class="startTitle">!!</div>
+        <main class="main">
+            <div class="firstScreen">
+                <div class="startTitle">GET YOUR TOWER!</div>
                 <div ></div>
-                <button id="startButtom" onclick="modeChange(1)">START GAME</button>
+                <button class="startButton">START GAME</button>
             </div>
-            <div id="gameScreen">
-                <div id="display">
-                    <div id="block"></div>
+            <div class="gameScreen">
+                <div class="display">
+                    <!-- <div class="block"></div> -->
                 </div>
-                <div id="controler"></div>
+                <div class="controler"><button type="button">START</button></div>
+                <div class="controler"><button type="button">END</button></div>
             </div>
-            <div id="endScreen">
-                <div id="score"></div>
+            <div class="endScreen">
+                <div class="score"></div>
             </div>
         </main>
         <footer>

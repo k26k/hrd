@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./javascript works/jquery-3.6.0.js"></script>
+    <style>
+        *{margin: 0; padding: 0; box-sizing: border-box;}
+        body{
+            padding: 5%;
+            width: 100%;
+            /* height: 1000px; */
+        }
+        .shadow{
+            box-shadow: 0px 0px 0.6vw #666;
+            box-shadow: 0px 0px 1vw #666;
+            box-shadow: 0px 0px 2vw #666;
+        }
+        .top_button{
+            width: 50%;
+            padding-bottom: 50%;
+            position: relative;
+        }
+        .top_button_in1{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0; top: 0;
+            background: #666;
+            border-radius: 50%;
+        }
+        .top_button_in2{
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            left: 10%; top: 10%;
+            background: #fff;
+            border-radius: 50%;
+        }
+        .top_button_left{
+            position: absolute;
+            width: 70%;
+            height: 15%;
+            left: -2.95%; top: 25%;
+            /* background: rgba(255, 0, 0, 0.7); */
+            background: #666;
+            transform: rotate(-50deg);
+            border-radius: 50rem;
+        }
+        .top_button_left2{
+            position: absolute;
+            width: 50%;
+            height: 10%;
+            left: 11.95%; top: 60%;
+            /* background: rgba(255, 0, 0, 0.7); */
+            background: #666;
+            transform: rotate(-50deg);
+            border-radius: 50rem;
+        }
+        .top_button_right{
+            position: absolute;
+            width: 70%;
+            height: 15%;
+            left: 32.56%; top: 25%;
+            /* background: rgba(0, 255, 0, 0.7); */
+            background: #666;
+            transform: rotate(50deg);
+            border-radius: 50rem;
+        }
+        .top_button_right2{
+            position: absolute;
+            width: 50%;
+            height: 10%;
+            left: 37.82%; top: 60%;
+            /* background: rgba(0, 255, 0, 0.7); */
+            background: #666;
+            transform: rotate(50deg);
+            border-radius: 50rem;
+        }
+        .top_button_tap{
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            left: 0; top: 0;
+            /* background: rgba(0, 0, 255, 0.3); */
+            border-top-left-radius: 100% 50%;
+            border-bottom-left-radius: 100% 50%;
+        }
+        .top_button_tap2{
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            left: 50%; top: 0;
+            /* background: rgba(255, 0, 0, 0.3); */
+            border-top-right-radius: 100% 50%;
+            border-bottom-right-radius: 100% 50%;
+        }
+        input[type="range"]{
+            width: 100%;
+            height: 10%;
+        }
+    </style>
+    <script>
+        document.getElementsByClassName("top_button_tap");
+    </script>
+</head>
+<body>
+    <div class="top_button">
+        <div class="top_button_in1 shadow">
+            <div class="top_button_in2">
+                <div class="top_button_left shadow"></div>
+                <div class="top_button_left2 shadow"></div>
+                <div class="top_button_right shadow"></div>
+                <div class="top_button_right2 shadow"></div>
+            </div>    
+        </div>  
+        <div class="top_button_tap" onclick="alert('탑');"></div> 
+        <div class="top_button_tap2" onclick="alert('탑');"></div> 
+    </div>
+    <br>
+    <div>
+        <form action="" hidden>
+            <input type="range" min="-1000" max="1000" value="100" oninput="
+                $('.top_button_left').css('left',$(this).val()/100+'%');
+                console.log('L1',$('.top_button_left').css('left'), $(this).val()/100+'%')
+            "><br>
+            <input type="range" min="-000" max="2000" value="100" oninput="
+                $('.top_button_left2').css('left',$(this).val()/100+'%');
+                console.log('L2',$('.top_button_left2').css('left'), $(this).val()/100+'%')
+            "><br>
+            <input type="range" min="2000" max="4000" value="2900" oninput="
+                $('.top_button_right').css('left',$(this).val()/100+'%');
+                console.log('R1',$('.top_button_right').css('right'), parseInt($(this).val())/100+'%')
+            "><br>
+            <input type="range" min="2000" max="4000" value="2900" oninput="
+                $('.top_button_right2').css('left',$(this).val()/100+'%');
+                console.log('R2',$('.top_button_right2').css('right'), parseInt($(this).val())/100+'%')
+            "><br>
+            <input type="button" value="값 확인" onclick="
+                console.log('button line x% value', $('.top_button_left').css('left'), $(this).val()+'%')
+            ">
+        </form>
+    </div>
+</body>
+</html>

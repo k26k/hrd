@@ -1,13 +1,14 @@
 *{margin: 0; padding: 0; box-sizing: border-box;}
-body{ background-color: #000;}
-#container{width: 100%; margin: 0 auto; border: 5px solid #ccc;}
-#quickMenu{width: 100%; height: 10%; min-height: 20px; border: 5px solid #000; background: #fff}
-#main{width: 100%; height: 80%; border: 5px solid #888; }
+html{height: 100%;}
+body{height: 100%; background-color: #000;}
+.container{width: 100%; height: 100%; margin: 0 auto; border: 5px solid #ccc;}
+header{width: 100%; height: 10%; min-height: 20px; border: 5px solid #000; background: #fff}
+.main{width: 100%; height: 80%; border: 5px solid #888; }
 footer{width: 100%; height: 10%; min-height: 20px; border: 5px solid #000; background: #fff}
 
 
 
-#firstScreen{
+.firstScreen{
     width: 100%; height: 100%; margin: 0 auto; 
     border: 5px solid #f00; display: block; background: #fff
 }
@@ -19,13 +20,21 @@ footer{width: 100%; height: 10%; min-height: 20px; border: 5px solid #000; backg
 
 } */
 
-#gameScreen{
+.gameScreen{
     width: 100%; height: 100%; margin: 0 auto; 
-    border: 5px solid #0f0; display: none; background: #fff
+    border: 5px solid #0f0; display: none; background: #fff;
 }
-#block{width: 10px; height: 10px; background-color: #f00;}
+.display{
+    width: 100%; height: 80%; margin: 0 auto;
+    border: 2px solid #f00;
+    overflow: hidden;
+    position: relative;
+}
+.block{width: 10%; padding-bottom: 10%; background-color: #f00; position: absolute; left: 45%; top: 0;}
+.controler{width: 100%; height: 10%; position: relative; bottom: 0;}
+.controler button{width: 100%; height: 100%; position: absolute; top: 0; left: 0;}
 
-#endScreen{
+.endScreen{
     width: 100%; height: 100%; margin: 0 auto; 
     border: 5px solid #00f; display:none; background: #fff;
 }

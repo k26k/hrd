@@ -1,40 +1,3 @@
-
-var isOver1 = false;
-var isOver2 = false;
-function goHide1() {
-	if (!isOver1 && !isOver2) {
-		$('.gnb_depth2_1').stop().fadeOut('fast');
-	}
-}
-var isOver11 = false;
-var isOver22 = false;
-function goHide2() {
-	if (!isOver11 && !isOver22)	{
-		$('.gnb_depth2_2').stop().fadeOut('fast');
-	}
-}
-var isOver111 = false;
-var isOver222 = false;
-function goHide3() {
-	if (!isOver111 && !isOver222) {
-		$('.gnb_depth2_3').stop().fadeOut('fast');
-	}
-}
-var isOver1111 = false;
-var isOver2222 = false;
-function goHide4() {
-	if (!isOver1111 && !isOver2222) {
-		$('.gnb_depth2_4').stop().fadeOut('fast');
-	}
-}
-var isOver11111 = false;
-var isOver22222 = false;
-function goHide5() {
-	if (!isOver11111 && !isOver22222) {
-		$('.gnb_depth2_5').stop().fadeOut('fast');
-	}
-}
-
 $(document).ready( function() {
 	function goHide(){
 		for(let i=1; i<5; i++){
@@ -42,21 +5,164 @@ $(document).ready( function() {
 		}
 	}
 
+	let mainMenuClass = "gnb";
+	let subMenuClass = "gnb_depth";
+	let navA1s = $("."+mainMenuClass).children().children("a");
+	let navDivs = $("."+mainMenuClass).children().children("."+subMenuClass);
+	let navA2s = $(navDivs).find("a");
+	let openSpeed = 250;
+	let waitTime = 500;
+	let closeSpeed = 500;
+	console.log(navA1s, navDivs, navA2s);
 
-	// 상단 메뉴 마우스 오버, 탭 클릭 코드
-	$(".openAll1").add($(".openAll1").find("a")).mouseover(function(){
-		if(800<parseInt($("header").css("width"))){
-			$(".gnb_depth2_1").fadeIn("fast");	
-		}
-	}).focus(function(){
-		if(800<parseInt($("header").css("width"))){
-			$(".gnb_depth2_1").fadeIn("fast");	
-		}
-	}).mouseout(function(){
-		setTimeout(goHide, 500);
-	}).blur(function(){
-		setTimeout(goHide, 500);
+	function checkOpacity(){
+		let ar = [];
+		$(navDivs).each(function(){
+			if($(this).css("display")==="none"){
+				ar.push("0");
+			}else{
+				ar.push($(this).css("opacity"));
+			}
+			
+		})
+		// console.log(ar);
+		ar.sort().reverse();
+		// console.log(ar[0]);
+		return (ar[0]);
+
+	}
+
+	$("."+mainMenuClass).children("li").each(function(index){
+		// console.log($(this));
+		let navA1 = $(this).children("a");
+		let navDiv = $(this).children("."+subMenuClass);
+		let navA2 = $(navDiv).find("a");
+		console.log(navA1, navDiv, navA2);
+
+		$(navA1).on({
+			"mouseover":function(){
+				if(800<parseInt($("header").css("width"))){
+					if($(navDivs).hasClass("on"))
+					$(navDivs).removeClass("on");
+					$(navDiv).addClass("on");
+					let value = checkOpacity();
+					// console.log(value);
+					if(value == "0"){
+						$(navDivs).stop(true, false).fadeOut(0);
+						$(navDiv).stop(true, false).fadeIn(openSpeed);
+					}else if(value == "1"){
+						$(navDivs).stop(true, false).fadeOut(0);
+						$(navDiv).stop(true, false).fadeIn(0);
+					}else{
+						let speed = openSpeed *(1 - parseFloat(value));
+						// console.log(speed, parseFloat(value))
+						$(navDivs).stop(true, false).fadeOut(speed);
+						$(navDiv).stop(true, false).fadeIn(speed);
+					}
+				}
+			},"focus":function(){
+				if(800<parseInt($("header").css("width"))){
+					if($(navDivs).hasClass("on"))
+					$(navDivs).removeClass("on");
+					$(navDiv).addClass("on");
+					let value = checkOpacity();
+					// console.log(value);
+					if(value == "0"){
+						$(navDivs).stop(true, false).fadeOut(0);
+						$(navDiv).stop(true, false).fadeIn(openSpeed);
+					}else if(value == "1"){
+						$(navDivs).stop(true, false).fadeOut(0);
+						$(navDiv).stop(true, false).fadeIn(0);
+					}else{
+						let speed = openSpeed *(1 - parseFloat(value));
+						// console.log(speed, parseFloat(value))
+						$(navDivs).stop(true, false).fadeOut(speed);
+						$(navDiv).stop(true, false).fadeIn(speed);
+					}
+				}
+			},"mouseleave":function(){
+				$(navDivs).removeClass("on");
+				setTimeout(function(){
+					if(!$(navDiv).hasClass("on")){
+						$(navDiv).stop(true, false).fadeOut(closeSpeed);
+					}
+				},waitTime);
+			},"blur":function(){
+				$(navDivs).removeClass("on");
+				setTimeout(function(){
+					if(!$(navDiv).hasClass("on")){
+						$(navDiv).stop(true, false).fadeOut(closeSpeed);
+					}
+				},waitTime);
+			}
+		});
+		$(navDiv).add($(navA2)).on({
+			"mouseover":function(){
+				$(navDivs).removeClass("on");
+				$(navDiv).addClass("on");
+				if(800<parseInt($("header").css("width"))){
+					$(navDiv).stop(true, false).fadeIn(openSpeed);
+				}
+			},"focus":function(){
+				$(navDivs).removeClass("on");
+				$(navDiv).addClass("on");
+				if(800<parseInt($("header").css("width"))){
+					$(navDiv).stop(true, false).fadeIn(openSpeed);
+				}
+			},"mouseleave":function(){
+				if($(navDiv).hasClass("on")){
+					$(navDivs).removeClass("on").removeClass("last");
+					$(navDiv).addClass("last");
+					setTimeout(function(){
+						if(!$(navDiv).hasClass("on")){
+							$(navDiv).stop(true, false).fadeOut(closeSpeed);
+						}		
+					},waitTime);
+				}
+			},"blur":function(){
+				if($(navDiv).hasClass("on")){
+					$(navDivs).removeClass("on").removeClass("last");
+					$(navDiv).addClass("last");
+					setTimeout(function(){
+						if(!$(navDiv).hasClass("on")){
+							$(navDiv).stop(true, false).fadeOut(closeSpeed);
+						}		
+					},waitTime);
+				}
+			}
+		});
 	});
+
+
+	// console.log($(subnavs));
+	// $(subnavs).each(function(index){
+	// 	console.log($(this));
+	// 	let subnav = $(this);
+	// 	console.log($(subnav));
+	// 	let navf = {
+	// 		"mouseenter":function(){
+	// 			if(800<parseInt($("header").css("width"))){
+	// 				$(subnavs).removeClass("on");
+	// 				$(subnav).addClass("on");
+	// 				show(subnav, subnavs);
+	// 			}
+	// 		},"focus":function(){
+	// 			if(800<parseInt($("header").css("width"))){
+	// 				$(subnavs).removeClass("on");
+	// 				$(subnav).addClass("on");
+	// 				show(subnav, subnavs);	
+	// 			}
+	// 		},"mouseleave":function(){
+	// 			$(subnavs).removeClass("on");
+	// 			hide(subnav, subnavs);
+	// 		},"blur":function(){
+	// 			$(subnavs).removeClass("on");
+	// 			hide(subnav, subnavs);
+	// 		}
+	// 	};
+	// 	$(subnav).add($(subnav).siblings("a")).on(navf);
+	// 	// $(subnav).on(navf);
+	// });
 
 
 
@@ -66,6 +172,8 @@ $(document).ready( function() {
 	// 스크롤하여 내려와야 top버튼이 보이도록 함.
 	if ( $(document).scrollTop() < 50) $('.to_top').addClass('hide');
 	else $('.to_top').removeClass('hide');
+
+	// 스크롤 될 때마다 확인함
 	$(window).scroll( function() {
 	  if ( $(document).scrollTop() < 50) $('.to_top').addClass('hide');
 	  else $('.to_top').removeClass('hide');

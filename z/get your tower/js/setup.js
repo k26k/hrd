@@ -1,80 +1,38 @@
-// window.addEventListener("resize", containerHcontrol());
-// function setup(){
-//     containerHcontrol();
-// }
-// setTimeout(function(){containerHcontrol();}, 50);
-setTimeout(function(){modeChange(1);}, 500);
-setTimeout(function(){modeChange(2);}, 1000);
-setTimeout(function(){modeChange(0);}, 1500);
-// setTimeout(function() {
-//     console.log('Works!');
-//   }, 3000);
-
-// window.addEventListener('load', containerHcontrol());
-// body onload="somecode();"
-// function containerHcontrol(containerE){
-//     // document.write("load");
-//     // console.log(document.getElementById("container"));
-//     // console.log(window.innerHeight);
-//     // document.getElementById("container").style.height(window.innerHeight + "px");
-//     // console.log(containerE);
-//     // console.log(window.innerHeight);
-//     // console.log(window.innerHeight.toString());
-//     // console.log(document.querySelector("body #container"));
-//     // containerE.style.height = window.innerHeight + "px";
-//     document.getElementById("container").style.height = (window.innerHeight-1) + "px";
-//     // console.log('setup success');
-// }
-/*
-function main(){
-    function modeChange(0);
-}
-function start(){
-    function modeChange(1);
-}
-function score(){
-    function modeChange(int = 2);
-}
-*/
-
-function modeChange(mode){
-    console.log('mode change to ' + mode);
-    document.getElementById("firstScreen").style.display = "none";
-    document.getElementById("gameScreen").style.display = "none";
-    document.getElementById("endScreen").style.display = "none";
-    if(mode == 0){
-        document.getElementById("firstScreen").style.display = "block";
-    }else if(mode == 1){
-        document.getElementById("gameScreen").style.display = "block";
-        setInterval(function(){containerHcontrol();}, 10)
-    }else if(mode == 2){
-        document.getElementById("endScreen").style.display = "block";
-    }else{
-        console.log('mode not changed');
-    }
+$(document).ready(function(){
+    $(".startButton").click(function(){
+        modeChange(1);
+    });
     
-}
-
-// setTimeout(function(){containerFit(window.innerHeight, document.getElementById("container"));}, 100);
-// function containerFit(containerTargetHeight,containerEId){
-//     // containerTargetHeight = window.innerHeight;
-//     // containerEId = document.getElementById("container")
-//     if(window.innerHeight < containerTargetHeight-1 || containerTargetHeight+1 < window.innerHeight){
-//         containerTargetHeight = window.innerHeight;
-//         containerEId.style.height = (containerTargetHeight-2) + "px";
-        
-//     }
-//     setTimeout(function(){containerFit(containerTargetHeight, containerEId);}, 5);
-// }
-// setInterval(function(){containerHcontrol();}, 10);
-const containerEId = document.getElementById("container");
-let containerTargetHeight = window.innerHeight;
-// setInterval(function(){containerFit();}, 10);
-function containerFit(){
-    if(window.innerHeight < containerTargetHeight-1 || containerTargetHeight+1 < window.innerHeight){
-        containerTargetHeight = window.innerHeight;
-        containerEId.style.height = (containerTargetHeight-2) + "px";
+    function modeChange(mode){
+        if(mode == 0){
+            $(".firstScreen").css("display", "block");
+            $(".gameScreen").css("display", "none");
+            $(".endScreen").css("display", "none");
+        }else if(mode == 1){
+            $(".firstScreen").css("display", "none");
+            $(".gameScreen").css("display", "block");
+            $(".endScreen").css("display", "none");
+        }else if(mode == 2){
+            $(".firstScreen").css("display", "none");
+            $(".gameScreen").css("display", "none");
+            $(".endScreen").css("display", "block");
+        }
     }
-}
-function blockMove(){}
-// window.onload = function() { window.addEventListener('resize', function() {containerEId.style.height = (containerTargetHeight-2) + "px";});}
+
+    $(".controler button:eq(0)").click(function(){
+        $(".display").append("<div class='block' value='10'></div>")
+        physicsEngine($(".display"));
+        console.log("btn0");
+    });
+    $(".controler button:eq(1)").click(function(){
+        // physicsEngine();
+        $(".display").html("");
+        console.log("btn1");
+    });
+    
+
+    function physicsEngine(){
+        let 
+    }
+
+})

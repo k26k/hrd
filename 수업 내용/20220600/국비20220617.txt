@@ -1,0 +1,18 @@
+여행정보 사이트 - 포트폴리오
+HTML+CSS+Javascript+jQuery => Tour 사이트
+
+
+JAVA
+SQL언어 - DB처리언어
+
+1. JSP(Java Sever Page) & Servlaet => 웹사이트
+2. 프레임워크: spring 사용
+- 개발 tool (IDE): 이클립스(eclipse)
+- 서버 처리기술, db연동등의 라이브러리 포함
+
+
+
+
+회원 - 회원가입, 로그인, 나의 정보
+
+게시판 - CRUD (Create, Read, Update, Delete) 기능 숙지

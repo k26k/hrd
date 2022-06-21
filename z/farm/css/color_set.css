@@ -1,0 +1,14 @@
+.color-main{color: rgba(255,200,100,1);}
+.color-main-b{background-color: rgba(255,200,100,1);}
+.color-sub{color: rgba(255,250,225,1);}
+.color-sub-b{background-color: rgba(255,250,225,1);}
+.color-light{color: rgba(255,255,255,0.4);}
+.color-light-b{background-color: rgba(255,255,255,0.4);}
+.color-dark{color: rgba(0,0,0,0.07);}
+.color-dark-b{background-color: rgba(0,0,0,0.07);}
+.color-point{color: rgba(255,150,100,1);}
+.color-point-b{background-color: rgba(255,150,100,1);}
+.color-white{color: #fff;}
+.color-white-b{background-color: #fff;}
+.color-test{color: rgba(0,0,0,0.35);}
+.color-test-b{background-color: rgba(0,0,0,0.15);}
