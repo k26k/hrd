@@ -11,6 +11,11 @@ public class constant {
 		final int month2 = 12; // final을 붙이면 상수처럼 취급됨
 //		month2 = 6; 변수값 변경 불가
 		System.out.println(month2);
+		
+//		원의 넓이 계산
+		
+//		area = radious * radious * PI
+		System.out.println(area);
 	}
 
 }
