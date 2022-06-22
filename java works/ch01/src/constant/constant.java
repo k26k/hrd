@@ -13,8 +13,9 @@ public class constant {
 		System.out.println(month2);
 		
 //		원의 넓이 계산
-		
-//		area = radious * radious * PI
+		final double PI = 3.14159;
+		double radious = 10;
+		double area = radious * radious * PI;
 		System.out.println(area);
 	}
 
