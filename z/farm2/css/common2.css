@@ -1,0 +1,165 @@
+div{box-sizing: border-box;}
+html{margin: 0; padding: 0;}
+body{margin: 0; padding: 0;}
+a{text-decoration: none;}
+.clear::after{content: ""; display: block; clear: both;}
+.container{width: 1000px; margin: 0 auto;}
+
+/* ================= header ================ */
+header{border-radius: 0 0 10px 10px;}
+header .first-menu{width: 100%; height: auto;}
+header .first-menu .menu{
+    width: 60px; height: 100%;
+    text-align: center; 
+    line-height: 60px; 
+    font-size: 2em;
+    float: left;
+}
+header .first-menu .logo{
+    width: calc(100% - 180px); height: 60px; border-radius: 50vh;
+    text-align: center; line-height: 60px; 
+    overflow: hidden;
+    float: left;
+}
+header .first-menu .user{
+    width: 60px; height: 100%;
+    text-align: center; 
+    line-height: 60px;
+    font-size: 2em; 
+    float: left;
+}
+header .first-menu .cart{
+    width: 60px; height: 100%;
+    text-align: center; 
+    line-height: 60px;
+    font-size: 2em; 
+    float: left;
+}
+header .banner{width: 100%}
+header .banner .slide{width: 100%; height: 250px; border-radius: 10px;}
+header .banner .slide>div{width: 100%; height: 100%; overflow: hidden;}
+header .banner .slide div div{width: 33%; height: 100%; float: left;}
+.farmer1{
+    background-image: url(../resource/icon_set/farmer/free-sticker-farmer-7605960.png); 
+    background-repeat: no-repeat; background-position: center center; background-size: contain;
+}
+.farmer2{
+    background-image: url(../resource/icon_set/farmer/free-sticker-farmer-7605958.png); 
+    background-repeat: no-repeat; background-position: center center; background-size: contain;
+}
+.farmer3{
+    background-image: url(../resource/icon_set/farmer/free-sticker-farmer-7605946.png); 
+    background-repeat: no-repeat; background-position: center center; background-size: contain;
+}
+header .seconde-menu{border-radius: 0 0 10px 10px;}
+header .seconde-menu ul{width: 100%;}
+header .seconde-menu ul li{
+    /* width: 12.5%; padding-bottom: 12.5%; */
+    list-style: none; text-align: center;
+    /* line-height: 40px; */
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+}
+header .seconde-menu ul li>div{
+    width: 85%; height: 85%;
+    border-radius: 10px;
+    position: absolute;
+    top: 7.5%; left: 7.5%;
+}
+header .seconde-menu ul li a{
+    width: 80%; height: 80%;
+    position: absolute;
+    top: 10%; left: 10%;
+}
+
+/*  */
+.nav-all{
+    background-image: url(../resource/icon_set/food/vegetable-all.png); 
+    background-repeat: no-repeat; background-position: center center; background-size: contain;
+}
+.nav-all div{color: #fff; font-size: 1.5em; font-weight: 600; width: 100%; position: absolute; bottom: 0;}
+.nav-new{
+    background-image: url(../resource/icon_set/other/new.png);  
+    background-repeat: no-repeat; background-position: center center; background-size: contain;
+}
+.nav-sale{
+    background-image: url(../resource/icon_set/other/sale.png); 
+    background-repeat: no-repeat; background-position: center center; background-size: contain;
+}
+.nav-shipping{
+    background-image: url(../resource/icon_set/other/sipping.png); 
+    background-repeat: no-repeat; background-position: center center; background-size: contain;
+}
+.nav-vegetable{
+    background-image: url(../resource/icon_set/food/vegetables.png); 
+    background-repeat: no-repeat; background-position: center center; background-size: contain;
+}
+.nav-fruit{
+    background-image: url(../resource/icon_set/food/fruits.png); 
+    background-repeat: no-repeat; background-position: center center; background-size: contain;
+}
+.nav-seefood{
+    background-image: url(../resource/icon_set/food/fish.png); 
+    background-repeat: no-repeat; background-position: center center; background-size: contain;
+}
+.nav-meat{
+    background-image: url(../resource/icon_set/food/meat.png); 
+    background-repeat: no-repeat; background-position: center center; background-size: contain;
+}
+
+/* ================= footer ================ */
+footer{text-align: center; border-radius: 10px 10px 0 0;}
+
+
+/* ================= main ================ */
+main div{border-radius: 10px;}
+
+
+
+/* ================= tablet ================ */
+@media all and (max-width:1000px) {
+    .container{width: 100%;}
+}
+@media all and (max-width:850px) {
+    header .seconde-menu ul li{
+        width: 14.28%; padding-bottom: 14.28%;
+    }
+}
+@media all and (max-width:725px) {
+    header .seconde-menu ul li{
+        width: 16.66%; padding-bottom: 16.66%;
+    }
+}
+@media all and (max-width:625px) {
+    header .banner .slide div div{width: 50%;}
+    header .seconde-menu ul li{
+        width: 20%; padding-bottom: 20%;
+    }
+}
+
+/* ================= mobile ================ */
+@media all and (max-width:500px) {
+    header .seconde-menu ul li{
+        width: 25%; padding-bottom: 25%;
+    }
+}
+@media all and (max-width:380px) {
+    header .banner .slide div div{width: 100%;}
+    header .seconde-menu ul li{
+        width: 33.33%; padding-bottom: 33.33%;
+    }
+}
+@media all and (max-width:220px) {
+    header .seconde-menu ul li{
+        width: 50%; padding-bottom: 50%;
+    }
+}
+
+
+
+
+
+
+
+

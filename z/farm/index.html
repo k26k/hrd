@@ -63,41 +63,65 @@
                 case 0:
                     a="m";
                     b="margin";
-                    break
+                    break;
                 case 1:
                     a="p";
                     b="padding";
-                    break
+                    break;
                 default:
-                    break
+                    break;
             }
-            for(let j=0; j<=4;j++){
-                let c=""
+            for(let j=0; j<=6;j++){
+                let c="";
+                let d="";
                 switch(j){
                 case 0:
                     c="";
-                    break
+                    d="a";
+                    break;
                 case 1:
                     c="-top";
-                    break
+                    d="t";
+                    break;
                 case 2:
                     c="-right";
-                    break
+                    d="r";
+                    break;
                 case 3:
                     c="-bottom";
-                    break
+                    d="b";
+                    break;
                 case 4:
                     c="-left";
-                    break
+                    d="l";
+                    break;
+                case 5:
+                    c="";
+                    d="x";
+                    break;
+                case 6:
+                    c="";
+                    d="y";
+                    break;
                 default:
-                    break
+                    break;
             }
-                for(let k=0; k<=10;k++){
+                for(let k=0; k<=20;k++){
                     let n=k;
                     if(n!=0){
-                        n=n+"%";
+                        n=n+"px";
                     }
-                    $(".demo").html($(".demo").html()+ "."+a+j+k+"{"+b+c+": "+n+";}"+"<br>");
+                    switch(d){
+                        case "y":
+                            n="auto "+n;
+                            break;
+                        case "x":
+                            n=n+" auto";
+                            break;
+                        default:
+                            break;
+                    }
+                    $(".demo").html($(".demo").html()+ "."+a+d+k+"{"+b+c+": "+n+";}"+"<br>");
                     // console.log(k,$(".demo").html());
                 }  
             }
