@@ -7,7 +7,14 @@ public class CalculatorTest {
 		Calculator cal = new Calculator();
 		
 		int add = cal.add(10,20);
+		int sub = cal.sub(10,20);
+		int mul = cal.mul(10,20);
+		double div = cal.div(10,20);
+		
 		System.out.println(add);
+		System.out.println(sub);
+		System.out.println(mul);
+		System.out.println(div);
 	}
 
 }
