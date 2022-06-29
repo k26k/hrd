@@ -133,7 +133,11 @@ public class HttpServerManager {
                 	sb.append(div("",div("",div("","냉무"))));
                 }else if(urls[1].equals("login")){
                 	sb.append("로그인");
-                	sb.append("<form method='post'><input type='input'><button type='submit'>입력</button></form>");
+                	sb.append("       <span>Method: "+(exchange.getRequestMethod())+"</span></br>");
+                	sb.append("       <span>URI: "+(exchange.getRequestURI())+"</span></br>");
+                	sb.append("       <span>PATH: "+(exchange.getRequestURI().getPath())+"</span></br>");
+                  	sb.append("       <span>QueryString: "+(exchange.getRequestURI().getQuery())+"</span></br>");
+                	sb.append("<form method='post'><input type='text'><button type='submit'>입력</button></form>");
                 }else if(urls[1].equals("user")){
                 	sb.append("유저");
                 }else {                	
@@ -144,6 +148,7 @@ public class HttpServerManager {
                 sb.append("   </body>");
                 sb.append("</html>");
                 
+                for(int i=0; i<2; i++) {
                 // Encoding to UTF-8
                 ByteBuffer bb = Charset.forName("UTF-8").encode(sb.toString());
                 int contentLength = bb.limit();
@@ -159,7 +164,7 @@ public class HttpServerManager {
                 exchange.sendResponseHeaders(200, contentLength);
                 
                 respBody.write(content);
-                
+                }
                 // Close Stream
                 // 반드시, Response Header를 보낸 후에 닫아야함
                 respBody.close();

@@ -1,10 +1,21 @@
 package httpServer;
 
 public class HtmlMaker {
+	
+	private HtmlMaker() {
+	}
+	
+	public static String makeHtml() {
+		String html = "";
+		html+="<!DOCTYPE html>";
+		html+="<html>";
+		html+=makeHeader();
+		html+="</html>";
+		return html;
+	}
+	
 	public static String makeHeader() {
 		String head = "";
-		head+="<!DOCTYPE html>";
-		head+="<html>";
 		head+="<head>";
 		head+="    <meta charset=\"UTF-8\">";
 		head+="    <meta name=\"author\" content=\"Dochi\">";
@@ -16,5 +27,13 @@ public class HtmlMaker {
 		head+="    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p' crossorigin='anonymous'></script>";
 		head+="</head>";
 		return head;
+	}
+	
+	public static String makeBody(String str) {
+		String body = "";
+		body+="   <body>";
+		body+=str;
+		body+="   </body>";
+		return body;
 	}
 }
