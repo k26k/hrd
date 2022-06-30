@@ -7,6 +7,8 @@ import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -114,6 +116,7 @@ public class HtmlServer {
                 // Write Response Body
                 StringBuilder sb = new StringBuilder();
                 if(exchange.getRequestMethod().equals("POST")) {
+                	
                 	sb.append("<!DOCTYPE html>");
 	                sb.append("<html>");
 	                sb.append("   <head>");
@@ -128,7 +131,13 @@ public class HtmlServer {
 	                sb.append("       <span>URI: "+(exchange.getRequestURI())+"</span></br>");
 	                sb.append("       <span>PATH: "+(exchange.getRequestURI().getPath())+"</span></br>");
 	                sb.append("       <span>QueryString: "+(exchange.getRequestURI().getQuery())+"</span></br>");
-	                sb.append("       <form method='post'><input type='text'><button type='submit'>입력</button></form>");
+	                sb.append("       <span>getRequestHeaders: "+(exchange.getRequestHeaders())+"</span></br>");
+	                sb.append("       <span>getResponseHeaders: "+(exchange.getResponseHeaders())+"</span></br>");
+	                sb.append("       <span>getHttpContext: "+(exchange.getHttpContext())+"</span></br>");
+	                sb.append("       <span>getRequestBody: "+(exchange.getRequestBody())+"</span></br>");
+	                sb.append("       <span>getResponseBody: "+(exchange.getResponseBody())+"</span></br>");
+	                sb.append("       <span>getLocalAddress: "+(exchange.getLocalAddress())+"</span></br>");
+	                sb.append("       <form action='http://localhost/search' method='get'><input  name='q' type='text'><button type='submit'>입력</button></form>");
 	                sb.append("       <div>POSTED</div>");
 	                sb.append("   </body>");
 	                sb.append("</html>");
@@ -147,11 +156,16 @@ public class HtmlServer {
 	                sb.append("       <span>URI: "+(exchange.getRequestURI())+"</span></br>");
 	                sb.append("       <span>PATH: "+(exchange.getRequestURI().getPath())+"</span></br>");
 	                sb.append("       <span>QueryString: "+(exchange.getRequestURI().getQuery())+"</span></br>");
-	                sb.append("       <form method='post'><input type='text'><button type='submit'>입력</button></form>");
+	                sb.append("       <span>getRequestHeaders: "+(exchange.getRequestHeaders())+"</span></br>");
+	                sb.append("       <span>getResponseHeaders: "+(exchange.getResponseHeaders())+"</span></br>");
+	                sb.append("       <span>getHttpContext: "+(exchange.getHttpContext())+"</span></br>");
+	                sb.append("       <span>getRequestBody: "+(exchange.getRequestBody())+"</span></br>");
+	                sb.append("       <span>getResponseBody: "+(exchange.getResponseBody())+"</span></br>");
+	                sb.append("       <span>getLocalAddress: "+(exchange.getLocalAddress())+"</span></br>");
+	                sb.append("       <form method='post'><input name='q' type='text'><button type='submit'>입력</button></form>");
 	                sb.append("   </body>");
 	                sb.append("</html>");
                 }
-
                 
                 // Encoding to UTF-8
                 ByteBuffer bb = Charset.forName("UTF-8").encode(sb.toString());
@@ -179,7 +193,7 @@ public class HtmlServer {
                 if( respBody != null ) {
                     respBody.close();
                 }
-            } finally {
+			} finally {
                 exchange.close();
             }
         }

@@ -1,4 +1,4 @@
-package singleton;
+package singleton.car;
 
 public class Car {
 	private static int serialNum = 10000;
