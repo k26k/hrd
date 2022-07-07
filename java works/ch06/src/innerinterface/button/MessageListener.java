@@ -1,4 +1,4 @@
-package innerinterface;
+package innerinterface.button;
 
 public class MessageListener implements Button.OnClickListener{ // Button 클래스 내부의 인터페이스에 접근
 

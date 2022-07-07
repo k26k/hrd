@@ -1,4 +1,4 @@
-package innerinterface;
+package innerinterface.button;
 
 public class Button {
 	

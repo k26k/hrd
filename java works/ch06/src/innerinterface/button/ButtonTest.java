@@ -1,4 +1,4 @@
-package innerinterface;
+package innerinterface.button;
 
 public class ButtonTest {
 
@@ -11,11 +11,11 @@ public class ButtonTest {
 		button.setListener(callListener);
 		button.touch();
 		
-//		MessageListener 객체를 인스턴스로 생성과 즉시 대입
+//		MessageListener 객체를 인스턴스로 생성후 즉시 대입
 		button.setListener(new MessageListener());
 		button.touch();
 		
-//		재정의된 별도의 객체를 인스턴스로 생성과 즉시 대입
+//		재정의된 객체를 선언해서 인스턴스로 생성후 즉시 대입
 		button.setListener(new Button.OnClickListener() {
 			
 			@Override
