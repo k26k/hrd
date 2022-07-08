@@ -62,7 +62,7 @@ Oracle - 오라클DB
 
 - 데이터 삭제 
   전체 삭제 : DELETE FROM 테이블_이름;
-  특정 행 삭제 : DELETE FROM member WHERE userID = 'sky2023' ;
+  특정 행 삭제 : DELETE FROM 테이블_이름 WHERE 행조건 ;
 
 - 테이블 복사
   CREATE TABLE 테이블_이름 AS SELECT (복사할_칼럼) FROM 테이블_이름 (WHERE 임의의_칼럼 = 특정_행의_데이터) ;
