@@ -1,0 +1,23 @@
+
+JAVA
+
+클래스 이름을 모를때 객체에서 클래스 이름 가져오기
+Class<?> pClass1 = 객체.getClass();
+pClass1.getName();
+
+클래스 이름을 알때 클래스의 주소에서 클래스를 받아오기
+Class<?> pClass2 = Class.forName("클래스 주소");
+pClass2.getName();
+				
+생성자 정보 가져오기
+Constructor<?>[] cons = pClass1.getConstructors(); 
+		
+멤버 변수(필드) 가져오기
+Field[] fields = pClass1.getDeclaredFields();
+		
+메서드 가져오기
+Method[] methods = pClass1.getMethods();
+		
+
+
+
