@@ -11,6 +11,12 @@ INSERT INTO person VALUES('cloud', 'cloud123', '±¸¸§', 120);
 
 SELECT * FROM person;
 
+ALTER TABLE person MODIFY userid VARCHAR2(40);
+
+ALTER TABLE person MODIFY userpw VARCHAR2(40);
+
+ALTER TABLE person MODIFY name VARCHAR2(40);
+
 COMMIT;
 
 

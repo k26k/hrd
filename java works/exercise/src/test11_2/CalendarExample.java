@@ -19,9 +19,6 @@ public class CalendarExample {
 			+cal.get(cal.MINUTE)+"분 "
 		);
 		
-		
-		
-		
 	}
 	
 }
