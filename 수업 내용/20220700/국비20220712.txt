@@ -1,0 +1,33 @@
+
+JAVA
+
+컬렉션 프레임워크
+collection(자료구조) framework
+
+제네릭(generic) 프로그래밍
+특정한 하나의 자료형이 아닌 다양한 자료형을 사용할수 있도록 프로그래밍 하는것
+
+List<String>
+-> ArrayList<String>()
+
+Set<String>
+-> HashSet<String>
+
+Map<String, Integer>
+-> HashMap()
+
+제너릭 프로그래밍을 하는 이유
+사전에 자료형을 정해줌으로서 번거로운 형변환 없이도 다양한 자료형을 입출력 가능함
+
+
+
+
+SQL 
+
+erWIN
+
+
+
+
+
+
