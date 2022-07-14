@@ -37,7 +37,7 @@ public class MemberArrayList {
 				return true;
 			}
 		}
-		System.out.println("해당 id가 존재하지 않음");
+		System.out.println("ID "+memberId+" 가 존재하지 않음");
 		return false;
 	}
 	

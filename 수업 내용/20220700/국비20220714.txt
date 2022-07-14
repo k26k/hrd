@@ -1,0 +1,76 @@
+
+JAVA
+
+HashSet
+
+- 추가
+  hashSet.add( value );
+
+- 삭제
+  hashSet.remove( value );
+
+- 반복 조회
+  Iterator<Member> ir = hashSet.iterator();
+  while(ir.hasNext()) {
+  	  Member member = ir.next();
+		  System.out.println(member);
+	  }
+  }
+
+- 찾아서 삭제
+  Iterator<Member> ir = hashSet.iterator();
+  while(ir.hasNext()) {
+      Member member = ir.next();
+      int dbMemberId = member.getMemberId();
+      if(dbMemberId == memberId) {
+          hashSet.remove(member);
+          return true;
+      }
+  }
+
+
+HashMap
+
+- 추가
+  hashMap.put( key, value );
+
+- 삭제
+  if(hashMap.containsKey(memberId)) {
+  hashMap.remove(memberId);
+
+- 반복 조회
+  while(ir.hasNext()) {
+      Member member = hashMap.get(ir.next());
+      System.out.println(member);
+  }
+
+- 찾아서 삭제
+  if(hashMap.containsKey(memberId)) {
+      hashMap.remove(memberId);
+  }
+
+
+스택
+- 후입 선출 구조
+
+큐
+- 선입 선출 구조
+
+
+
+
+SQL
+
+
+
+
+
+
+
+
+
+
+
+
+
+

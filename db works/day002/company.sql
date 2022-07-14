@@ -48,7 +48,31 @@ ADD CONSTRAINT EMP_FK FOREIGN KEY(deptid)
 REFERENCES department(deptid) ;                 -- 외래키 관계 재추가
 
 SELECT * FROM department;                       -- 확인
-SELECT * FROM employee;                         -- 확인
+SELECT * FROM employee;
+-- 확인
+
+ALTER TABLE employee
+drop Column salary;
+
+ALTER TABLE employee
+ADD salary number(10) not null;
+
+ALTER TABLE employee
+ADD salary number(10) ;
+
+update employee
+SET salary = 0;
+
+ALTER TABLE employee
+MODIFY salary number(10) NOT NULL;
+
+UPDATE employee
+SET salary = 2500000
+WHERE empid = 101;
+
+UPDATE employee
+SET salary = 2000000
+WHERE empid = 102;
 
 
 
