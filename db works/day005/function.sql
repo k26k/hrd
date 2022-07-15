@@ -84,15 +84,73 @@ FROM customer
 GROUP BY SUBSTR(name, 1, 1);
 
 
+-- 날짜, 시간 함수
+--날짜 연산 규칙
+--함수 		        설명 			        반환값
+--Date + Number 	날짜에서 일수를 더한다. 	Date
+--Date - Number 	날짜에서 일수를 뺀다. 	    Date
+--Date ? Date 	    날짜에서 날짜를 뺀다. 	    일수
+--
+--함수 			    설명 					                예
+--MONTH_BETWEEN 	두 날짜 사이의 월수를 계산 			        MONTH_BETWEEN(SYSDATE, HIRE_DATE)
+--ADD_MONTHS 		월을 날짜에 더한다. 			            ADD_MONTHS(HIRE_DATE, 5)
+--NEXT_DAY 		    명시된 날짜부터 돌아오는 요일의 날짜를 출력 	NEXT_DAY(HIRE_DATE, 1)
+
+-- 각 주문의 일자 +10일 확인
+SELECT orderid, orderdate, orderdate+10
+FROM orders;
+
+-- 주문번호 6에서 10사이인 도서의 주문일에 3개월을 더한 값
+SELECT  orderid,
+        orderdate,
+        ADD_MONTHS(orderdate, 3)
+FROM orders
+WHERE orderid BETWEEN 6 AND 10;
+
+-- 주문번호가 10인 도서의 주문일로부터 오늘까지의 총 개월수
+SELECT  orderid,
+        orderdate,
+        SYSDATE,
+        TRUNC(MONTHS_BETWEEN(SYSDATE,orderdate),0)
+FROM orders
+WHERE orderid = 10;
+
+-- 변환 함수
+-- TO_CHAR       숫자, 문자,날짜 값을 형식을 VARCHAR2로 변환
+-- TO_NUMBER     문자를 숫자 타입으로 변환
+-- TO_DATE       날짜를 나타내는 문자열을 지정 형식의 날짜 타입
+
+-- 숫자 형식 변환
+SELECT TO_NUMBER('123.3')
+FROM dual;
+
+-- 날짜 형식 : 날짜 문자열을 지정 형식 날짜 타입으로 변환
+SELECT TO_DATE('2023-06-30', 'YYYY-MM-DD')
+FROM dual;
+
+-- 날짜를 문자 형식으로 변환
+SELECT  TO_CHAR(SYSDATE),
+        TO_CHAR(SYSDATE,'YY'),
+        TO_CHAR(SYSDATE,'YYYY'),
+        TO_CHAR(SYSDATE,'MM'),
+        TO_CHAR(SYSDATE,'DD')
+FROM dual;
+
+-- 시간을 문자 형식으로 변환
+SELECT  TO_CHAR(SYSDATE, 'HH:MI:SS')
+FROM dual;
+
+SELECT  TO_CHAR(SYSDATE, 'HH24:MI:SS')
+FROM dual;
 
 
+-- null 찾기
+SELECT *
+FROM customer
+WHERE phone is null;
 
-
-
-
-
-    
-
-
+-- null 대신 다른값 출력
+SELECT name, NVL(phone,'xxx-xxxx-xxxx')
+FROM customer;
 
 

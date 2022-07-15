@@ -14,6 +14,7 @@ public class FileWriteExample {
 			fw.write(10); // 줄바꿈 
 			char[] buffer = {'s','m','i','l','e'}; // 배열 삽입
 			fw.write(buffer);
+			fw.write(buffer,1,2);
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
