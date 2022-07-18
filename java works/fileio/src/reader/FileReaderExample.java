@@ -9,7 +9,12 @@ public class FileReaderExample {
 
 		try(Reader fr = new FileReader("file1.txt") ){
 			int i;
-			while((i = fr.read())!=-1) {
+//			while((i = fr.read())!=-1) {
+//				System.out.print((char)i);
+//			}
+			while(true) {
+				if((i = fr.read()) ==-1) break;
+				System.out.print(i);
 				System.out.print((char)i);
 			}
 		}catch(Exception e) {

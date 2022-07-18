@@ -6,7 +6,8 @@ public class FileWriteExample {
 
 	public static void main(String[] args) {
 //		문자 파일 기반 출력 스트림 생성 
-		try(Writer fw = new FileWriter("file1.txt")){
+//		try(Writer fw = new FileWriter("file1.txt")){
+		try(Writer fw = new FileWriter("C:/file/file1.txt")){
 			fw.write("hellow java\n");
 			fw.write("만나면 반갑\n");
 //			fw.write((int)3.3); 숫자 사용 안함

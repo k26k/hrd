@@ -7,7 +7,7 @@ public class StrInDe {
 	private StringBuffer str;
 	private ArrayList<Byte> list;
 	
-	private StrInDe(){
+	public StrInDe(){
 		str = new StringBuffer();
 		list = new ArrayList<>();
 	}
@@ -38,6 +38,7 @@ public class StrInDe {
 	
 	public void decode() {
 		int size = str.length();
+		list.clear();
 		for(int i=0; i<size; i++) {
 			
 		}

@@ -1,4 +1,4 @@
-package outputstream;
+package inputstream;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -19,11 +19,20 @@ public class ReadSample2 {
 			
 			int data;
 			
-			while((data = is.read(buffer)) != -1) {
+//			while((data = is.read(buffer)) != -1) {
+//				for(int i=0; i<data; i++) {
+//					System.out.println(buffer[i]);
+//				}
+//			}
+			
+			while(true) {
+				if((data = is.read(buffer)) == -1) break;
 				for(int i=0; i<data; i++) {
 					System.out.println(buffer[i]);
 				}
 			}
+			
+			
 		}catch(IOException e) {
 			e.printStackTrace();
 		}finally {
