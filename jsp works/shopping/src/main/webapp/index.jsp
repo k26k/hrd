@@ -7,11 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-		String hostValue = request.getHeader("host");
-		String hostValueq = request.getHeader("host");
-	
-		out.println("호스트명: "+hostValue+"<br>");
-	%>
+	<div class="container">
+		<%@ include file="header.jsp" %>
+		<%@ include file="main.jsp" %>
+		<%@ include file="footer.jsp" %>
+	</div>
 </body>
 </html>
