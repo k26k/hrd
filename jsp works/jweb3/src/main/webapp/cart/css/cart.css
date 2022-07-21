@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+#container {margin: 50px 0 0 0; padding: 0; text-align: center;}
+
+form {width: 400px; margin: 0 auto;}
+#username {width: 200px}
+#product {width: 120px}

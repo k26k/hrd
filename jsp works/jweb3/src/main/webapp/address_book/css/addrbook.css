@@ -1,0 +1,12 @@
+@charset "UTF-8";
+#container {width: 100%; margin: 50px 0 0 0; padding: 0; text-align: center;}
+
+#tbl {width: 400px; margin: 0 auto;}
+#tbl, td {border-collapse: collapse; border: 1px solid #ccc;}
+#tbl td {width: 80px; height: 40px;}
+#tbl input {height: 25px;}
+
+#tbl_list {width: 600px; margin: 0 auto;}
+#tbl_list, td {border-collapse: collapse; border: 1px solid #ccc;}
+#tbl_list td {height: 40px;}
+
