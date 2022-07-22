@@ -42,7 +42,8 @@
 					</a>
 				</td>
 				<td>
-					<a href="addrDelete.jsp?userIndex=<%= i %>">
+					<a onclick="return confrim('ㄹㅇ?')"
+					   href="addrDelete.jsp?userIndex=<%= i %>">
 						<button type="button">삭제</button>
 					</a>
 				</td>

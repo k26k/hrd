@@ -15,7 +15,6 @@
 <jsp:setProperty property="gender" name="addrBook" />
 <jsp:useBean id="addrDAO" class="dao.AddrBookDAO" scope="application" />
 <% 	
-	
 	if(addrBook.nullCheck()){
 		%>
 		<script type="text/javascript">
