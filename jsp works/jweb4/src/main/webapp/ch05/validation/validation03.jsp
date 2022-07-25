@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>유효성 검사</title>
-<script src="../resource/js/validation.js">
+<script src="../../resource/js/validation.js">
 </script>
 </head>
 <body>

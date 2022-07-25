@@ -8,7 +8,7 @@
 <style type="text/css">
 	h2{background-color: green; text-align: center; padding: 15px; border-radius: 5px; color: #eee;}
 	#regform{width: 50%; margin: 0 auto; background-color: lightgreen; padding: 15px 20px; border-radius: 10px;}
-	#result{display: none;}
+	#result{width: 50%; margin: 0 auto; background-color: lightgreen; padding: 15px 20px; display: none;}
 </style>
 <script type="text/javascript">
 	function signUp() {
@@ -16,7 +16,7 @@
 		document.getElementById("regform").style.display="none";
 		document.getElementById("rname").innerHTML = document.form1.name.value;
 		document.getElementById("rmale").innerHTML = document.form1.email.value;
-		document.getElementById("result").style.display="block !important";
+		document.getElementById("result").style.cssText = "display: block !important;";
 	}
 </script>
 </head>
