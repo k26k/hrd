@@ -60,11 +60,12 @@
 	<div id="container" >
 		<h2>주소록 상세 조회</h2>
 		<hr>
-		<% 	
+		<%
+			
 			AddrBook addrBook = null;
 			try{
 				int userIndex = Integer.parseInt(request.getParameter("userIndex"));
-				addrBook = addrDAO.getAddress(userIndex);			
+				addrBook = addrDAO.getAddress(userIndex);
 		%>
 		<table id="tbl" >
 			<tr>

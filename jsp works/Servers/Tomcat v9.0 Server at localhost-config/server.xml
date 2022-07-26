@@ -139,8 +139,9 @@
         <Realm className="org.apache.catalina.realm.UserDatabaseRealm" resourceName="UserDatabase"/>
       </Realm>
 
-      <Host appBase="webapps" autoDeploy="true" name="localhost" unpackWARs="true">
-
+      <!-- <Host appBase="webapps" autoDeploy="true" name="localhost" unpackWARs="true"> -->
+	<Host appBase="webapps" autoDeploy="true" name="localhost" unpackWARs="true" xmlNamespaceAware="false" xmlValidation="false">
+            
         <!-- SingleSignOn valve, share authentication between web applications
              Documentation at: /docs/config/valve.html -->
         <!--
@@ -152,10 +153,10 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="jweb4" path="/jweb4" reloadable="true" source="org.eclipse.jst.jee.server:jweb4"/>
-      <Context docBase="jweb5" path="/jweb5" reloadable="true" source="org.eclipse.jst.jee.server:jweb5"/>
-      <Context docBase="C:\\dev\\hrd\\jsp works\\jweb5\\src\\main\\webapp\\upload" path="/jweb5/upload"/>
-      </Host>
+      
+      
+      
+      <Context docBase="jweb6" path="/jweb6" reloadable="true" source="org.eclipse.jst.jee.server:jweb6"/><Context docBase="jweb5" path="/jweb5" reloadable="true" source="org.eclipse.jst.jee.server:jweb5"/><Context docBase="AddrBook" path="/AddrBook" reloadable="true" source="org.eclipse.jst.jee.server:AddrBook"/></Host>
     </Engine>
   </Service>
 </Server>

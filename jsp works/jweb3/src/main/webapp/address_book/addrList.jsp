@@ -26,10 +26,11 @@
 				<td>보기</td>
 				<td>삭제</td>
 			</tr>
-			<% 
-				ArrayList<AddrBook> addrList = addrDAO.getAllList();
-				for(int i=0; i<addrList.size(); i++){
-					AddrBook addrBook = addrList.get(i);
+			<%
+			 
+					ArrayList<AddrBook> addrList = addrDAO.getAllList();
+					for(int i=0; i<addrList.size(); i++){
+						AddrBook addrBook = addrList.get(i);
 			%>
 			<tr>
 				<td><%= addrBook.getUsername() %></td>
