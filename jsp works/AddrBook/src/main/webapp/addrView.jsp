@@ -5,6 +5,32 @@
 
 <jsp:useBean id="addrDAO" class="com.dao.AddrBookDAO" scope="application" />
 
+<%
+	if(session.getAttribute("sessionID")==null){
+%>
+<script>
+	alert("로그인 해야합니다.");
+	location.href="./loginForm.jsp";
+</script>
+<%		
+		return;
+	}
+
+	int num = -1;
+	if(request.getParameter("num")==null||request.getParameter("num")==""){
+%>
+	<script>
+		location.href="./addrList.jsp";
+	</script>
+<%			
+	}
+	
+	num = Integer.parseInt(request.getParameter("num"));
+	if(session.getAttribute("num")==null){
+		
+	}
+%>
+<%-- 
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,102 +40,55 @@
 <title>주소록 상세 조회</title>
 <link rel="stylesheet" type="text/css" href="./resources/addr.css">
 </head>
-
-<%-- <body>
-	<div id="container" >
-		<h2>주소록 상세 조회</h2>
-		<hr>
-		<% 	
-			request.setCharacterEncoding("utf-8");
-			String userIndex = request.getParameter("userIndex");
-			
-			if(userIndex != null && user){	
-				ArrayList<addrBook>	addrList = 
-				
-		%>
-		<table id="tbl" >
-			<tr>
-				<td>이름</td>
-				<td><%= addrBook.getUsername() %></td>
-			</tr>
-			<tr>
-				<td>전화번호</td>
-				<td><%= addrBook.getTel() %></td>
-			</tr>
-			<tr>
-				<td>이메일</td>
-				<td><%= addrBook.getEmail() %></td>
-			</tr>
-			<tr>
-				<td>성별</td>
-				<td><%= addrBook.getGender() %></td>
-			</tr>
-		</table>
-		<%
-			}else{
-				%>
-		<script type="text/javascript">
-			alert("해당 주소록이 없습니다.");
-			location.href="addrForm.jsp";
-		</script>
-				<%
-			}
-		%>
-		<p>
-			<a href="addrList.jsp">목록 보기</a>
-		</p>
-	</div>
-</body>
-</html> --%>
 <body>
-<% 	
-	try{
-		int num = Integer.parseInt(request.getParameter("num"));
-		AddrBook addrBook = addrDAO.getAddress(num);
-		if(addrBook == null){
-			out.println("<script>");
-			out.println("alert('null error');");
-			out.println("location.href='./addrList.jsp';");
-			out.println("</script>");
-			return;
-		}
-%>
 	<div id="container" >
 		<h2>주소록 상세 조회</h2>
 		<hr>
-		<table id="tbl" >
+		<table id="tbl">
 			<tr>
-				<td>이름</td>
-				<td><%= addrBook.getUsername() %></td>
+				<td> <label for="username" >이름</label> </td>
+				<td> <input type="text" id="username" name="username" maxlength=20 size=20 value="<%= addrBook.getUsername() %>" readonly > </td>
 			</tr>
 			<tr>
-				<td>전화번호</td>
-				<td><%= addrBook.getTel() %></td>
+				<td> <label for="tel" >전화번호</label> </td>
+				<td> <input type="text" id="tel" name="tel" maxlength=20 size=20 value="<%= addrBook.getTel() %>" readonly > </td>
 			</tr>
 			<tr>
-				<td>이메일</td>
-				<td><%= addrBook.getEmail() %></td>
+				<td> <label for="email" >이메일</label> </td>
+				<td> <input type="text" id="email" name="email" maxlength=20 size=20 value="<%= addrBook.getEmail() %>" readonly > </td>
 			</tr>
 			<tr>
-				<td>성별</td>
-				<td><%= addrBook.getGender() %></td>
+				<td> 성별 </td>
+				<td>
+					<% if(addrBook.getGender().equals("남자")){ %>
+					<input type="radio" id="male" name="gender" value="남자" checked>
+					<label for="male" >남</label>
+					<input type="radio" id="female" name="gender" value="여자" disabled>
+					<label for="female" >여</label>
+					<% }else{ %>
+					<input type="radio" id="male" name="gender" value="남자" disabled>
+					<label for="male" >남</label>
+					<input type="radio" id="female" name="gender" value="여자" checked>
+					<label for="female" >여</label>
+					<% } %>
+				</td>
+			<tr>
+				<td colspan="2">
+					<a href="./addrUpdate.jsp?num=<%= num %>">
+						<input type="button" value="수정">	
+					</a>
+					<a href="./addrList.jsp?num=<%= num %>">
+						<input type="button" onclick="return confirm('삭?제');" value="삭제">	
+					</a>
+					<a href="./addrList.jsp">
+						<input type="button" value="목록">	
+					</a>
+				</td>
 			</tr>
+			
 		</table>
-
 		<p>
-			<a href="addrList.jsp">목록 보기</a>
 		</p>
 	</div>
-<%
-	}catch(Exception e){
-		//e.printStackTrace();
-%>
-<script type="text/javascript">
-	alert("해당 주소록이 없습니다.");
-	location.href="addrList.jsp";
-</script>
-<%
-	}
-%>
 </body>		
-</html>
+</html> --%>

@@ -1,0 +1,72 @@
+
+JSP
+
+예외처리
+
+error 페이지 처리
+
+태그 처리
+- <%@ page errorPage="./errorPage_error.jsp" %>
+  해당 태그를 삽입해서 에러 발생시 에러처리 페이지로 보냄
+
+- <%@ page isErrorPage="true" %>
+  에러처리 페이지에 해당 태그를 삽입하면 exception 내장 객체로부터 에러 값을 받아올 수 있음
+  - <%= exception.getClass().getName() %> 에러 이름
+  - <%= exception.getMessage() %> 에러 내용
+
+xml처리
+- web.xml에 해당 내용 추가
+  <error-page>
+  	<error-code>에러코드 종류</error-code>
+  	<location>에러처리 페이지 위치</location>
+  </error-page>
+
+- 해당 에러 발생시 에러 처리 페이지로 이동함
+
+
+scope 설정
+- "page"  요청된 page 내부에서 사용
+- "request"  요청부터 응답까지 사용
+- "session"  Web Brower 종료 또는 설정 한 시간 동안 유지
+- "application"  Web Application이 종료 될때 까지
+
+내장 객체 			기능
+pageScope page 			영역의 생명 주기에서 사용되는 저장소
+requestScope request 		영역의 생명 주기에서 사용되는 저장소
+sessionScope session 		영역의 생명 주기에서 사용되는 저장소
+applicationScope application 	영역의 생명 주기에서 사용되는 저장소
+param				request.getParameter(“name“)로 얻을 수 있는 값들이다.
+				${param.name}으로 사용한다.
+paramValues 			request.getParameterValues(“name“)로 얻을 수 있는 값들이다.
+				${paramValues.name}으로 사용한다. - 배열
+pageContext page 			범위의 컨텍스트 저장소 
+				${pageContext.request.contextPath}
+cookie 				Cookie 정보를 저장하고 있는 저장소 – 클라이언트에 저장됨
+
+
+
+MVC 웹 애플리케이션
+
+
+
+JSTL
+다운 
+- https://repo1.maven.org/maven2/javax/servlet/jstl/1.2/jstl-1.2.jar
+이거 빌드하면 <c:forEach> 사용 가능
+
+JSTL 태그 사용하기
+<%@ taglib prefix=“태그 식별이름” uri=“태그 지원 URL” %>
+<%@ taglib prefix=“c” uri=“http://java.sun.com/jsp/jstl/core” %>
+
+JSTL 태그 사용하기
+태그 		설명
+<c:set> 		사용할 변수를 설정
+<c:remove> 	설정한 변수를 제거
+<c:if> 		조건문 처리
+<c:forEach> 	반복문 처리
+<c:choose> 	다중 조건문 처리
+<c:when> 	<c:choose>의 서브 태그로 조건문이 참일 때 수행
+<c:otherwise> 	<c:choose>의 서브 태그로 조건문이 거짓일 때 수행
+<c:out> 		출력에 사용
+
+

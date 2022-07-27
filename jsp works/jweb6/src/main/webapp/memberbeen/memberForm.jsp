@@ -17,6 +17,7 @@
 	}
 	function sub02() {
 		document.formm.action="./member02.jsp";
+		formm.submit();
 	}
 	function sub02el() {
 		document.formm.action="./member02el.jsp";

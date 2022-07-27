@@ -36,7 +36,7 @@
 
 <body>
 	<div id="container" >
-		<h2>주소록 내용</h2>
+		<h2>주소록 추가 내용</h2>
 		<hr>
 		<p>이름: <%= addrBook.getUsername() %></p>
 		<p>전화번호: <%= addrBook.getTel() %></p>

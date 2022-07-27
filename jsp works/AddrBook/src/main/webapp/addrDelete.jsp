@@ -1,31 +1,29 @@
+<%@page import="java.io.IOException"%>
+<%@page import="java.io.IOError"%>
+<%@page import="java.util.function.Function"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.dao.AddrBook" %>
 <jsp:useBean id="addrDAO" class="com.dao.AddrBookDAO" scope="application" />
 <%
 	request.setCharacterEncoding("utf-8");
-	int num = Integer.parseInt(request.getParameter("num"));
-	
-	if(!addrDAO.delete(num)){
-		
+	Object numObj = request.getParameter("num");
+	String text = "";
+	if(numObj==null){
+		text = "alert('선택해주세요');";
+		return;
+	}
+	int num = Integer.parseInt((String)numObj);
+	AddrBook addrBook = addrDAO.getAddress(num);
+	String email = (String)session.getAttribute("sessionID");
+	if(!addrBook.getEmail().equals(email)){
+		text = "alert('목록에 없습니다');";
 	}else{
-		%>
-		<script type="text/javascript">
-			alert("삭제 성공");
-		</script>
-		<%
+		if(!addrDAO.delete(num)){
+			text = "alert('삭제 실패');";
+		}else{
+			text = "alert('삭제 성공');";
+		}
 	}
-	
-	try{
-		//addrDAO.deleteAddr(Integer.parseInt(indexRequest));
-
-	}catch(Exception e){
-		%>
-		<script type="text/javascript">
-			alert("삭제 실패");
-		</script>
-		<%
-	}
+	text += "location.href='addrList.jsp';";
 %>
-<script type="text/javascript">
-	location.href="addrList.jsp";
-</script>

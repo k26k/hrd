@@ -9,4 +9,20 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  
+  <error-page>
+  	<error-code>500</error-code>
+  	<location>/exception/errorCode_msg.jsp</location>
+  </error-page>
+  
+  <servlet>
+  	<servlet-name>clacServlet</servlet-name>
+  	<servlet-class>com.mvc.CalcServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>clacServlet</servlet-name>
+  	<url-pattern>/mvc/calc</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
