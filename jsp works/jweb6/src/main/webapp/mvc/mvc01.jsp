@@ -18,29 +18,41 @@
 		if(!valueName.substring(0,5).equals("javax")){
 			out.println(valueName+": ");
 			Object valueObj = request.getAttribute(valueName);
-			//out.println(" . . . "+valueObj);
-			if(valueObj instanceof String[]){
-				for(String value:(String[])valueObj){
-					out.println(value+" ");
-				}
-				
-			}else if(valueObj instanceof ArrayList){
-				for(Object value:(ArrayList)valueObj){
-					if(value instanceof Integer){
-						value = (Integer)value;
-					}
-					out.println(value+" ");
-				}
-				
-			}else if(valueObj instanceof String[]){
-				
-			}
-			
-		out.println("<br>");
+			out.println(toS(valueObj));
+			out.println("<br>");
 		}
 	}
-
 %>
+<%! 
+	public StringBuffer toS(Object values){
+		StringBuffer str = new StringBuffer("");
+		if(values instanceof String){
+			str.append(values);
+			str.append(" ");
+			return str;
+		}else if(values instanceof String[]){
+			for(String value:(String[])values){
+				str.append(value);
+				str.append(" ");
+			}
+			return str;
+			
+		}else if(values instanceof ArrayList){
+			for(Object value:(ArrayList)values){
+				/* if(value instanceof Integer){
+					value = (Integer)value;
+				}
+				out.println(value+" "); */
+				str.append(value);
+				str.append(" ");
+			}
+			return str;
+		}
+		str.append(" none ");
+		return str;
+	}
+%>
+	<hr>
 	<c:forEach var="name" items="${names}">
 		${name}<span> </span>
 	</c:forEach>

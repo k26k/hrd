@@ -10,10 +10,10 @@
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
   
-  <error-page>
+<!--   <error-page>
   	<error-code>500</error-code>
   	<location>/exception/errorCode_msg.jsp</location>
-  </error-page>
+  </error-page> -->
   
   <servlet>
   	<servlet-name>clacServlet</servlet-name>

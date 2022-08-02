@@ -1,0 +1,35 @@
+
+https://mvnrepository.com/
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+mysql 다운 링크
+- https://dev.mysql.com/downloads/windows/installer/8.0.html
+- https://dev.mysql.com/doc/refman/8.0/en/
+
+mysql connector
+- https://mvnrepository.com/artifact/mysql/mysql-connector-java
+
+서버타임 오류시
+- ?useUnicode=true&serverTimezone=Asia/Seoul 추가
+
+el(표현언어) > jstl
+
+
+mysql
+
+데이터 베이스 만들기
+CREATE DATABASE jspdb;
+
+데이터 베이스 검색하기
+SHOW DATABASES;
+
+데이터 베이스 사용하기
+USE jspdb;
+
+
+자료형 		설명
+varchar(크기) 	가변길이 문자열 데이터
+char(크기) 	고정길이 문자열
+int(크기) 		숫자를 저장
+date 		날짜 형식 저장
