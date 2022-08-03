@@ -156,7 +156,7 @@
       
       
       
-      <Context docBase="jweb" path="/jweb" reloadable="true" source="org.eclipse.jst.jee.server:jweb"/><Context docBase="jweb4" path="/jweb4" reloadable="true" source="org.eclipse.jst.jee.server:jweb4"/><Context docBase="jweb5" path="/jweb5" reloadable="true" source="org.eclipse.jst.jee.server:jweb5"/><Context docBase="jweb6" path="/jweb6" reloadable="true" source="org.eclipse.jst.jee.server:jweb6"/><Context docBase="shopping" path="/shopping" reloadable="true" source="org.eclipse.jst.jee.server:shopping"/></Host>
+      <Context docBase="jweb6" path="/jweb6" reloadable="true" source="org.eclipse.jst.jee.server:jweb6"/><Context docBase="shopping" path="/shopping" reloadable="true" source="org.eclipse.jst.jee.server:shopping"/><Context docBase="MemberBoard1" path="/mb" reloadable="true" source="org.eclipse.jst.jee.server:MemberBoard1"/></Host>
     </Engine>
   </Service>
 </Server>

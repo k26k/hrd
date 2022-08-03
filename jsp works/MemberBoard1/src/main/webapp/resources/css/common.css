@@ -1,0 +1,24 @@
+@charset "UTF-8";
+*{margin: 0; padding: 0;}
+.container{width: 100%; max-width: 1000px; margin: 0 auto;}
+
+.main_menu{margin: 20px 0 10px 0;}
+.main_menu ul{float: right;}
+.main_menu li{list-style: none; float: left; margin: 5px 10px;}
+.main_menu a{text-decoration: none; color: #333; padding: 7px 10px; border-top: 3px solid #333; font-size: small; background-color: #fff}
+.main_menu a:hover{border-top: 3px solid #77f; box-shadow: 0 5px 3px -3px rgba(0,0,0,0.2);}
+.main_menu:after{content:""; display: block; clear: both;}
+
+.contents .first_title{background-color: rgb(241, 250, 192); padding: 20px; margin-bottom: 20px}
+.contents .first_title h1{color: #777; text-align: center;}
+.contents .images img{margin: 20px auto; display: block;} 
+.contents .member_list{border-collapse: collapse; width: 100%; max-width:800px; margin: 30px auto; box-shadow: 0 5px 5px -3px rgba(0,0,0,0.2);}
+.contents .member_list th, td{border: 1px solid #aaa; padding: 10px; text-align: center;}
+.contents .member_list th{background-color: #eef;}
+.contents .member_add_form table {border-collapse: collapse; width: 100%; max-width:500px; margin: 30px auto; box-shadow: 0 5px 5px -3px rgba(0,0,0,0.2);}
+.contents .member_add_form td{border: 1px solid #aaa; padding: 10px; text-align: center;}
+.contents .member_login_form table {border-collapse: collapse; width: 100%; max-width:500px; margin: 30px auto; box-shadow: 0 5px 5px -3px rgba(0,0,0,0.2);}
+.contents .member_login_form td{border: 1px solid #aaa; padding: 10px; text-align: center;}
+
+footer {margin: 100px 0 0 20px; color: #333;}
+

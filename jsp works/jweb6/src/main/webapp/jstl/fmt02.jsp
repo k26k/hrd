@@ -6,36 +6,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>다국어 처리</title>
 </head>
 <body>
 	<h2>Java Server Page</h2>
-	<p>
-		<a href="?language=ko">한</a> | <a href="?language=en">en</a>
-	</p>
 	<c:choose>
 	<c:when test="${param.language eq 'ko'}">
-	<p>
-		--- 기본 로케일 ---
 		<fmt:setLocale value="ko"/>
 		<fmt:setBundle basename="com.bundle.message"/>
-	</p>
 	</c:when>
 	<c:when test="${param.language eq 'en'}">
-	<p>
-		--- 영문 로케일 ---
 		<fmt:setLocale value="en"/>
 		<fmt:setBundle basename="com.bundle.message_en"/>
-	</p>
 	</c:when>
 	<c:otherwise>
-	<p>
-		--- 기본 로케일 ---
 		<fmt:setLocale value="ko"/>
 		<fmt:setBundle basename="com.bundle.message"/>
-	</p>
 	</c:otherwise>
-	</c:choose>	
+	</c:choose>
+	<p>
+		<a href="?language=ko">한국어</a> | <a href="?language=en">English</a>
+	</p>
 	<p>제목: <fmt:message key="title"/></p>
 	<p>이름: <fmt:message key="username"/></p>
 </body>
