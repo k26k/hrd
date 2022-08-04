@@ -15,3 +15,5 @@ SELECT * FROM t_member;
 SELECT * FROM t_member ORDER BY joindate DESC;
 
 DELETE t_member WHERE memberid = 'qweqwewq';
+
+UPDATE t_member SET memberid= 'ぜずそ', name = '098', passwd='ぜずそ' WHERE memberid = 'せぜず';

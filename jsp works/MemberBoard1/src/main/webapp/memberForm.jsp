@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>회원 가입</title>
 <link rel="stylesheet" type="text/css" href="./resources/css/common.css">
+<script src="./resources/js/checkMember.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -45,7 +46,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<input type="submit" value="등록">
+							<input type="button" onclick="checkMember()" value="등록">
 							<input type="reset" value="취소">
 						</td>
 					</tr>
