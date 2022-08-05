@@ -13,27 +13,28 @@
 </head>
 <body>
 	<div class="container">
-		<jsp:include page="./menu.jsp"/>
+		<jsp:include page="/menu.jsp"/>
 		<div class="contents">
+			<div style="margin: 30px 0 30px 10%;"><input type="button" value="글쓰기" onclick="location.href='/write'" ></div>
 			<table class="member_list">
 				<tr>
-					<th>id</th>
-					<th>pw</th>
-					<th>name</th>
-					<th>gender</th>
+					<th>bNum</th>
+					<th>title</th>
+					<th>content</th>
 					<th>date</th>
+					<th>memberID</th>
 					<th>delete</th>
 				</tr>
-			<c:forEach var="member" items="${memberList}">
+			<c:forEach var="board" items="${boardList}">
 				<tr>
-					<td><c:out value="${member.memberID}"/></td>
-					<td><c:out value="${member.passwd}"/></td>
-					<td><c:out value="${member.name}"/></td>
-					<td><c:out value="${member.gender}"/></td>
-					<td><c:out value="${member.joinDate}"/></td>
+					<td><c:out value="${board.bNum}"/></td>
+					<td><c:out value="${board.title}"/></td>
+					<td><c:out value="${board.content}"/></td>
+					<td><c:out value="${board.regDate}"/></td>
+					<td><c:out value="${board.memberID}"/></td>
 					<td>
 						<form action="./memberDelete.jsp" method="post">
-							<input type="hidden" name="deleteID" value="${member.memberID}">
+							<input type="hidden" name="deleteID" value="${board.bNum}">
 							<input type="submit" value="delete">
 						</form>
 					</td>
@@ -41,7 +42,7 @@
 			</c:forEach>
 			</table>
 		</div>
-		<jsp:include page="./footer.jsp"/>
+		<jsp:include page="/footer.jsp"/>
 	</div>
 </body>
 </html>
