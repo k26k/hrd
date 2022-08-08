@@ -16,8 +16,8 @@
 			<div class="first_title">
 				<h1>로그인</h1>
 			</div>
-			<form action="./loginProcess.jsp" method="post" class="member_login_form">
-				<table>
+			<form action="./loginProcess.jsp" method="post" >
+				<table class="table_input">
 					<tr>
 						<td>아이디</td>
 						<td><input type="text" name="memberID"></td>

@@ -18,14 +18,15 @@
 			<div class="first_title">
 				<h1>글쓰기</h1>
 			</div>
-			<form action="/write">
+			<form action="/write" method="post" class="write_form">
 				<div>
-					<input type="text" value="title">
-					<hr>
-					<input type="text" size="500" value="content">
+					<input type="text" class="title" name="title">
 				</div>
 				<div>
-					<input type="button" value="글쓰기">
+					<textarea class="content" name="content"></textarea>
+				</div>
+				<div>
+					<input type="submit" value="글쓰기">
 					<input type="reset" value="취소">
 				</div>
 			</form>

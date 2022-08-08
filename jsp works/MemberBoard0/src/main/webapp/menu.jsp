@@ -1,14 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%-- <% Object loginID = session.getAttribute("loginID"); %> --%>
 <div class="main_menu">
-	<p>session empty = ${empty session.loginID}</p>
 	<nav>
 		<ul>
 		<c:choose>
-		<%-- <c:when test="${!empty loginID}"> --%>
-		<c:when test="${(!empty session.loginID) eq true}">
+		<c:when test="${!empty sessionScope.loginID}">
 			<li><a href="/index.jsp">Home</a></li>
 			<li><a href="/boardList">게시판</a></li>
 			<li><a href="/logout">로그아웃</a></li>

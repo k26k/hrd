@@ -17,7 +17,7 @@
 		<jsp:include page="../menu.jsp"/>
 		<div class="contents">
 			<div style="margin: 30px 0 30px 10%;"><input type="button" value="글쓰기" onclick="location.href='/mb1/board/writeForm.jsp'" ></div>
-			<table class="member_list">
+			<table class="table_list">
 				<tr>
 					<th>bNum</th>
 					<th>title</th>

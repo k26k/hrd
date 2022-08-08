@@ -28,7 +28,6 @@
 	
 	if(session.getAttribute("loginID")!=null && board.getMemberID().equals((String)session.getAttribute("loginID"))){
 		writer=true;
-		session.setAttribute("bNum", board.getbNum());
 	}
 	
 %>
@@ -47,6 +46,7 @@
 				<h1>게시글 상세 보기</h1>
 			</div>
 			<form action="" method="post" class="board_view" name="board_view">
+				<input type="hidden" name="bNum" value="<%= board.getbNum() %>">
 				<table>
 					<colgroup>
 						<col/>
@@ -54,7 +54,7 @@
 					</colgroup>
 					<tr>
 						<td>제목</td>
-						<td> <input type="text" name="title" value= "<%= board.getTitle() %>" <% if(!writer){out.println("readonly");} %>> </td>
+						<td> <input type="text" name="title" value= "<%= board.getTitle() %>" <% if(!writer){out.println("readonly");}%>> </td>
 					</tr>
 					<tr>
 						<td>글쓴이</td>
@@ -62,15 +62,15 @@
 					</tr>
 					<tr>
 						<td>내용</td>
-						<td> <textarea name="content" <% if(!writer){out.println("readonly");} %> ><%= board.getContent() %></textarea> </td>
+						<td> <textarea name="content" <% if(!writer){out.println("readonly");}%>><%= board.getContent() %></textarea> </td>
 					</tr>
 					<tr>
 						<td colspan="2">
 						<c:choose>
 						<c:when test="<%= writer %>">
 							<input type="button" value="수정" onclick="board_view.action='./updateBoard.jsp';board_view.submit();">
-							<input type="button" value="삭제" onclick="board_view.action='./deleteBoard.jsp';board_view.submit();">
-							<input type="button" value="목록" onclick="location.href='./boardList.jsp'">
+							<input type="button" value="삭제" onclick="if(confirm('삭?제')){board_view.action='./deleteBoard.jsp';board_view.submit();}else{return;}">
+							<input type="button" value="목록" onclick="location.href='./deleteBoard.jsp'">
 						</c:when>
 						<c:otherwise>
 							<input type="button" value="목록" onclick="location.href='./boardList.jsp'">

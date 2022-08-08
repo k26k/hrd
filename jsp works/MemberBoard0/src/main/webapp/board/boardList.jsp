@@ -16,28 +16,26 @@
 		<jsp:include page="/menu.jsp"/>
 		<div class="contents">
 			<div style="margin: 30px 0 30px 10%;"><input type="button" value="글쓰기" onclick="location.href='/write'" ></div>
-			<table class="member_list">
+			<table class="table_list">
 				<tr>
 					<th>bNum</th>
 					<th>title</th>
-					<th>content</th>
 					<th>date</th>
 					<th>memberID</th>
-					<th>delete</th>
+					<!-- <th>delete</th> -->
 				</tr>
 			<c:forEach var="board" items="${boardList}">
 				<tr>
 					<td><c:out value="${board.bNum}"/></td>
-					<td><c:out value="${board.title}"/></td>
-					<td><c:out value="${board.content}"/></td>
+					<td><a href="/boardView?num=${board.bNum}"><c:out value="${board.title}"/></a></td>
 					<td><c:out value="${board.regDate}"/></td>
 					<td><c:out value="${board.memberID}"/></td>
-					<td>
+					<%-- <td>
 						<form action="./memberDelete.jsp" method="post">
 							<input type="hidden" name="deleteID" value="${board.bNum}">
 							<input type="submit" value="delete">
 						</form>
-					</td>
+					</td> --%>
 				</tr>
 			</c:forEach>
 			</table>

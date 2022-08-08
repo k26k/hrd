@@ -36,3 +36,4 @@ SELECT * FROM t_board;
 INSERT INTO t_board(bnum, title, content, memberid)
 values(b_seq.NEXTVAL, '¾È´¨', '¤¾¤·¤©', 'qwe');
 
+UPDATE t_board SET title = 'aklasdad', content = 'kgjgdhgh' WHERE bnum = 10;

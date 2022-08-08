@@ -16,8 +16,8 @@
 			<div class="first_title">
 				<h1>관리자 로그인</h1>
 			</div>
-			<form action="j_security_check" method="post" class="member_login_form">
-				<table>
+			<form action="j_security_check" method="post">
+				<table class="table_input">
 					<tr>
 						<td>아이디</td>
 						<td><input type="text" name="j_username"></td>

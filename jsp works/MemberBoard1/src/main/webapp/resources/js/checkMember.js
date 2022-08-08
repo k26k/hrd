@@ -1,5 +1,5 @@
 function checkMember(){
-	let form = document.getElementsByClassName("member_add_form")[0];
+	let form = document.form;
 	let id = form.memberID;
 	let pw1 = form.passwd;
 	let pw2 = form.passwd_confirm;

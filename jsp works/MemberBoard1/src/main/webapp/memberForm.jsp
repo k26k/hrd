@@ -17,8 +17,8 @@
 			<div class="first_title">
 				<h1>회원 가입</h1>
 			</div>
-			<form action="./addMember.jsp" method="post" class="member_add_form">
-				<table>
+			<form action="./addMember.jsp" method="post" name="form">
+				<table class="table_input">
 					<tr>
 						<td>아이디</td>
 						<td><input type="text" name="memberID"></td>

@@ -1,0 +1,82 @@
+
+java filter
+
+
+  <filter>
+  	<filter-name>필터 이름</filter-name>
+  	<filter-class>필터 클래스 위치</filter-class>
+  	<init-param>
+  		<param-name>변수 이름</param-name>
+  		<param-value>변수값</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>필터 이름</filter-name>
+  	<url-pattern>필터가 적용될 url</url-pattern>
+  </filter-mapping>
+
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+
+public class InitParamFilter implements Filter{
+	private FilterConfig filterConfig = null;
+	
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
+		// 초기 설정
+		System.out.println("AuthenFilter 초기화");
+		this.filterConfig = filterConfig;
+	}
+	
+	@Override
+	public void destroy() {
+		// 종료 설정
+		System.out.println("AuthenFilter 해제");
+	}
+
+
+
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		String id = request.getParameter("id");
+		String pw = request.getParameter("pw");
+		
+		String param1 = filterConfig.getInitParameter("param1");
+		String param2 = filterConfig.getInitParameter("param2");
+		
+		String message = "";
+		
+		if(id.equals(param1) && pw.equals(param2)) {
+			message = "로그인 성공";
+		}else {
+			message = "로그인 실패";
+		}
+		
+		out.println(message);
+		
+		chain.doFilter(request, response);
+	}
+
+}
+
+
+
+
+
+
+

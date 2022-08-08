@@ -16,18 +16,11 @@
 			<div class="first_title">
 				<h1>Welcome to our community</h1>
 			</div>
-			<div class="images">
-				<img alt="컵 사진" src="./resources/images/coffee-gray.jpg">
+			<div class="first_title" style="background-color: #f66;">
+				<h2>${requestScope.text}</h2>
 			</div>
 		</div>
 		<jsp:include page="./footer.jsp"/>
 	</div>
 </body>
 </html>
-<%-- <%
-	Enumeration<String> strs = session.getAttributeNames();
-	while(strs.hasMoreElements()){
-		String str = strs.nextElement();
-		out.println(str+" : "+session.getAttribute(str)+"<br>");
-	}
-%> --%>

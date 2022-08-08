@@ -95,4 +95,57 @@ public class BoardDAO {
 	}
 	
 	
+	public boolean delete(int bNum) {
+		try {
+			conn = JDBCUtil.getConnection();
+			
+			String sql = "SELECT * FROM t_board WHERE bnum = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bNum);
+			rst = pstmt.executeQuery();
+			if(!rst.next()) {
+				return false;
+			}
+			
+			sql = "DELETE t_board WHERE bnum = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bNum);
+			pstmt.executeUpdate();
+			return true;
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			
+		}finally {
+			JDBCUtil.close(conn, pstmt,rst);
+			
+		}
+		
+		return false;
+	}
+	
+	
+	public boolean update(Board board) {
+		try {
+			conn = JDBCUtil.getConnection();
+			
+			String sql = "UPDATE t_board SET title = ?, content = ? WHERE bnum = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, board.getTitle());
+			pstmt.setString(2, board.getContent());
+			pstmt.setInt(3, board.getbNum());
+			pstmt.executeUpdate();
+			return true;
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			
+		}finally {
+			JDBCUtil.close(conn, pstmt);
+			
+		}
+		
+		return false;
+	}
+	
 }
