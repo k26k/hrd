@@ -1,6 +1,6 @@
 @charset "UTF-8";
 *{margin: 0; padding: 0;}
-a{color: #66f; text-decoration: none}
+a{color: #66f; text-decoration: none !important;}
 .container{width: 100%; max-width: 1000px; margin: 0 auto;}
 
 .main_menu{margin: 20px 0 10px 0;}
@@ -12,7 +12,10 @@ a{color: #66f; text-decoration: none}
 
 .first_title{background-color: rgb(241, 250, 192); padding: 20px; margin-bottom: 20px}
 .first_title h1{color: #777; text-align: center;}
+.second_title{background-color: #f99; padding: 20px; margin-bottom: 20px}
+.second_title h2{color: #333; text-align: center;}
 .images img{margin: 20px auto; display: block;} 
+.toButton{padding: 2px 8px; margin: 0 auto; font-size: 1.2em; display: block;}
 
 table{border-collapse: collapse; box-shadow: 0 5px 5px -3px rgba(0,0,0,0.2);}
 .table_list{ width: 100%; max-width:800px; margin: 30px auto; }
@@ -21,8 +24,8 @@ table{border-collapse: collapse; box-shadow: 0 5px 5px -3px rgba(0,0,0,0.2);}
 
 .table_input{border-collapse: collapse; width: 100%; max-width:500px; margin: 30px auto; box-shadow: 0 5px 5px -3px rgba(0,0,0,0.2);}
 .table_input td{border: 1px solid #aaa; padding: 10px; text-align: center;}
-.table_input input {padding: 2px 4px;}
-.table_input input[type="submit"], input[type="reset"], input[type="button"] {padding: 1px 6px;}
+form input {padding: 2px 4px;}
+form input[type="submit"], input[type="reset"], input[type="button"] {padding: 1px 6px;}
 
 .write_form {width: 100%; max-width:800px; margin: 30px auto;}
 .write_form div{margin: 10px 0; width: 100%; text-align: center;}

@@ -8,6 +8,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=0.7">
 <title>회원 목록</title>
 <link rel="stylesheet" type="text/css" href="/resources/css/common.css">
 </head>
@@ -15,7 +17,7 @@
 	<div class="container">
 		<jsp:include page="./menu.jsp"/>
 		<div class="contents">
-			<table class="member_list">
+			<table class="table_list">
 				<tr>
 					<th>id</th>
 					<th>pw</th>

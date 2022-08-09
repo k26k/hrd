@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=0.7">
 <title>회원 가입</title>
 <link rel="stylesheet" type="text/css" href="./resources/css/common.css">
 </head>
@@ -14,10 +16,10 @@
 		<jsp:include page="./menu.jsp"/>
 		<div class="contents">
 			<div class="first_title">
-				<h1>회원 가입</h1>
+				<h1>회원 정보</h1>
 			</div>
 			<form action="/updateMember" method="post" class="member_add_form">
-				<table>
+				<table class="table_input">
 					<tr>
 						<td>아이디</td>
 						<td><input type="text" name="memberID" value="${member.memberID}"></td>

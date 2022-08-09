@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=0.7">
 <title>게시글 상세 보기</title>
 <link rel="stylesheet" type="text/css" href="../resources/css/common.css">
 </head>
@@ -38,12 +40,12 @@
 					<tr>
 						<td colspan="2">
 						<c:if test="${writer}">
-							<input type="button" value="수정" onclick="board_view.action='/updateBoard';board_view.submit();">
+							<input type="button" value="수정" onclick="if(confirm('수?정')){board_view.action='/updateBoard';board_view.submit();}">
 						</c:if>
 						<c:if test="${writer}">
-							<input type="button" value="삭제" onclick="if(confirm('삭?제')){board_view.action='/deleteBoard';board_view.submit();}else{return;}">
+							<input type="button" value="삭제" onclick="if(confirm('삭?제')){board_view.action='/deleteBoard';board_view.submit();}">
 						</c:if>
-							<input type="button" value="목록" onclick="location.href='./deleteBoard.jsp'">
+							<input type="button" value="목록" onclick="location.href='/boardList'">
 						</td>
 					</tr>
 				</table>

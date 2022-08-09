@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=0.7">
 <title>관리자 로그인</title>
 <link rel="stylesheet" type="text/css" href="./resources/css/common.css">
 </head>
@@ -17,7 +19,7 @@
 				<h1>관리자 로그인</h1>
 			</div>
 			<form action="j_security_check" method="post" class="member_login_form">
-				<table>
+				<table class="table_input">
 					<tr>
 						<td>아이디</td>
 						<td><input type="text" name="j_username"></td>

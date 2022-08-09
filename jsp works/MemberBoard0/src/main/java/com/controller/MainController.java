@@ -105,29 +105,29 @@ public class MainController extends HttpServlet {
 			
 			
 		}else if(command.equals("/updateMember")) {
+			String[] resultTexts = null;
 			if(session.getAttribute("loginID")==null){
-				response.sendRedirect("/login");
-				return;
+				resultTexts = new String[]{"회원 정보 수정", "로그인 필수", "로그인 하러가기", "/login"};
 			}
 			Member member = memberDAO.getMember((String)session.getAttribute("loginID"));
 			if(member.getMemberID() == null){
 				session.invalidate();
-				response.sendRedirect("/login");
-				return;
+				resultTexts = new String[]{"회원 정보 수정", "없는 회원", "로그인 하러가기", "/login"};
 			}
 			member.setMemberID(request.getParameter("memberID"));
 			member.setPasswd(request.getParameter("passwd"));
 			member.setName(request.getParameter("name"));
 			member.setGender(request.getParameter("gender"));
 			Boolean check = memberDAO.updateMember(member, (String)session.getAttribute("loginID"));
+			
 			if(check) {
 				session.invalidate();
-				response.sendRedirect("/login");
-				return;
+				resultTexts = new String[]{"회원 정보 수정", "수정 성공", "로그인 하러가기", "/login"};
 			}else {
-				out.println("<script type=\"text/javascript\">alert('아이디와 비밀번호가 일치하지 않습니다.');history.go(-1);</script>");
-				return;
+				resultTexts = new String[]{"회원 정보 수정", "수정 실패", "회원 정보 수정하기", "/memberView"};
 			}
+			request.setAttribute("resultTexts", resultTexts);
+			nextPage = "/memberResult.jsp";
 			
 		
 		//================================================
@@ -139,27 +139,25 @@ public class MainController extends HttpServlet {
 			
 		}else if(command.equals("/loginProcess")) {
 			Boolean check = memberDAO.checkLogin(request.getParameter("memberID"), request.getParameter("passwd"));
+			String[] resultTexts = null;
 			if(check) {
 				session.setAttribute("loginID",request.getParameter("memberID"));
-				nextPage = "/home";
+				resultTexts = new String[]{"로그인", "로그인 성공", "home으로 이동하기", "/home"};
 			}else {
-				out.println("<script type=\"text/javascript\">alert('아이디와 비밀번호가 일치하지 않습니다.');location.href='/login';</script>");
-				return;
+				//out.println("<script type=\"text/javascript\">alert('아이디와 비밀번호가 일치하지 않습니다.');location.href='/login';</script>");
+				//return;
+				resultTexts = new String[]{"로그인", "로그인 실패", "로그인 하러가기", "/login"};
 			}
+			request.setAttribute("resultTexts", resultTexts);
+			nextPage = "/memberResult.jsp";
+			
 			
 			
 		}else if(command.equals("/logout")) {
 			session.invalidate();
 			response.sendRedirect("/home");
 			return;
-			
 		
-			
-		}else if(command.equals("/memberResult")) {
-			//request.setAttribute("text", );
-			response.sendRedirect("/memberResult.jsp");
-			
-			
 			
 		//================================================
 		//================================================
@@ -170,9 +168,45 @@ public class MainController extends HttpServlet {
 			
 			
 			
+		}else if(command.equals("/writeForm")) {
+			String[] resultTexts = null;
+			if(session.getAttribute("loginID") == null) {
+				resultTexts = new String[] {"게시글 작성", "로그인후 가능합니다", "로그인 하기", "/login"};
+				request.setAttribute("resultTexts", resultTexts);
+				nextPage = "/memberResult.jsp";
+			}else if(memberDAO.getMember((String)session.getAttribute("loginID")).getName()==null){
+				session.invalidate();
+				resultTexts = new String[] {"게시글 작성", "로그인후 가능합니다", "로그인 하기", "/login"};
+				request.setAttribute("resultTexts", resultTexts);
+				nextPage = "/memberResult.jsp";
+			}else {
+				nextPage = "/board/writeForm.jsp";
+			}
+			
+			
+			
 		}else if(command.equals("/write")) {
-			request.setAttribute("boardList", boardDAO.getAllList());
-			nextPage = "/board/writeForm.jsp";
+			String[] resultTexts = null;
+			if(session.getAttribute("loginID") == null) {
+				resultTexts = new String[] {"게시글 작성", "로그인후 가능합니다", "로그인 하기", "/login"};
+			}else if(memberDAO.getMember((String)session.getAttribute("loginID")).getName()==null){
+				session.invalidate();
+				resultTexts = new String[] {"게시글 작성", "로그인후 가능합니다", "로그인 하기", "/login"};
+			}else {
+				Board board = new Board();
+				board.setTitle(request.getParameter("title"));
+				board.setContent(request.getParameter("content"));
+				if(boardDAO.addBoard((String)session.getAttribute("loginID"), board)) {
+					ArrayList<Board> boardList = boardDAO.getAllList();
+					board = boardList.get(0);
+					resultTexts = new String[] {"게시글 작성", "작성 성공", "작성한 게시글 보기", "/boardView?num="+board.getbNum()};
+				}else {
+					resultTexts = new String[] {"게시글 작성", "작성 실패", "게시판 보기", "/boardList"};
+				}
+			}
+			
+			request.setAttribute("resultTexts", resultTexts);
+			nextPage = "/memberResult.jsp";
 			
 			
 			
@@ -195,6 +229,65 @@ public class MainController extends HttpServlet {
 			}
 			nextPage = "/board/boardView.jsp";
 			
+			
+			
+		}else if(command.equals("/deleteBoard")) {
+			Object num = request.getParameter("bNum");
+			String[] resultTexts = null;
+			Board board = null;
+			if(num==null || !Pattern.matches(numPattern, (String)num)) {
+				resultTexts = new String[]{"게시글 삭제", "잘못된 번호입니다", "게시글 보러가기", "/boardList"};
+			}else if(session.getAttribute("loginID")==null) {
+				resultTexts = new String[]{"게시글 삭제", "로그인후 가능합니다", "로그인 하기", "/login"};
+			}else {
+				board = boardDAO.getBoard(Integer.parseInt((String)num));
+				if(board.getbNum()==0) {
+					resultTexts = new String[]{"게시글 삭제", "해당 게시글이 없습니다", "게시글 보러가기", "/boardList"};
+				}else if(!((String)session.getAttribute("loginID")).equals(board.getMemberID())) {
+					resultTexts = new String[]{"게시글 삭제", "본인의 글만 삭제할 수 있습니다", "로그인 하기", "/login"};
+				}
+			}
+			if(resultTexts == null) {
+				if(boardDAO.delete(Integer.parseInt((String)num))) {
+					resultTexts = new String[]{"게시글 삭제", "삭제 성공", "게시판 보러가기", "/boardList"};
+				}else{
+					resultTexts = new String[]{"게시글 삭제", "삭제 실패", "게시글 보러가기", "/boardView?num="+(String)num};
+				}
+			}
+			request.setAttribute("resultTexts", resultTexts);
+			nextPage = "/memberResult.jsp";
+			
+			
+			
+		}else if(command.equals("/updateBoard")) {
+			Object num = request.getParameter("bNum");
+			String[] resultTexts = null;
+			Board board = null;
+			if(num==null || !Pattern.matches(numPattern, (String)num)) {
+				resultTexts = new String[]{"게시글 업데이트", "잘못된 번호입니다", "게시글 보러가기", "/boardList"};
+			}else if(session.getAttribute("loginID")==null) {
+				resultTexts = new String[]{"게시글 업데이트", "로그인후 가능합니다", "로그인 하기", "/login"};
+			}else {
+				board = boardDAO.getBoard(Integer.parseInt((String)num));
+				if(board.getbNum()==0) {
+					resultTexts = new String[]{"게시글 업데이트", "해당 게시글이 없습니다", "게시글 보러가기", "/boardList"};
+				}else if(!((String)session.getAttribute("loginID")).equals(board.getMemberID())) {
+					resultTexts = new String[]{"게시글 업데이트", "본인의 글만 수정할 수 있습니다", "로그인 하기", "/login"};
+				}
+			}
+			if(resultTexts == null) {
+				board = new Board();
+				board.setbNum(Integer.parseInt((String)num));
+				board.setTitle((String)request.getParameter("title"));
+				board.setContent((String)request.getParameter("content"));
+				if(boardDAO.update(board)) {
+					resultTexts = new String[]{"게시글 업데이트", "업데이트 성공", "게시글 보러가기", "/boardView?num="+(String)num};
+				}else{
+					resultTexts = new String[]{"게시글 업데이트", "업데이트 실패", "게시판 보러가기", "/boardList"};
+				}
+			}
+			request.setAttribute("resultTexts", resultTexts);
+			nextPage = "/memberResult.jsp";
 			
 			
 		}

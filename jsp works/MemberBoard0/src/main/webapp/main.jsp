@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=0.7">
 <title>home</title>
 <link rel="stylesheet" type="text/css" href="./resources/css/common.css">
 </head>

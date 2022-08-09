@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import com.common.JDBCUtil;
 
-public class BoardDAO {
+public class BoardDAO2 {
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rst = null;
@@ -75,7 +75,7 @@ public class BoardDAO {
 	public boolean addBoard(String memberID, Board board){
 		try {
 			conn = JDBCUtil.getConnection();
-			String sql = "INSERT INTO t_board(title, content, memberid) VALUES(?, ?, ?)";
+			String sql = "INSERT INTO t_board(bnum, title, content, memberid) VALUES(b_seq.NEXTVAL, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, board.getTitle());
 			pstmt.setString(2, board.getContent());
