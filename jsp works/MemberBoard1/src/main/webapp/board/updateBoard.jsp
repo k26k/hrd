@@ -4,7 +4,7 @@
 <%@page import="com.repository.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:useBean id="boardDAO" class="com.repository.BoardDAO"></jsp:useBean>
+<jsp:useBean id="boardDAO" class="com.repository.BoardDAO" />
 <%!
 	protected void check(PrintWriter out, Object object, int num) {
 	int count = num;

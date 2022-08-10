@@ -22,6 +22,8 @@
 					<th>title</th>
 					<th>date</th>
 					<th>memberID</th>
+					<th>views</th>
+					<th>recommend</th>
 					<!-- <th>delete</th> -->
 				</tr>
 			<c:forEach var="board" items="${boardList}">
@@ -30,6 +32,8 @@
 					<td><a href="/boardView?num=${board.bNum}"><c:out value="${board.title}"/></a></td>
 					<td><c:out value="${board.regDate}"/></td>
 					<td><c:out value="${board.memberID}"/></td>
+					<td><c:out value="${board.views}"/></td>
+					<td><c:out value="${board.recommend}"/></td>
 					<%-- <td>
 						<form action="./memberDelete.jsp" method="post">
 							<input type="hidden" name="deleteID" value="${board.bNum}">

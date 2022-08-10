@@ -9,11 +9,13 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.check.Check;
 import com.repository.Board;
 import com.repository.BoardDAO;
 import com.repository.Member;
@@ -87,6 +89,18 @@ public class MainController extends HttpServlet {
 			
 			
 			
+		}else if(command.equals("/deleteMember")) {
+			String[] resultTexts = null;
+			if(memberDAO.delete(request.getParameter("deleteID"))) {
+				resultTexts = new String[]{"회원 삭제", "삭제 성공", "회원 목록으로 이동", "/memberList"};
+			}else {
+				resultTexts = new String[]{"회원 삭제", "삭제 실패", "회원 목록으로 이동", "/memberList"};
+			}
+			request.setAttribute("resultTexts", resultTexts);
+			nextPage = "/memberResult.jsp";
+			
+			
+			
 		}else if(command.equals("/memberView")) {
 			if(session.getAttribute("loginID")==null){
 				response.sendRedirect("/login");
@@ -118,7 +132,7 @@ public class MainController extends HttpServlet {
 			member.setPasswd(request.getParameter("passwd"));
 			member.setName(request.getParameter("name"));
 			member.setGender(request.getParameter("gender"));
-			Boolean check = memberDAO.updateMember(member, (String)session.getAttribute("loginID"));
+			boolean check = memberDAO.updateMember(member, (String)session.getAttribute("loginID"));
 			
 			if(check) {
 				session.invalidate();
@@ -138,7 +152,7 @@ public class MainController extends HttpServlet {
 			
 			
 		}else if(command.equals("/loginProcess")) {
-			Boolean check = memberDAO.checkLogin(request.getParameter("memberID"), request.getParameter("passwd"));
+			boolean check = memberDAO.checkLogin(request.getParameter("memberID"), request.getParameter("passwd"));
 			String[] resultTexts = null;
 			if(check) {
 				session.setAttribute("loginID",request.getParameter("memberID"));
@@ -221,6 +235,8 @@ public class MainController extends HttpServlet {
 				response.sendRedirect("/boardList");
 				return;
 			}
+			boardDAO.viewsUp(board.getbNum());
+			board.setViews(board.getViews()+1);
 			request.setAttribute("board", board);
 			Member member = memberDAO.getMember(board.getMemberID());
 			request.setAttribute("name", member.getName());
@@ -290,6 +306,68 @@ public class MainController extends HttpServlet {
 			nextPage = "/memberResult.jsp";
 			
 			
+			
+		}else if(command.equals("/recommend")) {
+			Object num = request.getParameter("bNum");
+			String[] resultTexts = null;
+			Board board = null;
+			if(num==null || !Pattern.matches(numPattern, (String)num)) {
+				resultTexts = new String[]{"게시글 추천", "잘못된 번호입니다", "게시판 보러가기", "/boardList"};
+			}else {
+				board = boardDAO.getBoard(Integer.parseInt((String)num));
+				if(board.getbNum()==0) {
+					resultTexts = new String[]{"게시글 추천", "해당 게시글이 없습니다", "게시판 보러가기", "/boardList"};
+				}
+			}
+			if(resultTexts == null) {
+				int bNum = board.getbNum();
+				int resultMode = 0;
+				Cookie[] cookies = request.getCookies();
+				Cookie recommendCookie = null;
+				for(Cookie cookie:cookies) {
+					if(cookie.getName().equals("recommend")) {
+						recommendCookie = cookie;
+					}
+				}
+				if(recommendCookie == null) {
+					if(boardDAO.recommendUp(board.getbNum())) {
+						resultMode = 1;
+						recommendCookie = new Cookie("recommend", Integer.toString(bNum));
+						response.addCookie(recommendCookie);
+						recommendCookie.setMaxAge(259200);
+					}
+				}else {
+					String recommendCookieValue = recommendCookie.getValue();
+					String[] recommendCookieValues = recommendCookieValue.split("//");
+					for(String recommendValue:recommendCookieValues) {
+						if(recommendValue.equals(Integer.toString(bNum))) {
+							resultMode = 2;
+							break;
+						}
+					}
+					if(resultMode==0) {
+						if(boardDAO.recommendUp(bNum)) {
+							resultMode=1;
+							recommendCookie.setValue(recommendCookieValue+"//"+Integer.toString(bNum));
+							recommendCookie.setMaxAge(259200);
+							response.addCookie(recommendCookie);
+						}
+					}
+				}
+				switch (resultMode) {
+				case 1:
+					resultTexts = new String[]{"게시글 추천", "개추 성공", "게시글 보러가기", "/boardView?num="+bNum};
+					break;
+				case 2:
+					resultTexts = new String[]{"게시글 추천", "이미 개추한 게시글 입니다", "게시글 보러가기", "/boardView?num="+bNum};
+					break;
+				default:
+					resultTexts = new String[]{"게시글 추천", "개추 실패", "게시글 보러가기", "/boardView?num="+bNum};
+					break;
+				}
+			}
+			request.setAttribute("resultTexts", resultTexts);
+			nextPage = "/memberResult.jsp";
 		}
 		
 		

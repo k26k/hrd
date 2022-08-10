@@ -7,9 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class JDBCUtil {
-	private static String driverClass = "com.mysql.cj.jdbc.Driver";
-	private static String url = "jdbc:mysql://localhost:3306/javaweb?useUnicode=true&serverTimezone=Asia/Seoul";
-	private static String username = "jweb";
+	private static String driverClass = "oracle.jdbc.OracleDriver";
+	private static String url = "jdbc:oracle:thin:@localHost:1521:xe";
+	private static String username = "C##JWEB";
 	private static String password = "54321";
 	
 	// DB연결 메소드

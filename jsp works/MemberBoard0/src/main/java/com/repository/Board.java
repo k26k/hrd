@@ -11,6 +11,8 @@ public class Board implements Serializable{
 	private String content;
 	private Date regDate;
 	private String memberID;
+	private int recommend;
+	private int views;
 	
 	public int getbNum() {
 		return bNum;
@@ -41,6 +43,18 @@ public class Board implements Serializable{
 	}
 	public void setMemberID(String memberID) {
 		this.memberID = memberID;
+	}
+	public int getRecommend() {
+		return recommend;
+	}
+	public void setRecommend(int recommend) {
+		this.recommend = recommend;
+	}
+	public int getViews() {
+		return views;
+	}
+	public void setViews(int views) {
+		this.views = views;
 	}
 	
 }

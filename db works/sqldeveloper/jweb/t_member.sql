@@ -37,3 +37,26 @@ INSERT INTO t_board(bnum, title, content, memberid)
 values(b_seq.NEXTVAL, '照寒', 'ぞしぉ', 'qwe');
 
 UPDATE t_board SET title = 'aklasdad', content = 'kgjgdhgh' WHERE bnum = 10;
+
+ALTER TABLE t_board ADD recommend NUMBER(4);
+ALTER TABLE t_board ADD views NUMBER(4);
+
+UPDATE t_board set recommend = 0 WHERE recommend IS NULL;
+UPDATE t_board set views = 0 WHERE views IS NULL;
+
+ALTER TABLE t_board DROP CONSTRAINT FK_MemberBoard;
+ALTER TABLE t_board ADD CONSTRAINT FK_MemberBoard FOREIGN KEY (memberid)
+REFERENCES t_member(memberid)ON DELETE CASCADE;
+
+
+CREATE TABLE t_order(
+    name    VARCHAR2(10),
+    joindate    DATE DEFAULT SYSDATE
+);
+
+SELECT * FROM t_order;
+DROP TABLE t_order;
+
+INSERT INTO t_order(name) values('ぞぞぞ');
+INSERT INTO t_order(name, joindate) values('ぞぞぞ2', TO_DATE('1997-01-01', 'yyyy-mm-dd'));
+

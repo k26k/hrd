@@ -19,10 +19,10 @@ $(function(){
         // console.log(screenW);
         if(winS < 30){
             $(mainHeader).height((150-winS)+"px");
-        }else if(winS < 80){
+        }else if(winS < 100){
             $(mainHeader).height((150-winS)+"px");
         }else{
-            $(mainHeader).height("70px");
+            $(mainHeader).height("50px");
         }
     });
     // ======== header 끝   ========

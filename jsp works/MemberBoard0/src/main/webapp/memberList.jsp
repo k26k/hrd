@@ -34,7 +34,7 @@
 					<td><c:out value="${member.gender}"/></td>
 					<td><c:out value="${member.joinDate}"/></td>
 					<td>
-						<form action="./memberDelete.jsp" method="post">
+						<form action="/deleteMember" method="post">
 							<input type="hidden" name="deleteID" value="${member.memberID}">
 							<input type="submit" value="delete">
 						</form>
