@@ -9,7 +9,8 @@ public class Product implements Serializable{
 	private String pName;
 	private Integer unitPrice;
 	private String description;
-	private String menufacturer;
+	private String manufacturer;
+	private String category;
 	private Long unitsInStock;
 	private String condition;
 	private String filename;
@@ -46,11 +47,17 @@ public class Product implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getMenufacturer() {
-		return menufacturer;
+	public String getmanufacturer() {
+		return manufacturer;
 	}
-	public void setMenufacturer(String menufacturer) {
-		this.menufacturer = menufacturer;
+	public void setmanufacturer(String manufacturer) {
+		this.manufacturer = manufacturer;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	public Long getUnitsInStock() {
 		return unitsInStock;

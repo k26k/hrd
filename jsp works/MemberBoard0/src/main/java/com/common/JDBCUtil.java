@@ -16,6 +16,7 @@ public class JDBCUtil {
 	public static Connection getConnection() {
 		try {
 			Class.forName(driverClass);
+			System.out.println(DriverManager.getConnection(url, username, password));
 			return DriverManager.getConnection(url, username, password);
 		}catch(Exception e){
 			e.printStackTrace();

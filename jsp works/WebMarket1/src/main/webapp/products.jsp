@@ -1,11 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <%@ page import="com.vo.Product" %>
 <%@ page import="com.dao.ProductRepository" %>
-<%@ page import="com.check.Check" %>
-<% 
-	String greeting = "상품 목록";
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,14 +15,14 @@
 	<%@ include file="/menu.jsp" %>
 	<div class="jumbotron">
 		<div class="container">
-			<h1><%= greeting %></h1>
+			<h1>상품 목록</h1>
 		</div>
 	</div>
 	<div class="container">
 		<div class="row" align="center">
 			<% for(Product product:ProductRepository.getInstance().getAllProducts()) { %>
 			<div class="col-md-4">
-				<img src="/wm1/resources/images/<%= product.getFilename() %>" style="width: 100%;">
+				<img src="/wm1/upload/images/<%= product.getFilename() %>" style="width: 100%;">
 				<h3><%= product.getpName() %></h3>
 				<% if(product.getDescription()!=null){ %>
 				<p><%= product.getDescription().replace("//", "<br>") %></p>
