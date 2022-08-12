@@ -14,6 +14,7 @@ public class Product implements Serializable{
 	private Long unitsInStock;
 	private String condition;
 	private String filename;
+	private int quality;
 	
 	public Product() {}
 
@@ -76,6 +77,12 @@ public class Product implements Serializable{
 	}
 	public void setFilename(String filename) {
 		this.filename = filename;
+	}
+	public int getQuality() {
+		return quality;
+	}
+	public void setQuality(int quality) {
+		this.quality = quality;
 	}
 	
 }

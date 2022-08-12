@@ -24,7 +24,7 @@
 	
 	ProductRepository dao = ProductRepository.getInstance();
 	
-	Check.check(response.getWriter(), multi, 0);
+	//Check.check(response.getWriter(), multi, 0);
 	
 	String productId = multi.getParameter("productId");	
 	String pName = multi.getParameter("pName");
@@ -83,5 +83,5 @@
 %>
 <p>성공</p>
 <script type="text/javascript">
-	//location.href="/wm1/products.jsp";
+	location.href="/wm1/products.jsp";
 </script>
