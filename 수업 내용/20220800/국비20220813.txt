@@ -1,0 +1,14 @@
+
+java 
+
+
+JSTL sql 태그
+sql 태그
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+Jsp에서 데이터베이스 를 사용할수 있도록 기능을 만들어 둔 커스텀 태그이다.
+태그 			기능
+<sql:setDataSource> 	DataSource를 설정하는데 사용
+<sql:query> 		조회 쿼리문을 실행하는데 사용
+<sql:update> 		삽입, 수정, 삭제 쿼리문을 실행하는데 사용
+<sql:param> 		폼페이지에서 전송된 name 값 설정
+
