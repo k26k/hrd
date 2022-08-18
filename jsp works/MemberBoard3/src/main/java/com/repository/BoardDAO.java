@@ -45,6 +45,40 @@ public class BoardDAO {
 		return boardList;
 	}
 	
+	
+	public ArrayList<Board> getRecentList(){
+		ArrayList<Board> boardList = new ArrayList<>();
+		
+		try {
+			conn = JDBCUtil.getConnection();
+			String sql = "SELECT * FROM ( SELECT * FROM t_board ORDER BY regdate DESC ) WHERE ROWNUM <= 5";
+			pstmt = conn.prepareStatement(sql);
+			rst = pstmt.executeQuery();
+			
+			while(rst.next()) {
+				Board board = new Board();
+				board.setbNum(rst.getInt("bnum"));
+				board.setTitle(rst.getString("title"));
+				board.setContent(rst.getString("content"));
+				board.setRegDate(rst.getDate("regdate"));
+				board.setMemberID(rst.getString("memberid"));
+				board.setRecommend(rst.getInt("recommend"));
+				board.setViews(rst.getInt("views"));
+				boardList.add(board);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			
+		}finally {
+			JDBCUtil.close(conn, pstmt, rst);
+			
+		}
+		
+		return boardList;
+	}
+	
+	
 	public Board getBoard(int bNum){
 		Board board = new Board();
 		try {

@@ -46,7 +46,7 @@ public class MainController extends HttpServlet {
 		String command = uri.substring(uri.lastIndexOf("/"));
 		System.out.println("command: "+command);
 		
-		String nextPage = "";
+		String nextPage = "/home";
 		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
 		
@@ -56,6 +56,7 @@ public class MainController extends HttpServlet {
 		//================================================
 		
 		if(command.equals("/home")) {
+			request.setAttribute("boardList", boardDAO.getRecentList());
 			nextPage = "/main.jsp";
 			
 			

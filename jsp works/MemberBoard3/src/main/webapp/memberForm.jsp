@@ -10,13 +10,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=0.7">
 <title>회원 가입</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-<script src="./resources/js/checkMember.js"></script>
+<script src="/resources/js/checkMember.js"></script>
+<link rel="stylesheet" type="text/css" href="/resources/css/colorSet.css">
 </head>
 <body>
 	<jsp:include page="/menu.jsp"/>
-	<div class="py-5" style="background-color: #ddd">
+	<div class="py-5 c-bg-mint">
 		<div class="container">
-			<h1>회원 가입</h1>
+			<h1 class="c-c-white">회원 가입</h1>
 		</div>
 	</div>
 	<div class="container p-2">
@@ -48,15 +49,15 @@
 			<div class="form-group row my-2">
 				<label class="col-sm-2" for="gender">성별</label>
 				<div class="col-sm-2">
-					<select name="gender" class="form-control text-center">
-						<option>남</option>
-						<option>녀</option>
+					<select name="gender" class="form-control">
+						<option class="text-center">남</option>
+						<option class="text-center">녀</option>
 					</select>
 				</div>
 			</div>
 			<div class="form-group row my-2">
 				<div class="col-sm-offset-2 col-sm-10">
-					<input type="button" onclick="checkMember()" class="btn btn-primary" value="회원가입">
+					<input type="button" onclick="checkMember()" class="btn c-bg-mint c-c-white" value="회원가입">
 					<input type="reset" class="btn btn-secondary" value="취소">
 				</div>
 			</div>

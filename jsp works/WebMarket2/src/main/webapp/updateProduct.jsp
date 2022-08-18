@@ -31,6 +31,7 @@
 		let categoryV = category.value;
 		let condition = document.getElementsByName("condition");
 		let productImageV = productImage.value;
+		let productImageChangeC = productImageChange.checked;
 		
 		let regExPId = /^[p][0-9]{4,12}$/;
 		let regExPName = /^[a-zA-Z가-힣0-9\s]{2,30}$/;
@@ -75,9 +76,11 @@
 			alert("제품 상태는 하나 이상 체크해야 합니다");
 			return;
 		}
-		if(!productImage.value){
-			alert("상품 사진은 하나 이상 첨부해야 합니다");
-			return;
+		if(!productImageChangeC){
+			if(!productImageV){
+				alert("상품 사진은 하나 이상 첨부해야 합니다");
+				return;
+			}
 		}
 		
 		newProduct.submit();

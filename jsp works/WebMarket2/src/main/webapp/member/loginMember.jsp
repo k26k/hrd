@@ -54,7 +54,7 @@
 			</div>
 			<div class="form-group row">
 				<div class="col-sm-offset-2 col-sm-10">
-					<input type="button" class="btn btn-primary" value="가입" onclick="checkLoginMember()">
+					<input type="button" class="btn btn-primary" value="로그인" onclick="checkLoginMember()">
 					<input type="reset" class="btn btn-secondary" value="취소">
 				</div>
 			</div>

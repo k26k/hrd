@@ -28,6 +28,8 @@
 	
 	//Check.check(response.getWriter(), multi, 0);
 	
+	Product product = dao.getProduct(request.getParameter("id"));
+	
 	String productId = multi.getParameter("productId");	
 	String pName = multi.getParameter("pName");
 	String unitPrice = multi.getParameter("unitPrice");
@@ -37,48 +39,37 @@
 	String unitsInStock = multi.getParameter("unitsInStock");
 	String condition = multi.getParameter("condition");
 	File productImage = multi.getFile("productImage");
+	String productImageChange = multi.getParameter("productImageChange");
 	
-	if(productId==null || productId.equals("")){
-		productId="none";
+	if(productId!=null && !productId.equals("")){
+		product.setProductId(productId);
 	}
-	if(pName==null || pName.equals("")){
-		pName="none";
+	if(pName!=null && !pName.equals("")){
+		product.setpName(pName);
 	}
-	if(unitPrice==null || unitPrice.equals("")){
-		unitPrice="-1";
+	if(unitPrice!=null && !unitPrice.equals("")){
+		product.setUnitPrice(Integer.valueOf(unitPrice));
 	}
-	if(description==null || description.equals("")){
-		description="none";
+	if(description!=null && !description.equals("")){
+		product.setDescription(description);
 	}
-	if(manufacturer==null || manufacturer.equals("")){
-		manufacturer="none";
+	if(manufacturer!=null && !manufacturer.equals("")){
+		product.setManufacturer(manufacturer);
 	}
-	if(category==null || category.equals("")){
-		category="none";
+	if(category!=null && !category.equals("")){
+		product.setCategory(category);
 	}
-	if(unitsInStock==null || unitsInStock.equals("")){
-		unitsInStock="-1";
+	if(unitsInStock!=null && !unitsInStock.equals("")){
+		product.setUnitsInStock(Long.valueOf(unitsInStock));
 	}
-	if(condition==null || condition.equals("")){
-		condition="none";
+	if(condition!=null && !condition.equals("")){
+		product.setCondition(condition);
 	}
-	//if(filename==null || filename.equals("")){
-	//	filename="default.png";
-	//}
-	
-	
-	//String resourcesImages = "C:/dev/hrd/jsp works/WebMarket1/src/main/webapp/resources/images";
-	
-	Product product = new Product();
-	product.setProductId(productId);
-	product.setpName(pName);
-	product.setUnitPrice(Integer.valueOf(unitPrice));
-	product.setDescription(description);
-	product.setManufacturer(manufacturer);
-	product.setCategory(category);
-	product.setUnitsInStock(Long.valueOf(unitsInStock));
-	product.setCondition(condition);
-	product.setProductImage(productImage.getName());
+	if(productImageChange==null || !productImageChange.equals("on")){
+		if(productImage!=null && !productImage.getName().equals("")){
+			product.setProductImage(productImage.getName());
+		}
+	}
 	
 	dao.update(product);
 %>

@@ -46,15 +46,7 @@
 	password="12345"
 	/>
 	<sql:update dataSource="${ dataSource }" var="resultSet">
-		update member set id=?,	password	varchar(20) not null,
-	name		varchar(20) not null,
-	gender		varchar(6),
-	birth		varchar(20),
-	mail		varchar(30),
-	phone		varchar(20),
-	address		varchar(50),
-	regist_day	varchar(20),
-	primary key(id);
+		update member set id=?,	password=?, name=?, gender=?, birth=?, mail=?, phone=?, address=? where id=?;
 		<sql:param value="${ member.id }"/>
 		<sql:param value="${ member.password }"/>
 		<sql:param value="${ member.name }"/>
@@ -63,12 +55,12 @@
 		<sql:param value="${ member.mail }"/>
 		<sql:param value="${ member.phone }"/>
 		<sql:param value="${ member.address }"/>
-		<sql:param value="${ member.registDay }"/>
+		<sql:param value="${ sessionId }"/>
 	</sql:update>
 	<c:choose>
 	<c:when test="${ resultSet >= 1 }">
 		<script type="text/javascript">
-			location.href="/wm2/member/resultMember.jsp?msg=addSuccess";
+			location.href="/wm2/member/resultMember.jsp?msg=updateSuccess";
 		</script>
 	</c:when>
 	<c:otherwise>

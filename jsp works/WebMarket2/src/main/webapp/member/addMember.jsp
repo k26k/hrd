@@ -17,64 +17,63 @@
 	function checkAddMember(){
 		let idV = id.value;
 		let passwordV = password.value;
-		let nameV = description.value;
-		let genderV = manufacturer.value;
+		let nameV = document.getElementById("name").value;
+		let genderV = null;
+		for(let i=0; i<gender.length; i++){
+			if(gender[i].checked){
+				genderV = gender[i].value;
+			}
+		}
 		let birthV = birth1.value+"-"+birth2.value+"-"+birth3.value;
 		let mailV = mail1.value+"@"+mail2.value;
 		let phoneV = phone.value;
 		let addressV = address.value;
 		
-		let regExId = /^[p][0-9]{4,12}$/;
-		let regExPassword = /^[a-zA-Z가-힣0-9\s]{2,30}$/;
-		let regExDesc = /^[a-zA-Z가-힣0-9!@#$%^&*?/\s]{10,400}$/;
-		let regExBirth = /^[]-[]-[]*$/
-		let regExMail = /^[a-zA-Z][a-zA-Z0-9]{1,20}@[a-zA-Z0-9.].[a-zA-Z]{2,3}$/
+		let regExId = /^[0-9a-zA-Z]{4,10}$/;
+		let regExName = /^[a-zA-Z가-힣0-9]{2,10}$/;
+		let regExBirth = /^[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}$/
+		let regExMail = /^[a-zA-Z0-9]{1,20}@[a-zA-Z0-9.]+[.]{1}[a-zA-Z]{2,3}$/
+		let regExPhone1 = /^[0-9]{9,12}$/
+		let regExPhone2 = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/
 		
-		if(!regExPId.test(productIdV)){
-			alert("상품 코드는 P숫자(4~12)");
-			return true;
-		}
-		if(!regExPName.test(pNameV)){
-			alert("상품명은 한글 영어 숫자만 사용해서 2~30자리");
-			return true;
-		}
-		if(unitPrice.value < 1){
-			alert("가격은 1이상이어야 합니다.");
-			return true;
-		}
-		if(!regExDesc.test(descriptionV)){
-			alert("상품 설명은 10 ~ 400자리");
-			return true;
-		}
-		if(!regExPName.test(manufacturerV)){
-			alert("제조사는 한글 영어 숫자만 사용해서 2~30자리");
-			return true;
-		}
-		if(!regExPName.test(categoryV)){
-			alert("카테고리는 한글 영어 숫자만 사용해서 2~30자리");
-			return true;
-		}
-		if(unitsInStock.value < 1){
-			alert("재고는 1이상이어야 합니다.");
-			return true;
-		}
-		let radioV = false;
-		for(let i=0; i<condition.length; i++){
-			if(condition[i].checked){
-				radioV = true;
-				break;
-			}
-		}
-		if(!radioV){
-			alert("제품 상태는 하나 이상 체크해야 합니다");
-			return true;
-		}
-		if(!productImage.value){
-			alert("상품 사진은 하나 이상 첨부해야 합니다");
-			return true;
-		} 
+		console.log(mailV);
+		console.log();
 		
-		newMember.submit();
+		if(!regExId.test(idV)){
+			alert("아이디는 영문 숫자 4~10자리");
+			return false;
+		}
+		if(!regExId.test(passwordV)){
+			alert("비밀번호는 영문 숫자 4~10자리");
+			return false;
+		}
+		if(!regExName.test(nameV)){
+			alert("이름은 영문 숫자 한글 2~10자리");
+			return false;
+		}
+		if(genderV!=="남" &&  genderV!=="녀"){
+			alert("성별을 선택해 주세요");
+			return false;
+		}
+		if(!regExBirth.test(birthV)){
+			alert("생일이 잘못되었습니다");
+			return false;
+		}
+		if(!regExMail.test(mailV)){
+			alert("메일이 잘못되었습니다");
+			return false;
+		}
+		if(!regExPhone1.test(phoneV) && !regExPhone2.test(phoneV)){
+			alert("전화번호가 잘못되었습니다");
+			return false;
+		}
+		if(!addressV){
+			alert("주소를 입력해주세요");
+			return false;
+		}
+		
+		return true;
+		//newMember.submit();
 	}
 	
 	
@@ -110,29 +109,29 @@
 			<div class="form-group row">
 				<label class="col-sm-2">성별</label>
 				<div class="col-sm-3">
-					<input type="radio" name="gender" value="남"><label class="col-sm-3">남자</label>
-					<input type="radio" name="gender" value="녀"><label class="col-sm-3">여자</label>
+					<input type="radio" id="gender" name="gender" value="남"><label class="col-sm-3">남자</label>
+					<input type="radio" id="gender" name="gender" value="녀"><label class="col-sm-3">여자</label>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-2" for="birth">생일</label>
 				<div class="col-sm-5 row">
 					<div class="col-sm-4">
-						<select id="birth" name="birth1" class="form-control">
+						<select id="birth1" name="birth1" class="form-control">
 						<c:forEach var="i" begin="0" end="150">
 							<option value="${ 2022-i }"><c:out value="${ 2022-i }년"/></option>
 						</c:forEach>
 						</select>
 					</div>
 					<div class="col-sm-4">
-						<select id="birth" name="birth2" class="form-control">
+						<select id="birth2" name="birth2" class="form-control">
 						<c:forEach var="i" begin="1" end="12">
 							<option value="${ i }"><c:out value="${ i }월"/></option>
 						</c:forEach>
 						</select>
 					</div>
 					<div class="col-sm-4">
-						<select id="birth" name="birth3" class="form-control">
+						<select id="birth3" name="birth3" class="form-control">
 						<c:forEach var="i" begin="1" end="12">
 							<option value="${ i }"><c:out value="${ i }일"/></option>
 						</c:forEach>
@@ -144,11 +143,11 @@
 				<label class="col-sm-2" for="mail">메일</label>
 				<div class="col-sm-4 row">
 					<div class="col-sm-5">
-						<input type="text" id="mail" name="mail1" class="form-control">
+						<input type="text" id="mail1" name="mail1" class="form-control">
 					</div>
-					@
-					<div class="col-sm-6">
-						<input type="text" id="mail" name="mail2" class="form-control">
+					<div>@</div>
+					<div class="col-sm-5">
+						<input type="text" id="mail2" name="mail2" class="form-control">
 					</div>
 				</div>
 			</div>
@@ -159,8 +158,15 @@
 				</div>
 			</div>
 			<div class="form-group row">
+				<label class="col-sm-2" for="address">주소</label>
+				<div class="col-sm-3">
+					<input type="text" id="address" name="address" class="form-control">
+				</div>
+			</div>
+			<div class="form-group row">
 				<div class="col-sm-offset-2 col-sm-10">
 					<input type="submit" class="btn btn-primary" value="가입">
+					<input type="button" class="btn btn-primary" value="정규식 테스트" onclick="checkAddMember()">
 					<input type="reset" class="btn btn-secondary" value="취소">
 				</div>
 			</div>

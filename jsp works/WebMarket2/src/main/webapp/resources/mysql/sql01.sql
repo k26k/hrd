@@ -120,10 +120,32 @@ insert into member values(
 );
 
 delete from member;
+delete from member where id = '';
 
 select * from member;
 
 select * from member where id='1234';
+
+
+drop table board;
+
+create table board(
+	num			int primary key auto_increment,
+	name		varchar(20) not null,
+	subject		varchar(100) not null,
+	content		text not null,
+	write_date	varchar(30),
+	hit			int,
+	recommend	int,
+	id			varchar(20) not null,
+	constraint fk_member_board foreign key(id)
+	references member(id) on delete cascade
+);
+
+select * from board;
+
+insert into board values(default, 'admin', 'test', '~~~', '2022-08-18', 0, 0, 'qwer');
+
 
 
 

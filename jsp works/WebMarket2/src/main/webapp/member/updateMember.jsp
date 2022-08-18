@@ -93,14 +93,7 @@
 		<sql:param value="${ sessionId }"/>
 	</sql:query>
 	<c:forEach var="row" items="${ resultSet.rows }">
-		${ member.id = row.id }
-		${ member.password = row.password }
-		${ member.name = row.name }
-		${ member.gender = row.gender }
-		${ member.birth = row.birth }
-		${ member.mail = row.mail }
-		${ member.phone = row.phone }
-		${ member.address = row.address }
+		<c:set var="member" value="${ row }"/>
 	</c:forEach>
 	<%@ include file="/menu.jsp" %>
 	<% System.out.println(session.getAttribute("sessionId")); %>
@@ -184,9 +177,16 @@
 				</div>
 			</div>
 			<div class="form-group row">
+				<label class="col-sm-2" for="address">주소</label>
+				<div class="col-sm-3">
+					<input type="text" id="address" name="address" class="form-control" value="${ member.address	 }">
+				</div>
+			</div>
+			<div class="form-group row">
 				<div class="col-sm-offset-2 col-sm-10">
-					<input type="button" class="btn btn-primary" value="가입" onclick="checkUpdateMember()">
+					<input type="button" class="btn btn-primary" value="저장" onclick="checkUpdateMember()">
 					<input type="reset" class="btn btn-secondary" value="취소">
+					<input type="button" class="btn btn-danger" value="탈퇴" onclick="if(!confirm('삭?제')){return;} location.href='/wm2/member/deleteMember.jsp';">
 				</div>
 			</div>
 		</form>

@@ -64,7 +64,7 @@
 		<c:otherwise>
 			<div class="jumbotron">
 				<div class="container">
-					<h1 class="display-3">회원가입</h1>
+					<h1 class="display-3">error</h1>
 				</div>
 			</div>
 			<div class="container">

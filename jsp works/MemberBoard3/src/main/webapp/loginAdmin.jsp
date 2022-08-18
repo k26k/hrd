@@ -10,12 +10,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=0.7">
 <title>관리자 로그인</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/resources/css/colorSet.css">
 </head>
 <body>
-	<jsp:include page="./menu.jsp"/>
-	<div class="py-5" style="background-color: #ddd">
+	<jsp:include page="/menu.jsp"/>
+	<div class="py-5 c-bg-mint">
 		<div class="container">
-			<h1>관리자 로그인</h1>
+			<h1 class="c-c-white">관리자 로그인</h1>
 		</div>
 	</div>
 	<div class="container p-2">
@@ -34,12 +35,12 @@
 			</div>
 			<div class="form-group row my-2">
 				<div class="col-sm-offset-2 col-sm-10">
-					<input type="submit" class="btn btn-primary" value="로그인">
+					<input type="submit" class="btn c-bg-mint c-c-white" value="로그인">
 					<input type="reset" class="btn btn-secondary" value="취소">
 				</div>
 			</div>
 		</form>
 	</div>
-	<jsp:include page="./footer.jsp"/>
+	<jsp:include page="/footer.jsp"/>
 </body>
 </html>
