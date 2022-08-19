@@ -48,6 +48,9 @@ ALTER TABLE t_board DROP CONSTRAINT FK_MemberBoard;
 ALTER TABLE t_board ADD CONSTRAINT FK_MemberBoard FOREIGN KEY (memberid)
 REFERENCES t_member(memberid)ON DELETE CASCADE;
 
+ALTER TABLE t_board DROP COLUMN recommend;
+ALTER TABLE t_board RENAME COLUMN views TO hit;
+
 
 CREATE TABLE t_order(
     name    VARCHAR2(10),

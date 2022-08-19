@@ -156,7 +156,7 @@
       <Host name="localhost"/>
       
       
-      <Context docBase="MemberBoard3" path="/" reloadable="true" source="org.eclipse.jst.jee.server:MemberBoard3"/></Host>
+      <Context docBase="WebMarket2" path="/wm2" reloadable="true" source="org.eclipse.jst.jee.server:WebMarket2"/><Context docBase="MemberBoard2_LeeJeoungHo" path="/" reloadable="true" source="org.eclipse.jst.jee.server:MemberBoard2_LeeJeoungHo"/></Host>
     </Engine>
   </Service>
 </Server>

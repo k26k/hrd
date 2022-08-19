@@ -132,7 +132,7 @@
 					</div>
 					<div class="col-sm-4">
 						<select id="birth3" name="birth3" class="form-control">
-						<c:forEach var="i" begin="1" end="12">
+						<c:forEach var="i" begin="1" end="31">
 							<option value="${ i }"><c:out value="${ i }일"/></option>
 						</c:forEach>
 						</select>

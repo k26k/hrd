@@ -146,6 +146,6 @@ select * from board;
 
 insert into board values(default, 'admin', 'test', '~~~', '2022-08-18', 0, 0, 'qwer');
 
-
+delete from board WHERE num=3;
 
 
