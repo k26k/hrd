@@ -1,0 +1,27 @@
+
+java 
+
+필터 처리
+web.xml
+  <filter>
+  	<filter-name>LogFileFilter</filter-name>
+  	<filter-class>com.filter.LogFileFilter</filter-class>
+  	<init-param>
+  		<param-name>filename</param-name>
+  		<param-value>C:/logs/webmarket1.log</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>LogFileFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+
+로그 기록 방법
+PrintWriter writer = null;
+String filename = filterConfig.getInitParameter( init-param-name );
+try {
+	writer = new PrintWriter(new FileWriter(filename, true), true);
+}catch(IOException e) {
+	오류처리
+}

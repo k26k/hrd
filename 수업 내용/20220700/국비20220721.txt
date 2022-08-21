@@ -1,0 +1,20 @@
+
+JSP
+
+cookie(쿠키)
+
+JSESSIONID
+- 톰캣 컨테이너에서 세션을 유지하기 위해 발급하는 키
+
+cookie 삭제
+- 쿠키의 유효 기간을 만료한다
+- cookie.setMaxAge(0);
+
+
+
+
+
+
+
+
+

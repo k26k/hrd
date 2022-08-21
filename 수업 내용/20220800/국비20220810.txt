@@ -1,0 +1,15 @@
+
+java 
+
+
+mysql
+
+제약조건 변경
+
+기존 제약조건 삭제
+ALTER TABLE t_board DROP CONSTRAINT FK_MemberBoard;
+
+수정한 제약조건 추가
+ALTER TABLE t_board ADD CONSTRAINT FK_MemberBoard FOREIGN KEY (memberid)
+REFERENCES t_member(memberid)ON DELETE CASCADE;
+

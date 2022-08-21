@@ -1,0 +1,73 @@
+
+SQL
+
+신규 유저 생성
+
+-- USER(JWEB) 생성
+CREATE USER C##JWEB IDENTIFIED BY 54321;
+
+-- 세션 권한 부여
+GRANT CREATE SESSION TO C##JWEB;
+
+-- 테이블과 테이블 공간 생성
+GRANT CREATE TABLE, RESOURCE TO C##JWEB;
+
+-- 테이블 스페이스 권한 주기
+ALTER USER C##JWEB DEFAULT TABLESPACE USERS QUOTA UNLIMITED ON USERS;
+
+-- 권한 불충분 에러가 뜰 경우
+-- sqlplus 접속후
+-- GRANT CREAT ANY TABLE TO C##JWEB;
+-- GRANT CONNECT, RESOURCE, DBA TO C##JWEB;
+
+
+
+JSP 보안 설정
+
+프로젝트의 web.xml에 해당 내용 추가
+
+  <security-role>
+  	<role-name>role1</role-name>
+  </security-role>
+  
+  <security-constraint>
+  	<web-resource-collection>
+  		<web-resource-name>jweb5</web-resource-name>
+  		<url-pattern>/security01.jsp</url-pattern>
+  		<url-pattern>GET</url-pattern>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<description></description>
+  		<role-name>role1</role-name>
+  	</auth-constraint>
+  </security-constraint>
+  
+알람으로 로그인
+  <login-config>
+  	<auth-method>BASIC</auth-method>
+  </login-config>
+
+폼으로 로그인
+  <login-config>
+  	<auth-method>FORM</auth-method>
+  	<form-login-config>
+  		<form-login-page>로그인 페이지 주소</form-login-page>
+  		<form-login-page>로그인 실패 페이지 주소</form-login-page>
+  	</form-login-config>
+  </login-config>
+
+
+
+EL 언어
+- MVC 패턴에 따라 뷰(view) 역할을 수행하는 JSP를 더욱 효과적으로 만들려는 목적으로 개발
+ (개발 배경 : 코드와 태그가 섞여서 복잡해짐)
+- JSP의 데이터를 표현할 때 스크립트릿<% %>이나 표현식 <%= %>을 대체하기 위해 사용되
+는 언어이다.
+<jsp:useBean id=“test” class=“TestBean” />
+<%= test.getName()>
+${test.name}
+① 표현 언어는 $로 시작한다.
+② 모든 내용은 ‘{표현식}’과 같이 표기한다.
+③ 표현식에는 기본적으로 변수 이름, 혹은 ‘객체_이름.멤버 변수_이름’ 구조로 이루어진다.
+④ 표현식에는 기본적인 연산을 할 수 있다.
+

@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+html {margin: 0; padding: 0; width: 100%;}
+body {margin: 0; padding: 0; width: 100%;}
+
+table {margin: 0 auto;}
+table, td, th {border-collapse: collapse; border: 1px solid #ccc; padding: 5px 15px;}
+td, th {height: 35px;}
+input, select{box-sizing:border-box; height: 25px;}
+a {text-decoration: none;}
+
+#container {padding: 0; margin: 50px auto; width: 100%; max-width: 1024px; text-align: center;}
