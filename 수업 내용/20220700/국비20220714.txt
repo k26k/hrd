@@ -1,0 +1,84 @@
+
+JAVA
+
+HashSet
+
+- 추가
+  hashSet.add( value );
+
+- 삭제
+  hashSet.remove( value );
+
+- 반복 조회
+  Iterator<Member> ir = hashSet.iterator();
+  while(ir.hasNext()) {
+  	  Member member = ir.next();
+		  System.out.println(member);
+	  }
+  }
+
+- 찾아서 삭제
+  Iterator<Member> ir = hashSet.iterator();
+  while(ir.hasNext()) {
+      Member member = ir.next();
+      int dbMemberId = member.getMemberId();
+      if(dbMemberId == memberId) {
+          hashSet.remove(member);
+          return true;
+      }
+  }
+
+
+HashMap
+
+- 추가
+  hashMap.put( key, value );
+
+- 삭제
+  if(hashMap.containsKey(memberId)) {
+  hashMap.remove(memberId);
+
+- 반복 조회
+  while(ir.hasNext()) {
+      Member member = hashMap.get(ir.next());
+      System.out.println(member);
+  }
+
+- 찾아서 삭제
+  if(hashMap.containsKey(memberId)) {
+      hashMap.remove(memberId);
+  }
+
+
+스택
+- 후입 선출 구조
+- Stack<T> 객체명 = new Stack<>();
+- push 주어진 객체를 스택에 넣는다.
+- pop() 스택의 맨 위 객체를 가져온다. 객체를 스택에서 제거한다.
+- isEmpty() 스택의 객체가 비어있는지 여부
+
+
+큐
+- 선입 선출 구조
+- Queue<T> 객체명 = new LinkedList<>();
+- offer() 주어진 객체를 넣는다.
+- poll() 객체 하나를 가져온다. 객체를 큐에서 제거한다.
+- isEmpty() 스택의 객체가 비어있는지 여부 확인
+
+
+
+SQL
+
+
+
+
+
+
+
+
+
+
+
+
+
+

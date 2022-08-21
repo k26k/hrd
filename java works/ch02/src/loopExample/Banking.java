@@ -24,7 +24,7 @@ public class Banking {
 				case "1":
 					System.out.print("예금액 > ");
 					money = sc.nextInt();
-					balance += money;
+//					balance += money;
 					if(money < 0) {
 						System.out.println("금액을 다시 입력해 주세요");
 					}else {

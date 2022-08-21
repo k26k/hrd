@@ -3,7 +3,7 @@ package constant;
 public class constant {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub		
 		int month = 12;
 		month = 6;
 		System.out.println(month);
@@ -17,6 +17,13 @@ public class constant {
 		double radious = 10;
 		double area = radious * radious * PI;
 		System.out.println(area);
+		
+//		기존 상수 정의
+		final int MAX_NUM = 100;
+		final int MIN_NUM = 1;
+//		상수를 정의한 객체를 만들어서 이용
+		int month3 = UsingDefine.MONTH;
+		System.out.println(month3);
 	}
 
 }

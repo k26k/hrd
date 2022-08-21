@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function sub(){
+            let divDemo = document.getElementById("demo");
+            let tBox = document.getElementById("textIn");
+            console.log(tBox);
+            let texts = tBox.value.split(", ");
+            console.log(texts);
+            let textHTML = "";
+            for(let i in texts){
+                //alert(i);
+                textHTML+= "<a href='"+texts[i]+"'>"+texts[i]+"</a><br>";
+            }
+            divDemo.innerHTML = textHTML;
+            alert("분할 성공\n"+texts);
+        }
+    </script>
+</head>
+<body>
+    <div id="container">
+        <form action="">
+            <textarea id="textIn" cols="30" rows="10" aria-valuetext="입력"></textarea>
+            <br>
+            <input type="button" value="분할" onclick="sub()">
+        </form>
+        <div id="demo"></div>
+    </div>
+ 
+</body>
+</html>

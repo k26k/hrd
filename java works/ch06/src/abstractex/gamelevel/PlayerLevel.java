@@ -1,0 +1,18 @@
+package abstractex.gamelevel;
+
+public abstract class PlayerLevel {
+	
+	public abstract void run();
+	public abstract void jump();
+	public abstract void turn();
+	public abstract void showLevelMessage();
+	
+	public void go(int count) {
+		run();
+		for(int a=1; a<=count; a++) {
+			jump();
+		}
+		turn();
+	}
+	
+}

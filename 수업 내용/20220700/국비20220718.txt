@@ -1,0 +1,46 @@
+
+JAVA
+
+파일 입출력
+
+바이트기반
+- 1바이트
+- 그림, 비디오같은 미디어 파일에 사용
+
+쓰기
+- OutputStream
+- FileOutputStream
+
+읽기
+- InputStream
+- FileInputStream
+
+
+문자기반
+- 2바이트
+- '가', '나' 같은 char 텍스트, 문자에 사용
+
+쓰기
+- Writer
+- FileWriter
+
+읽기
+- Reader
+- FileReader
+
+
+
+
+이클립스 - JAVA + HTML + CSS + Javascript 
+
+JSP / servlet - HTML안에 있는 JAVA 코드 -> 교안
+Spring - 프레임 워크 -> 교재
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,9 @@
+java 내장 클래스
+- Math
+- Date
+
+
+java 파일 실행 방법
+- 프로그램 경로/java 프로그램.java
+한글이 깨질 경우
+- 프로그램 경로/java -Dfile.encoding=UTF-8 프로그램.java
