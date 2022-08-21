@@ -27,7 +27,7 @@
 		</div>
 	</div>
 	<div class="container mt-4">
-		<form action="/write" method="post" class="col-12 col-md-10 col-xl-8 col-xxl-7">
+		<form action="/write.do" method="post" class="col-12 col-md-10 col-xl-8 col-xxl-7">
 			<div class="row mx-0 mt-4">
 				<label class="col-form-label col-12 col-lg-2 my-2 text-center" for="title">제목</label>
 				<div class="col-12 col-lg-10 my-2">

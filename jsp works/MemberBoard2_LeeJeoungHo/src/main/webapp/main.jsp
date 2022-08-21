@@ -20,7 +20,8 @@
 		</div>
 	</div>
 	<div class="container text-center p-0">
-		<h3 class="mt-5 mb-4">최근 글</h3>
+		<h3 class="mt-5 mb-2">최근 글</h3>
+		<h6 class="mt-2 mb-4">(최근 글은 5개만 보입니다)</h6>
 		<jsp:include page="/board/board.jsp"/>
 	</div>
 	<jsp:include page="/footer.jsp"/>

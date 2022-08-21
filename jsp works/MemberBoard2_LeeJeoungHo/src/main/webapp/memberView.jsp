@@ -12,6 +12,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/colorSet.css">
+<script src="/resources/js/checkMember.js"></script>
 </head>
 <body>
 	<jsp:include page="/menu.jsp"/>
@@ -21,7 +22,7 @@
 		</div>
 	</div>
 	<div class="container p-2 my-4">
-		<form action="/updateMember" class="col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6 col-xxl-5" method="post">
+		<form action="/updateMember.do" class="col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6 col-xxl-5" method="post" name="member_form">
 			<div class="row mx-0 my-2">
 				<label class="col-form-label col-12 col-sm-4 my-2" for="memberID">아이디</label>
 				<div class="col-12 col-sm-8 my-2">

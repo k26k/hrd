@@ -21,7 +21,7 @@
 		</div>
 	</div>
 	<div class="container p-2">
-		<form action="/loginProcess" class="col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6 col-xxl-5" method="post">
+		<form action="/loginProcess.do" class="col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6 col-xxl-5" method="post">
 			<div class="row mx-0 my-2">
 				<label class="col-form-label col-12 col-sm-4 my-2" for="memberID">아이디</label>
 				<div class="col-12 col-sm-8 my-2">

@@ -12,18 +12,18 @@
      			<li class="nav-item border-bottom mt-2"></li>
 			<c:choose>
 			<c:when test="${!empty sessionScope.loginID}">
-				<li class="nav-item border-bottom"><a href="/index.jsp" class="nav-link">Home</a></li>
-				<li class="nav-item border-bottom"><a href="/boardList" class="nav-link">게시판</a></li>
-				<li class="nav-item border-bottom"><a href="/logout" class="nav-link">로그아웃</a></li>
-				<li class="nav-item border-bottom"><a href="/memberView" class="nav-link">나의 정보</a></li>
-				<li class="nav-item border-bottom"><a href="/memberList" class="nav-link">회원목록</a></li>
+				<li class="nav-item border-bottom"><a href="/home.do" class="nav-link">Home</a></li>
+				<li class="nav-item border-bottom"><a href="/boardList.do" class="nav-link">게시판</a></li>
+				<li class="nav-item border-bottom"><a href="/logout.do" class="nav-link">로그아웃</a></li>
+				<li class="nav-item border-bottom"><a href="/memberView.do" class="nav-link">나의 정보</a></li>
+				<li class="nav-item border-bottom"><a href="/memberList.do" class="nav-link">회원목록</a></li>
 			</c:when>
 			<c:otherwise>
-				<li class="nav-item border-bottom"><a href="/home" class="nav-link">Home</a></li>
-				<li class="nav-item border-bottom"><a href="/boardList" class="nav-link">게시판</a></li>
-				<li class="nav-item border-bottom"><a href="/login" class="nav-link">로그인</a></li>
-				<li class="nav-item border-bottom"><a href="/memberForm" class="nav-link">회원가입</a></li>
-				<li class="nav-item border-bottom"><a href="/memberList" class="nav-link">회원목록</a></li>
+				<li class="nav-item border-bottom"><a href="/home.do" class="nav-link">Home</a></li>
+				<li class="nav-item border-bottom"><a href="/boardList.do" class="nav-link">게시판</a></li>
+				<li class="nav-item border-bottom"><a href="/loginMemberForm.jsp" class="nav-link">로그인</a></li>
+				<li class="nav-item border-bottom"><a href="/memberForm.jsp" class="nav-link">회원가입</a></li>
+				<li class="nav-item border-bottom"><a href="/memberList.do" class="nav-link">회원목록</a></li>
 			</c:otherwise>
 			</c:choose>
 			</ul>

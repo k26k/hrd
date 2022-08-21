@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +23,6 @@
 		</div>
 	</div>
 	<div class="container p-2">
-		
 		<a href="${resultTexts[3]}">
 			<input type="button" value="${resultTexts[2]}" class="btn c-bg-mint c-c-white">
 		</a>

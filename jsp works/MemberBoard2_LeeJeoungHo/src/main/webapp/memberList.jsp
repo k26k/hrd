@@ -23,7 +23,7 @@
 		</div>
 	</div>
 	<div class="container p-0">
-		<a href="/logout"> <input type="button" class="btn btn-warning mt-4 ms-2" value="로그아웃"> </a>
+		<a href="/logout.do"> <input type="button" class="btn btn-warning mt-4 ms-2" value="로그아웃"> </a>
 		<div class="text-center align-middle">
 			<div class="c-bg-mint c-c-white my-2">
 				<div class="row m-0">
@@ -51,7 +51,7 @@
 							<div class="col-4 p-2"><c:out value="${ member.gender }"/></div>
 							<div class="col-4 p-2"><c:out value="${ member.joinDate }"/></div>
 							<div class="col-4 p-2">
-								<form action="/deleteMember" method="post">
+								<form action="/deleteMember.do" method="post">
 									<input type="hidden" name="deleteID" value="${member.memberID}">
 									<input type="submit" class="btn btn-danger" value="delete">
 								</form>

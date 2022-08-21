@@ -57,12 +57,12 @@
 			<div class="my-4 text-center">
 			<c:choose>
 			<c:when test="${writer}">
-				<input type="button" value="수정" class="btn btn-warning" onclick="if(confirm('수정?')){board_view.action='/updateBoard';board_view.submit();}">
-				<input type="button" value="삭제" class="btn btn-danger" onclick="if(confirm('삭제?')){board_view.action='/deleteBoard';board_view.submit();}">
-				<input type="button" value="목록" class="btn btn-secondary" onclick="location.href='/boardList'">
+				<input type="button" value="수정" class="btn btn-warning" onclick="if(confirm('수정?')){board_view.action='/updateBoard.do';board_view.submit();}">
+				<input type="button" value="삭제" class="btn btn-danger" onclick="if(confirm('삭제?')){board_view.action='/deleteBoard.do';board_view.submit();}">
+				<input type="button" value="목록" class="btn btn-secondary" onclick="location.href='/boardList.do'">
 			</c:when>
 			<c:otherwise>
-				<input type="button" value="목록" class="btn btn-secondary" onclick="location.href='/boardList'">
+				<input type="button" value="목록" class="btn btn-secondary" onclick="location.href='/boardList.do'">
 			</c:otherwise>
 			</c:choose>
 			</div>

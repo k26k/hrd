@@ -21,7 +21,7 @@
 		</div>
 	</div>
 	<div class="container p-0 my-3">
-		<input type="button" value="글쓰기" onclick="location.href='/writeForm'" class="btn c-bg-mint c-c-white my-4 ms-2" >
+		<input type="button" value="글쓰기" onclick="location.href='/writeForm.do'" class="btn c-bg-mint c-c-white my-4 ms-2" >
 		<jsp:include page="/board/board.jsp"/>
 	</div>
 	<jsp:include page="/footer.jsp"/>

@@ -21,7 +21,7 @@ import com.repository.BoardDAO;
 import com.repository.Member;
 import com.repository.MemberDAO;
 
-@WebServlet("/")
+@WebServlet("*.do")
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 2L;
        
@@ -48,7 +48,7 @@ public class MainController extends HttpServlet {
 		String command = uri.substring(uri.lastIndexOf("/"));
 		System.out.println("command: "+command);
 		
-		String nextPage = "/home";
+		String nextPage = "";
 		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
 		
@@ -57,65 +57,62 @@ public class MainController extends HttpServlet {
 		//================================================
 		//================================================
 		
-		if(command.equals("/home")) {
-			request.setAttribute("boardList", boardDAO.getRecentList());
+		if(command.equals("/home.do")) {
+			ArrayList<Board> boardList = boardDAO.getRecentList();
+			request.setAttribute("boardList", boardList);
 			nextPage = "/main.jsp";
 			
-			
+		
 		//================================================
 		//================================================
-			
-		}else if(command.equals("/memberList")) {
+		
+		}else if(command.equals("/memberList.do")) {
 			ArrayList<Member> memberList = memberDAO.getAllList();
 			request.setAttribute("memberList", memberList);
 			nextPage = "/memberList.jsp";
 			
+		
 			
-			
-		}else if(command.equals("/memberForm")) {
-			nextPage = "/memberForm.jsp";
-			
-			
-			
-		}else if(command.equals("/addMember")) {
+		}else if(command.equals("/addMember.do")) {
 			Member member = new Member();
+			String[] resultTexts = null;
 			member.setMemberID(request.getParameter("memberID"));
 			member.setPasswd(request.getParameter("passwd"));
 			member.setName(request.getParameter("name"));
 			member.setGender(request.getParameter("gender"));
 			boolean check = memberDAO.addMember(member);
 			if(check) {
-				nextPage = "/login";
+				resultTexts = new String[]{"회원 등록", "등록 성공", "회원 등록으로 이동", "/memberForm.jsp"};
+	
 			}else {
-				String[] resultTexts = null;
-				resultTexts = new String[]{"회원 등록", "등록 실패", "회원 등록으로 이동", "/memberForm"};
-				request.setAttribute("resultTexts", resultTexts);
-				nextPage = "/memberResult.jsp";
-			}
-			
-			
-			
-		}else if(command.equals("/deleteMember")) {
-			String[] resultTexts = null;
-			if(memberDAO.delete(request.getParameter("deleteID"))) {
-				resultTexts = new String[]{"회원 삭제", "삭제 성공", "회원 목록으로 이동", "/memberList"};
-			}else {
-				resultTexts = new String[]{"회원 삭제", "삭제 실패", "회원 목록으로 이동", "/memberList"};
+				resultTexts = new String[]{"회원 등록", "등록 실패", "회원 등록으로 이동", "/memberForm.jsp"};
 			}
 			request.setAttribute("resultTexts", resultTexts);
 			nextPage = "/memberResult.jsp";
 			
 			
 			
-		}else if(command.equals("/memberView")) {
+		}else if(command.equals("/deleteMember.do")) {
+			String[] resultTexts = null;
+			if(memberDAO.delete(request.getParameter("deleteID"))) {
+				resultTexts = new String[]{"회원 삭제", "삭제 성공", "회원 목록으로 이동", "/memberList.do"};
+			}else {
+				resultTexts = new String[]{"회원 삭제", "삭제 실패", "회원 목록으로 이동", "/memberList.do"};
+			}
+			request.setAttribute("resultTexts", resultTexts);
+			nextPage = "/memberResult.jsp";
+			
+			
+			
+		}else if(command.equals("/memberView.do")) {
 			if(session.getAttribute("loginID")==null){
-				response.sendRedirect("/login");
+				response.sendRedirect("/loginMemberForm.jsp");
 				return;
 			}
 			Member member = memberDAO.getMember((String)session.getAttribute("loginID"));
 			if(member.getMemberID() == null){
 				session.invalidate();
-				response.sendRedirect("/login");
+				response.sendRedirect("/loginMemberForm.jsp");
 				return;
 			}
 			request.setAttribute("member", member);
@@ -124,15 +121,15 @@ public class MainController extends HttpServlet {
 		
 			
 			
-		}else if(command.equals("/updateMember")) {
+		}else if(command.equals("/updateMember.do")) {
 			String[] resultTexts = null;
 			if(session.getAttribute("loginID")==null){
-				resultTexts = new String[]{"회원 정보 수정", "로그인 필수", "로그인 하러가기", "/login"};
+				resultTexts = new String[]{"회원 정보 수정", "로그인 필수", "로그인 하러가기", "/loginMemberForm.jsp"};
 			}
 			Member member = memberDAO.getMember((String)session.getAttribute("loginID"));
 			if(member.getMemberID() == null){
 				session.invalidate();
-				resultTexts = new String[]{"회원 정보 수정", "없는 회원", "로그인 하러가기", "/login"};
+				resultTexts = new String[]{"회원 정보 수정", "없는 회원", "로그인 하러가기", "/loginMemberForm.jsp"};
 			}
 			member.setMemberID(request.getParameter("memberID"));
 			member.setPasswd(request.getParameter("passwd"));
@@ -142,9 +139,9 @@ public class MainController extends HttpServlet {
 			
 			if(check) {
 				session.invalidate();
-				resultTexts = new String[]{"회원 정보 수정", "수정 성공", "로그인 하러가기", "/login"};
+				resultTexts = new String[]{"회원 정보 수정", "수정 성공", "로그인 하러가기", "/loginMemberForm.jsp"};
 			}else {
-				resultTexts = new String[]{"회원 정보 수정", "수정 실패", "회원 정보 수정하기", "/memberView"};
+				resultTexts = new String[]{"회원 정보 수정", "수정 실패", "회원 정보 수정하기", "/memberView.do"};
 			}
 			request.setAttribute("resultTexts", resultTexts);
 			nextPage = "/memberResult.jsp";
@@ -153,50 +150,45 @@ public class MainController extends HttpServlet {
 		//================================================
 		//================================================
 			
-		}else if(command.equals("/login")) {
-			nextPage = "/loginMemberForm.jsp";
-			
-			
-		}else if(command.equals("/loginProcess")) {
+		}else if(command.equals("/loginProcess.do")) {
 			boolean check = memberDAO.checkLogin(request.getParameter("memberID"), request.getParameter("passwd"));
 			String[] resultTexts = null;
 			if(check) {
 				session.setAttribute("loginID",request.getParameter("memberID"));
-				resultTexts = new String[]{"로그인", "로그인 성공", "home으로 이동하기", "/home"};
+				resultTexts = new String[]{"로그인", "로그인 성공", "home으로 이동하기", "/home.do"};
 			}else {
-				//out.println("<script type=\"text/javascript\">alert('아이디와 비밀번호가 일치하지 않습니다.');location.href='/login';</script>");
-				//return;
-				resultTexts = new String[]{"로그인", "로그인 실패", "로그인 하러가기", "/login"};
+				resultTexts = new String[]{"로그인", "로그인 실패", "로그인 하러가기", "/loginMemberForm.jsp"};
 			}
 			request.setAttribute("resultTexts", resultTexts);
 			nextPage = "/memberResult.jsp";
 			
 			
 			
-		}else if(command.equals("/logout")) {
+		}else if(command.equals("/logout.do")) {
 			session.invalidate();
-			response.sendRedirect("/home");
-			return;
+			String[] resultTexts = new String[]{"로그아웃", "로그아웃 성공", "home으로 이동하기", "/home.do"};
+			request.setAttribute("resultTexts", resultTexts);
+			nextPage = "/memberResult.jsp";
 		
 			
 		//================================================
 		//================================================
 			
-		}else if(command.equals("/boardList")) {
+		}else if(command.equals("/boardList.do")) {
 			request.setAttribute("boardList", boardDAO.getAllList());
 			nextPage = "/board/boardList.jsp";
 			
 			
 			
-		}else if(command.equals("/writeForm")) {
+		}else if(command.equals("/writeForm.do")) {
 			String[] resultTexts = null;
 			if(session.getAttribute("loginID") == null) {
-				resultTexts = new String[] {"게시글 작성", "로그인후 가능합니다", "로그인 하기", "/login"};
+				resultTexts = new String[] {"게시글 작성", "로그인후 가능합니다", "로그인 하기", "/loginMemberForm.jsp"};
 				request.setAttribute("resultTexts", resultTexts);
 				nextPage = "/memberResult.jsp";
 			}else if(memberDAO.getMember((String)session.getAttribute("loginID")).getName()==null){
 				session.invalidate();
-				resultTexts = new String[] {"게시글 작성", "로그인후 가능합니다", "로그인 하기", "/login"};
+				resultTexts = new String[] {"게시글 작성", "로그인후 가능합니다", "로그인 하기", "/loginMemberForm.jsp"};
 				request.setAttribute("resultTexts", resultTexts);
 				nextPage = "/memberResult.jsp";
 			}else {
@@ -205,13 +197,13 @@ public class MainController extends HttpServlet {
 			
 			
 			
-		}else if(command.equals("/write")) {
+		}else if(command.equals("/write.do")) {
 			String[] resultTexts = null;
 			if(session.getAttribute("loginID") == null) {
-				resultTexts = new String[] {"게시글 작성", "로그인후 가능합니다", "로그인 하기", "/login"};
+				resultTexts = new String[] {"게시글 작성", "로그인후 가능합니다", "로그인 하기", "/loginMemberForm.jsp"};
 			}else if(memberDAO.getMember((String)session.getAttribute("loginID")).getName()==null){
 				session.invalidate();
-				resultTexts = new String[] {"게시글 작성", "로그인후 가능합니다", "로그인 하기", "/login"};
+				resultTexts = new String[] {"게시글 작성", "로그인후 가능합니다", "로그인 하기", "/loginMemberForm.jsp"};
 			}else {
 				Board board = new Board();
 				board.setTitle(request.getParameter("title"));
@@ -219,9 +211,9 @@ public class MainController extends HttpServlet {
 				if(boardDAO.addBoard((String)session.getAttribute("loginID"), board)) {
 					ArrayList<Board> boardList = boardDAO.getAllList();
 					board = boardList.get(0);
-					resultTexts = new String[] {"게시글 작성", "작성 성공", "작성한 게시글 보기", "/boardView?num="+board.getbNum()};
+					resultTexts = new String[] {"게시글 작성", "작성 성공", "작성한 게시글 보기", "/boardView.do?num="+board.getbNum()};
 				}else {
-					resultTexts = new String[] {"게시글 작성", "작성 실패", "게시판 보기", "/boardList"};
+					resultTexts = new String[] {"게시글 작성", "작성 실패", "게시판 보기", "/boardList.do"};
 				}
 			}
 			
@@ -230,15 +222,15 @@ public class MainController extends HttpServlet {
 			
 			
 			
-		}else if(command.equals("/boardView")) {
+		}else if(command.equals("/boardView.do")) {
 			Object num = request.getParameter("num");
 			if(num==null || !Pattern.matches(numPattern, (String)num)) {
-				response.sendRedirect("/boardList");
+				response.sendRedirect("/boardList.do");
 				return;
 			}
 			Board board = boardDAO.getBoard(Integer.parseInt((String)num));
 			if(board.getbNum()==0) {
-				response.sendRedirect("/boardList");
+				response.sendRedirect("/boardList.do");
 				return;
 			}
 			boardDAO.hitUp(board.getbNum());
@@ -253,27 +245,27 @@ public class MainController extends HttpServlet {
 			
 			
 			
-		}else if(command.equals("/deleteBoard")) {
+		}else if(command.equals("/deleteBoard.do")) {
 			Object num = request.getParameter("bNum");
 			String[] resultTexts = null;
 			Board board = null;
 			if(num==null || !Pattern.matches(numPattern, (String)num)) {
-				resultTexts = new String[]{"게시글 삭제", "잘못된 번호입니다", "게시글 보러가기", "/boardList"};
+				resultTexts = new String[]{"게시글 삭제", "잘못된 번호입니다", "게시글 보러가기", "/boardList.do"};
 			}else if(session.getAttribute("loginID")==null) {
-				resultTexts = new String[]{"게시글 삭제", "로그인후 가능합니다", "로그인 하기", "/login"};
+				resultTexts = new String[]{"게시글 삭제", "로그인후 가능합니다", "로그인 하기", "/loginMemberForm.jsp"};
 			}else {
 				board = boardDAO.getBoard(Integer.parseInt((String)num));
 				if(board.getbNum()==0) {
-					resultTexts = new String[]{"게시글 삭제", "해당 게시글이 없습니다", "게시글 보러가기", "/boardList"};
+					resultTexts = new String[]{"게시글 삭제", "해당 게시글이 없습니다", "게시글 보러가기", "/boardList.do"};
 				}else if(!((String)session.getAttribute("loginID")).equals(board.getMemberID())) {
-					resultTexts = new String[]{"게시글 삭제", "본인의 글만 삭제할 수 있습니다", "로그인 하기", "/login"};
+					resultTexts = new String[]{"게시글 삭제", "본인의 글만 삭제할 수 있습니다", "로그인 하기", "/loginMemberForm.jsp"};
 				}
 			}
 			if(resultTexts == null) {
 				if(boardDAO.delete(Integer.parseInt((String)num))) {
-					resultTexts = new String[]{"게시글 삭제", "삭제 성공", "게시판 보러가기", "/boardList"};
+					resultTexts = new String[]{"게시글 삭제", "삭제 성공", "게시판 보러가기", "/boardList.do"};
 				}else{
-					resultTexts = new String[]{"게시글 삭제", "삭제 실패", "게시글 보러가기", "/boardView?num="+(String)num};
+					resultTexts = new String[]{"게시글 삭제", "삭제 실패", "게시글 보러가기", "/boardView.do?num="+(String)num};
 				}
 			}
 			request.setAttribute("resultTexts", resultTexts);
@@ -281,20 +273,20 @@ public class MainController extends HttpServlet {
 			
 			
 			
-		}else if(command.equals("/updateBoard")) {
+		}else if(command.equals("/updateBoard.do")) {
 			Object num = request.getParameter("bNum");
 			String[] resultTexts = null;
 			Board board = null;
 			if(num==null || !Pattern.matches(numPattern, (String)num)) {
-				resultTexts = new String[]{"게시글 업데이트", "잘못된 번호입니다", "게시글 보러가기", "/boardList"};
+				resultTexts = new String[]{"게시글 업데이트", "잘못된 번호입니다", "게시글 보러가기", "/boardList.do"};
 			}else if(session.getAttribute("loginID")==null) {
-				resultTexts = new String[]{"게시글 업데이트", "로그인후 가능합니다", "로그인 하기", "/login"};
+				resultTexts = new String[]{"게시글 업데이트", "로그인후 가능합니다", "로그인 하기", "/loginMemberForm.jsp"};
 			}else {
 				board = boardDAO.getBoard(Integer.parseInt((String)num));
 				if(board.getbNum()==0) {
-					resultTexts = new String[]{"게시글 업데이트", "해당 게시글이 없습니다", "게시글 보러가기", "/boardList"};
+					resultTexts = new String[]{"게시글 업데이트", "해당 게시글이 없습니다", "게시글 보러가기", "/boardList.do"};
 				}else if(!((String)session.getAttribute("loginID")).equals(board.getMemberID())) {
-					resultTexts = new String[]{"게시글 업데이트", "본인의 글만 수정할 수 있습니다", "로그인 하기", "/login"};
+					resultTexts = new String[]{"게시글 업데이트", "본인의 글만 수정할 수 있습니다", "로그인 하기", "/loginMemberForm.jsp"};
 				}
 			}
 			if(resultTexts == null) {
@@ -303,9 +295,9 @@ public class MainController extends HttpServlet {
 				board.setTitle((String)request.getParameter("title"));
 				board.setContent((String)request.getParameter("content"));
 				if(boardDAO.update(board)) {
-					resultTexts = new String[]{"게시글 업데이트", "업데이트 성공", "게시글 보러가기", "/boardView?num="+(String)num};
+					resultTexts = new String[]{"게시글 업데이트", "업데이트 성공", "게시글 보러가기", "/boardView.do?num="+(String)num};
 				}else{
-					resultTexts = new String[]{"게시글 업데이트", "업데이트 실패", "게시판 보러가기", "/boardList"};
+					resultTexts = new String[]{"게시글 업데이트", "업데이트 실패", "게시판 보러가기", "/boardList.do"};
 				}
 			}
 			request.setAttribute("resultTexts", resultTexts);
