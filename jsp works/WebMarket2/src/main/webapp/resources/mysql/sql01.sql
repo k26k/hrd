@@ -148,4 +148,8 @@ insert into board values(default, 'admin', 'test', '~~~', '2022-08-18', 0, 0, 'q
 
 delete from board WHERE num=3;
 
+show databases;
+use jspdb;
+use mysql;
+show tables;
 

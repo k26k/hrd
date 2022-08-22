@@ -78,7 +78,7 @@ public class BoardDAO implements Serializable{
 		ArrayList<Board> boardsList = new ArrayList<>();
 		try {
 			conn = JDBCUtil.getConnection();
-			String sql = "SELECT * from Board";
+			String sql = "SELECT * from Board ORDER BY num DESC";
 			pstmt = conn.prepareStatement(sql);
 			rst = pstmt.executeQuery();
 			while(rst.next()) {
@@ -136,14 +136,14 @@ public class BoardDAO implements Serializable{
 	
 	
 	public boolean delete(int num) {
-		Board board = new Board();
 		try {
 			conn = JDBCUtil.getConnection();
 			String sql = "DELETE FROM board WHERE num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			pstmt.executeUpdate();
-			return true;
+			if(pstmt.executeUpdate()>=1) {
+				return true;
+			}
 			
 		}catch(SQLException e) {
 			e.printStackTrace();

@@ -24,8 +24,7 @@
 	}
 	
 	function resize(obj){
-		obj.style.height = "1px";
-		obj.style.height = (50 + obj.scrollHeight)+"px";
+		obj.style.height = obj.scrollHeight-20+"px";
 	}
 </script>
 </head>
@@ -55,9 +54,8 @@
 			<div class="form-group row">
 				<label class="col-sm-2" for="content">내용</label>
 				<div class="col-sm-7" >
-					<textarea class="form-control bg-light" id="content" name="content" style="resize: none; min-height: 250px; height: 298px;" <c:choose><c:when test="${ sessionId ne board.id }">readonly</c:when> <c:otherwise>onkeydown='resize(this)' onkeyup='resize(this)'</c:otherwise></c:choose>><c:out value="${ board.content }"/></textarea>
+					<textarea class="form-control bg-light pb-5" id="content" name="content" style="resize: none; min-height: 300px; height: 300px; overflow-y: hidden;" <c:choose><c:when test="${ sessionId ne board.id }">readonly</c:when> <c:otherwise>onkeydown='resize(this)' onkeyup='resize(this)'</c:otherwise></c:choose>><c:out value="${ board.content }"/></textarea>
 				</div>
-				
 			</div>
 			<div class="form-group row">
 				<div class="col-sm-offset-2 col-sm-10">
