@@ -1,4 +1,4 @@
-package com.repository;
+package com.repository2;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.common.JDBCUtil;
-import com.repository.Board;
 
 public class BoardDAO {
 	private Connection conn = null;
@@ -46,40 +45,6 @@ public class BoardDAO {
 	}
 	
 	
-	public ArrayList<Board> getRecentList(){
-		ArrayList<Board> boardList = new ArrayList<>();
-		
-		try {
-			conn = JDBCUtil.getConnection();
-			String sql = "SELECT * FROM ( SELECT * FROM t_board ORDER BY regdate DESC ) WHERE ROWNUM <= 5";
-			pstmt = conn.prepareStatement(sql);
-			rst = pstmt.executeQuery();
-			
-			while(rst.next()) {
-				Board board = new Board();
-				board.setbNum(rst.getInt("bnum"));
-				board.setTitle(rst.getString("title"));
-				board.setContent(rst.getString("content"));
-				board.setRegDate(rst.getDate("regdate"));
-				board.setMemberID(rst.getString("memberid"));
-				board.setHit(rst.getInt("hit"));
-				boardList.add(board);
-			}
-			
-		}catch(SQLException e) {
-			e.printStackTrace();
-			
-		}finally {
-			JDBCUtil.close(conn, pstmt, rst);
-			
-		}
-		
-		return boardList;
-	}
-	
-	
-
-	
 	public int getBoardListSize(){ // 게시글 총 개수
 		try {
 			conn = JDBCUtil.getConnection();
@@ -103,18 +68,16 @@ public class BoardDAO {
 	}
 	
 	
-	
 	public ArrayList<Board> getBoardListPage(int startPage, int pageSize ){
 		ArrayList<Board> boardList = new ArrayList<>();
 		int startRow = (startPage-1)*pageSize+1;
 		
 		try {
 			conn = JDBCUtil.getConnection();
-			String sql = "SELECT * FROM ( SELECT ROWNUM rn, a.* FROM ( SELECT * FROM t_board ORDER BY regdate DESC ) a ) WHERE rn BETWEEN ? AND ?";
-//			String sql = "SELECT * FROM ( SELECT * FROM t_board ORDER BY regdate DESC ) WHERE ? <= ROWNUM and ROWNUM < ? ";
+			String sql = "SELECT * FROM t_board ORDER BY regdate DESC LIMIT ?, ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, startRow+pageSize-1);
+			pstmt.setInt(2, pageSize);
 			rst = pstmt.executeQuery();
 			
 			while(rst.next()) {
@@ -140,6 +103,36 @@ public class BoardDAO {
 	}
 	
 	
+	public ArrayList<Board> getRecentList(){
+		ArrayList<Board> boardList = new ArrayList<>();
+		
+		try {
+			conn = JDBCUtil.getConnection();
+			String sql = "SELECT * FROM t_board ORDER BY bnum DESC LIMIT 5";
+			pstmt = conn.prepareStatement(sql);
+			rst = pstmt.executeQuery();
+			
+			while(rst.next()) {
+				Board board = new Board();
+				board.setbNum(rst.getInt("bnum"));
+				board.setTitle(rst.getString("title"));
+				board.setContent(rst.getString("content"));
+				board.setRegDate(rst.getDate("regdate"));
+				board.setMemberID(rst.getString("memberid"));
+				board.setHit(rst.getInt("hit"));
+				boardList.add(board);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			
+		}finally {
+			JDBCUtil.close(conn, pstmt, rst);
+			
+		}
+		
+		return boardList;
+	}
 	
 	public Board getBoard(int bNum){
 		Board board = new Board();
@@ -156,7 +149,6 @@ public class BoardDAO {
 				board.setContent(rst.getString("content"));
 				board.setRegDate(rst.getDate("regdate"));
 				board.setMemberID(rst.getString("memberid"));
-				board.setHit(rst.getInt("hit"));
 			}
 			
 		}catch(SQLException e) {
@@ -174,7 +166,7 @@ public class BoardDAO {
 	public boolean addBoard(String memberID, Board board){
 		try {
 			conn = JDBCUtil.getConnection();
-			String sql = "INSERT INTO t_board(bnum, title, content, memberid, hit) VALUES(b_seq.NEXTVAL, ?, ?, ?, 0)";
+			String sql = "INSERT INTO t_board(title, content, memberid) VALUES(?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, board.getTitle());
 			pstmt.setString(2, board.getContent());
@@ -227,6 +219,7 @@ public class BoardDAO {
 	public boolean update(Board board) {
 		try {
 			conn = JDBCUtil.getConnection();
+			
 			String sql = "UPDATE t_board SET title = ?, content = ? WHERE bnum = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, board.getTitle());
@@ -250,6 +243,7 @@ public class BoardDAO {
 	public boolean hitUp(int bNum) {
 		try {
 			conn = JDBCUtil.getConnection();
+			
 			String sql = "SELECT hit FROM t_board WHERE bnum = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, bNum);
@@ -260,10 +254,9 @@ public class BoardDAO {
 				pstmt.setInt(1, rst.getInt("hit")+1);
 				pstmt.setInt(2, bNum);
 				pstmt.executeUpdate();
-			return true;
-			}else {
-				return false;
+				return true;
 			}
+
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -272,8 +265,8 @@ public class BoardDAO {
 			JDBCUtil.close(conn, pstmt, rst);
 			
 		}
+		
 		return false;
 	}
-	
 	
 }

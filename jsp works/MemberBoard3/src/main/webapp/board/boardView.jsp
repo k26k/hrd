@@ -40,7 +40,7 @@
 				<div class="row mx-0 col-lg-6 p-0">
 					<label class="col-4 my-2 col-form-label" for="name">글쓴이</label>
 					<div class="col-8 my-2">
-						<input type="text" id="name" name="name" class="form-control text-center" value= "${name}" <c:if test="${!writer}">readonly</c:if>>
+						<input type="text" id="name" name="name" class="form-control text-center" value= "${name}" readonly>
 					</div>
 				</div>
 				<div class="row mx-0 col-lg-6 p-0 ">

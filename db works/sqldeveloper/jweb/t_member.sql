@@ -31,7 +31,7 @@ DELETE t_member WHERE memberid = 'qweqwewq';
 UPDATE t_member SET memberid= 'ぜずそ', name = '098', passwd='ぜずそ' WHERE memberid = 'せぜず';
 
 
-SELECT * FROM t_board;
+SELECT * FROM t_board ORDER BY bnum DESC;
 
 INSERT INTO t_board(bnum, title, content, memberid)
 values(b_seq.NEXTVAL, '照寒', 'ぞしぉ', 'qwe');
@@ -62,4 +62,8 @@ DROP TABLE t_order;
 
 INSERT INTO t_order(name) values('ぞぞぞ');
 INSERT INTO t_order(name, joindate) values('ぞぞぞ2', TO_DATE('1997-01-01', 'yyyy-mm-dd'));
+
+SELECT * FROM ( SELECT ROWNUM rn, a.* FROM ( SELECT * FROM t_board ORDER BY regdate DESC ) a ) WHERE rn BETWEEN 11 AND 20; 
+
+SELECT ROWNUM rn, a.* FROM ( SELECT * FROM t_board ORDER BY regdate DESC ) a WHERE rn BETWEEN 1 AND 20; 
 

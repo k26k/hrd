@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt" %>
 <div class="text-center align-middle">
 	<div class="c-bg-mint c-c-white my-2">
 		<div class="row m-0">
@@ -30,7 +31,7 @@
 				</div>
 				<div class="row col-12 col-md-6 m-0">
 					<div class="col-6 p-2"><c:out value="${ board.hit }"/></div>
-					<div class="col-6 p-2"><c:out value="${ board.regDate }"/></div>
+					<div class="col-6 p-2"><fmt:formatDate value="${ board.regDate }" pattern="yyyy-MM-dd hh:mm:ss"/></div>
 				</div>
 			</div>
 		</c:forEach>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<!-- <bean id="tv" class="com.spring.polymorphism.SamsungTV" />
+	<bean id="tv2" class="com.spring.consinject.SamsungTV" >
+		<constructor-arg ref="sony" />
+	</bean>
+	<bean id="tv3" class="com.spring.consinject.LGTV" >
+	</bean>
+	
+	<bean id="sony" class="com.spring.consinject.SonySpeaker" /> -->
+	
+<!-- 	<bean id="tv4" class="com.spring.setterinject.SamsungTV">
+		<property name="speaker" ref="apples"></property>
+		<property name="price" value="20000"></property>
+	</bean>
+	<bean id="sonys" class="com.spring.setterinject.SonySpeaker"/>
+	<bean id="apples" class="com.spring.setterinject.AppleSpeaker"/> -->
+	
+	<context:component-scan base-package="com.spring.annotation"/>
+	<bean id="sony" class="com.spring.annotation.AppleSpeaker" />
+	
+</beans>

@@ -177,19 +177,19 @@ public class MainController extends HttpServlet {
 		}else if(command.equals("/boardList.do")) {
 			int boardsPerPage = 10;
 			try {
-				int startRow = 1;
+				int startPage = 1;
 				if(request.getParameter("page")!=null) {
-					startRow = Integer.parseInt(request.getParameter("page"));
+					startPage = Integer.parseInt(request.getParameter("page"));
 				}
-				request.setAttribute("boardList", boardDAO.getBoardListPage(startRow, boardsPerPage));
-				request.setAttribute("page", startRow);
+				request.setAttribute("boardList", boardDAO.getBoardListPage(startPage, boardsPerPage));
+				request.setAttribute("page", startPage);
 				
 			}catch(Exception e) {
 				response.sendRedirect("/boardList.do?page=1");
 				return;
 			}
 			
-			request.setAttribute("size", boardDAO.getBoardListSize()/boardsPerPage+1);
+			request.setAttribute("size", (boardDAO.getBoardListSize()-1)/boardsPerPage+1);
 			nextPage = "/board/boardList.jsp";
 
 			
