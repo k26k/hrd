@@ -22,9 +22,9 @@ public class UserServiceClient {
 		boolean login = userService.login(userVO);
 		
 		if(login) {
-			System.out.println("·Î±×ÀÎ ¼º°ø");
+			System.out.println("ë¡œê·¸ì¸ ì„±ê³µ");
 		}else{
-			System.out.println("·Î±×ÀÎ ½ÇÆĞ");
+			System.out.println("ë¡œê·¸ì¸ ì‹¤íŒ¨");
 		}
 		
 		container.close();

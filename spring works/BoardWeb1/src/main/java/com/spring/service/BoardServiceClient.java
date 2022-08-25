@@ -14,9 +14,9 @@ public class BoardServiceClient {
 //		BoardDAO boardDAO = (BoardDAO) container.getBean("boardDAO");
 //		
 //		BoardVO boardVO = new BoardVO();
-//		boardVO.setTitle("¾È³çÇÏ¼¼¿ä");
-//		boardVO.setWriter("ÇÏÀÌ¹Ìµğ¾î");;
-//		boardVO.setContent("ÁöÀÎ ÃßÃµÀ¸·Î °¡ÀÔÇß½À´Ï´Ù.");
+//		boardVO.setTitle("ì•ˆë…•í•˜ì„¸ìš”");
+//		boardVO.setWriter("í•˜ì´ë¯¸ë””ì–´");;
+//		boardVO.setContent("ì§€ì¸ ì¶”ì²œìœ¼ë¡œ ê°€ì…í–ˆìŠµë‹ˆë‹¤.");
 //		
 //		boardDAO.insert(boardVO);
 //		
@@ -28,9 +28,9 @@ public class BoardServiceClient {
 		BoardService boardService = (BoardService) container.getBean("boardService");
 		
 		BoardVO boardVO = new BoardVO();
-		boardVO.setTitle("¾È³çÇÏ¼¼¿ä");
-		boardVO.setWriter("Àå±×·¡");
-		boardVO.setContent("ÁöÀÎ ÃßÃµÀ¸·Î °¡ÀÔÇß½À´Ï´Ù.");
+		boardVO.setTitle("ì•ˆë…•í•˜ì„¸ìš”");
+		boardVO.setWriter("ì¥ê·¸ë˜");
+		boardVO.setContent("ì§€ì¸ ì¶”ì²œìœ¼ë¡œ ê°€ì…í–ˆìŠµë‹ˆë‹¤.");
 		
 		boardService.insert(boardVO);
 		

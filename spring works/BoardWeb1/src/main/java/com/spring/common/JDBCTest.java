@@ -7,7 +7,7 @@ public class JDBCTest {
 	public static void main(String[] args) {
 
 		Connection conn = JDBCUtil.getConnection();
-		System.out.println("DB¿¬°á ¼º°ø\n"+conn);
+		System.out.println("DBì—°ê²° ì„±ê³µ\n"+conn);
 		
 	}
 

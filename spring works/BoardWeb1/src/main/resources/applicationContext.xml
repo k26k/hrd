@@ -2,8 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
 	<context:component-scan base-package="com.spring"></context:component-scan>
 
@@ -11,5 +13,30 @@
 		<property name="userDAO" ref="userDAO"/>
 	</bean>
 	<bean id="userDAO" class="com.spring.user.UserDAO"/>
+
+	
+	<!-- 로그 설정 -->
+	<!-- <bean id="log" class="com.spring.common.LogAdvice" /> -->
+	<bean id="log" class="com.spring.common.Log4jAdvice" />
+	<aop:config>
+		<!--  
+		<aop:pointcut expression="로깅할 클래스" id="이름"/>
+		<aop:aspect ref="로깅 객체명">
+			<aop:before method="실행 메서드" pointcut-ref="aop:pointcut id"/>
+		</aop:aspect>
+		* com.spring..*Impl.*(..) = 모든 com.spring의 하위 패키지에서 Impl으로 끝나는 모든 클래스
+		-->
+		<!-- <aop:pointcut expression="execution(* com.spring..*Impl.*(..))" id="allPointcut"/>
+		<aop:aspect ref="log">
+			<aop:before method="printLog" pointcut-ref="allPointcut"/>
+		</aop:aspect> -->
+		
+		<aop:pointcut expression="execution(* com.spring..*Impl.get*(..))" id="allPointcut"/>
+		<aop:aspect ref="log">
+			<!-- <aop:before method="printLog" pointcut-ref="allPointcut"/> -->
+			<aop:before method="printLogging" pointcut-ref="allPointcut"/>
+		</aop:aspect>
+	</aop:config>
+
 
 </beans>
