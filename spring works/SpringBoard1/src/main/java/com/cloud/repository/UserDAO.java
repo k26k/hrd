@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import org.springframework.stereotype.Repository;
 
@@ -17,8 +16,8 @@ public class UserDAO {
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 	
-	private final String CHECK_USER = "SELECT * FROM users WHERE bno=? AND passwd=?";
-	private final String INSERT_USER = "INSERT INTO users(id, passwd, name, role) VALUES(?, ?, ?, user)";
+	private final String CHECK_USER = "SELECT * FROM users WHERE id=? AND passwd=?";
+	private final String INSERT_USER = "INSERT INTO users(id, passwd, name, role) VALUES(?, ?, ?, 'user')";
 	private final String UPDATE_USER = "UPDATE users SET id=?, passwd=?, name=?, role=? WHERE id=?";
 	private final String DELETE_USER = "DELETE FROM users WHERE id=?";
 	
@@ -42,7 +41,7 @@ public class UserDAO {
 		return false;
 	}
 	
-	public int addUser(userVO userVO) {
+	public int addUser(UserVO userVO) {
 		try {
 			conn = JDBCUtil.getConnection();
 			pstmt = conn.prepareStatement(INSERT_USER);
@@ -60,7 +59,7 @@ public class UserDAO {
 		return 0;
 	}
 	
-	public int updateUser(userVO userVO) {
+	public int updateUser(UserVO userVO) {
 		try {
 			conn = JDBCUtil.getConnection();
 			pstmt = conn.prepareStatement(UPDATE_USER);

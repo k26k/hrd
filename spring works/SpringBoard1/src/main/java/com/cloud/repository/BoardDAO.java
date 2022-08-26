@@ -22,6 +22,8 @@ public class BoardDAO {
 	private final String INSERT_BOARD = "INSERT INTO board(bno, title, writer, content) VALUES(seq.NEXTVAL, ?, ?, ?)";
 	private final String UPDATE_BOARD = "UPDATE board SET title=?, content=? WHERE bno=?";
 	private final String DELETE_BOARD = "DELETE FROM board WHERE bno=?";
+	private final String GET_BOARD_CNT = "SELECT cnt FROM board WHERE bno=?";
+	private final String SET_BOARD_CNT = "UPDATE board SET cnt=? WHERE bno=?";
 	
 	public BoardVO getBoard(int bno) {
 		BoardVO boardVO = new BoardVO();
@@ -119,6 +121,30 @@ public class BoardDAO {
 			JDBCUtil.close(conn, pstmt);
 		}
 		return 0;
+	}
+	
+	public boolean cntUp(int bno) {
+		try {
+			conn = JDBCUtil.getConnection();
+			pstmt = conn.prepareStatement(GET_BOARD_CNT);
+			pstmt.setInt(1, bno);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				int cnt = rs.getInt("cnt");
+				pstmt = conn.prepareStatement(SET_BOARD_CNT);
+				pstmt.setInt(1, cnt+1);
+				pstmt.setInt(2, bno);
+				if(pstmt.executeUpdate()>0) {
+					return true;
+				}
+			}
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally {
+			JDBCUtil.close(conn, pstmt, rs);
+		}
+		return false;
 	}
 	
 }

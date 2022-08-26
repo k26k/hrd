@@ -4,9 +4,10 @@
 .container{width: 100%; max-width: 1000px; margin: 50px auto; text-align: center;}
 h1{margin: 20px 5px;}
 h4{margin: 20px 5px;}
+hr{margin: 10px auto;}
 a{text-decoration: none; color: #55b;}
 img{border-radius: 10px; margin: 20px auto; display: block;}
-table{width: 100%; border-collapse: collapse; margin: 20px;}
+table{width: calc(100% - 40px); border-collapse: collapse; margin: 20px;}
 th, td{padding: 10px 5px; border: 1px solid #ccc; text-align: center; vertical-align: middle;}
 input{padding: 5px 10px; margin: 10px; border: 1px solid #ccc; border-radius: 5px;}
 textarea{padding: 5px 10px; margin: 10px; border: 1px solid #ccc; border-radius: 5px;}
@@ -14,4 +15,12 @@ textarea{padding: 5px 10px; margin: 10px; border: 1px solid #ccc; border-radius:
 .left{text-align: left; padding: 0px 20px;}
 .center{text-align: center;}
 .gray{background-color: #eee;}
+
 .max{width: calc(100% - 40px); margin: 0;}
+.max1000{width: 100%; max-width: 1000px; margin-left: auto; margin-right: auto;}
+.max800{width: 100%; max-width: 800px; margin-left: auto; margin-right: auto;}
+.max600{width: 100%; max-width: 600px; margin-left: auto; margin-right: auto;}
+.max400{width: 100%; max-width: 400px; margin-left: auto; margin-right: auto;}
+.max200{width: 100%; max-width: 200px; margin-left: auto; margin-right: auto;}
+
+.error{background-color: #f66; padding: 10px;}

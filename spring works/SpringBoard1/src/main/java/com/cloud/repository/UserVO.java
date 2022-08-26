@@ -3,7 +3,7 @@ package com.cloud.repository;
 import lombok.Data;
 
 @Data
-public class userVO {
+public class UserVO {
 	
 	private String id;
 	private String passwd;

@@ -39,4 +39,9 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.deleteBoard(bno);
 	}
 
+	@Override
+	public boolean cntUp(int bno) {
+		return boardDAO.cntUp(bno);
+	}
+
 }

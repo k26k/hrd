@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cloud.repository.UserDAO;
-import com.cloud.repository.userVO;
+import com.cloud.repository.UserVO;
 
 @Service("userService")
 public class UserServiceImpl implements UserService{
@@ -18,12 +18,12 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public int addUser(userVO userVO) {
+	public int addUser(UserVO userVO) {
 		return userDAO.addUser(userVO);
 	}
 
 	@Override
-	public int updateUser(userVO userVO) {
+	public int updateUser(UserVO userVO) {
 		return userDAO.updateUser(userVO);
 	}
 

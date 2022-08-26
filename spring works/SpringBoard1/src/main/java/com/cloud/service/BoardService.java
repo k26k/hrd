@@ -16,4 +16,6 @@ public interface BoardService {
 	
 	public int deleteBoard(int bno);
 	
+	public boolean cntUp(int bno);
+	
 }

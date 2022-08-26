@@ -28,6 +28,7 @@ public class BoardController {
 	
 	@RequestMapping("/boardView")
 	public String boardView(int num, Model model) {
+		boardService.cntUp(num);
 		BoardVO boardVO = boardService.getBoard(num);
 		model.addAttribute("board", boardVO);
 		return "board/boardView";
