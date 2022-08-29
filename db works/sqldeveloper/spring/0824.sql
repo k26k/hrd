@@ -15,6 +15,9 @@ VALUES(seq.NEXTVAL, '가입인사', '관리자', '잘 부탁드립니다.');
 SELECT * FROM board;
 
 
+DELETE board WHERE title IS NULL;
+
+
 
 CREATE TABLE users(
     id      VARCHAR2(20) PRIMARY KEY,
