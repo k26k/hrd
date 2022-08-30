@@ -55,7 +55,7 @@
 					<tr>
 						<td colspan="2">
 							<c:choose>
-								<c:when test="${ empty sessionId }">
+								<c:when test="${ !empty sessionId }">
 									<input type="button" value="수정" onclick="if(confirm('수정?')){boardForm.action='/boardUpdate';boardForm.submit();}">
 									<input type="button" value="삭제" onclick="if(confirm('삭제?')){boardForm.action='/boardDelete';boardForm.submit();}">
 									<a href="/boardList"><input type="button" value="목록"></a>

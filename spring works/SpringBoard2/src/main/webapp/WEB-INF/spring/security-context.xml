@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/security
+	       http://www.springframework.org/schema/security/spring-security.xsd
+	       http://www.springframework.org/schema/beans 
+	       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="customAccessDenied" class="com.cloud.security.CustomAccessDeniedHander"/>
+	<bean id="customLoginSuccess" class="com.cloud.security.CustomLoginSuccessHandler"/>
+	<bean id="customNoopPasswordEncoder" class="com.cloud.security.CustomNoopPasswordEncoder"/>
+
+	<security:http>
+		<security:intercept-url pattern="/sample/all" access="permitAll"/>
+		<security:intercept-url pattern="/sample/member" access="hasRole('ROLE_MEMBER')"/>
+		<security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')"/>
+		
+		<security:form-login login-page="/customLogin" authentication-success-handler-ref="customLoginSuccess" authentication-failure-url="/customLogin?error=%EC%95%84%EC%9D%B4%EB%94%94%2C%20%EB%B9%84%EB%B2%88%20%ED%99%95%EC%9D%B8%21"/>
+		<security:logout logout-url="/custumLogout" invalidate-session="true" logout-success-url="/customLogin?logout=%EB%A1%9C%EA%B7%B8%EC%95%84%EC%9B%83%20%EC%84%B1%EA%B3%B5!"/>
+		<!-- <security:access-denied-handler error-page="/accessError"/> -->
+		<security:access-denied-handler ref="customAccessDenied"/>
+	</security:http>
+	
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:jdbc-user-service data-source-ref="dataSource"/>
+			<security:password-encoder ref="customNoopPasswordEncoder"/>
+			<!-- <security:user-service>
+				<security:user name="member"  password="{noop}123" authorities="ROLE_USER, ROLE_MEMBER"/>
+				<security:user name="admin" password="{noop}123" authorities="ROLE_USER, ROLE_MEMBER, ROLE_ADMIN"/>
+			</security:user-service> -->
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
+</beans>

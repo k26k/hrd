@@ -5,23 +5,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Welcome~</title>
+<title>all</title>
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+<script type="text/javascript"></script>
 </head>
 <body>
 	<div class="container">
 		<section class="main">
-			<h1>메인 페이지 입니다.</h1>
+			<h1>all</h1>
 			<hr>
-			<img src="/resources/images/activity.jpg">
-			<h4>
-				<a href="/login">로그인 바로가기</a>
-				&nbsp;&nbsp;&nbsp;
-				<a href="/boardList">글 목록 바로가기</a>
-			</h4>
-			<h4><a href="/sample/all">ALL</a></h4>
-			<h4><a href="/sample/member">MEMBER</a></h4>
-			<h4><a href="/sample/admin">ADMIN</a></h4>
+			<h4>all</h4>
+			<p>
+				<a href="<c:out value="/customLogout"/>">
+					<input type="button" value="로그아웃">
+				</a>
+			</p>
 		</section>
 	</div>
 </body>
