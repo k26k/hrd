@@ -12,7 +12,7 @@ import com.cloud.mapper.BoardMapper;
 public class BoardServiceImpl implements BoardService {
 
 	@Autowired
-	public BoardMapper boardMapper;
+	private BoardMapper boardMapper;
 	
 	@Override
 	public ArrayList<BoardVO> getAllList() {

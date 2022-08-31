@@ -1,6 +1,5 @@
 package com.cloud.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.cloud.domain.UserVO;

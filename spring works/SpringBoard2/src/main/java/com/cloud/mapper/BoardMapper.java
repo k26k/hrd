@@ -2,8 +2,6 @@ package com.cloud.mapper;
 
 import java.util.ArrayList;
 
-import org.apache.ibatis.annotations.Mapper;
-
 import com.cloud.domain.BoardVO;
 
 

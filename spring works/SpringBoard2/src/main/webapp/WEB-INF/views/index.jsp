@@ -19,9 +19,10 @@
 				&nbsp;&nbsp;&nbsp;
 				<a href="/boardList">글 목록 바로가기</a>
 			</h4>
-			<h4><a href="/sample/all">ALL</a></h4>
-			<h4><a href="/sample/member">MEMBER</a></h4>
-			<h4><a href="/sample/admin">ADMIN</a></h4>
+			<h4><a href="/customLogin">커스텀 로그인</a></h4>
+			<h4><a href="/all">ALL</a></h4>
+			<h4><a href="/member">MEMBER</a></h4>
+			<h4><a href="/admin">ADMIN</a></h4>
 		</section>
 	</div>
 </body>
