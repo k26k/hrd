@@ -1,6 +1,8 @@
 package com.cloud.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.cloud.domain.BoardVO;
 import com.cloud.service.BoardService;
 
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 @Controller
 public class BoardController {
 	
@@ -16,18 +21,27 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@RequestMapping("/boardList")
-	public String boardList(Model model) {
+	public String boardList(Authentication authentication, Model model) {
+		if(authentication==null) {
+			log.info(authentication);
+		}else {
+			log.info(authentication.getPrincipal());
+		}
 		model.addAttribute("boardList", boardService.getAllList());
 		return "/board/boardList";
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@RequestMapping("/boardWrite")
 	public String boardWrite() {
 		return "/board/boardWrite";
 	}
 	
+
+	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value="/boardInsert", method = RequestMethod.POST)
-	public String boardInsert(BoardVO boardVO) {
+	public String boardInsert(BoardVO boardVO, Authentication auth) {
+		boardVO.setWriter(auth.getName());
 		boardService.addBoard(boardVO);
 		return "redirect:/boardList";
 	}
@@ -40,7 +54,8 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/boardUpdate", method = RequestMethod.POST)
-	public String boardUpdate(BoardVO boardVO, Model model) {
+	public String boardUpdate(BoardVO boardVO, Authentication auth) {
+		boardVO.setWriter(auth.getName());
 		boardService.updateBoard(boardVO);
 		return "redirect:/boardView?num="+boardVO.getBno();
 	}

@@ -5,16 +5,26 @@
 h1{margin: 20px 5px;}
 h4{margin: 20px 5px;}
 hr{margin: 10px auto;}
+p{margin: 10px auto;}
 a{text-decoration: none; color: #55b;}
 img{border-radius: 10px; margin: 20px auto; display: block;}
 table{width: calc(100% - 40px); border-collapse: collapse; margin: 20px;}
 th, td{padding: 10px 5px; border: 1px solid #ccc; text-align: center; vertical-align: middle;}
 input{padding: 5px 10px; margin: 10px; border: 1px solid #ccc; border-radius: 5px;}
 textarea{padding: 5px 10px; margin: 10px; border: 1px solid #ccc; border-radius: 5px;}
+.menu{margin: 10px 10px;}
+.menu li{margin: 5px 15px; display: inline-block; list-style: none; font-weight: bolder;}
+.menu a{padding: 3px 5px;}
+/* .menu{margin: 10px 10px; float: right; left: -50%; position: relative;}
+.menu li{margin: 5px 15px; float: left; left: 50%; position: relative; list-style: none; font-weight: bolder;}
+.menu a{padding: 3px 5px;} */
+.clear::after{clear: both; content: ""; display: block;}
 
 .left{text-align: left; padding: 0px 20px;}
 .center{text-align: center;}
 .gray{background-color: #eee;}
+
+
 
 .max{width: calc(100% - 40px); margin: 0;}
 .max1000{width: 100%; max-width: 1000px; margin-left: auto; margin-right: auto;}

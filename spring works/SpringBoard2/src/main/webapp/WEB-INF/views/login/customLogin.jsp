@@ -20,7 +20,7 @@
 		</c:if>
 		<div class="max600">
 			<div class="left">
-				<a href="/boardList"><input type="button" value="목록"></a>
+				<a href="/"><input type="button" value=" 홈 "></a>
 			</div>
 			<form action="/login" method="post">
 				<table>
@@ -40,7 +40,6 @@
 						</td>
 					</tr>
 				</table>
-				
 				<input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">
 			</form>
 		</div>

@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+import com.cloud.domain.MemberVO;
+
 import lombok.extern.log4j.Log4j;
 
 @Log4j
@@ -21,17 +23,19 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 			Authentication auth) throws IOException, ServletException {
 		
 		log.warn("loginSuccess");
-		List<String> roleNames = new ArrayList<>();
-		String username = "";
-		String password = "";
 		
+		MemberVO memberVO = ((CustomUser) auth.getPrincipal()).getMemberVO();
+		
+				List<String> roleNames = new ArrayList<>();
 		auth.getAuthorities().forEach(authority -> {
 			roleNames.add(authority.getAuthority());
 		});
 		
 		log.warn("ROLE NAMES: "+roleNames);
-		log.warn("USERNAME: "+username);
-		log.warn("PASSWORD: "+password);
+		log.warn("USERNAME: "+memberVO.getUsername());
+		log.warn("PASSWORD: "+memberVO.getUserpw());
+		
+		
 		
 		if(roleNames.contains("ROLE_ADMIN")) {
 			response.sendRedirect("/admin");

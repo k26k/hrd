@@ -2,6 +2,7 @@ package com.cloud.mapper;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.cloud.domain.MemberAuthVO;
 import com.cloud.domain.MemberVO;
 
 

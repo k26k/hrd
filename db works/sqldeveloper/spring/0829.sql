@@ -1,7 +1,7 @@
 CREATE TABLE tbl_board(
     bno     NUMBER(5) PRIMARY KEY,
     title   VARCHAR2(200),
-    writer  VARCHAR2(20),
+    writer  VARCHAR2(100),
     content VARCHAR2(2000),
     regdate DATE DEFAULT SYSDATE,
     cnt     NUMBER(5) DEFAULT 0
@@ -39,6 +39,7 @@ SELECT * FROM tbl_users;
 
 SELECT COUNT(*) FROM dual WHERE EXISTS(select 1 from tbl_users WHERE id='test');
     
+ALTER TABLE tbl_board MODIFY writer VARCHAR2(100);
     
 
 

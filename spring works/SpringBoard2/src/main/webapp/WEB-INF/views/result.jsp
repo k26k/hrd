@@ -19,6 +19,9 @@
 				<a href="<c:out value="${ link }"/>">
 					<input type="button" value="<c:out value="${ button }"/>">
 				</a>
+				<a href="/">
+					<input type="button" value="홈">
+				</a>
 			</p>
 		</section>
 	</div>

@@ -1,10 +1,9 @@
 package com.cloud.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import com.cloud.service.MemberService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -30,4 +29,17 @@ public class SampleController {
 		return "/sample/admin";
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')")
+	@GetMapping("/annoMember")
+	public String doMember2() {
+		log.info("member");
+		return "/sample/member";
+	}
+	
+	@Secured({"ROLE_ADMIN"})
+	@GetMapping("/annoAdmin")
+	public String doAdmin2() {
+		log.info("admin");
+		return "/sample/admin";
+	}
 }

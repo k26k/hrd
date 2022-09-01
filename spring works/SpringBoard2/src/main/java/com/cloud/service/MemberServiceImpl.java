@@ -24,7 +24,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int addMember(MemberVO memberVO) {
-		return 0;
+		return memderMapper.addMember(memberVO);
 	}
 
 	@Override

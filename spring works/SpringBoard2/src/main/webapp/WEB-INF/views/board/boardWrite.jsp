@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,10 +16,11 @@
 				if((i.getElementsByTagName("input").length>0 && !i.getElementsByTagName("input")[0].value)
 						||(i.getElementsByTagName("textarea").length>0 && !i.getElementsByTagName("textarea")[0].value)){
 					alert(labels[0].innerHTML+"을(를) 입력해주세요");
-					return false
+					return false;
 				}
 			}
 		}
+		return true;
 	}
 </script>
 <!-- <script type="text/javascript">
@@ -41,33 +43,24 @@
 <body>
 	<div class="container">
 		<h1>글 쓰기</h1>
-		
-		<c:choose>
-			<c:when test="${ empty sessionId }">
-				<h4><a href="login" >Log-in</a></h4>
-			</c:when>
-			<c:otherwise>
-				<h4><a href="logout">Log-out</a></h4>
-			</c:otherwise>
-		</c:choose>
+		<jsp:include page="/WEB-INF/views/menu.jsp"/>
 		<hr>
 		<div class="max800">
 			<div class="left">
-				<a href="/boardList"><input type="button" value="목록"></a>
 			</div>
-			<form action=/boardInsert method="post" onsubmit="return checkForm()">
+			<form action=/boardInsert method="post" onsubmit="return checkForm()==true">
 				<table>
 					<tr>
 						<td class="gray"><label for="title">제목</label></td>
-						<td><input type="text" class="max" id="title" name="title" value="<c:out value="${ board.title }"/>"></td>
+						<td><input type="text" class="max" id="title" name="title" ></td>
 					</tr>
 					<tr>
 						<td class="gray"><label for="writer">작성자</label></td>
-						<td><input type="text" class="max" id="writer" name="writer" value="<c:out value="${ board.title }"/>"></td>
+						<td><input type="text" class="max" id="writer" name="writer" value='<security:authentication property="principal.Username"/>' disabled></td>
 					</tr>
 					<tr>
 						<td class="gray"><label for="content">내용</label></td>
-						<td><textarea class="max" id="content" name="content" rows="7"><c:out value="${ board.content }"/></textarea></td>
+						<td><textarea class="max" id="content" name="content" rows="7" style="resize: none;"></textarea></td>
 					</tr>
 					<tr>
 						<td colspan="2">
@@ -76,6 +69,7 @@
 						</td>
 					</tr>
 				</table>
+				<input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">
 			</form>
 		</div>
 	</div>

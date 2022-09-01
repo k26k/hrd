@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<c:set var="p"><security:authentication property="principal"/></c:set>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,14 +14,7 @@
 <body>
 	<div class="container">
 		<h1>글 목록</h1>
-		<c:choose>
-			<c:when test="${ empty sessionId }">
-				<h4><a href="login" >Log-in</a></h4>
-			</c:when>
-			<c:otherwise>
-				<h4><c:out value="${ sessionId }님 환영합니다."/><a href="logout">&nbsp;&nbsp;&nbsp;Log-out</a></h4>
-			</c:otherwise>
-		</c:choose>
+		<jsp:include page="/WEB-INF/views/menu.jsp"/>
 		<hr>
 		<div class="max1000">
 			<div class="left">

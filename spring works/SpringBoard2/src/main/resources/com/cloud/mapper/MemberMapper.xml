@@ -8,7 +8,7 @@
 		<id property="userid" column="userid"/>
 		<result property="userid" column="userid"/>
 		<result property="userpw" column="userpw"/>
-		<result property="username" column="userame"/>
+		<result property="username" column="username"/>
 		<result property="enabled" column="enabled"/>
 		<result property="regDate" column="regdate"/>
 		<result property="updateDate" column="updatedate"/>
@@ -41,13 +41,12 @@
 		WHERE m.userid = #{userid}
 	</select>
 	
-	<!-- <insert id="addMember" parameterMap="memberMap">
-		SELECT m.userid, userpw, username, enabled, regdate, updatedate, auth  FROM tbl_member m 
-		LEFT OUTER JOIN tbl_member_auth ma ON m.userid = ma.userid 
-		WHERE m.userid = 'user00';
+	<insert id="addMember" parameterType="com.cloud.domain.MemberVO">
+		INSERT INTO tbl_member(userid, userpw, username) 
+		VALUES(#{userid}, #{userpw}, #{username})
 	</insert>
 	
-	<update id="updateMember" parameterMap="memberMap">
+	<!-- <update id="updateMember" parameterMap="memberMap">
 		SELECT m.userid, userpw, username, enabled, regdate, updatedate, auth  FROM tbl_member m 
 		LEFT OUTER JOIN tbl_member_auth ma ON m.userid = ma.userid 
 		WHERE m.userid = 'user00';

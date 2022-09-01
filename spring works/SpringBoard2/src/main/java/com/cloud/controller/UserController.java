@@ -10,7 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cloud.service.UserService;
 
-@Controller
+//@Controller
 public class UserController {
 
 	@Autowired

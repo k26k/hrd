@@ -12,7 +12,7 @@
 </script>
 </head>
 <body>
-	<div class="container">
+	<div class="container" style="display: none;">
 		<h1>로그아웃</h1>
 		<hr>
 		<c:if test="${ !empty error }">
@@ -23,7 +23,7 @@
 		</c:if>
 		<div class="max600">
 			<div class="left">
-				<a href="/boardList"><input type="button" value="목록"></a>
+				<a href="/"><input type="button" value="홈"></a>
 			</div>
 			<form action="/custumLogout" method="post" name="logout">
 				<table>

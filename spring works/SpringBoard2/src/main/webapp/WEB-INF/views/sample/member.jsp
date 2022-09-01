@@ -16,6 +16,9 @@
 			<hr>
 			<h4>member</h4>
 			<p>
+				<a href="<c:out value="/"/>">
+					<input type="button" value="홈">
+				</a>
 				<a href="<c:out value="/customLogout"/>">
 					<input type="button" value="로그아웃">
 				</a>
