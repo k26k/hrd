@@ -7,37 +7,7 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-<script type="text/javascript">
-	function checkMember() {
-		if(!userid.value){
-			alert("userid x");
-			userid.focus();
-			return false;
-		}
-		if(!userpw.value){
-			alert("userpw x");
-			userpw.focus();
-			return false;
-		}
-		if(!userpw2.value){
-			alert("userpw2 x");
-			userpw2.focus();
-			return false;
-		}
-		if(userpw.value!=userpw2.value){
-			alert("userpw != userpw2");
-			userpw2.focus();
-			return false;
-		}
-		if(!username.value){
-			alert("username x");
-			username.focus();
-			return false;
-		}
-		
-		return true;
-	}
-</script>
+<script src="/resources/javascript/checkMember.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -73,7 +43,7 @@
 						<td colspan="2">
 							<input type="submit" value="가입">
 							<input type="reset" value="취소">
-							<a href="/customLogin"><input type="button" value="로그인"></a>
+							<!-- <a href="/customLogin"><input type="button" value="로그인"></a> -->
 						</td>
 					</tr>
 				</table>

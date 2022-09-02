@@ -14,6 +14,7 @@
 <body>
 	<div class="container" style="display: none;">
 		<h1>로그아웃</h1>
+		<jsp:include page="/WEB-INF/views/menu.jsp"/>
 		<hr>
 		<c:if test="${ !empty error }">
 			<h4 class="error"><c:out value="${ error }"/></h4>

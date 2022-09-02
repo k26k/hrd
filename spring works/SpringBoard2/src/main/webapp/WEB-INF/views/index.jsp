@@ -13,7 +13,7 @@
 		<section class="main">
 			<h1>메인 페이지 입니다.</h1>
 			<hr>
-			<img src="/resources/images/activity.jpg">
+			<img src="/resources/images/activity.jpg" class="max400">
 			<jsp:include page="/WEB-INF/views/menu.jsp"/>
 			<br>
 			<h4><a href="/all">ALL</a></h4>

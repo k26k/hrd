@@ -5,7 +5,7 @@
 <div style="width: auto;">
 	<nav class="center clear">
 		<security:authorize access="isAuthenticated()">
-			<p><span style="color: #e94;"><security:authentication property="principal.Username"/></span>님 안녕하세요.</p>
+			<p><span style="color: #e94;"><security:authentication property="principal.memberVO.username"/></span>님 안녕하세요.</p>
 			<ul class="menu">
 				<li><a href="/customLogout">로그아웃</a></li>
 				<li><a href="/showMember">회원정보</a></li>

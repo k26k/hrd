@@ -19,11 +19,12 @@ public class CommonController {
 	}
 	
 	@GetMapping("/customLogin")
-	public String customLogin(String error, String logout, Model model) {
+	public String customLogin(String error, String logout, String result, Model model) {
 		log.info("error: "+error);
 		log.info("logout: "+logout);
 		model.addAttribute("error", error);
 		model.addAttribute("logout", logout);
+		model.addAttribute("result", result);
 		return "/login/customLogin";
 	}
 	

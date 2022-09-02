@@ -42,7 +42,7 @@ INSERT INTO authorities(username, authority) VALUES('admin00', 'ROLE_ADMIN');
 
 SELECT * FROM users;
 SELECT * FROM authorities;
-SELECT * FROM tbl_member;
+SELECT * FROM tbl_member ORDER BY updatedate DESC; 
 SELECT * FROM tbl_member_auth;
 
 DELETE FROM tbl_member;
@@ -53,10 +53,14 @@ ALTER TABLE users DROP COLUMN enable;
 UPDATE authorities SET authority='ROLE_USER' WHERE authority='RULE_USER';
 UPDATE authorities SET authority='ROLE_MEMBER' WHERE authority='RULE_MEMBER';
 UPDATE authorities SET authority='ROLE_ADMIN' WHERE authority='RULE_ADMIN';
-
+UPDATE tbl_member 
+SET userid='user00', username='user00-up', updatedate=SYSDATE
+WHERE userid = 'user00';
 
 SELECT * FROM tbl_member m LEFT JOIN tbl_member_auth ma ON m.userid=ma.userid WHERE m.userid = 'user00';
 
 SELECT m.userid, userpw, username, enabled, regdate, updatedate, auth  FROM tbl_member m 
 LEFT OUTER JOIN tbl_member_auth ma ON m.userid = ma.userid 
 WHERE m.userid = 'user00';
+
+ALTER TABLE tbl_member_auth MODIFY CONSTRAINT fk_member_auth ON UPDATE CASCADE;

@@ -12,6 +12,6 @@ public interface MemberAuthMapper {
 	
 	public int updateMemberAuth(MemberAuthVO memberAuthVO, @Param("oldid") String oldid);
 	
-	public int deleteMemberAuth(MemberAuthVO memberAuthVO);
+	public int deleteMemberAuth(@Param("userid") String userid);
 
 }

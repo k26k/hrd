@@ -13,6 +13,6 @@ public interface MemberAuthService {
 	
 	public int updateMemberAuth(MemberAuthVO memberVO, String oldid);
 	
-	public int deleteMemberAuth(MemberAuthVO memberAuthVO);
+	public int deleteMemberAuth(String userid);
 		
 }

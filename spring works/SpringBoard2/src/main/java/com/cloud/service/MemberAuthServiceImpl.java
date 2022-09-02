@@ -7,6 +7,8 @@ import com.cloud.domain.MemberAuthVO;
 import com.cloud.domain.MemberVO;
 import com.cloud.mapper.MemberAuthMapper;
 
+import lombok.extern.log4j.Log4j;
+
 @Service
 public class MemberAuthServiceImpl implements MemberAuthService {
 
@@ -25,7 +27,7 @@ public class MemberAuthServiceImpl implements MemberAuthService {
 
 	@Override
 	public int addMemberAuth(MemberAuthVO memberAuthVO) {
-		return memberAuthMapper.addMemberAuth(memberAuthVO);
+		 return memberAuthMapper.addMemberAuth(memberAuthVO);
 	}
 
 	@Override
@@ -34,8 +36,8 @@ public class MemberAuthServiceImpl implements MemberAuthService {
 	}
 
 	@Override
-	public int deleteMemberAuth(MemberAuthVO memberAuthVO) {
-		return 0;
+	public int deleteMemberAuth(String userid) {
+		return memberAuthMapper.deleteMemberAuth(userid);
 	}
 
 }

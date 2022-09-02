@@ -1,5 +1,8 @@
 package com.cloud.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +19,12 @@ public class MemberServiceImpl implements MemberService {
 	public int checkMember(String userid, String passwd) {
 		return 0;
 	}
-
+	
+	@Override
+	public List<MemberVO> getMemberList() {
+		return memderMapper.getMemberList();
+	}
+	
 	@Override
 	public MemberVO getMember(String userid) {
 		return memderMapper.getMember(userid);
@@ -28,13 +36,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int updateMember(MemberVO memberVO, String oldid) {
-		return 0;
+	public int updateMember(Map<String, Object> map) {
+		return memderMapper.updateMember(map);
 	}
 
 	@Override
 	public int deleteMember(String userid) {
-		return 0;
+		return memderMapper.deleteMember(userid);
 	}
 
 }

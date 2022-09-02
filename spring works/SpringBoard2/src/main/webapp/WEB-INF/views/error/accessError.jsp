@@ -14,7 +14,6 @@
 			<h1>accessError</h1>
 			<hr>
 			<h4><c:out value="${ msg }"/></h4>
-			<h4><c:out value="${ msg }"/></h4>
 			<p>
 				<a href="/">
 					<input type="button" value="홈으로">

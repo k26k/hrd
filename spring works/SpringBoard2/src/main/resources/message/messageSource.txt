@@ -1,0 +1,10 @@
+#login.jsp
+
+message.user.login.title=로그인
+message.user.login.id=아이디
+message.user.login.password=비밀번호
+message.user.login.loginbtn=로그인
+message.user.login.resetbtn=취소
+
+message.user.login.en=영어
+message.user.login.ko=한국어

@@ -13,6 +13,8 @@
 	<div class="container">
 		<section class="main">
 			<h1><c:out value="${ title }"/></h1>
+			<jsp:include page="/WEB-INF/views/menu.jsp"/>
+			<br>
 			<hr>
 			<h4><c:out value="${ text }"/></h4>
 			<p>
