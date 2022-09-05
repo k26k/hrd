@@ -18,10 +18,15 @@
         <property name="defaultLocale" value="ko"/>
     </bean>
 
-	<!-- <mvc:interceptors>
-		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-			<property name="paramName" value="language"/>
-		</bean>
+	
+<!-- 	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean id="lacal" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+				<property name="paramName" value="language"/>
+			</bean>
+		</mvc:interceptor>
 	</mvc:interceptors> -->
+	
 
 </beans>

@@ -36,9 +36,10 @@
 	</select> -->
 	
 	<select id="getMemberList" resultMap="memberMap">
-		SELECT m.userid, userpw, username, enabled, regdate, updatedate, auth  FROM tbl_member m 
+		SELECT m.userid, userpw, username, enabled, regdate, updatedate, auth  
+		FROM tbl_member m 
 		LEFT OUTER JOIN tbl_member_auth ma ON m.userid = ma.userid
-		ORDER BY m.updatedate DESC
+		ORDER BY ma.auth, m.updatedate DESC
 	</select>
 	
 	<select id="getMember" resultMap="memberMap">
@@ -57,6 +58,7 @@
 		SET userid=#{map.m.userid}, userpw=#{map.m.userpw}, username=#{map.m.username}, enabled=#{map.m.enabled}, updatedate=SYSDATE
 		WHERE userid = #{map.oldid}
 	</update>
+	
 	<!-- 
 	<delete id="deleteMember" parameterType="String">
 		SELECT m.userid, userpw, username, enabled, regdate, updatedate, auth  FROM tbl_member m 

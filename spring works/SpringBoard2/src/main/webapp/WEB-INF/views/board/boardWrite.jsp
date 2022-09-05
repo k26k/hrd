@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>글 쓰기</title>
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	function checkForm() {
 		for(let i of document.getElementsByTagName("form")[0].getElementsByTagName("tr")){
 			let labels = i.getElementsByTagName("label")
@@ -22,23 +22,24 @@
 		}
 		return true;
 	}
-</script>
-<!-- <script type="text/javascript">
+</script> -->
+<script type="text/javascript">
 	function checkForm() {
 		if(!title.value){
 			alert("제목을 입력해주세요");
-			return false
+			return false;
 		}
 		if(!writer.value){
 			alert("작성자를 입력해주세요");
-			return false
+			return false;
 		}
 		if(!content.value){
 			alert("내용을 입력해주세요");
-			return false
+			return false;
 		}
+		return true;
 	}
-</script> -->
+</script>
 </head>
 <body>
 	<div class="container">
@@ -48,7 +49,7 @@
 		<div class="max800">
 			<div class="left">
 			</div>
-			<form action=/boardInsert method="post" onsubmit="return checkForm()==true">
+			<form action=/boardInsert method="post" enctype="multipart/form-data" onsubmit="return checkForm()==true">
 				<table>
 					<tr>
 						<td class="gray"><label for="title">제목</label></td>
@@ -61,6 +62,10 @@
 					<tr>
 						<td class="gray"><label for="content">내용</label></td>
 						<td><textarea class="max" id="content" name="content" rows="7" style="resize: none;"></textarea></td>
+					</tr>
+					<tr>
+						<td class="gray"><label for="uploadFile">업로드</label></td>
+						<td><input type="file" class="max" id="uploadFile" name="uploadFile"></td>
 					</tr>
 					<tr>
 						<td colspan="2">

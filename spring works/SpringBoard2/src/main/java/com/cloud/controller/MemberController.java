@@ -8,8 +8,10 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.core.GrantedAuthorityDefaults;
 import org.springframework.security.core.AuthenticatedPrincipal;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,20 +62,30 @@ public class MemberController {
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/showMember")
 	public String showMember(Authentication auth, Model model) {
-		log.info(((CustomUser)auth.getPrincipal()).getMemberVO());
-		//model.addAttribute("memberVO", auth.getPrincipal());
+		//log.info(((CustomUser)auth.getPrincipal()).getMemberVO());
+		model.addAttribute("memberVO", ((CustomUser)auth.getPrincipal()).getMemberVO());
 		return "/member/showMember";
 	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/showMember")
-	public String showMemberAdmin() {
+	public String showMemberAdmin(String userid, Model model) {
+		model.addAttribute("memberVO", memberService.getMember(userid));
 		return "/member/showMember";
 	}
 	
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/updateMemberProcess")
-	public String updateMemberProcess(Authentication auth, MemberVO memberVO, String oldid, String[] authList, HttpSession session) {
+	public String updateMemberProcess(Authentication auth, MemberVO memberVO, String oldid, String oldpw, String[] authList, HttpSession session) {
+//		본인 정보 수정인지 확인
+		if(!auth.getName().equals(oldid)) {
+//			본인 정보 수정이 아닌 경우 어드민인지 확인
+			if(!auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+//				본인 정보 수정이 아니고 어드민도 아니면 에러 반환
+				return "redirect:/showMember?error=1";
+			}
+		}
+		
 		List<MemberAuthVO> memberAuthVOList = new ArrayList<MemberAuthVO>();
 		for(String mAuth:authList) {
 			MemberAuthVO memberAuthVO = new MemberAuthVO();
@@ -81,8 +93,10 @@ public class MemberController {
 			memberAuthVO.setAuth(mAuth);
 			memberAuthVOList.add(memberAuthVO);
 		}
-		String memberVOPwE = passwordEncoder.encode(memberVO.getUserpw());
-		memberVO.setUserpw(memberVOPwE);
+		if(!memberVO.getUserpw().equals(oldpw)) {
+			String memberVOPwE = passwordEncoder.encode(memberVO.getUserpw());
+			memberVO.setUserpw(memberVOPwE);
+		}
 		Map<String, Object> map = new HashMap<>();
 		map.put("m", memberVO);
 		map.put("oldid", oldid);
@@ -95,13 +109,15 @@ public class MemberController {
 			memberAuthService.addMemberAuth(memberAuthVO);
 		}
 		
+		log.info(auth.getAuthorities());
+		
 		if(check<1) {
 			return "redirect:/showMember?error=1";
-		}else if(auth.getAuthorities().contains("ROLE_ADMIN")) {
-			return "redirect:/memberList";
-		}else {
+		}else if(auth.getName().equals(oldid)) {
 			session.invalidate();
 			return "redirect:/customLogin?result=1";
+		}else {
+			return "redirect:/memberList";
 		}
 	}
 	

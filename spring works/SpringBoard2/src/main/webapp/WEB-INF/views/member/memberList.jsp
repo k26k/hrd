@@ -20,20 +20,28 @@
 			<table>
 				<thead>
 					<tr class="gray">
+						<th>번호</th>
 						<th>아이디</th>
 						<th>이름</th>
 						<th>가입일</th>
 						<th>수정일</th>
+						<th>권한</th>
 						<th>수정</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="memberVO" items="${ memberList }">
+					<c:forEach var="memberVO" items="${ memberList }" varStatus="status">
 						<tr>
+							<td><c:out value="${ status.count }"/></td>
 							<td><c:out value="${ memberVO.userid }"/></td>
 							<td><c:out value="${ memberVO.username }"/></td>
 							<td><fmt:formatDate value="${ memberVO.regDate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 							<td><fmt:formatDate value="${ memberVO.updateDate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+							<td>
+								<c:forEach var="memberAuthVO" items="${ memberVO.memberAuthVoList }" varStatus="status">
+									<c:out value="[${memberAuthVO.auth}]"/>
+								</c:forEach>
+							</td>
 							<td>
 								<form action="/showMember" method="post">
 									<input type="hidden" name="userid" value='<c:out value="${ memberVO.userid }"/>' >

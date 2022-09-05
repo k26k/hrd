@@ -54,9 +54,6 @@
 		<c:out value="${ memberVO }"/>
 		 --%>
 		<div class="max600">
-			<div class="left">
-				<a href="/"><input type="button" value="홈"></a>
-			</div>
 			<form action="/updateMemberProcess" method="post" onsubmit="return (checkMember()==true)">
 				<table>
 					<tr>
@@ -65,11 +62,11 @@
 					</tr>
 					<tr>
 						<td class="gray"><label for="userpw">비밀번호</label></td>
-						<td><input type="text" class="max" id="userpw" name="userpw" ></td>
+						<td><input type="text" class="max" id="userpw" name="userpw" value='<c:out value="${ memberVO.userpw }"/>' ></td>
 					</tr>
 					<tr>
 						<td class="gray"><label for="userpw2">비밀번호 확인</label></td>
-						<td><input type="text" class="max" id="userpw2" name="userpw2" ></td>
+						<td><input type="text" class="max" id="userpw2" name="userpw2" value='<c:out value="${ memberVO.userpw }"/>' ></td>
 					</tr>
 					<tr>
 						<td class="gray"><label for="username">이름</label></td>
@@ -103,6 +100,7 @@
 					</tr>
 				</table>
 				<input type="hidden" id="oldid" name="oldid" value="<c:out value="${ memberVO.userid }"/>" >
+				<input type="hidden" id="oldpw" name="oldpw" value='<c:out value="${ memberVO.userpw }"/>' >
 				<input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">
 			</form>
 		</div>

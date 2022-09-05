@@ -1,5 +1,8 @@
 package com.cloud.controller;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -7,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cloud.domain.BoardVO;
 import com.cloud.service.BoardService;
@@ -40,11 +44,29 @@ public class BoardController {
 
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value="/boardInsert", method = RequestMethod.POST)
-	public String boardInsert(BoardVO boardVO, Authentication auth) {
+	public String boardInsert(BoardVO boardVO, Authentication auth) throws IllegalAccessException, IOException{
+		MultipartFile uploadFile = boardVO.getUploadFile();
+		log.info(boardVO);
+		if(!uploadFile.isEmpty()) {
+			String fileName = uploadFile.getOriginalFilename();
+			log.info(fileName);
+			String filePath = "C:\\dev\\hrd\\spring works\\SpringBoard2\\src\\main\\webapp\\upload\\";
+			File file = new File(filePath+fileName);
+			log.info(file);
+			uploadFile.transferTo(file);
+		}
 		boardVO.setWriter(auth.getName());
 		boardService.addBoard(boardVO);
 		return "redirect:/boardList";
 	}
+	
+//	@PreAuthorize("isAuthenticated()")
+//	@RequestMapping(value="/boardInsert", method = RequestMethod.POST)
+//	public String boardInsert(BoardVO boardVO, Authentication auth) {
+//		boardVO.setWriter(auth.getName());
+//		boardService.addBoard(boardVO);
+//		return "redirect:/boardList";
+//	}
 	
 	@RequestMapping("/boardView")
 	public String boardView(int num, Model model) {

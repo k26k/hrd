@@ -29,9 +29,12 @@
 	/>
 	
 	<interceptors>
-	    <beans:bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-	        <beans:property name="paramName" value="language" />
-	    </beans:bean>
+		<interceptor>
+			<mapping path="/**"/>
+			<beans:bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+	        	<beans:property name="paramName" value="language" />
+	    	</beans:bean>
+		</interceptor>
 	</interceptors>
 	
 	<context:component-scan base-package="com.cloud" />
