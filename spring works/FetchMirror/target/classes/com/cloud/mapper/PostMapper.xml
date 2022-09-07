@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloud.mapper.PostMapper">
+
+	<!-- 
+	
+	private int boardnum;
+	private int postnum;
+	private String title;
+	private String id;
+	private String content; 
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date writedate;
+	private int hitcount;
+
+	public ArrayList<PostVO> getPostList(int boardnum);
+	
+	public PostVO getPost(int postnum);
+	
+	public void addPost(PostVO postVO);
+	
+	public void updatePost(PostVO postVO);
+	
+	public void deletePost(int postnum);
+
+	public void hitUp(int postnum);
+	
+	 -->
+	 
+	<select id="getPostList" parameterType="int" resultType="com.cloud.vo.PostVO">
+		SELECT * FROM post
+		WHERE boardnum = #{boardnum} 
+		ORDER BY postnum DESC
+	</select>
+	
+	<select id="getPost" parameterType="int" resultType="com.cloud.vo.PostVO">
+		SELECT * FROM post 
+		WHERE postnum = #{postnum}
+	</select>
+		
+	<insert id="addPost" parameterType="com.cloud.vo.PostVO" >
+		INSERT INTO post(boardnum, title, id, content)
+		VALUES(#{boardnum}, #{title}, #{id}, #{content})
+	</insert>
+	
+	<update id="updatePost" parameterType="com.cloud.vo.PostVO">
+		UPDATE post 
+		SET boardnum = #{boardnum}, title = #{title}, id = #{id}, content = #{content}
+		WHERE postnum = #{postnum}
+	</update>
+	
+	<delete id="deletePost" parameterType="int">
+		DELETE FROM post 
+		WHERE postnum = #{postnum}
+	</delete>
+	
+</mapper>
