@@ -11,6 +11,8 @@ public interface MemberService {
 
 	public int checkMember(String userid, String passwd);
 	
+	public Integer checkMemberUserid(String userid);
+	
 	public List<MemberVO> getMemberList();
 	
 	public MemberVO getMember(String userid);

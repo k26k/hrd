@@ -8,6 +8,44 @@
 <title>회원가입</title>
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 <script src="/resources/javascript/checkMember.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.6.1.js"
+  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+  crossorigin="anonymous"></script>
+<script type="text/javascript">
+	$("document").ready(function(){
+		$("#check").click(function(){
+			let name = $("#userid").val();
+			if(name===""){
+				alert("아이디를 입력해 주세요.");
+				return;
+			}
+			
+			//console.log($("#id"), $("#id").val(), name);
+			
+			$.ajax({
+				type:"get",
+				url:"/ajax/usernameCheck",
+				dataType:"json",
+				data:{
+					"name": name
+				},
+				success:function(data){
+					//console.log(data);
+					if(data.result){
+						alert(name+"은 사용 불가능한 아이디 입니다.");
+					}else{
+						alert(name+"은 사용 가능합니다.");
+					}
+				},
+				error:function(error){
+					console.error(error);
+				}
+			});
+			
+		});
+	});
+</script>
 </head>
 <body>
 	<div class="container">
@@ -26,21 +64,22 @@
 					<tr>
 						<td class="gray"><label for="userid">아이디</label></td>
 						<td><input type="text" class="max" id="userid" name="userid" ></td>
+						<td><input type="button" id="check" name="check" value="아이디 중복 확인"></td>
 					</tr>
 					<tr>
 						<td class="gray"><label for="userpw">비밀번호</label></td>
-						<td><input type="text" class="max" id="userpw" name="userpw" ></td>
+						<td colspan="2"><input type="text" class="max" id="userpw" name="userpw" ></td>
 					</tr>
 					<tr>
 						<td class="gray"><label for="userpw2">비밀번호 확인</label></td>
-						<td><input type="text" class="max" id="userpw2" name="userpw2" ></td>
+						<td colspan="2"><input type="text" class="max" id="userpw2" name="userpw2" ></td>
 					</tr>
 					<tr>
 						<td class="gray"><label for="username">이름</label></td>
-						<td><input type="text" class="max" id="username" name="username" ></td>
+						<td colspan="2"><input type="text" class="max" id="username" name="username" ></td>
 					</tr>
 					<tr>
-						<td colspan="2">
+						<td colspan="3">
 							<input type="submit" value="가입">
 							<input type="reset" value="취소">
 							<!-- <a href="/customLogin"><input type="button" value="로그인"></a> -->

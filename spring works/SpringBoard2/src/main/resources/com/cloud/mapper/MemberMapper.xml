@@ -42,6 +42,14 @@
 		ORDER BY ma.auth, m.updatedate DESC
 	</select>
 	
+	<select id="checkMemberUserid" parameterType="String" resultType="Integer">
+		SELECT * FROM (
+			SELECT 1 FROM tbl_member
+			WHERE userid = #{userid}
+		) 
+		WHERE ROWNUM <![CDATA[ <= ]]>  1
+	</select>
+	
 	<select id="getMember" resultMap="memberMap">
 		SELECT m.userid, userpw, username, enabled, regdate, updatedate, auth  FROM tbl_member m 
 		LEFT OUTER JOIN tbl_member_auth ma ON m.userid = ma.userid 

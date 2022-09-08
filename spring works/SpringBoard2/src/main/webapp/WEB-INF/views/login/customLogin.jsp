@@ -37,10 +37,10 @@
 					</tr>
 					<tr>
 						<td class="gray"><label for="password"><spring:message code="message.user.login.password"/></label></td>
-						<td><input type="text" class="max" id="password" name="password" ></td>
+						<td colspan="2"><input type="text" class="max" id="password" name="password" ></td>
 					</tr>
 					<tr>
-						<td colspan="2">
+						<td colspan="3">
 							<input type="submit" value='<spring:message code="message.user.login.loginbtn"/>' >
 							<input type="reset" value='<spring:message code="message.user.login.resetbtn"/>' >
 						</td>

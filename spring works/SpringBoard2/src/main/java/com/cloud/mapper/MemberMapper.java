@@ -12,6 +12,8 @@ public interface MemberMapper {
 
 	public int checkMember(@Param("userid") String userid, @Param("passwd") String passwd);
 	
+	public Integer checkMemberUserid(@Param("userid") String userid);
+	
 	public List<MemberVO> getMemberList();
 	
 	public MemberVO getMember(@Param("userid") String userid);

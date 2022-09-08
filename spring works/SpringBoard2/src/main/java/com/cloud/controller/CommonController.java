@@ -1,5 +1,7 @@
 package com.cloud.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,5 +34,12 @@ public class CommonController {
 	public String customLogout() {
 		log.info("customLogout");
 		return"/login/customLogout";
+	}
+	
+	@GetMapping("/manager/html")
+	public void mm(HttpServletRequest httpServletRequest) {
+		log.info(httpServletRequest.getLocale());
+		log.info(httpServletRequest.getProtocol());
+		log.info(httpServletRequest.getRemoteAddr());
 	}
 }

@@ -20,6 +20,10 @@ public class MemberServiceImpl implements MemberService {
 		return 0;
 	}
 	
+	public Integer checkMemberUserid(String userid) {
+		return memderMapper.checkMemberUserid(userid);
+	}
+	
 	@Override
 	public List<MemberVO> getMemberList() {
 		return memderMapper.getMemberList();
