@@ -14,15 +14,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cloud.domain.BoardVO;
 import com.cloud.service.BoardService;
+import com.cloud.service.ReplyService;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
+@AllArgsConstructor
 @Controller
 public class BoardController {
 	
-	@Autowired
 	private BoardService boardService;
+	private ReplyService replyService;
 	
 	@RequestMapping("/boardList")
 	public String boardList(Authentication authentication, Model model) {
@@ -72,6 +75,7 @@ public class BoardController {
 	public String boardView(int num, Model model) {
 		boardService.cntUp(num);
 		model.addAttribute("board", boardService.getBoard(num));
+		model.addAttribute("replyList", replyService.getReplyList(num));
 		return "/board/boardView";
 	}
 	

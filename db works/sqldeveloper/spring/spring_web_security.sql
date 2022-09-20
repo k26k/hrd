@@ -29,6 +29,22 @@ CREATE TABLE tbl_member_auth(
     REFERENCES tbl_member(userid)
 );
 
+CREATE TABLE tbl_reply(
+    rno         NUMBER(5),
+    bno         NUMBER(5) NOT NULL,
+    reply       VARCHAR2(1000) NOT NULL,
+    replyer     VARCHAR2(50) NOT NULL,
+    replydate   DATE DEFAULT SYSDATE,
+    updatedate  DATE DEFAULT SYSDATE
+);
+
+CREATE SEQUENCE seq_reply;
+
+ALTER TABLE tbl_reply ADD CONSTRAINT pk_reply PRIMARY KEY(rno);
+
+ALTER TABLE tbl_reply ADD CONSTRAINT fk_reply_board 
+FOREIGN KEY(bno) REFERENCES tbl_board(bno);
+
 
 
 INSERT INTO users(username, password) values('user00', 'pw00'); 
@@ -40,10 +56,15 @@ INSERT INTO authorities(username, authority) VALUES('member00', 'ROLE_MEMBER');
 INSERT INTO authorities(username, authority) VALUES('admin00', 'ROLE_MEMBER');
 INSERT INTO authorities(username, authority) VALUES('admin00', 'ROLE_ADMIN');
 
+INSERT INTO tbl_reply(rno, bno, reply, replyer) 
+VALUES( seq_reply.NEXTVAL, 71, 'test', 'admin90');
+
+
 SELECT * FROM users;
 SELECT * FROM authorities;
 SELECT * FROM tbl_member ORDER BY updatedate DESC; 
 SELECT * FROM tbl_member_auth;
+SELECT * FROM tbl_reply;
 
 DELETE FROM tbl_member;
 

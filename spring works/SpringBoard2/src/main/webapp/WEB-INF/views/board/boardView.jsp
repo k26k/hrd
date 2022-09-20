@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <security:authorize access="isAuthenticated()">
-	<security:authentication property="principal.Username" var="authName"/>
+	<security:authentication property="principal.username" var="authName"/>
 	<c:if test="${ authName eq board.writer }">
 		<c:set var="writer" value="true"/>
 	</c:if>
@@ -15,6 +15,59 @@
 <meta charset="UTF-8">
 <title>글 상세 보기</title>
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+<script
+  src="https://code.jquery.com/jquery-3.6.1.js"
+  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+  crossorigin="anonymous"></script>
+<script type="text/javascript">
+	$(function () {
+		refresh();
+		
+		$("#replyButton").click(function() {
+			console.log($("#replyText").val());
+			$.ajax({
+				type:"post",
+				url:"/ajax/addReply",
+				dataType:"json",
+				data:{
+					"bno": "${param.num}",
+					"reply": $("#replyText").val(),
+					"${ _csrf.parameterName }": "${ _csrf.token }"
+				},
+				success:function(data){
+					console.log(data);
+					if(data.result){
+						refresh();
+					}else{
+						alert("댓글 입력 실패!");
+					}
+					
+				},
+				error:function(error){
+					console.error(error);
+				}
+			});
+		});	
+		
+		function refresh() {
+			$.ajax({
+				type:"get",
+				url:"/ajax/getReply",
+				dataType:"text",
+				data:{
+					"bno": "${param.num}"
+				},
+				success:function(data){
+					console.log(data);
+					$("#replyBox").html(data);
+				},
+				error:function(error){
+					console.error(error);
+				}
+			});
+		}
+	});
+</script>
 </head>
 <body>
 	<div class="container">
@@ -51,6 +104,48 @@
 					<tr>
 						<td class="gray"><label>조회수</label></td>
 						<td><input type="text" class="max" value="<c:out value="${ board.cnt }"/>" disabled></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<h4>댓글</h4>
+							<div id="replyBox">
+								<%-- <ol class="left">
+									<c:forEach var="reply" items="${ replyList }">
+										<li>
+											<br>
+											<p>
+												작성자: <c:out value="${ reply.replyer }"/>
+												&nbsp;&nbsp;
+												(작성일: <fmt:formatDate value="${ reply.updateDate }" pattern="yyyy-MM-dd HH:mm:ss"/>)
+											</p>
+											<p><c:out value="${ reply.reply }"/></p>
+										</li>	
+									</c:forEach>
+								</ol> --%>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<form method="post" id="replyForm">
+								<ul>
+									<security:authorize access="isAuthenticated()">
+										<li>
+											<label>작성자</label>
+											<input type="text" value="<security:authentication property="principal.username"/>">
+										</li>
+										<li>
+											<textarea rows="" cols="" id="replyText"></textarea>
+											<input type="button" value="댓글 등록" id="replyButton">
+										</li>
+									</security:authorize>
+									<security:authorize access="isAnonymous()">
+										<li>댓글은 로그인 후에 사용할수 있습니다</li>
+									</security:authorize>
+								</ul>
+								<input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">
+							</form>
+						</td>
 					</tr>
 					<tr>
 						<td colspan="2">

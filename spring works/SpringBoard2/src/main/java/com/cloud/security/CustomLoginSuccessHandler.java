@@ -26,7 +26,8 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 		
 		MemberVO memberVO = ((CustomUser) auth.getPrincipal()).getMemberVO();
 		
-				List<String> roleNames = new ArrayList<>();
+		List<String> roleNames = new ArrayList<>();
+		
 		auth.getAuthorities().forEach(authority -> {
 			roleNames.add(authority.getAuthority());
 		});

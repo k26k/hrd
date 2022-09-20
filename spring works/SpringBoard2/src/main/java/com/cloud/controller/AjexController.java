@@ -1,21 +1,31 @@
 package com.cloud.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cloud.domain.ReplyVO;
+import com.cloud.security.CustomUser;
 import com.cloud.service.MemberService;
+import com.cloud.service.ReplyService;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
+@AllArgsConstructor
 @RequestMapping("/ajax/*")
 @Controller
 public class AjexController {
 
-	@Autowired
 	private MemberService memberService;
+	private ReplyService replyService;
 	
 	@RequestMapping("/calc")
 	public String calc() {
@@ -54,4 +64,31 @@ public class AjexController {
 		log.info(result);
 		return result;
 	}
+	
+	@ResponseBody
+	@PostMapping("/addReply")
+	public String addReply(
+							@RequestParam("bno") int bno,
+							@RequestParam("reply") String reply, 
+							Authentication auth) {
+		ReplyVO replyVO = new ReplyVO();
+		replyVO.setBno(bno);
+		replyVO.setReplyer(((CustomUser)auth.getPrincipal()).getUsername());
+		replyVO.setReply(reply);
+		log.info(replyVO);
+		
+		int check = replyService.addReply(replyVO);
+		if(check > 0) {
+			return "{\"result\":true}";
+		}else {
+			return "{\"result\":false}";
+		}
+	}
+	
+	@GetMapping("/getReply")
+	public String getReply(@RequestParam("bno") int bno, Model model) {
+		model.addAttribute("replyList", replyService.getReplyList(bno));
+		return "board/boardReply";
+	}
+	
 }

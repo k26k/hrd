@@ -12,6 +12,7 @@ table{width: calc(100% - 40px); border-collapse: collapse; margin: 20px;}
 th, td{padding: 10px 5px; border: 1px solid #ccc; text-align: center; vertical-align: middle;}
 input{padding: 5px 10px; margin: 10px; border: 1px solid #ccc; border-radius: 5px;}
 textarea{padding: 5px 10px; margin: 10px; border: 1px solid #ccc; border-radius: 5px;}
+li{list-style: none;}
 .menu{margin: 10px 10px;}
 .menu li{margin: 5px 15px; display: inline-block; list-style: none; font-weight: bolder;}
 .menu a{padding: 3px 5px;}
