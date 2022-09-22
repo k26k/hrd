@@ -9,7 +9,6 @@
 	<title>main</title>
 </head>
 <body>
-	<jsp:include page=""/>
 	
 </body>
 </html>
