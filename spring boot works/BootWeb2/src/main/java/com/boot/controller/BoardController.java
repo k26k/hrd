@@ -16,6 +16,11 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
+	@GetMapping("/")
+	public String index() {
+		return "/index";
+	}
+
 	@GetMapping("/hello")
 	public String hello() {
 		return "/hello";
