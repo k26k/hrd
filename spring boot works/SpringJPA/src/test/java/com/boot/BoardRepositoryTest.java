@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.boot.domain.Board;
+import com.boot.domain.Member;
 import com.boot.persistence.BoardRepository;
+import com.boot.persistence.MemberRepository;
 
 import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +22,56 @@ public class BoardRepositoryTest {
 
 	@Autowired
 	private BoardRepository boardRepository;
+	
+	@Autowired
+	private MemberRepository memberRepository;
+	
+//	@Test
+//	public void testManyToOnInsert() {
+//		Member member1 = new Member();
+//		member1.setId("member1");
+//		member1.setName("뽀로로");
+//		member1.setPassword("member1");
+//		member1.setRole("ROLE_USER");
+//		
+//		memberRepository.save(member1);
+//		
+//		Member member2 = new Member();
+//		member2.setId("member2");
+//		member2.setName("아기상어");
+//		member2.setPassword("member2");
+//		member2.setRole("ROLE_ADMIN");
+//		
+//		memberRepository.save(member2);
+//		
+//		for(int i=1; i<=3; i++) {
+//			Board board = new Board();
+//			board.setTitle("뽀로로 이스 히어 "+i);
+//			board.setContent("뽀로로로롱 "+i);
+//			board.setMember(member1);
+//			
+//			boardRepository.save(board);
+//		}
+//		for(int i=1; i<=3; i++) {
+//			Board board = new Board();
+//			board.setTitle("아기상어 뚜루두뚜루 "+i);
+//			board.setContent("귀여운 뚜루두뚜루 "+i);
+//			board.setMember(member2);
+//			
+//			boardRepository.save(board);
+//		}
+//	}
+	
+	@Test
+	public void showBoard() {
+		System.out.println("showBoard() start ...");
+		Iterable<Board> boards = boardRepository.findBoardByTitleContainingOrderBySeqDesc("");
+		System.out.println("boards hasNext: "+boards.iterator().hasNext());
+		for(Board board:boards) {
+			log.info(board.toString());
+		}
+	}
+	
 	
 //	삽입
 //	@Test

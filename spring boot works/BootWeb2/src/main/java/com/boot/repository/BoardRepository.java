@@ -1,5 +1,7 @@
 package com.boot.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -12,5 +14,6 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 	@Query("UPDATE Board b SET b.cnt = b.cnt+1 WHERE b.seq = ?1")
 	void boardCntUp(Long seq);
 	
+	Page<Board> findByTitleContaining(String searchKeyword, Pageable paging);
 }
 

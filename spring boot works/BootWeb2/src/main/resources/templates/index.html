@@ -12,13 +12,22 @@
 		<hr>
 		<div class="row justify-content-center">
 			<div class="col-11">
+				<th:block th:if="${session['member'].name ne null}">
+					<hr>
+					<div class="text-center">
+						<h4><span th:text="${session['member'].name}"></span>님 환영합니다.</h4>
+					</div>
+				</th:block>
 				<hr>
 				<div class="row justify-content-center">
 					<img alt="" src="/static/images/lion.jpg" class="col-12 col-md-9 col-xl-6">
 				</div>
 				<hr>
-				<a th:href="/boardList" class="text-decoration-none">
+				<a href="/boardList" class="text-decoration-none">
 					<input type="button" value="글 목록" class="btn btn-secondary">
+				</a>
+				<a href="/login" class="text-decoration-none">
+					<input type="button" value="로그인" class="btn btn-secondary">
 				</a>
 				<hr>
 			</div>

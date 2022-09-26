@@ -5,6 +5,8 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.boot.domain.Board;
@@ -20,6 +22,12 @@ public class BoardServiceImpl implements BoardService {
 	public List<Board> getAllBoardList() {
 		return boardRepository.findAll();
 	}
+	
+	@Override
+	public Page<Board> getBoardListByKeywordAndPage(String keyword, Pageable paging ) {
+		return boardRepository.findByTitleContaining(keyword, paging);
+	}
+	
 
 	@Override
 	public Board getBoard(Long seq) {

@@ -12,10 +12,29 @@
 		<hr>
 		<div class="row justify-content-center">
 			<div class="col-11">
-				<a href="/insertBoard" class="text-decoration-none">
-					<input type="button" value="글쓰기" class="btn btn-primary">
-				</a>
-				<input type="button" value="fetch( ) TEST" class="btn btn-secondary" onclick="mirror()">
+				<div class="row">
+					<div class="col-12 p-1">
+						<a href="/insertBoard" class="text-decoration-none">
+							<input type="button" value="글쓰기" class="btn btn-primary">
+						</a>
+						<input type="button" value="fetch( ) TEST" class="btn btn-secondary" onclick="mirror()">
+						<a th:if="${session['member'].id} eq null" href="/login" class="text-decoration-none">
+							<input type="button" value="로그인" class="btn btn-primary">
+						</a>
+						<a th:unless="${session['member'].id} eq null" href="/logout" class="text-decoration-none">
+							<input type="button" value="로그아웃" class="btn btn-warning">
+						</a>
+					</div>
+					<div class="col-12 p-1">
+						검색용				
+					</div>
+				</div>
+				<div class="text-center p-1">
+					<a th:each="num : ${#numbers.sequence(1, boardList.getTotalPages)}"  th:href="@{/boardList(page=${numStat.index})}" class="text-decoration-none">
+						<input th:if="${numStat.index} eq ${boardList.getNumber}" type="button" th:value="${numStat.count}" class="btn btn-primary">
+						<input th:unless="${numStat.index} eq ${boardList.getNumber}" type="button" th:value="${numStat.count}" class="btn btn-secondary">
+					</a>
+				</div>
 				<hr>
 				<div th:each="board:${boardList}" >
 					<a th:href="@{/boardView(seq=${ board.seq })}" class="nav-link">
@@ -28,7 +47,7 @@
 							<div class="col-8 col-md-9 col-xl-10 text-center">
 								<div class="row">
 									<div class="col-7 p-1 text-center"><span th:text="${ board.title }"/></div>
-									<div class="col-5 p-1 text-center">작성자: <span th:text="${ board.writer }"/></div>
+									<div class="col-5 p-1 text-center">작성자: <span th:text="${ board.member.name }"/></div>
 									<div class="col-7 p-1 text-center">작성일: <span th:text="${#dates.format(board.createDate, 'yyyy-MM-dd HH:mm:ss')}"/></div>
 									<div class="col-5 p-1 text-center">조회수: <span th:text="${ board.cnt }"/></div>
 								</div>
