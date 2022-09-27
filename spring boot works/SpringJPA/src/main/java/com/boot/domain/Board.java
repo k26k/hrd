@@ -10,7 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import lombok.Data;
+import lombok.ToString;
 
+@ToString(exclude = "member")
 @Entity
 @Data
 public class Board {
@@ -46,7 +48,8 @@ public class Board {
 	private Long cnt;
 	
 	@ManyToOne
-	@JoinColumn(name="MEMBER_ID")
+	@JoinColumn(name = "MEMBER_ID",
+				updatable = false)
 	private Member member;
 	
 }

@@ -38,12 +38,12 @@ public class BoardController {
 	
 	@GetMapping("/boardList")
 	public String boardList(@RequestParam(defaultValue = "") String search,
-							@RequestParam(defaultValue = "0")int page, 
+							@RequestParam(defaultValue = "1")int page, 
 							@RequestParam(defaultValue = "10")int size, 
 							Model model) {
-		Pageable paging = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "seq"));
+		Pageable paging = PageRequest.of(page-1, size, Sort.by(Sort.Direction.DESC, "seq"));
 		model.addAttribute("boardList", boardService.getBoardListByKeywordAndPage(search, paging));
-		return "boardList";
+		return "board/boardList";
 	}
 	
 	@GetMapping("/insertBoard")
@@ -51,11 +51,12 @@ public class BoardController {
 		if(member.getId() == null) {
 			return "redirect:login";
 		}
-		return "insertBoard";
+		return "board/insertBoard";
 	}
 	
 	@PostMapping("/insertBoard")
-	public String insertBoard(Board board) {
+	public String insertBoard(@ModelAttribute("member") Member member, Board board) {
+		board.setMember(member);
 		boardService.insertBoard(board);
 		return "redirect:boardList";
 	}
@@ -64,7 +65,7 @@ public class BoardController {
 	public String boardView(Long seq ,Model model) {
 		boardService.boardCntUp(seq);
 		model.addAttribute("board", boardService.getBoard(seq));
-		return "boardView";
+		return "board/boardView";
 	}
 	
 	@GetMapping("/deleteBoard")

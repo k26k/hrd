@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.boot.domain.Member;
@@ -70,6 +72,11 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void updateMember(Member member) {
 		memberRepository.save(member);
+	}
+
+	@Override
+	public Page<Member> getMemberListByKeywordAndPage(String keywordId, String keywordName, Pageable paging) {
+		return memberRepository.findByIdContainingOrNameContaining(keywordId, keywordName, paging);
 	}
 
 }
