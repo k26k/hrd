@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,12 +39,35 @@ public class MemberController {
 	}
 	
 	@GetMapping("/memberView")
-	public String memberView() {
+	public String memberView(@ModelAttribute("member") Member member) {
+		if(member.getId() == null) {
+			return "redirect:login";
+		}
 		return "member/memberView";
+	}
+	
+	@GetMapping("/memberViewAdmin")
+	public String memberViewAdmin(@ModelAttribute("member") Member member, String viewId, Model model) {
+		System.out.println("memberViewAdmin id: "+viewId);
+		System.out.println(member.toString());
+		if(member.getId() == null) {
+			return "redirect:login";
+		}
+		if(!member.getRole().equals("ROLE_ADMIN")) {
+			return "redirect:";
+		}
+		
+		model.addAttribute("memberShow", memberService.selectMemberById(viewId));
+		
+		return "member/memberViewAdmin";
 	}
 	
 	@PostMapping("/updateMember")
 	public String updateMember(@ModelAttribute("member") Member memberOrigin, Member memberNew, String oldId, Model model) {
+		if(memberOrigin.getId()==null) {
+			return "redirect:login";
+		}
+		
 		memberOrigin.setPassword(memberNew.getPassword());
 		memberOrigin.setName(memberNew.getName());
 		memberService.updateMember(memberOrigin);
@@ -61,6 +85,18 @@ public class MemberController {
 		member.setRole("ROLE_USER");
 		memberService.insertMember(member);
 		return "redirect:login";
+	}
+	
+	@GetMapping("/deleteMember")
+	public String deleteMember(Member member, String id) {
+		System.out.println("delete id:"+id);
+		if(member.getId() != null) {
+			System.out.println("member id:"+member.getId());
+			if(member.getId().equals(id)) {
+				memberService.deleteMember(id);
+			}
+		}
+		return "redirect:logout";
 	}
 	
 }

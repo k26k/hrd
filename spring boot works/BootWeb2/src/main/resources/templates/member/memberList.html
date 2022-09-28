@@ -15,6 +15,7 @@
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-11 col-xl-10">
 				<div th:replace="fragments/menu :: menu"></div>
+				<hr>
 				<div class="row justify-content-center px-2">
 					<div class="col-auto p-1">
 						<a th:if="${memberList.getNumber} eq 0" class="text-decoration-none" tabindex="-1">
@@ -41,15 +42,23 @@
 							<div class="row">
 								<div class="col-9">
 									<div class="row">
-										<div class="col-6 col-md-3 py-1 text-center">id: <span th:text="${ member.id }"></span></div>
-										<div class="col-6 col-md-3 py-1 text-center">password: <span th:text="${ member.password }"></span></div>
-										<div class="col-6 col-md-3 py-1 text-center">name: <span th:text="${ member.name }"></span></div>
-										<div class="col-6 col-md-3 py-1 text-center">role: <span th:text="${ member.role }"></span></div>
+										<div class="col-12 col-md-6 col-xl-3 py-1 text-center">id: <span th:text="${ member.id }"></span></div>
+										<div class="col-12 col-md-6 col-xl-3 py-1 text-center">password: <span th:text="${ member.password }"></span></div>
+										<div class="col-12 col-md-6 col-xl-3 py-1 text-center">name: <span th:text="${ member.name }"></span></div>
+										<div class="col-12 col-md-6 col-xl-3 py-1 text-center">role: <span th:text="${ member.role }"></span></div>
 									</div>
 								</div>
-								<div class="col-auto">
-									<a th:href="@{/memberView(id=${ member.id })}" class="nav-link">
-										<input type="button" value="삭제" class="btn btn-danger"></a>
+								<div class="col-3 align-self-center">
+									<div class="row justify-content-center">
+										<div class="col-auto align-self-center ">
+											<a th:href="@{/memberViewAdmin(viewId=${ member.id })}" class="nav-link">
+												<input type="button" value="수정" class="btn btn-warning"></a>
+										</div>
+										<div class="col-auto align-self-center my-1">
+											<a th:href="@{/memberView(id=${ member.id })}" class="nav-link">
+												<input type="button" value="삭제" class="btn btn-danger"></a>
+										</div>
+									</div>
 								</div>
 							</div>
 					</div>

@@ -13,7 +13,7 @@
 		<h2 class="text-center">회원정보 보기</h2>
 		<hr>
 		<div class="row justify-content-center">
-			<div class="col-12 col-md-11 col-xl-10">
+			<div class="col-12">
 				<br>
 				<div class="row justify-content-center">
 					<div class="col-12 col-sm-10 col-md-9 col-lg-7 col-xl-6 col-xxl-5">
@@ -41,6 +41,16 @@
 							<p>
 								<div class="row">
 									<div class="col-4 text-center">
+										<label for="content" class="form-label p-2">비밀번호 확인</label>
+									</div>
+									<div class="col-8">
+										<input class="form-control" id="password2" name="password2" >
+									</div>
+								</div>
+							</p>
+							<p>
+								<div class="row">
+									<div class="col-4 text-center">
 										<label for="content" class="form-label p-2">이름</label>
 									</div>
 									<div class="col-8">
@@ -50,7 +60,7 @@
 							</p>
 							<p>
 								<div class="row justify-content-end">
-									<div class="col-10 text-end">
+									<div class="text-end">
 										<input type="submit" class="btn btn-primary" value="회원가입">
 										<input type="reset" class="btn btn-secondary" value="취소">
 										<input type="button" value="뒤로가기" class="btn btn-secondary" onclick="history.go(-1)">

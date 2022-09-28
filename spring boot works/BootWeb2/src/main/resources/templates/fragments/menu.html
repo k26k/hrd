@@ -83,18 +83,40 @@
 			</div>
 		</div>
 		<div class="col-12 col-md-6 ps-md-0">
-			<hr>
-			<div>
-				<div class="row justify-content-center">
-					<div class="col-9 my-1">
-						<input class="form-control"> 
-					</div>
-					<div class="col-auto my-1">
-						<input type="button" value="검색" class="col-12 btn btn-primary">
+			<div class="row">
+				<div>
+					<hr>
+				</div>
+			
+				<div class="col-12 align-self-center">
+					<div class="row justify-content-center">
+						<script type="text/javascript">
+						
+							function checkEnter(){
+								let pressedKey = event.key;
+								//console.log(pressedKey);
+								if(pressedKey === "Enter"){
+									search();
+								}
+							}
+						
+							function search(){
+								let searchKeyword = document.getElementById("serchTextInput").value;
+								let searchURL = "/boardList?search="+searchKeyword;
+								//console.log(searchURL);
+								location.href=searchURL;
+							}
+							
+						</script>
+						<div class="col-9 my-1">
+							<input class="form-control" id="serchTextInput" onkeydown="checkEnter()"> 
+						</div>
+						<div class="col-auto my-1">
+							<input type="button" value="검색" class="col-12 btn btn-primary" onclick="search()">
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<hr>
 </div>

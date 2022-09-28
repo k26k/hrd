@@ -32,8 +32,7 @@ public class LoginController {
 	}
 	
 	@PostMapping("/login")
-	public String loginProcess(String id, String password, Model model, HttpSession httpSession) {
-		httpSession.setMaxInactiveInterval(30*60);
+	public String loginProcess(String id, String password, Model model) {
 		System.out.println("id: "+id+" ,  password: "+password);
 		Member member = memberService.selectMemberById(id);
 		if(member != null && member.getPassword().equals(password)) {
@@ -41,7 +40,7 @@ public class LoginController {
 			return "redirect:";
 		}
 		
-		return "redirect:customerror?error=1";
+		return "redirect:login";
 	}
 	
 	@GetMapping("/logout")

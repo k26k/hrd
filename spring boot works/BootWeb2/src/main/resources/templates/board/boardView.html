@@ -15,6 +15,7 @@
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-11 col-xl-10">
 				<div th:replace="fragments/menu :: menu"></div>
+				<hr>
 				<form action="/updateBoard" method="post" class="p-3 form-control" >
 					<input type="hidden" name="seq" th:value="${ board.seq }">
 					<p>
@@ -34,20 +35,20 @@
 					</p>
 					<p>
 						<div class="row">
-							<div class="col-12 col-md-3 col-xl-2 text-center">
+							<div class="col-4 col-md-3 col-xl-2 text-center">
 								<label for="content" class="form-label p-2">제목</label>
 							</div>
-							<div class="col-12 col-md-9 col-xl-10">
+							<div class="col-8 col-md-9 col-xl-10">
 								<input class="form-control" id="title" name="title" th:value="${ board.title }">
 							</div>
 						</div>
 					</p>
 					<p>
 						<div class="row">
-							<div class="col-12 col-md-3 col-xl-2 text-center">
+							<div class="col-4 col-md-3 col-xl-2 text-center">
 								<label for="content" class="form-label p-2">작성자</label>
 							</div>
-							<div class="col-12 col-md-9 col-xl-10">
+							<div class="col-8 col-md-9 col-xl-10">
 								<input class="form-control" id="name" name="name" th:value="${ board.member.name }" disabled>
 							</div>
 						</div>
