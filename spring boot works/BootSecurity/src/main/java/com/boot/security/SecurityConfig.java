@@ -3,16 +3,22 @@ package com.boot.security;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private DataSource dataSource;
+	
+	@Autowired
+	private CustomUserDetailsService customUserDetailsService;
 	
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception{
@@ -47,6 +53,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //		접근 권한 없음 페이지 처리
 		httpSecurity.exceptionHandling().accessDeniedPage("/accessDenied");
 		
+//		기본 UserDetailsService 대신 CustomUserDetailsService 사용
+		httpSecurity.userDetailsService(customUserDetailsService);
+		
 		
 //		security csrf 비활성화
 		httpSecurity.csrf().disable();
@@ -65,15 +74,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		String query2 = "SELECT member_id, role "
 						+ "FROM member WHERE member_id = ?";
 		
+//		추가 사용자 설정
 //		authenticationManagerBuilder 객체 사용
+//		jdbcAuthentication 메소드 사용 디비 연동
 		authenticationManagerBuilder.jdbcAuthentication()
 									.dataSource(dataSource)
 									.usersByUsernameQuery(query1)
 									.authoritiesByUsernameQuery(query2);
 		
 		
-		
 //		추가 사용자 설정
+//		inMemoryAuthentication() 메소드 사용
 //		authenticationManagerBuilder.inMemoryAuthentication()
 //									.withUser("manager")
 //									.password("{noop}manager")
@@ -84,6 +95,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //									.password("{noop}admin")
 //									.roles("ADMIN");
 		
+	}
+	
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
 	
 }

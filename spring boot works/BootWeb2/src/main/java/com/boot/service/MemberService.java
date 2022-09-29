@@ -12,6 +12,8 @@ import com.boot.domain.Member;
 public interface MemberService {
 	
 	public boolean checkMember(String id, String password); 
+
+	public boolean checkId(String id); 
 	
 	public Member selectMemberById(String id); 
 

@@ -44,6 +44,14 @@ public class MemberServiceImpl implements MemberService{
 //		}
 		return false;
 	}
+	
+	@Override
+	public boolean checkId(String id) {
+		if(memberRepository.checkId(id)>0) {
+			return true;
+		}
+		return false;
+	}
 
 	@Override
 	public Member selectMemberById(String id) {

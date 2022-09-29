@@ -82,6 +82,10 @@ public class MemberController {
 	
 	@PostMapping("/signUp")
 	public String signUpProcess(Member member) {
+		System.out.println(member.toString());
+		if(member.getId() == "") {
+			return "redirect:logout";
+		}
 		member.setRole("ROLE_USER");
 		memberService.insertMember(member);
 		return "redirect:login";

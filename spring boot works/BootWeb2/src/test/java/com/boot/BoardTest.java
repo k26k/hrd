@@ -26,7 +26,7 @@ public class BoardTest {
 		member.setName("테스트 계정");
 		member.setRole("ROLE_ADMIN");
 		
-		for(int i=1; i<=200; i++) {
+		for(int i=1; i<=50; i++) {
 			Board board = new Board();
 			board.setTitle("제목 "+i);
 			board.setContent("내용 "+i);
