@@ -3,6 +3,12 @@ function signUp( ) {
 	let regExNumEngSpe=/^[0-9a-zA-Z!@#$%^&*?]*$/;
 	let regExNumEngKor=/^[0-9a-zA-Z가-힣ㄱ-ㅎㅏ-ㅣ]*$/;
 	
+	let id = document.getElementById("id");
+	let password = document.getElementById("password");
+	let password2 = document.getElementById("password2");
+	let name = document.getElementById("name");
+	
+	
 	if(!id.value){
 		alert("아이디를 입력해 주세요");
 		id.focus();

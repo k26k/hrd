@@ -12,10 +12,17 @@ public class SecurityUser extends User {
 	private Member member;
 	
 	public SecurityUser(Member member) {
-		super(	member.getId(), "{noop}"+member.getPassword(), 
+		super(	member.getId(), member.getPassword(), 
 				AuthorityUtils.createAuthorityList(member.getRole().toString()));
 		this.member = member;
 	}
+	
+//	패스워드 인코딩 전 member.password에 noop적용
+//	public SecurityUser(Member member) {
+//		super(	member.getId(), "{noop}"+member.getPassword(), 
+//				AuthorityUtils.createAuthorityList(member.getRole().toString()));
+//		this.member = member;
+//	}
 	
 	public Member getMember() {
 		return member;

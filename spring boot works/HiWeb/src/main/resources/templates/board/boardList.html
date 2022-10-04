@@ -18,7 +18,7 @@
 				<div class="row">
 					<div class="col-sm-3 col-lg-2 pe-sm-0">
 						<hr>
-						<a href="/insertBoard" class="text-decoration-none" tabindex="-1">
+						<a href="/board/writeBoard" class="text-decoration-none" tabindex="-1">
 							<input type="button" value="글쓰기" class="btn btn-primary"></a>
 					</div>
 					<div class="col-sm-9 col-lg-10 ps-sm-0">
@@ -31,7 +31,7 @@
 				<th:block th:each="board : ${boardPage}">
 					<hr>
 					<div class="px-2">
-						<a th:href="@{/getBoardView(seq=${ board.seq })}" class="nav-link">
+						<a th:href="@{/board/getBoardView(seq=${ board.seq })}" class="nav-link">
 							<div class="row">
 								<div class="col-sm-4 col-md-3 col-xl-2 text-center align-self-center" >
 									<div class="p-1">
@@ -52,24 +52,40 @@
 				</th:block>
 				<hr>
 				<div class="row justify-content-center px-2">
-					<div class="col-auto p-1">
-						<a th:if="${boardPage.getNumber} eq 0" class="text-decoration-none" tabindex="-1">
-							<input type="button" value="<<" class="btn btn-secondary" disabled></a>
-						<a th:unless="${boardPage.getNumber} eq 0" th:href="@{/getBoardList(page=1,search=${search})}" class="text-decoration-none" tabindex="-1">
-							<input type="button" value="<<" class="btn btn-primary"></a>
-					</div>
-					<div th:each="num : ${#numbers.sequence(1, boardPage.getTotalPages)}" class="col-auto p-1">
-						<a th:if="${numStat.index} eq ${boardPage.getNumber}" class="text-decoration-none" tabindex="-1">
-							<input  type="button" th:value="${numStat.count}" class="btn btn-secondary" disabled></a>
-						<a th:unless="${numStat.index} eq ${boardPage.getNumber}" th:href="@{/getBoardList(page=${numStat.count},search=${param.search})}" class="text-decoration-none" tabindex="-1">
-							<input  type="button" th:value="${numStat.count}" class="btn btn-primary" ></a>
-					</div>
-					<div class="col-auto p-1">
-						<a th:if="${boardPage.getNumber} eq ${boardPage.getTotalPages-1}" class="text-decoration-none" tabindex="-1">
-							<input type="button" value=">>" class="btn btn-secondary" disabled></a>
-						<a th:unless="${boardPage.getNumber} eq ${boardPage.getTotalPages-1}" th:href="@{/getBoardList(page=${boardPage.getTotalPages})}" class="text-decoration-none" tabindex="-1">
-							<input type="button" value=">>" class="btn btn-primary"></a>
-					</div>
+					<th:block th:if="${boardPage.getNumber} eq 0">
+						<div class="col-auto p-1">
+							<a class="text-decoration-none" tabindex="-1">
+								<input type="button" value="<<" class="btn btn-secondary" disabled></a>
+						</div>
+						<div class="col-auto p-1">
+							<a class="text-decoration-none" tabindex="-1">
+								<input  type="button" value="1" class="btn btn-secondary" disabled></a>
+						</div>
+						<div class="col-auto p-1">
+							<a class="text-decoration-none" tabindex="-1">
+								<input type="button" value=">>" class="btn btn-secondary" disabled></a>
+						</div>
+					</th:block>
+					<th:block th:unless="${boardPage.getNumber} eq 0">
+						<div class="col-auto p-1">
+							<a th:if="${boardPage.getNumber} eq 0" class="text-decoration-none" tabindex="-1">
+								<input type="button" value="<<" class="btn btn-secondary" disabled></a>
+							<a th:unless="${boardPage.getNumber} eq 0" th:href="@{/getBoardList(page=1,search=${search})}" class="text-decoration-none" tabindex="-1">
+								<input type="button" value="<<" class="btn btn-primary"></a>
+						</div>
+						<div th:each="num : ${#numbers.sequence(1, boardPage.getTotalPages)}" class="col-auto p-1">
+							<a th:if="${numStat.index} eq ${boardPage.getNumber}" class="text-decoration-none" tabindex="-1">
+								<input  type="button" th:value="${numStat.count}" class="btn btn-secondary" disabled></a>
+							<a th:unless="${numStat.index} eq ${boardPage.getNumber}" th:href="@{/getBoardList(page=${numStat.count},search=${param.search})}" class="text-decoration-none" tabindex="-1">
+								<input  type="button" th:value="${numStat.count}" class="btn btn-primary" ></a>
+						</div>
+						<div class="col-auto p-1">
+							<a th:if="${boardPage.getNumber} eq ${boardPage.getTotalPages-1}" class="text-decoration-none" tabindex="-1">
+								<input type="button" value=">>" class="btn btn-secondary" disabled></a>
+							<a th:unless="${boardPage.getNumber} eq ${boardPage.getTotalPages-1}" th:href="@{/getBoardList(page=${boardPage.getTotalPages})}" class="text-decoration-none" tabindex="-1">
+								<input type="button" value=">>" class="btn btn-primary"></a>
+						</div>
+					</th:block>
 				</div>
 				<hr>
 			</div>

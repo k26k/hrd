@@ -1,50 +1,32 @@
-<html xmlns:th="http://www.thymeleaf.org"></html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <meta charset="utf-8">
 <div th:fragment="menu">
-	<!-- <th:block th:if="${session['member'].name ne null}">
+	<th:block sec:authorize="isAuthenticated()">
 		<div class="text-center">
-			<h4><span th:text="${session['member'].name}"></span>님 환영합니다.</h4>
+			<h4><span sec:authentication="principal.member.name"></span>님 환영합니다.</h4>
 		</div>
-	</th:block> -->
+	</th:block>
 	<div class="row">
-		<div class="col-12 col-md-6 pe-md-0">
+		<div class="col-12 col-lg-6 pe-lg-0">
 			<hr>
 			<div class="row justify-content-center px-2">
-				<!-- <th:block th:switch="${session['member'].role}">
-					<th:block th:case="null"> -->
+				<th:block th:switch="${#strings.toString(#authentication.authorities[0])}">
+					<th:block th:case="ROLE_MEMBER">
 						<div class="col-auto p-1">
 							<a href="/" class="text-decoration-none" tabindex="-1">
 								<input type="button" value="메인" class="btn btn-secondary"></a>
 						</div>
 						<div class="col-auto p-1">
-							<a href="/getBoardList" class="text-decoration-none" tabindex="-1">
+							<a href="/board/getBoardList" class="text-decoration-none" tabindex="-1">
 								<input type="button" value="글 목록" class="btn btn-secondary"></a>
 						</div>
 						<div class="col-auto p-1">
-							<a href="/system/login" class="text-decoration-none" tabindex="-1">
-								<input type="button" value="로그인" class="btn btn-primary"></a>
-						</div>
-						<div class="col-auto p-1">
-							<a href="/signUp" class="text-decoration-none" tabindex="-1">
-								<input type="button" value="회원가입" class="btn btn-success "></a>
-						</div>
-					<!-- </th:block>
-					
-					<th:block th:case="ROLE_USER">
-						<div class="col-auto p-1">
-							<a href="/" class="text-decoration-none" tabindex="-1">
-								<input type="button" value="메인" class="btn btn-secondary"></a>
-						</div>
-						<div class="col-auto p-1">
-							<a href="/boardList" class="text-decoration-none" tabindex="-1">
-								<input type="button" value="글 목록" class="btn btn-secondary"></a>
-						</div>
-						<div class="col-auto p-1">
-							<a href="/memberView" class="text-decoration-none" tabindex="-1">
+							<a href="/member/memberView" class="text-decoration-none" tabindex="-1">
 								<input type="button" value="회원정보" class="btn btn-success "></a>
 						</div>
 						<div class="col-auto p-1">
-							<a href="/logout" class="text-decoration-none" tabindex="-1">
+							<a href="/system/logout" class="text-decoration-none" tabindex="-1">
 								<input type="button" value="로그아웃" class="btn btn-warning"></a>
 						</div>
 					</th:block>
@@ -55,34 +37,44 @@
 								<input type="button" value="메인" class="btn btn-secondary"></a>
 						</div>
 						<div class="col-auto p-1">
-							<a href="/boardList" class="text-decoration-none" tabindex="-1">
+							<a href="/board/getBoardList" class="text-decoration-none" tabindex="-1">
 								<input type="button" value="글 목록" class="btn btn-secondary"></a>
 						</div>
 						<div class="col-auto p-1">
-							<a href="/memberList" class="text-decoration-none" tabindex="-1">
+							<a href="/admin/memberList" class="text-decoration-none" tabindex="-1">
 								<input type="button" value="회원조회" class="btn btn-secondary "></a>
 						</div>
 						<div class="col-auto p-1">
-							<a href="/memberView" class="text-decoration-none" tabindex="-1">
+							<a href="/member/memberView" class="text-decoration-none" tabindex="-1">
 								<input type="button" value="회원정보" class="btn btn-success"></a>
 						</div>
 						<div class="col-auto p-1">
-							<a href="/logout" class="text-decoration-none" tabindex="-1">
+							<a href="/system/logout" class="text-decoration-none" tabindex="-1">
 								<input type="button" value="로그아웃" class="btn btn-warning"></a>
 						</div>
 					</th:block>
-				</th:block> -->
-				<!-- <a href="/" class="text-decoration-none" tabindex="-1">
-					<input type="button" value="메인" class="btn btn-secondary"></a>
-				<a href="/boardList" class="text-decoration-none" tabindex="-1">
-					<input type="button" value="글 목록" class="btn btn-secondary"></a>
-				<a th:if="${session['member'].id} eq null" href="/login" class="text-decoration-none" tabindex="-1">
-					<input type="button" value="로그인" class="btn btn-primary"></a>
-				<a th:unless="${session['member'].id} eq null" href="/logout" class="text-decoration-none" tabindex="-1">
-					<input type="button" value="로그아웃" class="btn btn-warning"></a> -->
+					
+					<th:block th:case="*">
+						<div class="col-auto p-1">
+							<a href="/" class="text-decoration-none" tabindex="-1">
+								<input type="button" value="메인" class="btn btn-secondary"></a>
+						</div>
+						<div class="col-auto p-1">
+							<a href="/board/getBoardList" class="text-decoration-none" tabindex="-1">
+								<input type="button" value="글 목록" class="btn btn-secondary"></a>
+						</div>
+						<div class="col-auto p-1">
+							<a href="/system/login" class="text-decoration-none" tabindex="-1">
+								<input type="button" value="로그인" class="btn btn-primary"></a>
+						</div>
+						<div class="col-auto p-1">
+							<a href="/system/signUp" class="text-decoration-none" tabindex="-1">
+								<input type="button" value="회원가입" class="btn btn-success "></a>
+						</div>
+					</th:block>
 			</div>
 		</div>
-		<div class="col-12 col-md-6 ps-md-0">
+		<div class="col-12 col-lg-6 ps-lg-0">
 			<div class="row">
 				<div>
 					<hr>
@@ -102,13 +94,31 @@
 						
 							function search(){
 								let searchKeyword = document.getElementById("serchTextInput").value;
-								let searchURL = "/getBoardList?search="+searchKeyword;
+								let options = document.querySelectorAll("#searchSelect > option");
+								let searchCondition = ""
+								for(let i=0; i<options.length; i++){
+									//console.log(options[i]);
+									if(options[i].selected){
+										//console.log("selected");
+										searchCondition = options[i].value;
+										break;
+									}
+								}
+								let searchURL = "/board/searchBoardList?search="+searchKeyword+"&condition="+searchCondition;
+								//console.log(options);
 								//console.log(searchURL);
 								location.href=searchURL;
 							}
 							
 						</script>
-						<div class="col-9 my-1">
+						<div class="col-auto my-1">
+							<select id="searchSelect" class="form-select">
+								<option value="title" >제목</option>
+								<option value="content" >내용</option>
+								<option value="memberName" >글쓴이</option>
+							</select>
+						</div>
+						<div class="col-6 my-1">
 							<input class="form-control" id="serchTextInput" onkeydown="checkEnter()"> 
 						</div>
 						<div class="col-auto my-1">

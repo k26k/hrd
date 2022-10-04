@@ -16,7 +16,8 @@
 			<div class="col-12 col-md-11 col-xl-10">
 				<div th:replace="fragments/menu :: menu"></div>
 				<hr>
-				<form action="/updateBoard" method="post" class="p-3 form-control" >
+				<form th:action="@{/board/updateBoard}" method="post" class="p-3 form-control" >
+					<input type="hidden" name="${_csrf.parameter}" value="${_csrf.value}">
 					<input type="hidden" name="seq" th:value="${ board.seq }">
 					<p>
 						<div class="row aliance">
@@ -66,10 +67,10 @@
 					<p>
 						<div class="row justify-content-end">
 							<div class="col-10 text-end">
-								<!-- <th:block th:if="${board.member.id} eq ${session['member'].id}">
+								<!-- <th:block th:if="${board.member.id} eq ${session['member'].id}"> -->
 									<input type="submit" class="btn btn-warning" value="수정하기">
 									<input type="reset" class="btn btn-secondary" value="취소">
-								</th:block> -->
+								<!-- </th:block> -->
 								<input type="button" class="btn btn-secondary" value="뒤로가기" onclick="history.go(-1)">
 								<!-- <a th:if="${session[member].role} == ROLE_ADMIN" th:href="@{/deleteBoard (seq=${board.seq})}" onclick="return confirm('삭제?')">
 									<input type="button" class="btn btn-danger" value="삭제하기">

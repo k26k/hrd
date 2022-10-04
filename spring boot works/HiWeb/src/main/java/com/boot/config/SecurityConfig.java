@@ -3,6 +3,7 @@ package com.boot.config;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -23,48 +24,47 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		
 		httpSecurity.authorizeRequests()
-					.antMatchers("/").permitAll()
-					.antMatchers("/member/**").hasAnyRole("MEMBER","ADMIN")
+					.antMatchers("/", "/system/**").permitAll()
+					.antMatchers("/board/**", "/member/**").hasAnyRole("MEMBER","ADMIN")
 					.antMatchers("/admin/**").hasAnyRole("ADMIN");
 		
 		
 		httpSecurity.formLogin()
 					.loginPage("/system/login")
-					.defaultSuccessUrl("/getBoardList", true)
+					.defaultSuccessUrl("/board/getBoardList", true)
 					.failureUrl("/system/login?error=1");
 		
 		
 		httpSecurity.logout()
 					.logoutUrl("/system/logout")
-					.logoutSuccessUrl("/system/login?error=1");
+					.invalidateHttpSession(true)
+					.logoutSuccessUrl("/");
 		
+		httpSecurity.exceptionHandling().accessDeniedPage("/system/accessDenied");
 		
-//		httpSecurity.userDetailsService(securityUserDetailsService);
+		httpSecurity.userDetailsService(securityUserDetailsService);
 		
-		httpSecurity.csrf().disable();
+		//httpSecurity.csrf().disable();
 	}
 	
 	@Autowired
 	public void authenticate(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception{
 		
-		String query1 		= "SELECT member_id username, "
-							+ "concat('{noop}',password) password,"
-							+ "true enabled "
-							+ "FROM member WHERE member_id = ?";
 		String memberQuery 	= "SELECT member_id username, "
-							+ "concat('{noop}',password) password "
-							+ "true enabled "
+							+ "concat('{noop}',password) password, "
+							+ "enabled "
 							+ "FROM member WHERE member_id = ?";
 		
-		String authorityQuery = "SELECT member_id, role FROM member WHERE id=?";
+		String authorityQuery = "SELECT member_id, role FROM member WHERE member_id=?";
 		
 		authenticationManagerBuilder.jdbcAuthentication()
 									.dataSource(dataSource)
-									.usersByUsernameQuery(query1)
+									.usersByUsernameQuery(memberQuery)
 									.authoritiesByUsernameQuery(authorityQuery);
 		
 	}
 	
+	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}

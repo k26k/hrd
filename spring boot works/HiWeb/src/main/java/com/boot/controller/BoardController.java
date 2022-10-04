@@ -1,20 +1,31 @@
 package com.boot.controller;
 
+import java.util.Collection;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.boot.config.SecurityUser;
 import com.boot.domain.Board;
+import com.boot.domain.Role;
+import com.boot.domain.Search;
 import com.boot.repository.BoardRepository;
 import com.boot.service.BoardService;
 
+@RequestMapping("/board/*")
 @Controller
 public class BoardController {
 	
@@ -39,10 +50,81 @@ public class BoardController {
 	
 	@GetMapping("/getBoardView")
 	public String getBoardView(long seq, Model model) {
+		boardService.cntUp(seq);
 		Board board = boardService.getBoardBySeq(seq);
 		model.addAttribute("board", board);
 		
 		return "board/boardView";
 	}
+	
+	@GetMapping("/searchBoardList")
+	public String searchBoardList(	@RequestParam(name = "search", defaultValue = "") String searchKeyword,
+									@RequestParam(name = "condition", defaultValue = "") String searchCondition,
+									@RequestParam(defaultValue = "1") int page, 
+									Model model) {
+		Search search = new Search();
+		search.setSearchKeyword(searchKeyword);
+		search.setSearchCondition(searchCondition);
+		Pageable pageable = PageRequest.of(page-1, 10, Sort.by(Sort.Direction.DESC, "seq"));
+		
+		Page<Board> boardPage = boardService.getBoardSearch(search, pageable);
+		System.out.println("boardPage: "+boardPage.toString());
+		System.out.println("boardPage: "+boardPage.getContent());
+		
+		if(boardPage != null) {
+			model.addAttribute("boardPage", boardPage);
+		}
+		
+		return "board/boardList";
+	}
+	
+	@GetMapping("/writeBoard")
+	public String writeBoardForm() {
+		return "board/writeBoard";
+	}
+	
+	@PostMapping("/writeBoard")
+	public String writeBoardProcess(Board board, Authentication auth) {
+		board.setMember(((SecurityUser)auth.getPrincipal()).getMember());
+		boardService.addBoard(board);
+		return "redirect:/board/getBoardList";
+	}
+	
+	@PostMapping("/updateBoard")
+	public String updateBoardProcess(Board board, Authentication auth) {
+		if(auth == null) {
+			return "redirect:/system/login";
+		}
+		Board originBoard = boardService.getBoardBySeq(board.getSeq());
+		if(!originBoard.getMember().getId().equals(auth.getName())) {
+			String authority = ((List<?>)auth.getAuthorities()).get(0).toString();
+			if(!authority.equals(Role.ROLE_ADMIN)) {
+				return "redirect:/system/accessDenied";
+			}
+		}
+		originBoard.setTitle(board.getTitle());
+		originBoard.setContent(board.getContent());
+		boardService.updateBoard(originBoard);
+		return "redirect:/board/getBoardView?seq="+originBoard.getSeq();
+	}
+	
+	@PostMapping("/deleteBoard")
+	public String deleteBoardProcess(Long seq, Authentication auth) {
+		if(auth == null) {
+			return "redirect:/system/login";
+		}
+		Board originBoard = boardService.getBoardBySeq(seq);
+		if(!originBoard.getMember().getId().equals(auth.getName())) {
+			String authority = ((List<?>)auth.getAuthorities()).get(0).toString();
+			if(!authority.equals(Role.ROLE_ADMIN)) {
+				return "redirect:/system/accessDenied";
+			}
+		}
+		boardService.deleteBoard(seq);
+		return "redirect:/board/getBoardList";
+	}
+	
+	
+	
 	
 }

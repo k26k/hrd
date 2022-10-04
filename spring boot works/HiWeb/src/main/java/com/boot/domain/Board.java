@@ -25,11 +25,13 @@ public class Board {
 	
 	private	String content;
 	
-	@Column(updatable = false,
+	@Column(insertable = false,
+			updatable = false,
 			columnDefinition = "timestamp DEFAULT CURRENT_TIMESTAMP")
 	private Date createDate;
 	
-	@Column(updatable = false,
+	@Column(insertable = false,
+			updatable = false,
 			columnDefinition = "bigint DEFAULT 0")
 	private Long cnt = 0L;
 	
