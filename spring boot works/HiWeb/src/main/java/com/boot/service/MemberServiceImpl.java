@@ -50,4 +50,9 @@ public class MemberServiceImpl implements MemberService {
 		memberRepository.deleteById(id);
 	}
 	
+	@Override
+	public boolean checkId(String id) {
+		return false;
+	}
+	
 }

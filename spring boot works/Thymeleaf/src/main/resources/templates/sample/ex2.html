@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<br>
+	<h1 align="center">예제2 객체 사용</h1>
+	<hr>
+	<div align="center">
+		<p>상품 번호: <span th:text="${itemDto.id}"></span>번</p>
+		<p>상품 명: <span th:text="${itemDto.itemNm}"></span></p>
+		<p>상품 설명: <span th:text="${itemDto.itemDetail}"></span></p>
+		<p>상품 가격: <span th:text="${itemDto.price}"></span>원</p>
+		<p>상품 등록일: <span th:text="${itemDto.regDate}"></span></p>
+	</div>
+</body>
+</html>

@@ -17,7 +17,7 @@
 			<div class="col-12 col-md-11 col-xl-10">
 				<div th:replace="fragments/menu :: menu"></div>
 				<hr>
-				<form th:action="@{/board/writeBoard}" method="post" class="p-3 form-control" >
+				<form th:action="@{/board/writeBoard}" method="post" enctype="multipart/form-data" class="p-3 form-control" >
 					<input type="hidden" name="${_csrf.parameter}" value="${_csrf.value}">
 					<p>
 						<div class="row">
@@ -41,11 +41,21 @@
 					</p>
 					<p>
 						<div class="row">
-							<div class="col-4 col-md-3 col-xl-2 text-center">
+							<div class="col-12 col-md-3 col-xl-2 text-center">
 								<label for="content" class="form-label p-2">내용</label>
 							</div>
-							<div class="col-8 col-md-9 col-xl-10">
+							<div class="col-12 col-md-9 col-xl-10">
 								<textarea rows="6" class="form-control" id="content" name="content" style="resize: none;"></textarea>
+							</div>
+						</div>
+					</p>
+					<p>
+						<div class="row">
+							<div class="col-12 col-md-3 col-xl-2 text-center">
+								<label for="content" class="form-label p-2">파일 삽입</label>
+							</div>
+							<div class="col-12 col-md-9 col-xl-10">
+								<input type="file" class="form-control" id="file" name="file" >
 							</div>
 						</div>
 					</p>

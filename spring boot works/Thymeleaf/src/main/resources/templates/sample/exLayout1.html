@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<br>
+	<h1 align="center">fragment 예제1 th:fragment 사용</h1>
+	<hr>
+	<h2>Layout1_1</h2>
+	<div th:replace="~{fragments/fragment1 :: part1}" class="out">
+	</div>
+	<hr>
+	<h2>Layout1_2</h2>
+	<div th:replace="~{fragments/fragment1 :: part2}" class="out">
+	</div>
+	<hr>
+	<h2>Layout1_3</h2>
+	<div th:insert="~{fragments/fragment1 :: part3}" class="out">
+	</div>
+	<hr>
+	<h2>Layout2</h2>
+	<th:block th:replace="~{fragments/fragment2}">
+	</th:block>
+	<th:block th:insert="~{fragments/fragment2}">
+	</th:block>
+	<hr>
+</body>
+</html>

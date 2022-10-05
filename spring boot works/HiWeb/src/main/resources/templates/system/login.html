@@ -22,7 +22,7 @@
 			</div>
 			<div class="col-12 col-sm-10 col-md-9 col-lg-7 col-xl-6 col-xxl-5">
 				<form th:action="@{/system/login}" method="post" class="p-3 form-control" >
-					<input type="hidden" name="${_csrf.parameter}" value="${_csrf.value}">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.value}">
  					<p>
 						<div class="row">
 							<div class="col-4 text-center">

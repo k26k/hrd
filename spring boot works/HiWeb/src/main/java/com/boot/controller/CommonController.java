@@ -1,16 +1,14 @@
 package com.boot.controller;
 
-import java.util.Enumeration;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.boot.web.servlet.server.Session;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import com.boot.domain.Role;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class CommonController {
@@ -25,6 +23,14 @@ public class CommonController {
 //		}
 		
 		return "index";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/hink0x07pp/**")
+	public String check(HttpServletRequest http) {
+		System.out.println("hink0x07pp **");
+		System.out.println("ip: "+http.getRemoteAddr());
+		return "x";
 	}
 	
 }

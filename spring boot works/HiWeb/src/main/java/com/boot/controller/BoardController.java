@@ -1,7 +1,10 @@
 package com.boot.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,13 +20,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.boot.config.SecurityUser;
 import com.boot.domain.Board;
 import com.boot.domain.Role;
 import com.boot.domain.Search;
-import com.boot.repository.BoardRepository;
 import com.boot.service.BoardService;
+import com.boot.service.FileDtoService;
 
 @RequestMapping("/board/*")
 @Controller
@@ -31,6 +35,9 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService boardService;
+	
+	@Autowired
+	private FileDtoService fileDtoService;
 	
 	@GetMapping("/getBoardList")
 	public String getBoardList(@RequestParam(defaultValue = "") String search,
@@ -84,7 +91,22 @@ public class BoardController {
 	}
 	
 	@PostMapping("/writeBoard")
-	public String writeBoardProcess(Board board, Authentication auth) {
+	public String writeBoardProcess(Board board, 
+									@RequestParam("file") MultipartFile[] multipartFiles, 
+									Authentication auth) throws IllegalStateException, IOException {
+		
+//		파일 업로드
+//		for(MultipartFile multipartFile:multipartFiles) {
+//			if(!multipartFile.isEmpty()) {
+//				FileDto fileDto = new FileDto(	UUID.randomUUID().toString(), 
+//												multipartFile.getOriginalFilename(),
+//												multipartFile.getContentType());
+//				File file = new File(fileDto.getUuid()+"_"+fileDto.getFileName());
+//				multipartFile.transferTo(file);
+//			}
+//		}
+		fileDtoService.saveFiles(multipartFiles);
+		
 		board.setMember(((SecurityUser)auth.getPrincipal()).getMember());
 		boardService.addBoard(board);
 		return "redirect:/board/getBoardList";
