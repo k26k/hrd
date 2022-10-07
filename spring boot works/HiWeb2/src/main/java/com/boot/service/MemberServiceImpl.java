@@ -73,6 +73,32 @@ public class MemberServiceImpl implements MemberService{
 		
 		return false;
 	}
+	
+	@Override
+	public boolean updateMemberAdmin(String userId, Member member){
+		Optional<Member> optional = memberRepository.findById(userId);
+		if(optional.isPresent()) {
+			Member originMember = optional.get();
+			originMember.setName(member.getName());
+			if(!member.getPassword().equals("")) {
+				originMember.setPassword(passwordEncoder.encode(member.getPassword()));
+			}
+			if(member.isEnabled()) {
+				originMember.setEnabled(true);
+			}else{
+				originMember.setEnabled(false);
+			}
+			if(member.getRole().equals(Role.ROLE_ADMIN)) {
+				originMember.setRole(Role.ROLE_ADMIN);
+			}else {
+				originMember.setRole(Role.ROLE_MEMBER);
+			}
+			memberRepository.save(originMember);
+			return true;
+		}
+		
+		return false;
+	}
 
 	@Override
 	public boolean deleteMember(String userId) {

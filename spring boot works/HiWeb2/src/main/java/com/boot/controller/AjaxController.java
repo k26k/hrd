@@ -1,5 +1,8 @@
 package com.boot.controller;
 
+import java.util.Collection;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.boot.config.SecurityUser;
 import com.boot.domain.Board;
 import com.boot.domain.Member;
+import com.boot.domain.Role;
 import com.boot.service.BoardService;
 import com.boot.service.MemberService;
 
@@ -75,10 +79,23 @@ public class AjaxController {
 	@ResponseBody
 	@PostMapping("/writeBoard")
 	public String writeBoard(Authentication authentication, Board board) {
-		board.setMember(((SecurityUser) authentication.getPrincipal()).getMember());
+		String userId = authentication.getName();
+		System.out.println("writeBoard name: "+userId);
 		System.out.println("writeBoard board: "+board.toString());
-		if(boardService.insertBoard(board)) {
-			
+		if(boardService.insertBoard(userId, board)) {
+			return "{\"result\": true}";
+		}
+		
+		return "{\"result\": false}";
+	}
+	
+	@ResponseBody
+	@PostMapping("/updateBoard")
+	public String updateBoard(Authentication authentication, Board board) {
+		String userId = authentication.getName();
+		System.out.println("writeBoard name: "+userId);
+		System.out.println("writeBoard board: "+board.toString());
+		if(boardService.updateBoard(userId, board)) {
 			return "{\"result\": true}";
 		}
 		

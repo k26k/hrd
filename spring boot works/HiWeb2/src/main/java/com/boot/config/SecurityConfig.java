@@ -24,19 +24,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		
 		httpSecurity.authorizeRequests()
-					.antMatchers("/").permitAll();
-//					.antMatchers("/board/**").hasAnyRole("ROLE_MEMBER", "ROLE_ADMIN");
-//					.antMatchers("/member/**").hasAnyRole("ROLE_MEMBER", "ROLE_ADMIN")
-//					.antMatchers("/admin/**").hasAnyRole("ROLE_ADMIN");
+					.antMatchers("/", "/s/**").permitAll()
+					.antMatchers("/board/**", "/member/**").hasAnyRole("MEMBER", "ADMIN")
+					.antMatchers("/admin/**").hasAnyRole("ADMIN");
 		
 		httpSecurity.formLogin()
-					.loginPage("/member/signIn")
-					.defaultSuccessUrl("/ajax/signInSuccess")
+					.loginPage("/s/signIn")
+					.defaultSuccessUrl( "/ajax/signInSuccess", true)
 					.failureUrl("/ajax/signInFail");
 		
 		httpSecurity.logout()
 					.invalidateHttpSession(true)
-					.logoutRequestMatcher(new AntPathRequestMatcher("/member/signOut"))
+					.logoutRequestMatcher(new AntPathRequestMatcher("/s/signOut"))
 					.logoutSuccessUrl("/");
 		
 		httpSecurity.userDetailsService(securityUserDetailsService);

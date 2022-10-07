@@ -29,7 +29,7 @@ public class BoardController {
 	}
 	
 	@GetMapping("/getBoard")
-	public String getBoardList(Long seq, Model model) {
+	public String getBoard(Long seq, Model model) {
 		boardService.cntUp(seq);
 		model.addAttribute("board", boardService.getBoard(seq));
 		return "board/boardView";

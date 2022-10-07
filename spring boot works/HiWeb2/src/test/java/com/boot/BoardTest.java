@@ -21,7 +21,7 @@ public class BoardTest {
 //	@Test
 	public void setBoard() {
 		Member member = memberRepository.findById("member").get();
-		for(int i=1; i<=10; i++) {
+		for(int i=1; i<=7; i++) {
 			Board board = new Board();
 			board.setMember(member);
 			board.setTitle(member.getName()+"이가 등록한 "+i+"번 게시글 제목");
@@ -30,7 +30,7 @@ public class BoardTest {
 		}
 		
 		member = memberRepository.findById("admin").get();
-		for(int i=1; i<=10; i++) {
+		for(int i=1; i<=7; i++) {
 			Board board = new Board();
 			board.setMember(member);
 			board.setTitle(member.getName()+"이가 등록한 "+i+"번 게시글 제목");

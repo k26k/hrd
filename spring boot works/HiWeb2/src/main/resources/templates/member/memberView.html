@@ -59,7 +59,7 @@
 						console.log(data);
 						if(data.result){
 							alert("수정을 성공하였습니다. 다시 로그인해 주세요.");
-							location.href="/";
+							location.href="/s/signOut";
 						}else{
 							alert("수정을 실패하였습니다.");
 						}
@@ -106,6 +106,14 @@
 					</div>
 					<div class="col-8 col-md-9 col-xl-10">
 						<input class="form-control" id="name" name="name" th:value="${ member.name }" >
+					</div>
+				</div>
+				<div class="row py-2">
+					<div class="col-4 col-md-3 col-xl-2 text-center">
+						<label for="role" class="form-label p-2">가입일</label>
+					</div>
+					<div class="col-8 col-md-9 col-xl-10">
+						<input class="form-control" id="role" name="role" th:value="${#temporals.format(member.regDate, 'yyyy-MM-dd HH:mm:ss')}" disabled>
 					</div>
 				</div>
 				<div class="row py-2">

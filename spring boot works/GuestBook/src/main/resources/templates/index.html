@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html 	xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layouts/layoutFull}">
+	<meta charset="UTF-8">
+
+	<th:block layout:fragment="headTitle">main</th:block>
+	
+	<th:block layout:fragment="mainTitle">
+		<h2>페이징 연습 사이트</h2>
+	</th:block>
+	
+	<th:block layout:fragment="content">
+		<div>
+			<!-- <th:block sec:authorize="isAuthenticated()">
+				<div class="text-center text-break">
+					<h4><span sec:authentication="principal.member.name" class="text-primary"></span>님 환영합니다.</h4>
+				</div>
+			</th:block> -->
+		</div>
+		<hr>
+		<div class="row justify-content-center">
+			<img alt="라이언" th:src="@{/images/lion.jpg}" class="col-12 col-md-9 col-xl-6">
+		</div>
+		<div class="text-center">
+			<h4>사자는 그냥 사자다</h4>
+		</div>
+	</th:block>
+
+</html>

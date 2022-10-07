@@ -18,7 +18,7 @@ public class SecurityUser extends User{
 		
 		this.member = member;
 		
-		System.out.println(member.toString());
+		System.out.println("SecurityUser member: "+member.toString());
 	}
 	
 	public Member getMember() {

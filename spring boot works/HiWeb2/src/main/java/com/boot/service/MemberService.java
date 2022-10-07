@@ -19,6 +19,8 @@ public interface MemberService {
 	
 	public boolean updateMember(String userId, Member newMember);
 	
+	public boolean updateMemberAdmin(String userId, Member newMember);
+	
 	public boolean deleteMember(String userId);
 	
 	public boolean checkId(String userId);

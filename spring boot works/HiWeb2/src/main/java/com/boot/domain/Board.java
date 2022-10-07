@@ -5,20 +5,31 @@ import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.TableGenerator;
 
 import lombok.Data;
 import lombok.ToString;
 
+@TableGenerator(
+    name = "boardSeqGenerator",
+    table = "board_id_seq",
+    pkColumnName = "table_name",
+    pkColumnValue = "board_id",
+    valueColumnName = "table_max_id",
+    initialValue = 0,
+    allocationSize = 1
+)
 @ToString(exclude = "member")
 @Data
 @Entity
 public class Board {
-
+	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "boardSeqGenerator")
 	@Column(name = "board_id")
 	private Long seq;
 	

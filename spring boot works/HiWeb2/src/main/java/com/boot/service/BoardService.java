@@ -16,9 +16,9 @@ public interface BoardService {
 	
 	public String getSearchLink(Search search);
 	
-	public boolean insertBoard(Board board);
+	public boolean insertBoard(String userId, Board board);
 	
-	public boolean updateBoard(Board board);
+	public boolean updateBoard(String userId, Board board);
 	
 	public boolean deleteBoard(Long seq);
 	
