@@ -1,7 +1,6 @@
 package com.boot.controller;
 
-import java.util.Collection;
-import java.util.List;
+import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -9,13 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.boot.config.SecurityUser;
 import com.boot.domain.Board;
 import com.boot.domain.Member;
-import com.boot.domain.Role;
 import com.boot.service.BoardService;
+import com.boot.service.FileDtoService;
 import com.boot.service.MemberService;
 
 @RequestMapping("/ajax/*")
@@ -27,6 +27,9 @@ public class AjaxController {
 	
 	@Autowired
 	private BoardService boardService;
+	
+	@Autowired
+	private FileDtoService fileDtoService;
 	
 	@ResponseBody
 	@GetMapping("/signInSuccess")
@@ -78,12 +81,15 @@ public class AjaxController {
 	
 	@ResponseBody
 	@PostMapping("/writeBoard")
-	public String writeBoard(Authentication authentication, Board board) {
+	public String writeBoard(Authentication authentication, Board board, @RequestParam("file") MultipartFile[] multipartFiles) throws IllegalStateException, IOException {
 		String userId = authentication.getName();
 		System.out.println("writeBoard name: "+userId);
 		System.out.println("writeBoard board: "+board.toString());
+		
 		if(boardService.insertBoard(userId, board)) {
-			return "{\"result\": true}";
+			if(fileDtoService.saveFiles(board, multipartFiles)) {
+				return "{\"result\": true}";
+			}
 		}
 		
 		return "{\"result\": false}";

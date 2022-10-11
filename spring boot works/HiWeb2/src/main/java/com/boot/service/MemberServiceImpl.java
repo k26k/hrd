@@ -29,8 +29,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public Page<Member> getMemberPage(Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+		return memberRepository.findAll(pageable);
 	}
 
 	@Override

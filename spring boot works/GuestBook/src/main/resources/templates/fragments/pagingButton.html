@@ -24,45 +24,4 @@
 		</div>
 	</div>
 </th:block>
-
-<!-- <th:block th:fragment="pagingButton(page, request)">
-	<hr>
-	<div class="row justify-content-center px-2">
-		<th:block th:if="${page.getTotalPages} eq 0">
-			<div class="col-auto p-1">
-				<a class="text-decoration-none" tabindex="-1">
-					<input type="button" value="<<" class="btn btn-outline-secondary" disabled></a>
-			</div>
-			<div class="col-auto p-1">
-				<a class="text-decoration-none" tabindex="-1">
-					<input  type="button" value="1" class="btn btn-outline-secondary" disabled></a>
-			</div>
-			<div class="col-auto p-1">
-				<a class="text-decoration-none" tabindex="-1">
-					<input type="button" value=">>" class="btn btn-outline-secondary" disabled></a>
-			</div>
-		</th:block>
-		
-		<th:block th:unless="${page.getTotalPages} eq 0">
-			<div class="col-auto p-1">
-				<a th:if="${page.getNumber} eq 0" class="text-decoration-none" tabindex="-1">
-					<input type="button" value="<<" class="btn btn-outline-secondary" disabled></a>
-				<a th:unless="${page.getNumber} eq 0" th:href="@{${link}(page=1)}" class="text-decoration-none" tabindex="-1">
-					<input type="button" value="<<" class="btn btn-outline-secondary"></a>
-			</div>
-			<div th:each="num : ${#numbers.sequence(1, page.getTotalPages)}" class="col-auto p-1">
-				<a th:if="${numStat.index} eq ${page.getNumber}" class="text-decoration-none" tabindex="-1">
-					<input  type="button" th:value="${numStat.count}" class="btn btn-outline-secondary" disabled></a>
-				<a th:unless="${numStat.index} eq ${page.getNumber}" th:href="@{${link}(page=${numStat.count})}" class="text-decoration-none" tabindex="-1">
-					<input  type="button" th:value="${numStat.count}" class="btn btn-outline-secondary" ></a>
-			</div>
-			<div class="col-auto p-1">
-				<a th:if="${page.getNumber} eq ${page.getTotalPages-1}" class="text-decoration-none" tabindex="-1">
-					<input type="button" value=">>" class="btn btn-outline-secondary" disabled></a>
-				<a th:unless="${page.getNumber} eq ${page.getTotalPages-1}" th:href="@{${link}(page=${page.getTotalPages})}" class="text-decoration-none" tabindex="-1">
-					<input type="button" value=">>" class="btn btn-outline-secondary"></a>
-			</div>
-		</th:block>
-	</div>
-</th:block> -->
 </html>

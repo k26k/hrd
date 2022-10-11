@@ -38,8 +38,8 @@ public class PageResultDto<DTO, EN> {
 		this.size = pageable.getPageSize();
 		this.start = 1;
 		this.end = totalPage == 0 ? 1:totalPage;
-		this.prev = start > 1;
-		this.next = end < totalPage ;
+		this.prev = page > start;
+		this.next = page < end ;
 				
 		this.pageList = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
 	}

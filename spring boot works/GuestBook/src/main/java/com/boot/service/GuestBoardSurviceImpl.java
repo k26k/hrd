@@ -47,5 +47,10 @@ public class GuestBoardSurviceImpl implements GuestBoardSurvice {
 		
 		return new PageResultDto<GuestBookDto, GuestBook>(result, function);
 	}
+
+	@Override
+	public GuestBookDto getGuestBookDto(Long gno) {
+		return this.entityToDto(guestBookRepository.findById(gno).get());
+	}
 	
 }

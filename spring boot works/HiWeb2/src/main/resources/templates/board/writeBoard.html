@@ -19,10 +19,13 @@
 			}
 				
 			function ajaxWriteBoard(){
+				let fmData = new FormData($("#boardForm")[0]);
+				
 				let title = $("#title");
 				let titleV = title.val();
 				let content = $("#content");
 				let contentV = content.val();
+				
 				if(titleV===""){
 					alert("제목을 입력해 주세요.");
 					title.focus();
@@ -39,16 +42,18 @@
 				console.log("csrfH : "+csrfH);
 				console.log("csrfP : "+csrfP);
 				console.log("csrfT : "+csrfT);
+				console.log("fmdata : ", fmData);
 				
 				$.ajax({
 					type:"post",
-					url:"/ajax/writeBoard",
-					dataType:"json",
-					data:{
-						"title": titleV,
-						"content": contentV,
-						csrfP: csrfT
-					},
+					enctype:"multipart/form-data",
+				    url:"/ajax/writeBoard",
+				    dataType:"json",
+				    processData:false,
+				    contentType:false,
+				    cache:false,
+					data: fmData,        
+			        timeout: 600000, 
 					beforeSend : function(xhr)
 		            {   
 						/*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
@@ -79,7 +84,7 @@
 	
 	<th:block layout:fragment="content">
 		<div>
-			<form th:action="@{/board/writeBoard}" method="post" enctype="multipart/form-data" class="form-control px-3 py-2" >
+			<form th:action="@{/board/writeBoard}" method="post" enctype="multipart/form-data" class="form-control px-3 py-2" id="boardForm">
 				<input type="hidden" name="${_csrf.parameter}" value="${_csrf.value}">
 				<div class="row py-2">
 					<div class="col-4 col-md-3 col-xl-2 text-center">
@@ -94,7 +99,7 @@
 						<label for="content" class="form-label p-2">작성자</label>
 					</div>
 					<div class="col-8 col-md-9 col-xl-10">
-						<input class="form-control" id="writer" name="writer" th:value="${#authentication.principal.member.name}" disabled>
+						<input class="form-control" id="writer" th:value="${#authentication.principal.member.name}" disabled>
 					</div>
 				</div>
 				<div class="row py-2">
@@ -105,15 +110,15 @@
 						<textarea rows="6" class="form-control" id="content" name="content" style="resize: none;"></textarea>
 					</div>
 				</div>
-				<!-- <div class="row">
+				<div class="row py-2">
 					<div class="col-12 col-md-3 col-xl-2 text-center">
-						<label for="content" class="form-label p-2">파일 삽입</label>
+						<label for="file" class="form-label p-2">파일 삽입</label>
 					</div>
 					<div class="col-12 col-md-9 col-xl-10">
-						<input type="file" class="form-control" id="file" name="file" >
+						<input type="file" class="form-control" id="file" name="file" multiple>
 					</div>
-				</div> -->
-				<div class="row justify-content-end">
+				</div>
+				<div class="row justify-content-end py-2">
 					<div class="col-10 text-end">
 						<input type="button" class="btn btn-outline-primary" value="글쓰기" onclick="ajaxWriteBoard()">
 						<input type="reset" class="btn btn-outline-warning" value="취소">

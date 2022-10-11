@@ -115,6 +115,18 @@
 							<input class="form-control" id="name" name="name" th:value="${ board.member.name }" disabled>
 						</div>
 					</div>
+					<div th:if="${board.fileDtoList.size} > 0" class="row">
+						<div class="col-12 col-md-3 col-xl-2 text-center py-2">
+							<label for="content" class="form-label p-2">사진</label>
+						</div>
+						<div class="col-12 col-md-9 col-xl-10">
+							<div th:each="file : ${board.fileDtoList}" class="py-2">
+								<div class="card">
+									<img alt="" th:src="'/upload/' + ${file.uuid} + '_' + ${file.fileName} " class="card-img">
+								</div>
+							</div>
+						</div>
+					</div>
 					<div class="row py-2">
 						<div class="col-12 col-md-3 col-xl-2 text-center">
 							<label for="content" class="form-label p-2">내용</label>

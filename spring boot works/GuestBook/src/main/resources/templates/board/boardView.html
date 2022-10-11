@@ -6,9 +6,9 @@
 	<meta charset="UTF-8">
 
 	<th:block layout:fragment="meta">
-		<meta id="csrf_header" th:content="${_csrf.headerName}"/>
+		<!-- <meta id="csrf_header" th:content="${_csrf.headerName}"/>
 		<meta id="csrf_parameter" th:content="${_csrf.parameterName}"/>
-		<meta id="csrf_token" th:content="${_csrf.token}"/>
+		<meta id="csrf_token" th:content="${_csrf.token}"/> -->
 	</th:block>
 
 	<th:block layout:fragment="headTitle">board</th:block>
@@ -84,18 +84,21 @@
 	<th:block layout:fragment="content">
 		<div>
 			<form th:action="@{/board/updateBoard}" method="post" class="px-3 py-2 form-control" >
-				<input type="hidden" name="${_csrf.parameter}" value="${_csrf.value}">
-				<input type="hidden" id="seq" name="seq" th:value="${ board.seq }">
+				<!-- <input type="hidden" name="${_csrf.parameter}" value="${_csrf.value}">
+				<input type="hidden" id="seq" name="seq" th:value="${ board.seq }"> -->
 					<div class="row py-2">
 						<div class="col-6 col-md-7 col-xl-8 text-center align-self-center">
-							<span th:text="${ board.seq }"></span>번 글
+							<span th:text="${ board.gno }"></span>번 글
 						</div>
 						<div class="col-6 col-md-5 col-xl-4 text-center">
-							<div>
+							<!-- <div>
 								조회수: <span th:text="${ board.cnt }"></span>
+							</div> -->
+							<div>
+								작성일: <span th:text="${ #temporals.format(board.regDate, 'yyyy-MM-dd HH:mm:ss') }"></span>
 							</div>
 							<div>
-								작성일: <span th:text="${ #temporals.format(board.createDate, 'yyyy-MM-dd HH:mm:ss') }"></span>
+								수정일: <span th:text="${ #temporals.format(board.modDate, 'yyyy-MM-dd HH:mm:ss') }"></span>
 							</div>
 						</div>
 					</div>
@@ -112,7 +115,7 @@
 							<label for="content" class="form-label p-2">작성자</label>
 						</div>
 						<div class="col-12 col-md-9 col-xl-10">
-							<input class="form-control" id="name" name="name" th:value="${ board.member.name }" disabled>
+							<input class="form-control" id="name" name="name" th:value="${ board.writer }" disabled>
 						</div>
 					</div>
 					<div class="row py-2">
@@ -124,7 +127,7 @@
 						</div>
 					</div>
 					<div class="row justify-content-end py-2">
-						<th:block sec:authorize="hasRole('ROLE_ADMIN')">
+						<!-- <th:block sec:authorize="hasRole('ROLE_ADMIN')">
 							<div class="text-end">
 								<input type="button" class="btn btn-warning" value="수정하기" onclick="ajaxUpdateBoard()">
 								<input type="reset" class="btn btn-secondary" value="취소">
@@ -149,7 +152,7 @@
 									<input type="button" class="btn btn-secondary" value="뒤로가기" onclick="history.go(-1)">
 								</div>
 							</th:block>
-						</th:block>
+						</th:block> -->
 					</div>
 			</form>
 		</div>

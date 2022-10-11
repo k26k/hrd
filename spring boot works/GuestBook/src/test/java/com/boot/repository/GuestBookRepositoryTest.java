@@ -15,7 +15,7 @@ public class GuestBookRepositoryTest {
 	@Autowired
 	private GuestBookRepository guestBookRepository;
 	
-	@Test
+//	@Test
 	public void insertGuestBook() {
 		IntStream.rangeClosed(1, 55).forEach(i->{
 			GuestBook guestBook = GuestBook.builder()

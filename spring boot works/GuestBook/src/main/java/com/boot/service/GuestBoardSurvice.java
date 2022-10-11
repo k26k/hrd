@@ -11,6 +11,8 @@ public interface GuestBoardSurvice {
 	
 	public PageResultDto<GuestBookDto, GuestBook> getList(PageRequestDto pageRequestDto);
 	
+	public GuestBookDto getGuestBookDto(Long gno);
+	
 	//자바 8 부터 메서드 앞에 default 추가로 구체 메서드 사용 가능 
 	
 	default public GuestBook dtoToEntity(GuestBookDto guestBookDto) {

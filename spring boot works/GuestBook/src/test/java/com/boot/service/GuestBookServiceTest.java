@@ -25,7 +25,7 @@ public class GuestBookServiceTest {
 		System.out.println(guestBoardSurvice.register(guestBookDto)+"번 게시글 등록 완료");
 	}
 	
-	@Test
+//	@Test
 	public void updateGuestBook() {
 		System.out.println("updateGuestBook === start ===");
 		PageRequestDto pageRequestDto = new PageRequestDto();

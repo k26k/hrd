@@ -5,15 +5,15 @@
 	<meta charset="UTF-8">
 
 	<th:block layout:fragment="meta">
-		<meta id="csrf_header" th:content="${_csrf.headerName}"/>
+		<!-- <meta id="csrf_header" th:content="${_csrf.headerName}"/>
 		<meta id="csrf_parameter" th:content="${_csrf.parameterName}"/>
-		<meta id="csrf_token" th:content="${_csrf.token}"/>
+		<meta id="csrf_token" th:content="${_csrf.token}"/> -->
 	</th:block>
 	
 	<th:block layout:fragment="headTitle">write board</th:block>
 	
 	<th:block layout:fragment="script">
-		<script th:inline="javascript">
+		<!-- <script th:inline="javascript">
 			function checkEnter(){
 				
 			}
@@ -70,7 +70,7 @@
 					}
 				});
 			};
-		</script>
+		</script> -->
 	</th:block>
 	
 	<th:block layout:fragment="mainTitle">
@@ -80,7 +80,6 @@
 	<th:block layout:fragment="content">
 		<div>
 			<form th:action="@{/board/writeBoard}" method="post" enctype="multipart/form-data" class="form-control px-3 py-2" >
-				<input type="hidden" name="${_csrf.parameter}" value="${_csrf.value}">
 				<div class="row py-2">
 					<div class="col-4 col-md-3 col-xl-2 text-center">
 						<label for="content" class="form-label p-2">제목</label>
@@ -94,7 +93,7 @@
 						<label for="content" class="form-label p-2">작성자</label>
 					</div>
 					<div class="col-8 col-md-9 col-xl-10">
-						<input class="form-control" id="writer" name="writer" th:value="${#authentication.principal.member.name}" disabled>
+						<input class="form-control" id="writer" name="writer">
 					</div>
 				</div>
 				<div class="row py-2">
@@ -105,17 +104,9 @@
 						<textarea rows="6" class="form-control" id="content" name="content" style="resize: none;"></textarea>
 					</div>
 				</div>
-				<!-- <div class="row">
-					<div class="col-12 col-md-3 col-xl-2 text-center">
-						<label for="content" class="form-label p-2">파일 삽입</label>
-					</div>
-					<div class="col-12 col-md-9 col-xl-10">
-						<input type="file" class="form-control" id="file" name="file" >
-					</div>
-				</div> -->
 				<div class="row justify-content-end">
 					<div class="col-10 text-end">
-						<input type="button" class="btn btn-outline-primary" value="글쓰기" onclick="ajaxWriteBoard()">
+						<input type="submit" class="btn btn-outline-primary" value="글쓰기" onclick="ajaxWriteBoard()">
 						<input type="reset" class="btn btn-outline-warning" value="취소">
 						<input type="button" class="btn btn-outline-secondary" value="뒤로가기" onclick="history.go(-1)">
 					</div>

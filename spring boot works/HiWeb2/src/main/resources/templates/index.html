@@ -20,9 +20,13 @@
 			</th:block>
 		</div>
 		<hr>
+			<div style="height: 400px;">
+				<th:block th:replace="~{/fragments/slideFrag :: slideFrag(${imgList})}"></th:block>
+			</div>
+		<!-- <hr>
 		<div class="row justify-content-center">
 			<img alt="라이언" th:src="@{/images/lion.jpg}" class="col-12 col-md-9 col-xl-6">
-		</div>
+		</div> -->
 	</th:block>
 
 </html>

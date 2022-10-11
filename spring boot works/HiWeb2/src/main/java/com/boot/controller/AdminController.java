@@ -1,6 +1,9 @@
 package com.boot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,11 +21,22 @@ public class AdminController {
 	private MemberService memberService;
 	
 	@GetMapping("/getMemberList")
-	public String getMemberList(	@RequestParam(defaultValue = "1") int page, 
-								Search search, 
+	public String getMemberList(@RequestParam(defaultValue = "1") int page, 
 								Model model) {
 		
-		//model.addAttribute("memberPage", memberService.getMemberPage(null));
+		Pageable pageable = PageRequest.of(page-1, 10, Sort.by(Sort.Direction.DESC, "role"));
+		model.addAttribute("memberPage", memberService.getMemberPage(pageable));
+		model.addAttribute("memberLink", "/admin/getMemberList");
+		return "admin/memberList";
+	}
+	
+	@GetMapping("/searchMemberList")
+	public String searchMemberList(@RequestParam(defaultValue = "1") int page, 
+									@RequestParam(defaultValue = "") Search search, 
+									Model model) {
+		
+		Pageable pageable = PageRequest.of(page-1, 10, Sort.by(Sort.Direction.DESC, "role"));
+		model.addAttribute("memberPage", memberService.getMemberPage(pageable));
 		return "admin/memberList";
 	}
 	

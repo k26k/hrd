@@ -1,15 +1,21 @@
 package com.boot.domain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.TableGenerator;
+
+import com.boot.dto.FileDto;
 
 import lombok.Data;
 import lombok.ToString;
@@ -23,7 +29,7 @@ import lombok.ToString;
     initialValue = 0,
     allocationSize = 1
 )
-@ToString(exclude = "member")
+@ToString(exclude = {"member","fileDtoList"})
 @Data
 @Entity
 public class Board {
@@ -57,5 +63,8 @@ public class Board {
 		this.member = member;
 		member.getBoardList().add(this);
 	}
+	
+	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
+	private List<FileDto> fileDtoList = new ArrayList<FileDto>();
 	
 }

@@ -32,6 +32,7 @@ public class BoardController {
 	public String getBoard(Long seq, Model model) {
 		boardService.cntUp(seq);
 		model.addAttribute("board", boardService.getBoard(seq));
+//		System.out.println("file: "+boardService.getBoard(seq).getFileDtoList().get(0).toString());
 		return "board/boardView";
 	}
 	
