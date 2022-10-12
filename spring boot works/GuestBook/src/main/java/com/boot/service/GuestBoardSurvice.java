@@ -4,6 +4,7 @@ import com.boot.dto.GuestBookDto;
 import com.boot.dto.PageRequestDto;
 import com.boot.dto.PageResultDto;
 import com.boot.entity.GuestBook;
+import com.querydsl.core.BooleanBuilder;
 
 public interface GuestBoardSurvice {
 
@@ -12,6 +13,8 @@ public interface GuestBoardSurvice {
 	public PageResultDto<GuestBookDto, GuestBook> getList(PageRequestDto pageRequestDto);
 	
 	public GuestBookDto getGuestBookDto(Long gno);
+	
+	public BooleanBuilder getBooleanBuilder(PageRequestDto pageRequestDto);
 	
 	//자바 8 부터 메서드 앞에 default 추가로 구체 메서드 사용 가능 
 	

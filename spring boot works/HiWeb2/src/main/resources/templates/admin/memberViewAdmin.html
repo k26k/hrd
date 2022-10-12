@@ -19,13 +19,22 @@
 			}
 				
 			function ajaxUpdateMember(){
+				let oldId = $("#oldId");
+				let oldIdV = oldId.val();
 				let name = $("#name");
 				let nameV = name.val();
 				let password = $("#password");
 				let passwordV = password.val();
+				let role =  $("#role");
+				let roleV = role.val();
 				if(nameV===""){
 					alert("이름을 입력해 주세요.");
 					username.focus();
+					return;
+				}
+				if(roleV===""){
+					alert("권한을 입력해 주세요.");
+					role.focus();
 					return;
 				}
 				//console.log($("#username"), $("#username").val(), username);
@@ -43,11 +52,13 @@
 				
 				$.ajax({
 					type:"post",
-					url:"/ajax/updateMemberSelf",
+					url:"/ajax/updateMemberAdmin",
 					dataType:"json",
 					data:{
+						"oldId": oldIdV,
 						"name": nameV,
 						"password": passwordV,
+						"role": roleV,
 						csrfP: csrfT
 					},
 					beforeSend : function(xhr)
@@ -58,8 +69,7 @@
 					success:function(data){
 						console.log(data);
 						if(data.result){
-							alert("수정을 성공하였습니다. 다시 로그인해 주세요.");
-							location.href="/";
+							alert("수정을 성공하였습니다.");
 						}else{
 							alert("수정을 실패하였습니다.");
 						}
@@ -83,7 +93,7 @@
 		<div>
 			<form th:action="@{/member/updateMember}" method="post" class="p-3 form-control" >
 				<input type="hidden" name="${_csrf.parameter}" value="${_csrf.value}">
-				<input type="hidden" name="oldId" th:value="${ member.userId }">
+				<input type="hidden" id="oldId" name="oldId" th:value="${ member.userId }">
 				<div class="row py-2">
 					<div class="col-4 col-md-3 col-xl-2 text-center">
 						<label for="userId" class="form-label p-2">아이디</label>
@@ -113,7 +123,15 @@
 						<label for="role" class="form-label p-2">권한</label>
 					</div>
 					<div class="col-8 col-md-9 col-xl-10">
-						<input class="form-control" id="role" name="role" th:value="${ member.role }" disabled>
+						<input class="form-control" id="role" name="role" th:value="${ member.role }">
+					</div>
+				</div>
+				<div class="row py-2">
+					<div class="col-4 col-md-3 col-xl-2 text-center">
+						<label for="regDate" class="form-label p-2">가입일</label>
+					</div>
+					<div class="col-8 col-md-9 col-xl-10">
+						<input class="form-control" id="regDate" name="regDate" th:value="${#temporals.format(member.regDate, 'yyyy-MM-dd HH:mm:ss')}" disabled>
 					</div>
 				</div>
 				<div class="row justify-content-end">

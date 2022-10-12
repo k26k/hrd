@@ -15,7 +15,7 @@
 			<a href="/board/writeBoard">
 				<input type="button" class="btn btn-outline-primary" value="글쓰기"></a>
 		</div>
-		<th:block th:replace="~{fragments/pageList :: pageList(${boardPage})}"></th:block>
+		<th:block th:replace="~{fragments/pageList :: pageList(${boardPage}, ${boardRequest})}"></th:block>
 		<th:block th:replace="~{fragments/pagingButton :: pagingButton(${boardPage}, ${boardRequest})}"></th:block>
 		
 		<div class="modal" id="exampleModalLive" tabindex="-1" aria-labelledby="exampleModalLiveLabel" style="display: none; background-color: rgba(0,0,0,0.2)" aria-hidden="true">

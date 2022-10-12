@@ -1,8 +1,11 @@
 package com.boot.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.core.GrantedAuthorityDefaults;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.boot.domain.Board;
 import com.boot.domain.Member;
+import com.boot.domain.Role;
 import com.boot.service.BoardService;
 import com.boot.service.FileDtoService;
 import com.boot.service.MemberService;
@@ -76,6 +80,18 @@ public class AjaxController {
 			return "{\"result\": true}";
 		}
 			
+		return "{\"result\": false}";
+	}
+	
+	@ResponseBody
+	@PostMapping("/updateMemberAdmin")
+	public String updateMemberAdmin(Authentication authentication, String adminId, String oldId, Member member) {
+		System.out.println("updateMemberAdmin oldId: "+oldId);
+		System.out.println("updateMemberAdmin member: "+member.toString());
+		if(memberService.updateMemberAdmin(oldId, member)) {
+			return "{\"result\": true}";
+		}
+		
 		return "{\"result\": false}";
 	}
 	

@@ -126,8 +126,16 @@
 							<textarea rows="6" class="form-control" id="content" name="content" style="resize: none;" th:text="${ board.content }"></textarea>
 						</div>
 					</div>
-					<div class="row justify-content-end py-2">
-						<!-- <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+					<div class="row py-2">
+						<div class="text-end">
+							<a th:if="${boardRequest} eq null" >
+								<input type="button" class="btn btn-secondary" value="뒤로가기" onclick="history.go(-1)"></a>
+							<a th:unless="${boardRequest} eq null" th:href="@{/board/getBoardList(page=${boardRequest.page}, size=${boardRequest.size}, type=${boardRequest.type}, keyword=${boardRequest.keyword})}">
+								<input type="button" class="btn btn-secondary" value="목록 보기"></a>
+						</div>
+					</div>
+					<!-- <div class="row justify-content-end py-2">
+						<th:block sec:authorize="hasRole('ROLE_ADMIN')">
 							<div class="text-end">
 								<input type="button" class="btn btn-warning" value="수정하기" onclick="ajaxUpdateBoard()">
 								<input type="reset" class="btn btn-secondary" value="취소">
@@ -152,8 +160,8 @@
 									<input type="button" class="btn btn-secondary" value="뒤로가기" onclick="history.go(-1)">
 								</div>
 							</th:block>
-						</th:block> -->
-					</div>
+						</th:block>
+					</div> -->
 			</form>
 		</div>
 	</th:block>

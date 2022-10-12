@@ -40,4 +40,10 @@ public class AdminController {
 		return "admin/memberList";
 	}
 	
+	@GetMapping("/getMemberAdmin")
+	public String getMemberAdmin(String userId, Model model) {
+		model.addAttribute("member", memberService.getMember(userId));
+		return "admin/memberViewAdmin";
+	}
+	
 }
