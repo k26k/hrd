@@ -80,6 +80,8 @@ public class BoardRepositoryTest {
 		for(Object o: (Object[])object) {
 			System.out.println(o.toString());
 		}
+		
+		System.out.println(((Board)((Object[])object)[0]).getRegDate());
 	}
 	
 }

@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import com.boot.entitiy.Board;
 import com.boot.entitiy.Member;
@@ -53,6 +54,16 @@ public class ReplyRepositoryTest {
 		Reply reply = replyRepository.findById(1L).get();
 		System.out.println(reply.getRno()+"번 댓글");
 		System.out.println("게시판: "+reply.getBoard());
+	}
+	
+//	@Test
+	@Transactional
+	public void getReplyByBoard() {
+		Board board = Board.builder().bno(1L).build();
+		Pageable pageable = PageRequest.of(0, 10, Sort.by(Sort.Direction.DESC, "rno"));
+		
+//		Page<Reply> page = replyRepository.findByBoard(board, pageable);
+//		page.toList().forEach(p->System.out.println(p.toString()));
 	}
 	
 }

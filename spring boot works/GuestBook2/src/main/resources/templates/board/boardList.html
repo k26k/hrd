@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html 	xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layouts/layoutFull}">
+	<meta charset="UTF-8">
+
+	<th:block layout:fragment="headTitle">boardList</th:block>
+	
+	<th:block layout:fragment="mainTitle">
+		<h2>게시글 목록</h2>
+	</th:block>
+	
+	<th:block layout:fragment="content">
+		<div>
+			<a href="/board/writeBoard">
+				<input type="button" class="btn btn-outline-primary" value="글쓰기"></a>
+		</div>
+		<th:block th:replace="~{fragments/pageList :: pageList(${boardPage}, ${boardRequest})}"></th:block>
+		<th:block th:replace="~{fragments/pagingButton :: pagingButton(${boardPage}, ${boardRequest})}"></th:block>
+		
+		<div class="modal" id="exampleModalLive" tabindex="-1" aria-labelledby="exampleModalLiveLabel" style="display: none; background-color: rgba(0,0,0,0.2)" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLiveLabel">알람</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫다"></button>
+					</div>
+					<div class="modal-body">
+						<p th:text="${param.msg}"></p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary">확인</button>
+					</div>
+				</div>
+			</div>
+			<script th:inline="javascript">
+				
+				let msg = [[${param.msg}]];
+				
+				
+				if(msg){
+					$(".modal").show();
+					console.log($(".modal"));
+					console.log($(".modal button"));
+				}
+				
+				$(".modal button").click( function(){ $(".modal").hide();});
+				
+			
+			</script>
+		</div>
+	</th:block>
+
+</html>
