@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html 	xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layouts/layoutFull}">
+	<meta charset="UTF-8">
+
+	<th:block layout:fragment="meta">
+		<meta id="csrf_header" th:content="${_csrf.headerName}"/>
+		<meta id="csrf_parameter" th:content="${_csrf.parameterName}"/>
+		<meta id="csrf_token" th:content="${_csrf.token}"/>
+	</th:block>
+
+	<th:block layout:fragment="headTitle">board</th:block>
+	
+		<th:block layout:fragment="script">
+		<script th:inline="javascript">
+			function checkEnter(){
+				
+			}
+				
+			function ajaxUpdateBoard(){
+				let seq = $("#seq");
+				let seqV = seq.val();
+				let title = $("#title");
+				let titleV = title.val();
+				let content = $("#content");
+				let contentV = content.val();
+				if(titleV===""){
+					alert("제목을 입력해 주세요.");
+					title.focus();
+					return;
+				}
+				if(contentV===""){
+					alert("내용을 입력해 주세요.");
+					content.focus();
+					return;
+				}
+				let csrfH = csrf_header.content;
+				let csrfP = csrf_parameter.content;
+				let csrfT = csrf_token.content;
+				console.log("csrfH : "+csrfH);
+				console.log("csrfP : "+csrfP);
+				console.log("csrfT : "+csrfT);
+				
+				$.ajax({
+					type:"post",
+					url:"/ajax/updateBoard",
+					dataType:"json",
+					data:{
+						"seq": seqV,
+						"title": titleV,
+						"content": contentV,
+						csrfP: csrfT
+					},
+					beforeSend : function(xhr)
+		            {   
+						/*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+						xhr.setRequestHeader(csrfH, csrfT);
+		            },
+					success:function(data){
+						console.log(data);
+						if(data.result){
+							alert("수정을 성공했습니다.");
+							location.href="/board/getBoardList";
+						}else{
+							alert("수정을 실패하였습니다.");
+						}
+					},
+					error:function(error){
+						alert("다시 시도해 주세요.");
+						console.error(error);
+						console.error(error.responseText);
+					}
+				});
+			};
+		</script>
+	</th:block>
+	
+	<th:block layout:fragment="mainTitle">
+		<h2>게시글 상세 보기</h2>
+	</th:block>
+	
+	<th:block layout:fragment="content">
+		<div>
+			<form th:action="@{/board/updateBoard}" method="post" class="px-3 py-2 form-control" >
+				<input type="hidden" name="${_csrf.parameter}" value="${_csrf.value}">
+				<input type="hidden" id="seq" name="seq" th:value="${ board.seq }">
+					<div class="row py-2">
+						<div class="col-6 col-md-7 col-xl-8 text-center align-self-center">
+							<span th:text="${ board.seq }"></span>번 글
+						</div>
+						<div class="col-6 col-md-5 col-xl-4 text-center">
+							<div>
+								조회수: <span th:text="${ board.cnt }"></span>
+							</div>
+							<div>
+								작성일: <span th:text="${ #temporals.format(board.createDate, 'yyyy-MM-dd HH:mm:ss') }"></span>
+							</div>
+						</div>
+					</div>
+					<div class="row py-2">
+						<div class="col-12 col-md-3 col-xl-2 text-center">
+							<label for="content" class="form-label p-2">제목</label>
+						</div>
+						<div class="col-12 col-md-9 col-xl-10">
+							<input class="form-control" id="title" name="title" th:value="${ board.title }">
+						</div>
+					</div>
+					<div class="row py-2">
+						<div class="col-12 col-md-3 col-xl-2 text-center">
+							<label for="content" class="form-label p-2">작성자</label>
+						</div>
+						<div class="col-12 col-md-9 col-xl-10">
+							<input class="form-control" id="name" name="name" th:value="${ board.member.name }" disabled>
+						</div>
+					</div>
+					<div th:if="${board.fileDtoList.size} > 0" class="row">
+						<div class="col-12 col-md-3 col-xl-2 text-center py-2">
+							<label for="content" class="form-label p-2">사진</label>
+						</div>
+						<div class="col-12 col-md-9 col-xl-10">
+							<div th:each="file : ${board.fileDtoList}" class="py-2">
+								<div class="card">
+									<img alt="" th:src="'/upload/' + ${file.uuid} + '_' + ${file.fileName} " class="card-img">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row py-2">
+						<div class="col-12 col-md-3 col-xl-2 text-center">
+							<label for="content" class="form-label p-2">내용</label>
+						</div>
+						<div class="col-12 col-md-9 col-xl-10">
+							<textarea rows="6" class="form-control" id="content" name="content" style="resize: none;" th:text="${ board.content }"></textarea>
+						</div>
+					</div>
+					<div class="row justify-content-end py-2">
+						<th:block sec:authorize="hasRole('ROLE_ADMIN')">
+							<div class="text-end">
+								<input type="button" class="btn btn-warning" value="수정하기" onclick="ajaxUpdateBoard()">
+								<input type="reset" class="btn btn-secondary" value="취소">
+								<input type="button" class="btn btn-secondary" value="뒤로가기" onclick="history.go(-1)">
+								<a th:href="@{/deleteBoard (seq=${board.seq})}" onclick="return confirm('삭제?')">
+									<input type="button" class="btn btn-danger" value="삭제하기"></a>
+							</div>
+						</th:block>
+						<th:block sec:authorize="not hasRole('ROLE_ADMIN')">
+							<th:block th:if="${#authentication.principal.username} eq ${board.member.userId}">
+								<div class="text-end">
+									<input type="button" class="btn btn-warning" value="수정하기" onclick="ajaxUpdateBoard()">
+									<input type="reset" class="btn btn-secondary" value="취소">
+									<input type="button" class="btn btn-secondary" value="뒤로가기" onclick="history.go(-1)">
+									<a th:href="@{/deleteBoard (seq=${board.seq})}" onclick="return confirm('삭제?')">
+										<input type="button" class="btn btn-danger" value="삭제하기"></a>
+								</div>
+							</th:block>
+							
+							<th:block th:unless="${#authentication.principal.username} eq ${board.member.userId}">
+								<div class="text-end">
+									<input type="button" class="btn btn-secondary" value="뒤로가기" onclick="history.go(-1)">
+								</div>
+							</th:block>
+						</th:block>
+					</div>
+			</form>
+		</div>
+	</th:block>
+	
+</html>

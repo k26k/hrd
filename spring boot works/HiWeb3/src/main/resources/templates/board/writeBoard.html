@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html 	xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layouts/layoutFull}">
+	<meta charset="UTF-8">
+
+	<th:block layout:fragment="meta">
+		<meta id="csrf_header" th:content="${_csrf.headerName}"/>
+		<meta id="csrf_parameter" th:content="${_csrf.parameterName}"/>
+		<meta id="csrf_token" th:content="${_csrf.token}"/>
+	</th:block>
+	
+	<th:block layout:fragment="headTitle">write board</th:block>
+	
+	<th:block layout:fragment="script">
+		<script th:inline="javascript">
+			function checkEnter(){
+				
+			}
+				
+			function ajaxWriteBoard(){
+				let fmData = new FormData($("#boardForm")[0]);
+				
+				let title = $("#title");
+				let titleV = title.val();
+				let content = $("#content");
+				let contentV = content.val();
+				
+				if(titleV===""){
+					alert("제목을 입력해 주세요.");
+					title.focus();
+					return;
+				}
+				if(contentV===""){
+					alert("내용을 입력해 주세요.");
+					content.focus();
+					return;
+				}
+				let csrfH = csrf_header.content;
+				let csrfP = csrf_parameter.content;
+				let csrfT = csrf_token.content;
+				console.log("csrfH : "+csrfH);
+				console.log("csrfP : "+csrfP);
+				console.log("csrfT : "+csrfT);
+				console.log("fmdata : ", fmData);
+				
+				$.ajax({
+					type:"post",
+					enctype:"multipart/form-data",
+				    url:"/ajax/writeBoard",
+				    dataType:"json",
+				    processData:false,
+				    contentType:false,
+				    cache:false,
+					data: fmData,        
+			        timeout: 600000, 
+					beforeSend : function(xhr)
+		            {   
+						/*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+						xhr.setRequestHeader(csrfH, csrfT);
+		            },
+					success:function(data){
+						console.log(data);
+						if(data.result){
+							alert("작성을 성공했습니다.");
+							location.href="/board/getBoardList";
+						}else{
+							alert("작성을 실패하였습니다.");
+						}
+					},
+					error:function(error){
+						alert("다시 시도해 주세요.");
+						console.error(error);
+						console.error(error.responseText);
+					}
+				});
+			};
+		</script>
+	</th:block>
+	
+	<th:block layout:fragment="mainTitle">
+		<h2>게시글 작성</h2>
+	</th:block>
+	
+	<th:block layout:fragment="content">
+		<div>
+			<form th:action="@{/board/writeBoard}" method="post" enctype="multipart/form-data" class="form-control px-3 py-2" id="boardForm">
+				<input type="hidden" name="${_csrf.parameter}" value="${_csrf.value}">
+				<div class="row py-2">
+					<div class="col-4 col-md-3 col-xl-2 text-center">
+						<label for="content" class="form-label p-2">제목</label>
+					</div>
+					<div class="col-8 col-md-9 col-xl-10">
+						<input class="form-control" id="title" name="title">
+					</div>
+				</div>
+				<div class="row py-2">
+					<div class="col-4 col-md-3 col-xl-2 text-center">
+						<label for="content" class="form-label p-2">작성자</label>
+					</div>
+					<div class="col-8 col-md-9 col-xl-10">
+						<input class="form-control" id="writer" th:value="${#authentication.principal.member.name}" disabled>
+					</div>
+				</div>
+				<div class="row py-2">
+					<div class="col-12 col-md-3 col-xl-2 text-center">
+						<label for="content" class="form-label p-2">내용</label>
+					</div>
+					<div class="col-12 col-md-9 col-xl-10">
+						<textarea rows="6" class="form-control" id="content" name="content" style="resize: none;"></textarea>
+					</div>
+				</div>
+				<div class="row py-2">
+					<div class="col-12 col-md-3 col-xl-2 text-center">
+						<label for="file" class="form-label p-2">파일 삽입</label>
+					</div>
+					<div class="col-12 col-md-9 col-xl-10">
+						<input type="file" class="form-control" id="file" name="file" multiple>
+					</div>
+				</div>
+				<div class="row justify-content-end py-2">
+					<div class="col-10 text-end">
+						<input type="button" class="btn btn-outline-primary" value="글쓰기" onclick="ajaxWriteBoard()">
+						<input type="reset" class="btn btn-outline-warning" value="취소">
+						<input type="button" class="btn btn-outline-secondary" value="뒤로가기" onclick="history.go(-1)">
+					</div>
+				</div>
+			</form>
+		</div>
+	</th:block>
+
+</html>

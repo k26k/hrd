@@ -75,58 +75,108 @@
 				});
 			};
 			
+			function ajaxWriteReply(){
+				let replyerEmail = $("#replyerEmail");
+				let replyerEmailV = replyerEmail.val();
+				let text = $("#text");
+				let textV = text.val();
+				if(replyerEmailV===""){
+					alert("메일을 입력해 주세요.");
+					replyerEmail.focus();
+					return;
+				}
+				if(textV===""){
+					alert("내용을 입력해 주세요.");
+					text.focus();
+					return;
+				}
+				
+				$.ajax({
+					type:"post",
+					url:"/replies/writeReply",
+					dataType:"json",
+					data:{
+						"bno": $("#bno").val(),
+						"replyerEmail": replyerEmailV,
+						"text": textV,
+					},
+					success:function(data){
+						console.log(data);
+						if(data>0){
+							alert(data+"번 댓글을 등록을 성공했습니다.");
+							$(".modal").hide();
+							getReply();
+						}else{
+							alert("댓글 등록을 실패하였습니다.");
+						}
+					},
+					error:function(error){
+						alert("다시 시도해 주세요.");
+						console.error(error);
+						console.error(error.responseText);
+					}
+				});
+			};
+			
 			let page = 0;
 			let maxPage = 0;
-			
-			function showReplies(){
-				$("#showReply").addClass("d-none");
-				$("#replyBox").removeClass("d-none");
-				$("#moreReply").removeClass("d-none");
-				getReply();
-				
-			}
-			
-			function moreReplies(){
-				getReply();
-				console.log(page);
-				console.log(maxPage);
-				console.log(page>=maxPage);
-			}
+			let replyList = new Array();
 			
 			function getReply(){
 				page++;
 				$.getJSON( "/replies/board/[[${board.bno}]]?page="+page, function( data ) {
-					console.log(data);
+					//console.log(data);
 					let html="";
 					maxPage = data.totalPage;
+					$("#showReply").addClass("d-none");
 					if(page>=maxPage){
+						page = maxPage-1;
 						$("#moreReply").addClass("d-none");
 						$("#noneReply").removeClass("d-none");
 						if($("#replyBox").html() === ""){
 							$("#replyBox").addClass("d-none");
 						}
+						data.dtoList.slice(replyList.length%10).forEach( dto =>{
+							replyList.push(dto);
+						});
+						
+					}else{
+						$("#replyBox").removeClass("d-none");
+						$("#moreReply").removeClass("d-none");
+						data.dtoList.forEach( dto =>{
+							replyList.push(dto);
+						});
 					}
-					data.dtoList.forEach( dto =>{
-						console.log(dto);
-						html+= createReply(dto);
-					});
-					$("#replyBox").html( $("#replyBox").html()+html);
+					
+					createReplyBox(replyList);
 				});
+				//console.log(replyList);
+			}
+			
+			function createReplyBox(dtoList){
+				let html = "";
+				dtoList.forEach( dto =>{
+					html+= createReply(dto);
+				});
+				$("#replyBox").html(html);
+				
 			}
 			
 			function createReply(dto){
 				let html="";
 				let regDate = new Date(dto.regDate).toLocaleString();
 				let modDate = new Date(dto.modDate).toLocaleString();
-				html+="<div class='form-control row d-flex mx-0 my-2'>";
-				html+="<div class='col-6 col-md-4 col-lg-3'>"+dto.replyerName+"</div>";
-				html+="<div class='col-6 col-md-8 col-lg-9 text-end'>"
+				html+="<div class='form-control row d-flex mx-0 mb-3'>";
+				//html+="<div class='form-control row d-flex mx-0 my-2'>";
+				html+="<div class='col-12 col-md-4 col-lg-3 py-1'>"+dto.replyerName+"</div>";
+				html+="<div class='col-12 col-md-8 col-lg-9 py-1 text-end'>"
 				html+="<div>작성일: "+regDate+"</div>";
 				if(regDate != modDate){
 					html+="<div>수정일: "+modDate+"</div>";
 				}
 				html+="</div>";
-				html+="<div class='col-12 mt-2'>"+dto.text+"</div>";
+				html+="<hr class='my-1'>";
+				html+="<div class='col-12 py-1'>"+dto.text+"</div>";
 				html+="</div>";
 				return html;
 			}
@@ -140,8 +190,8 @@
 	<th:block layout:fragment="content">
 		<div>
 			<form th:action="@{/board/updateBoard}" method="post" class="px-3 py-2 form-control" >
-				<!-- <input type="hidden" name="${_csrf.parameter}" value="${_csrf.value}">
-				<input type="hidden" id="seq" name="seq" th:value="${ board.seq }"> -->
+				<!-- <input type="hidden" name="${_csrf.parameter}" value="${_csrf.value}"> -->
+				<input type="hidden" id="bno" name="bno" th:value="${ board.bno }">
 				<div class="row py-2">
 					<div class="col-6 col-md-7 col-xl-8 text-center align-self-center">
 						<span th:text="${ board.bno }"></span>번 글
@@ -190,10 +240,10 @@
 						<th:block th:replace="fragments/replyList :: replyList(${replyPage})"></th:block>
 					</div> -->
 					<div class="col-12 col-md-9 col-xl-10">
-						<input class="form-control btn btn-outline-secondary mb-3" value="댓글 보기" id="showReply" onclick="showReplies()" readonly>
-						<div id="replyBox" class="form-control d-none mb-3"></div>
-						<input class="form-control btn btn-outline-secondary mb-3 d-none" value="댓글 더 보기" id="moreReply" onclick="moreReplies()" readonly>
-						<input class="form-control btn btn-outline-secondary mb-3 d-none" value="남은 댓글이 없어요" id="noneReply" onclick="moreReplies()" readonly>
+						<input class="form-control btn btn-outline-secondary mb-3" value="댓글 보기" id="showReply" onclick="getReply()" readonly>
+						<div id="replyBox" class="d-none mb-3"></div>
+						<input class="form-control btn btn-outline-secondary mb-3 d-none" value="댓글 더 보기" id="moreReply" onclick="getReply()" readonly>
+						<input class="form-control btn btn-outline-secondary mb-3 d-none" value="남은 댓글이 없어요" id="noneReply" onclick="getReply()" readonly>
 						<input class="form-control btn btn-outline-secondary " value="댓글 작성" id="writeReply" readonly>
 					</div>
 				</div>
@@ -209,18 +259,45 @@
 		</div>
 		
 		<div class="modal" id="exampleModalLive" tabindex="-1" aria-labelledby="exampleModalLiveLabel" style="display: none; background-color: rgba(0,0,0,0.2)" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content ">
 					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="exampleModalLiveLabel">댓글 작성</h1>
+						<h1 class="modal-title fs-5 text-center" id="exampleModalLiveLabel">댓글 작성</h1>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫다"></button>
 					</div>
-					<div class="modal-body">
-						<p th:text="${param.msg}"></p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary">확인</button>
-					</div>
+					<form>
+						<div class="modal-body">
+							<div class="row py-2">
+								<div class="col-12 col-md-3 col-xl-2 text-center">
+									<label for="content" class="form-label p-2">메일</label>
+								</div>
+								<div class="col-12 col-md-9 col-xl-10">
+									<input class="form-control" id="replyerEmail" name="replyerEmail">
+								</div>
+							</div>
+							<div class="row py-2">
+								<div class="col-12 col-md-3 col-xl-2 text-center">
+									<label for="text" class="form-label p-2">내용</label>
+								</div>
+								<div class="col-12 col-md-9 col-xl-10">
+									<textarea rows="6" class="form-control" id="text" name="text" style="resize: none;"></textarea>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<div class="row justify-content-end py-1">
+								<div class="col-auto p-1">
+									<input type="button" class="btn btn-outline-primary" value="댓글 작성" onclick="ajaxWriteReply()">
+								</div>
+								<div class="col-auto p-1">
+									<input type="reset" class="btn btn-outline-secondary" value="취소">
+								</div>
+								<div class="col-auto p-1">
+									<button type="button" class="btn btn-outline-secondary" >닫기</button>
+								</div>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
 			<script th:inline="javascript">

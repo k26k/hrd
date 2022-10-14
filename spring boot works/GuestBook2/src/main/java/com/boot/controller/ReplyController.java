@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +33,12 @@ public class ReplyController {
 		Pageable pageable = PageRequest.of(page-1, 10, Sort.by(Sort.Direction.ASC, "rno"));
 		PageResultDto<ReplyDto, Object[]> pageResultDto = replyService.getReplyPage(bno, pageable);
 		return pageResultDto;
+	}
+	
+	@PostMapping(value = "/writeReply",
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public Long writeReply(ReplyDto replyDto) {
+		return replyService.writeReply(replyDto);
 	}
 	
 }

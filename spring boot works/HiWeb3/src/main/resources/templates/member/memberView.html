@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html 	xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layouts/layoutFull}">
+	<meta charset="UTF-8">
+
+	<th:block layout:fragment="meta">
+		<meta id="csrf_header" th:content="${_csrf.headerName}"/>
+		<meta id="csrf_parameter" th:content="${_csrf.parameterName}"/>
+		<meta id="csrf_token" th:content="${_csrf.token}"/>
+	</th:block>
+	<th:block layout:fragment="headTitle">member</th:block>
+	
+	<th:block layout:fragment="script">
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+			function checkEnter(){
+				
+			}
+				
+			function ajaxUpdateMember(){
+				let name = $("#name");
+				let nameV = name.val();
+				let password = $("#password");
+				let passwordV = password.val();
+				if(nameV===""){
+					alert("이름을 입력해 주세요.");
+					username.focus();
+					return;
+				}
+				//console.log($("#username"), $("#username").val(), username);
+				//console.log($("#password"), $("#password").val(), password);
+				
+				//let csrfH = /*[[${_csrf.headerName}]]*/;
+				//let csrfP = /*[[${_csrf.parameterName}]]*/;
+				//let csrfT = /*[[${_csrf.token}]]*/;
+				let csrfH = csrf_header.content;
+				let csrfP = csrf_parameter.content;
+				let csrfT = csrf_token.content;
+				console.log("csrfH : "+csrfH);
+				console.log("csrfP : "+csrfP);
+				console.log("csrfT : "+csrfT);
+				
+				$.ajax({
+					type:"post",
+					url:"/ajax/updateMemberSelf",
+					dataType:"json",
+					data:{
+						"name": nameV,
+						"password": passwordV,
+						csrfP: csrfT
+					},
+					beforeSend : function(xhr)
+		            {   
+						/*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+						xhr.setRequestHeader(csrfH, csrfT);
+		            },
+					success:function(data){
+						console.log(data);
+						if(data.result){
+							alert("수정을 성공하였습니다. 다시 로그인해 주세요.");
+							location.href="/s/signOut";
+						}else{
+							alert("수정을 실패하였습니다.");
+						}
+					},
+					error:function(error){
+						alert("다시 시도해 주세요.");
+						console.error(error);
+						console.error(error.responseText);
+					}
+				});
+			};
+			/*]]>*/
+		</script>
+	</th:block>
+	
+	<th:block layout:fragment="mainTitle">
+		<h2>회원상세정보</h2>
+	</th:block>
+	
+	<th:block layout:fragment="content">
+		<div>
+			<form th:action="@{/member/updateMember}" method="post" class="p-3 form-control" >
+				<input type="hidden" name="${_csrf.parameter}" value="${_csrf.value}">
+				<input type="hidden" name="oldId" th:value="${ member.userId }">
+				<div class="row py-2">
+					<div class="col-4 col-md-3 col-xl-2 text-center">
+						<label for="userId" class="form-label p-2">아이디</label>
+					</div>
+					<div class="col-8 col-md-9 col-xl-10">
+						<input class="form-control" id="userId" name="userId" th:value="${ member.userId }" disabled>
+					</div>
+				</div>
+				<div class="row py-2">
+					<div class="col-4 col-md-3 col-xl-2 text-center">
+						<label for="password" class="form-label p-2">비밀번호</label>
+					</div>
+					<div class="col-8 col-md-9 col-xl-10">
+						<input class="form-control" id="password" name="password" placeholder="수정 안하려면 입력x" >
+					</div>
+				</div>
+				<div class="row py-2">
+					<div class="col-4 col-md-3 col-xl-2 text-center">
+						<label for="name" class="form-label p-2">이름</label>
+					</div>
+					<div class="col-8 col-md-9 col-xl-10">
+						<input class="form-control" id="name" name="name" th:value="${ member.name }" >
+					</div>
+				</div>
+				<div class="row py-2">
+					<div class="col-4 col-md-3 col-xl-2 text-center">
+						<label for="role" class="form-label p-2">가입일</label>
+					</div>
+					<div class="col-8 col-md-9 col-xl-10">
+						<input class="form-control" id="role" name="role" th:value="${#temporals.format(member.regDate, 'yyyy-MM-dd HH:mm:ss')}" disabled>
+					</div>
+				</div>
+				<div class="row py-2">
+					<div class="col-4 col-md-3 col-xl-2 text-center">
+						<label for="role" class="form-label p-2">권한</label>
+					</div>
+					<div class="col-8 col-md-9 col-xl-10">
+						<input class="form-control" id="role" name="role" th:value="${ member.role }" disabled>
+					</div>
+				</div>
+				<div class="row justify-content-end">
+					<div class="text-end">
+						<input type="button" class="btn btn-outline-warning" value="수정하기" onclick="ajaxUpdateMember()">
+						<input type="reset" class="btn btn-outline-secondary" value="취소">
+						<a th:href="@{/deleteMember?(id=${member.userId})}" onclick="return confirm('진짜 탈퇴하시겠습니까?')">
+							<input type="button" class="btn btn-outline-danger" value="회원탈퇴"></a>
+						<input type="button" class="btn btn-outline-secondary" value="뒤로가기" onclick="history.go(-1)">
+					</div>
+				</div>
+			</form>
+		</div>
+	</th:block>
+
+</html>

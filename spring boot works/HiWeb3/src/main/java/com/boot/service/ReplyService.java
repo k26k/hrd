@@ -1,14 +1,12 @@
 package com.boot.service;
 
-import java.time.LocalDateTime;
-
 import org.springframework.data.domain.Pageable;
 
 import com.boot.dto.PageResultDto;
 import com.boot.dto.ReplyDto;
-import com.boot.entitiy.Board;
-import com.boot.entitiy.Member;
-import com.boot.entitiy.Reply;
+import com.boot.entity.Board;
+import com.boot.entity.Member;
+import com.boot.entity.Reply;
 
 public interface ReplyService {
 
@@ -26,7 +24,7 @@ public interface ReplyService {
 				.rno(reply.getRno())
 				.text(reply.getText())
 				.replyerName(member.getName())
-				.replyerEmail(member.getEmail())
+				.replyerId(member.getUserId())
 				.bno(bno)
 				.regDate(reply.getRegDate())
 				.modDate(reply.getModDate())
@@ -36,7 +34,7 @@ public interface ReplyService {
 	
 	public default Reply dtoToEntity(ReplyDto replyDto) {
 		Member member = Member.builder()
-				.email(replyDto.getReplyerEmail())
+				.userId(replyDto.getReplyerId())
 				.build();
 		Board board = Board.builder()
 				.bno(replyDto.getBno())

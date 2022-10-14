@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<th:block th:fragment="slideFrag(imgList)">
+	<div id="carouselExampleIndicators" class="carousel carousel-dark slide h-100" data-bs-ride="true">
+		<div class="carousel-indicators">
+			<th:block th:each="num : ${#numbers.sequence(1, imgList.size)}">
+				<button th:if="${num} eq 1" type="button" data-bs-target="#carouselExampleIndicators" th:data-bs-slide-to="${numStat.index}" class="active" aria-current="true" th:aria-label="'Slide ' + ${num}"></button>
+				<button th:unless="${num} eq 1" type="button" data-bs-target="#carouselExampleIndicators" th:data-bs-slide-to="${numStat.index}" class="" aria-current="true" th:aria-label="'Slide ' + ${num}"></button>
+			</th:block>
+			<!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button> -->
+		</div>
+		
+		<div class="carousel-inner h-100">
+			<th:block th:each="image : ${imgList}">
+				<div th:if="${imageStat.index} eq 0" class="carousel-item active h-100">
+					<img th:src="${image}" class="d-block w-100 h-100" alt="..." style="object-fit: scale-down;">
+				</div>
+				<div th:unless="${imageStat.index} eq 0" class="carousel-item h-100">
+					<img th:src="${image}" class="d-block w-100 h-100" alt="..." style="object-fit: scale-down;">
+				</div>
+			</th:block>
+		</div>
+		
+		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Next</span>
+		</button>
+	</div>
+</th:block>
+</html>

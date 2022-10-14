@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.boot.dto.PageRequestDto;
 import com.boot.dto.PageResultDto;
 import com.boot.dto.ReplyDto;
-import com.boot.entitiy.Reply;
+import com.boot.entity.Reply;
 import com.boot.repository.ReplyRepository;
 
 @Service

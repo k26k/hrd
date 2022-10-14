@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html 	xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layouts/layoutSmall}">
+	<meta charset="UTF-8">
+
+	<th:block layout:fragment="meta">
+		<meta id="csrf_header" th:content="${_csrf.headerName}"/>
+		<meta id="csrf_parameter" th:content="${_csrf.parameterName}"/>
+		<meta id="csrf_token" th:content="${_csrf.token}"/>
+	</th:block>
+	<th:block layout:fragment="headTitle">sighUn</th:block>
+	
+	<th:block layout:fragment="script">
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+				
+			function ajaxCheckId(){
+				let userId = $("#userId");
+				let userIdV = userId.val();
+				if(userIdV===""){
+					alert("아이디를 입력해 주세요.");
+					userId.focus();
+					return;
+				}
+				let csrfH = csrf_header.content;
+				let csrfP = csrf_parameter.content;
+				let csrfT = csrf_token.content;
+				console.log("csrfH : "+csrfH);
+				console.log("csrfP : "+csrfP);
+				console.log("csrfT : "+csrfT);
+				
+				$.ajax({
+					type:"post",
+					url:"/ajax/checkId",
+					dataType:"json",
+					data:{
+						"userId": userIdV,
+						csrfP: csrfT
+					},
+					beforeSend : function(xhr)
+		            {   
+						/*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+						xhr.setRequestHeader(csrfH, csrfT);
+		            },
+					success:function(data){
+						console.log(data);
+						if(data.result){
+							alert("이미 사용중인 아이디 입니다.")
+						}else{
+							alert("사용 가능한 아이디 입니다.");
+						}
+					},
+					error:function(error){
+						alert("다시 시도해 주세요.");
+						console.error(error);
+						console.error(error.responseText);
+					}
+				});
+			};
+			
+			function ajaxCheckSignUp(){
+				let userId = $("#userId");
+				let userIdV = userId.val();
+				let password = $("#password");
+				let passwordV = password.val();
+				let password2 = $("#password2");
+				let password2V = password2.val();
+				let name = $("#name");
+				let nameV = name.val();
+				if(userIdV===""){
+					alert("아이디를 입력해 주세요.");
+					userId.focus();
+					return;
+				}
+				if(passwordV===""){
+					alert("비밀번호를 입력해 주세요.");
+					password.focus();
+					return;
+				}
+				if(password2V===""){
+					alert("비밀번호 확인을 입력해 주세요.");
+					password2.focus();
+					return;
+				}
+				if(nameV===""){
+					alert("이름을 입력해 주세요.");
+					name.focus();
+					return;
+				}
+				let csrfH = csrf_header.content;
+				let csrfP = csrf_parameter.content;
+				let csrfT = csrf_token.content;
+				//console.log("csrfH : "+csrfH);
+				//console.log("csrfP : "+csrfP);
+				//console.log("csrfT : "+csrfT);
+				
+				$.ajax({
+					type:"post",
+					url:"/ajax/signUp",
+					dataType:"json",
+					data:{
+						"userId": userIdV,
+						"password": passwordV,
+						"name": nameV,
+						csrfP: csrfT
+					},
+					beforeSend : function(xhr)
+		            {   
+						/*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+						xhr.setRequestHeader(csrfH, csrfT);
+		            },
+					success:function(data){
+						console.log(data);
+						if(data.result){
+							alert("회원가입을 성공했습니다. 로그인해 주세요.");
+							location.href="/s/signIn";
+						}else{
+							alert("아이디가 중복되었습니다.");
+						}
+					},
+					error:function(error){
+						alert("다시 시도해 주세요.");
+						console.error(error);
+						console.error(error.responseText);
+					}
+				});
+			};
+			/*]]>*/
+		</script>
+	</th:block>
+	
+	<th:block layout:fragment="mainTitle">
+		<h2>회원가입</h2>
+	</th:block>
+	
+	<th:block layout:fragment="content">
+		<div>
+			<form th:action="@{/member/signUp}" method="post" class="form-control px-3 py-2" >
+				<!-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.value}"> -->
+				<div class="row py-2">
+					<div class="col-4 text-center">
+						<label for="userId" class="form-label p-2">아이디</label>
+					</div>
+					<div class="col-8 col-md-5">
+						<input class="form-control" id="userId" name="userId" >
+					</div>
+					<div class="col-12 col-md-3">
+						<div class="row justify-content-end">
+							<div class="col-8 col-md-12">
+								<input type="button" value="중복 검사" class="col-12 btn btn-secondary" onclick="ajaxCheckId()">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row py-2">
+					<div class="col-4 text-center">
+						<label for="content" class="form-label p-2">비밀번호</label>
+					</div>
+					<div class="col-8">
+						<input class="form-control" id="password" name="password" >
+					</div>
+				</div>
+				<div class="row py-2">
+					<div class="col-4 text-center">
+						<label for="content" class="form-label p-2">비밀번호 확인</label>
+					</div>
+					<div class="col-8">
+						<input class="form-control" id="password2" name="password2" >
+					</div>
+				</div>
+				<div class="row py-2">
+					<div class="col-4 text-center">
+						<label for="content" class="form-label p-2">이름</label>
+					</div>
+					<div class="col-8">
+						<input class="form-control" id="name" name="name" >
+					</div>
+				</div>
+				<div class="row py-2">
+					<div class="text-end">
+						<input type="button" class="btn btn-outline-success" value="회원가입" onclick="ajaxCheckSignUp()">
+						<input type="reset" class="btn btn-outline-secondary" value="취소">
+						<a href="/member/signIn">
+							<input type="button" class="btn btn-outline-primary" value="로그인"></a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</th:block>
+
+</html>

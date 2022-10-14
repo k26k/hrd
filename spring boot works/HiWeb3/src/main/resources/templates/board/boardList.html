@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html 	xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layouts/layoutFull}">
+	<meta charset="UTF-8">
+
+	<th:block layout:fragment="headTitle">boardList</th:block>
+	
+	<th:block layout:fragment="mainTitle">
+		<h2>게시글 목록</h2>
+	</th:block>
+	
+	<th:block layout:fragment="content">
+		<div>
+			<a href="/board/writeBoard">
+				<input type="button" class="btn btn-outline-primary" value="글쓰기"></a>
+		</div>
+		<th:block th:if="${pageRequest} eq null" th:replace="~{fragments/boardLinkList :: boardList(${boardPage})}"></th:block>
+		<th:block th:unless="${pageRequest} eq null" th:replace="~{fragments/boardLinkList  :: searchBoardList(${boardPage}, ${pageRequest})}"></th:block>
+		
+		<th:block th:if="${pageRequest} eq null" th:replace="~{fragments/pagingButton :: pagingButton(${boardPage})}"></th:block>
+		<th:block th:unless="${pageRequest} eq null" th:replace="~{fragments/pagingButton :: searchPagingButton(${boardPage}, ${pageRequest})}"></th:block>
+	</th:block>
+
+</html>
