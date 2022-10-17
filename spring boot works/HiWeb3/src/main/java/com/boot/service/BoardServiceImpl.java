@@ -13,7 +13,7 @@ import com.boot.dto.PageRequestDto;
 import com.boot.dto.PageResultDto;
 import com.boot.entity.Board;
 import com.boot.repository.BoardRepository;
-import com.boot.repository.SearchBoardRepository;
+import com.boot.repository.SearchRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class BoardServiceImpl implements BoardService {
 
 	private final BoardRepository boardRepository;
-	private final SearchBoardRepository searchBoardRepository;
+	private final SearchRepository searchRepository;
 	
 	@Override
 	public BoardDto getBoard(Long bno) {
@@ -49,16 +49,20 @@ public class BoardServiceImpl implements BoardService {
 		Pageable pageable = pageRequestDto.getPageable(Sort.by(Order.desc("bno")));
 		
 		Function<Object[], BoardDto> func = (obj -> this.objectsToDto(obj));
-		Page<Object[]> page = searchBoardRepository.searchPage(type, keyword, pageable);
+		Page<Object[]> page = searchRepository.searchBoardPage(type, keyword, pageable);
 		
 		PageResultDto<BoardDto, Object[]> pageResultDto = new PageResultDto<BoardDto, Object[]>(page, func);
 		return pageResultDto;
 	}
 
 	@Override
-	public boolean insertBoard(BoardDto boardDto) {
-		// TODO Auto-generated method stub
-		return false;
+	public BoardDto insertBoard(BoardDto boardDto) {
+		Board board = this.dtoToEntity(boardDto);
+		board = boardRepository.save(board);
+		if(board.getBno()>0L) {
+			return this.entityToDto(board);
+		}
+		return new BoardDto();
 	}
 
 	@Override
@@ -68,7 +72,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public boolean deleteBoard(Long bno) {
+	public boolean deleteBoard(BoardDto boardDto) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -81,6 +85,12 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public boolean replyCountUp(Long bno) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public boolean replyCountDown(Long bno) {
 		// TODO Auto-generated method stub
 		return false;
 	}

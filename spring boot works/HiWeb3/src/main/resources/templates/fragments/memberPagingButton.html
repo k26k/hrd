@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<th:block th:fragment="pagingButton(page)">
+	<hr>
+	<div class="row justify-content-center px-2">
+		<div class="col-auto p-1">
+			<a th:if="${page.prev}" th:href="@{/admin/getMemberList(page=1)}" class="text-decoration-none" tabindex="-1">
+				<input type="button" value="<<" class="btn btn-outline-secondary"></a>
+			<a th:unless="${page.prev}" class="text-decoration-none" tabindex="-1">
+				<input type="button" value="<<" class="btn btn-outline-secondary" disabled></a>
+		</div>
+		<div th:each="pageNum : ${page.pageList}" class="col-auto p-1">
+			<a th:if="${pageNum} eq ${page.page}" class="text-decoration-none" tabindex="-1">
+				<input  type="button" th:value="${pageNum}" class="btn btn-outline-secondary" disabled></a>
+			<a th:unless="${pageNum} eq ${page.page}" th:href="@{/admin/getMemberList(page=${pageNum})}" class="text-decoration-none" tabindex="-1">
+				<input  type="button" th:value="${pageNum}" class="btn btn-outline-secondary" ></a>
+		</div>
+		<div class="col-auto p-1">
+			<a th:if="${page.next}" th:href="@{/admin/getMemberList(page=${page.totalPage})}" class="text-decoration-none" tabindex="-1">
+				<input type="button" value=">>" class="btn btn-outline-secondary" ></a>
+			<a th:unless="${page.next}" class="text-decoration-none" tabindex="-1">
+				<input type="button" value=">>" class="btn btn-outline-secondary" disabled></a>
+		</div>
+	</div>
+</th:block>
+
+
+<th:block th:fragment="searchPagingButton(page, request)">
+	<hr>
+	<div class="row justify-content-center px-2">
+		<div class="col-auto p-1">
+			<a th:if="${page.prev}" th:href="@{/admin/searchMemberList(page=1, size=${page.size}, type=${request.type}, keyword=${request.keyword})}" class="text-decoration-none" tabindex="-1">
+				<input type="button" value="<<" class="btn btn-outline-secondary"></a>
+			<a th:unless="${page.prev}" class="text-decoration-none" tabindex="-1">
+				<input type="button" value="<<" class="btn btn-outline-secondary" disabled></a>
+		</div>
+		<div th:each="pageNum : ${page.pageList}" class="col-auto p-1">
+			<a th:if="${pageNum} eq ${page.page}" class="text-decoration-none" tabindex="-1">
+				<input  type="button" th:value="${pageNum}" class="btn btn-outline-secondary" disabled></a>
+			<a th:unless="${pageNum} eq ${page.page}" th:href="@{/admin/searchMemberList(page=${pageNum}, size=${page.size}, type=${request.type}, keyword=${request.keyword})}" class="text-decoration-none" tabindex="-1">
+				<input  type="button" th:value="${pageNum}" class="btn btn-outline-secondary" ></a>
+		</div>
+		<div class="col-auto p-1">
+			<a th:if="${page.next}" th:href="@{/admin/searchMemberList(page=${page.totalPage}, size=${page.size}, type=${request.type}, keyword=${request.keyword})}" class="text-decoration-none" tabindex="-1">
+				<input type="button" value=">>" class="btn btn-outline-secondary" ></a>
+			<a th:unless="${page.next}" class="text-decoration-none" tabindex="-1">
+				<input type="button" value=">>" class="btn btn-outline-secondary" disabled></a>
+		</div>
+	</div>
+</th:block>
+</html>

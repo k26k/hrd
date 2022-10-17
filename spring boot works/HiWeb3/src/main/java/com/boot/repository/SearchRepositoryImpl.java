@@ -10,7 +10,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
 
+import com.boot.domain.Role;
+import com.boot.entity.BaseEntity;
 import com.boot.entity.Board;
+import com.boot.entity.Member;
 import com.boot.entity.QBoard;
 import com.boot.entity.QMember;
 import com.boot.entity.QReply;
@@ -23,9 +26,9 @@ import com.querydsl.core.types.dsl.PathBuilder;
 import com.querydsl.jpa.JPQLQuery;
 
 @Repository
-public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport implements SearchBoardRepository {
+public class SearchRepositoryImpl extends QuerydslRepositorySupport implements SearchRepository {
 
-	public SearchBoardRepositoryImpl() {
+	public SearchRepositoryImpl() {
 		super(Board.class);
 	}
 
@@ -49,7 +52,7 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
 	}
 
 	@Override
-	public Page<Object[]> searchPage(String type, String keyword, Pageable pageable) {
+	public Page<Object[]> searchBoardPage(String type, String keyword, Pageable pageable) {
 		QBoard qBoard = QBoard.board;
 		QMember qMember = QMember.member;
 //		QReply qReply = QReply.reply;
@@ -117,6 +120,87 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
 		
 		return new PageImpl<Object[]>(
 				tuples.stream().map(t -> t.toArray()).collect(Collectors.toList())
+				, pageable
+				, count);
+	}
+
+	@Override
+	public Page<Member> searchMemberPage(String type, String keyword, Pageable pageable) {
+		QMember qMember = QMember.member;
+		
+		JPQLQuery<Member> jpqlQuery = from(qMember).select(qMember);
+		
+		BooleanBuilder booleanBuilder = new BooleanBuilder();
+//		BooleanExpression booleanExpression = qMember.userId.eq("");
+//		
+//		booleanBuilder.and(booleanExpression);
+		
+		if(type != null) {
+			String[] types = type.split("/");
+			BooleanBuilder conditonBuiler = new BooleanBuilder();
+			
+			for(String t : types) {
+				switch (t) {
+					case "i":
+						conditonBuiler.or(qMember.userId.contains(keyword));
+						break;
+						
+					case "n":
+						conditonBuiler.or(qMember.name.contains(keyword));
+						break;
+	
+					case "r":
+						if(keyword.equals(Role.ROLE_MEMBER.toString())) {
+							conditonBuiler.or(qMember.role.eq(Role.ROLE_MEMBER));
+						}else if(keyword.equals(Role.ROLE_ADMIN.toString())) {
+							conditonBuiler.or(qMember.role.eq(Role.ROLE_ADMIN));
+						}
+						break;
+					
+					case "e":
+						if(keyword.equals("true")) {
+							conditonBuiler.or(qMember.enabled.eq(true));
+						}else if(keyword.equals("false")) {
+							conditonBuiler.or(qMember.enabled.eq(false));
+						}
+						break;
+	
+					default:
+						break;
+				}
+			}
+			
+			booleanBuilder.and(conditonBuiler);
+		}
+		
+		jpqlQuery.where(booleanBuilder);
+		
+		Sort sort = pageable.getSort();
+		sort.stream().forEach( order -> {
+			Order direction = order.isAscending() ? Order.ASC : Order.DESC;
+			String prop = order.getProperty();
+			
+			System.out.println("order direction: "+direction+", prop: "+prop);
+			System.out.println("prop class: "+prop.getClass().toString());
+
+			PathBuilder orderByExpression = new PathBuilder(Member.class, prop);
+
+			jpqlQuery.orderBy(new OrderSpecifier(direction, orderByExpression.get(prop)));			
+		});
+		
+		jpqlQuery.groupBy(qMember);
+		
+		jpqlQuery.offset(pageable.getOffset());
+		jpqlQuery.limit(pageable.getPageSize());
+		
+		List<Member> members = jpqlQuery.fetch();
+		
+		members.forEach(t->System.out.println(t.toString()));
+		
+		long count = jpqlQuery.fetchCount();
+		
+		return new PageImpl<Member>(
+				members.stream().collect(Collectors.toList())
 				, pageable
 				, count);
 	}
