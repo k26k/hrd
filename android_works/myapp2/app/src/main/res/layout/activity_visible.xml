@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".VisibleActivity">
+
+    <ImageView
+        android:id="@+id/imgV"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:src="@drawable/cup_2"
+        android:padding="20dp"
+        />
+
+    <Button
+        android:id="@+id/toggleButtonOn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="토글 버튼 빨간색"
+        android:paddingVertical="20dp"
+        android:textSize="32sp"
+        android:background="@android:drawable/bottom_bar"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/toggleButtonOff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="20dp"
+        android:textSize="32sp"
+        android:background="@android:drawable/bottom_bar"
+        android:text="토글 버튼 파란색"/>
+
+</LinearLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".editEx">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:layout_marginHorizontal="70dp"
+            android:layout_marginTop="30dp"
+            android:layout_weight="1"
+            android:background="#ccc"
+            android:padding="10dp"
+            android:src="@drawable/doit" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/toastButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="70dp"
+            android:layout_marginTop="50dp"
+            android:layout_weight="1"
+            android:paddingVertical="20dp"
+            android:text="토스트 실행 버튼"
+            android:textSize="24sp"
+            android:textColor="#ff8"
+            android:shadowColor="#ff3"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:textStyle="bold"
+            android:backgroundTint="#d00"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

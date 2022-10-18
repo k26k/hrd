@@ -1,0 +1,11 @@
+안드로이드 
+
+constraintlayout 대신 LinearLayout 이나 RelativeLayout 사용
+
+컴포넌트
+TextView
+Button
+EditView
+ImageView
+Toast
+ToggleButton

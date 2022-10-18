@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imgV"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:layout_weight="1"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:src="@drawable/cup_1"
+        android:background="#eee"
+        />
+
+    <Button
+        android:id="@+id/showBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/bottom_bar"
+        android:layout_marginTop="20dp"
+        android:text="보이기"/>
+
+    <Button
+        android:id="@+id/hideBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/bottom_bar"
+        android:layout_marginTop="20dp"
+        android:text="숨기기"/>
+
+    <Button
+        android:id="@+id/changeBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/bottom_bar"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="바꾸기"/>
+
+</LinearLayout>
