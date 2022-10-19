@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="#2626a6"
+    tools:context=".LayoutEx3">
+
+    <!--
+    android:layout_alignParentTop       : 부모 객체의 위에 정렬
+    android:layout_alignParentBottom    : 부모 객체의 아래에 정렬
+    android:layout_alignParentLeft      : 부모 객체의 좌측에 정렬
+    android:layout_alignParentRight     : 부모 객체의 우측에 정렬
+
+    android:layout_alignTop       : 해당 객체의 위와 평행하게 정렬
+    android:layout_alignBottom    : 해당 객체의 아래와 평행하게 정렬
+    android:layout_alignLeft      : 해당 객체의 좌측과 평행하게 정렬
+    android:layout_alignRight     : 해당 객체의 우측과 평행하게 정렬
+
+    android:layout_above        : 해당 객체를 대상 객체의 위에 정렬
+    android:layout_below        : 해당 객체를 대상 객체의 아래에 정렬
+    android:layout_toLeftOf     : 해당 객체를 대상 객체의 좌측에 정렬
+    android:layout_toRightOf    : 해당 객체를 대상 객체의 우측에 정렬
+    -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="#afff">
+
+        <TextView
+            android:id="@+id/ampm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="am"
+            android:textColor="#222"
+            android:textSize="32sp"/>
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_toRightOf="@+id/ampm"
+            android:text="11:57"
+            android:textColor="#222"
+            android:textSize="32sp"/>
+
+        <Switch
+            android:id="@+id/onoff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/ampm"
+            android:layout_alignParentRight="true"/>
+
+        <CheckBox
+            android:id="@+id/repeatCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ampm"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:text="반복"
+            android:textColor="#222"
+            android:textSize="16sp"/>
+
+        <ImageView
+            android:id="@+id/bellIcon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/repeatCheck"
+            android:layout_margin="5dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/bell" />
+
+        <TextView
+            android:id="@+id/bellName"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignTop="@+id/bellIcon"
+            android:layout_toRightOf="@+id/bellIcon"
+            android:layout_alignBaseline="@+id/bellIcon"
+            android:text="morning call"
+            android:textColor="#222"
+            android:textSize="16sp"/>
+
+        <CheckBox
+            android:id="@+id/vibrateCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/bellIcon"
+            android:layout_alignParentRight="true"
+            android:layout_alignBaseline="@+id/bellIcon"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:text="진동"
+            android:textColor="#222"
+            android:textSize="16sp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,12 @@
+안드로이드 
+
+ViewBinding 기법
+View 객체 설정시 findViewById 대신 build.gradle 설정
+
+android {}에
+
+viewBinding {
+    enabled true
+}
+
+추가후 sync now로 적용
