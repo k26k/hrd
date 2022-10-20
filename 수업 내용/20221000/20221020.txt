@@ -1,0 +1,8 @@
+클라우드에 웹서버 배포
+
+- Heroku 헤로쿠 : Git 기반, 사용 가능DB postgre, mariadb
+- AWS 아마존 웹서비스
+- 네이버 클라우드
+
+
+

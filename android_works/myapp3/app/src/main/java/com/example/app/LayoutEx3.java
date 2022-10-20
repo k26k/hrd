@@ -44,71 +44,26 @@ public class LayoutEx3 extends AppCompatActivity
             float moveY = y - event.getY();
             float moveAdd = (float) Math.sqrt(Math.pow(moveX, 2) + Math.pow(moveY, 2));
 
-            String textFirst = String.format("x 이동거리: %.2f, y 이동거리: %.2f",moveX, moveY);
+            String textFirst = String.format("x: %.2f, y: %.2f, add: %.2f",moveX, moveY, moveAdd);
 
             int mode = 0;
 
-            float deg = (float) Math.atan2(moveY, moveX);
+            float rad = (float) (Math.atan2(moveY, moveX)/Math.PI);
 
             if(moveAdd > 30) {
 
-                float absX = Math.abs(moveX);
-                float absY = Math.abs(moveY);
-
-                if(absX > absY * 2.75){
-                    mode += moveX > 0 ? 0B0001:0B0010;
-                }else if(absY > absX * 2.75){
-                    mode += moveY > 0 ? 0B0100:0B1000;
-                }else{
-                    mode += moveX > 0 ? 0B0001:0B0010;
-                    mode += moveY > 0 ? 0B0100:0B1000;
+                if(0.125<rad && rad<0.875){
+                    mode += 0B0100;
+                }else if(-0.875<rad && rad<-0.125){
+                    mode += 0B1000;
                 }
 
-//                if (moveX > 30) {
-//                    mode += 0B0001;
-//                } else if (moveX < -30) {
-//                    mode += 0B0010;
-//                }
-//                if (moveY > 30) {
-//                    mode += 0B0100;
-//                } else if (moveY < -30) {
-//                    mode += 0B1000;
-//                }
+                if(-0.375<rad && rad<0.375){
+                    mode += 0B0001;
+                }else if(rad<-0.625 || 0.625<rad){
+                    mode += 0B0010;
+                }
             }
-//
-//            switch(mode){
-//                case 0B0101:
-//                    if(moveX > moveY * 2.414){
-//                        mode = 0B0001;
-//                    }else if(moveY > moveX * 2.414){
-//                        mode = 0B0100;
-//                    }
-//                    break;
-//
-//                case 0B0110:
-//                    if((-moveX) > moveY * 2.414){
-//                        mode = 0B0010;
-//                    }else if(moveY > (-moveX) * 2.414){
-//                        mode = 0B0100;
-//                    }
-//                    break;
-//
-//                case 0B1001:
-//                    if(moveX > (-moveY) * 2.414){
-//                        mode = 0B0001;
-//                    }else if((-moveY) > moveX * 2.414){
-//                        mode = 0B1000;
-//                    }
-//                    break;
-//
-//                case 0B1010:
-//                    if((-moveX) > (-moveY) * 2.414){
-//                        mode = 0B0010;
-//                    }else if((-moveY) > (-moveX) * 2.414){
-//                        mode = 0B1000;
-//                    }
-//                    break;
-//            }
 
             String textSecond = "";
 
@@ -149,10 +104,9 @@ public class LayoutEx3 extends AppCompatActivity
                     textSecond = "터치했습니다.";
                     break;
             }
-            textSecond += " "+deg;
-            String textThird = String.format(" 총 이동거리: %.1f", Math.sqrt(Math.pow(moveX, 2) + Math.pow(moveY, 2)));
+            String textThird = String.format(" rad: %.2f", rad);
 
-            Toast.makeText(this, textFirst+"\n"+textSecond+"\n"+textThird, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, textFirst+"\n"+textSecond+textThird, Toast.LENGTH_SHORT).show();
 
         }
 
