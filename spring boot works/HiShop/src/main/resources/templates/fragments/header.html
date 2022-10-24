@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<meta charset="UTF-8">
+<th:block th:fragment="header">
+<header>
+	<nav class="navbar navbar-expand-md fixed-top bg-light border-bottom">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="/">HiShop</a>
+			
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+				<ul class="navbar-nav me-auto my-2 my-md-0">
+					<!-- <li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="#">Home</a>
+					</li> -->
+					
+					<th:block th:switch="${#strings.toString(#authentication.authorities[0])}">
+						<th:block th:case="USER">
+							<li class="nav-item">
+								<a class="nav-link" href="/item/list">상품 목록</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-warning" href="/member/view">회원정보</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-danger" href="/s/out">로그아웃</a>
+							</li>
+						</th:block>
+						
+						<th:block th:case="ADMIN">
+							<li class="nav-item">
+								<a class="nav-link" href="/item/list">상품 목록</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/admin/item/new">상품 등록</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/admin/item/list">상품 관리</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/admin/member/List">회원 목록</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-warning" href="/member/view">회원정보</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-danger" href="/s/out">로그아웃</a>
+							</li>
+						</th:block>
+						
+						<th:block th:case="*">
+							<li class="nav-item">
+								<a class="nav-link" href="/item/list">상품 목록</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-primary" href="/s/in">로그인</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-success" href="/s/up">회원가입</a>
+							</li>
+						</th:block>
+					</th:block>
+					
+					<!-- <li class="nav-item">
+						<a class="nav-link disabled">Disabled</a>
+					</li> -->
+				</ul>
+				
+				<th:block sec:authorize="isAuthenticated()">
+					<form class="d-flex" role="search" th:action="@{/board/searchBoardList}" method="get">
+						<select class="form-select w-auto me-2" name="type">
+							<option value="t">제목</option>
+							<option value="c">내용</option>
+							<option value="w">글쓴이</option>
+						</select>
+						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
+						<button class="btn btn-outline-success" type="submit">Search</button>
+					</form>
+				</th:block>
+			</div>
+		</div>
+	</nav>
+</header>
+</th:block>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html 	xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layouts/layoutFull}">
+	<meta charset="UTF-8">
+
+	<th:block layout:fragment="headTitle">error</th:block>
+	
+	<th:block layout:fragment="mainTitle">
+		<h2>Exception 페이지</h2>
+	</th:block>
+	
+	<th:block layout:fragment="content">
+		<div class="row">
+			<div class="col-sm-9">
+				<h2>Exception 발생!</h2>	
+			</div>
+			<div class="col-sm-3 align-self-center">
+				<div class="row justify-content-end">
+					<div class="col-auto">
+						<input type="button" onclick="history.go(-1)" class="btn btn-secondary" value="뒤로가기">
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<h4 th:text="${exception.message}" class="text-white bg-danger text-break p-3"></h4>
+		<hr>
+		<div class="text-break">
+			<p th:each="trace : ${exception.stackTrace}" th:text="${trace}"></p>
+		</div>	
+	</th:block>
+
+</html>

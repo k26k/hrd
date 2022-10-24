@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html 	xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layouts/layoutSmall}">
+	<meta charset="UTF-8">
+
+	<th:block layout:fragment="meta">
+		<meta id="csrf_header" th:content="${_csrf.headerName}"/>
+		<meta id="csrf_parameter" th:content="${_csrf.parameterName}"/>
+		<meta id="csrf_token" th:content="${_csrf.token}"/>
+	</th:block>
+	<th:block layout:fragment="headTitle">sighUn</th:block>
+	
+	<th:block layout:fragment="script">
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+			
+			let checkEmailDuplicate = false;
+				
+			function ajaxCheckId(){
+				let email = $("#email");
+				let emailV = email.val();
+				if(emailV===""){
+					alert("이메일을 입력해 주세요.");
+					email.focus();
+					return false;
+				}
+				let csrfH = csrf_header.content;
+				let csrfP = csrf_parameter.content;
+				let csrfT = csrf_token.content;
+				console.log("csrfH : "+csrfH);
+				console.log("csrfP : "+csrfP);
+				console.log("csrfT : "+csrfT);
+				
+				$.ajax({
+					type:"post",
+					url:"/s/duplicate",
+					dataType:"json",
+					data:{
+						"email": emailV,
+						csrfP: csrfT
+					},
+					beforeSend : function(xhr)
+		            {   
+						/*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+						xhr.setRequestHeader(csrfH, csrfT);
+		            },
+					success:function(data){
+						console.log(data);
+						if(data.result){
+							alert(data.message)
+							$("#checkBtn").removeClass("btn-secondary btn-primary").addClass("btn-warning");
+							checkEmailDuplicate = false;
+						}else{
+							alert(data.message);
+							$("#checkBtn").removeClass("btn-secondary btn-warning").addClass("btn-primary");
+							checkEmailDuplicate = true;
+						}
+					},
+					error:function(error){
+						alert("다시 시도해 주세요.");
+						console.error(error);
+						console.error(error.responseText);
+					}
+				});
+
+			};
+			
+			function ajaxCheckSignUp(){
+				let email = $("#email");
+				let emailV = email.val();
+				let password = $("#password");
+				let passwordV = password.val();
+				let password2 = $("#password2");
+				let password2V = password2.val();
+				let name = $("#name");
+				let nameV = name.val();
+				let address = $("#address");
+				let addressV = name.val();
+				
+				if(!checkEmailDuplicate){
+					ajaxCheckId();
+					console.log(0);
+					if(!checkEmailDuplicate){
+						console.log(2);
+						return false;
+					}
+				}
+				console.log(1);
+				if(emailV===""){
+					alert("아이디를 입력해 주세요.");
+					email.focus();
+					return false;
+				}
+				if(passwordV===""){
+					alert("비밀번호를 입력해 주세요.");
+					password.focus();
+					return false;
+				}
+				if(password2V===""){
+					alert("비밀번호 확인을 입력해 주세요.");
+					password2.focus();
+					return false;
+				}
+				if(nameV===""){
+					alert("이름을 입력해 주세요.");
+					name.focus();
+					return false;
+				}
+				if(addressV===""){
+					alert("주소를 입력해 주세요.");
+					address.focus();
+					return false;
+				}
+				let csrfH = csrf_header.content;
+				let csrfP = csrf_parameter.content;
+				let csrfT = csrf_token.content;
+				//console.log("csrfH : "+csrfH);
+				//console.log("csrfP : "+csrfP);
+				//console.log("csrfT : "+csrfT);
+				
+				$.ajax({
+					type:"post",
+					url:"/s/up",
+					dataType:"json",
+					data:{
+						"email": emailV,
+						"password": passwordV,
+						"name": nameV,
+						"address": addressV,
+						csrfP: csrfT
+					},
+					beforeSend : function(xhr)
+		            {   
+						/*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+						xhr.setRequestHeader(csrfH, csrfT);
+		            },
+					success:function(data){
+						console.log(data);
+						if(data.result){
+							alert(data.message);
+							location.href=data.redirectLink;
+						}else{
+							alert(data.message);
+						}
+					},
+					error:function(error){
+						alert("다시 시도해 주세요.");
+						console.error(error);
+						console.error(error.responseText);
+					}
+				});
+				
+				return false;
+			};
+			
+			function uncheck(){
+				$("#checkBtn").removeClass("btn-warning btn-primary").addClass("btn-secondary");
+				checkEmailDuplicate = false;
+			}
+			/*]]>*/
+		</script>
+	</th:block>
+	
+	<th:block layout:fragment="mainTitle">
+		<h2>회원가입</h2>
+	</th:block>
+	
+	<th:block layout:fragment="content">
+		<div>
+			<form th:action="@{/s/up}" method="post" class="form-control px-3 py-2" onsubmit="return ajaxCheckSignUp()">
+				<!-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.value}"> -->
+				<div class="row py-2">
+					<div class="col-4 text-center">
+						<label for="email" class="form-label p-2">이메일</label>
+					</div>
+					<div class="col-8 col-md-5">
+						<input class="form-control" id="email" name="email" autofocus onkeydown="uncheck()">
+					</div>
+					<div class="col-12 col-md-3">
+						<div class="row justify-content-end">
+							<div class="col-8 col-md-12">
+								<input type="button" value="중복 검사" id="checkBtn" class="col-12 btn btn-secondary" onclick="ajaxCheckId()">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row py-2">
+					<div class="col-4 text-center">
+						<label for="password" class="form-label p-2">비밀번호</label>
+					</div>
+					<div class="col-8">
+						<input class="form-control" id="password" name="password" >
+					</div>
+				</div>
+				<div class="row py-2">
+					<div class="col-4 text-center">
+						<label for="password2" class="form-label p-2">비밀번호 확인</label>
+					</div>
+					<div class="col-8">
+						<input class="form-control" id="password2" name="password2" >
+					</div>
+				</div>
+				<div class="row py-2">
+					<div class="col-4 text-center">
+						<label for="name" class="form-label p-2">이름</label>
+					</div>
+					<div class="col-8">
+						<input class="form-control" id="name" name="name" >
+					</div>
+				</div>
+				<div class="row py-2">
+					<div class="col-4 text-center">
+						<label for="address" class="form-label p-2">주소</label>
+					</div>
+					<div class="col-8">
+						<input class="form-control" id="address" name="address" >
+					</div>
+				</div>
+				<div class="row py-2">
+					<div class="text-end">
+						<input type="submit" class="btn btn-outline-success" value="회원가입">
+						<input type="reset" class="btn btn-outline-secondary" value="취소">
+						<a href="/member/signIn">
+							<input type="button" class="btn btn-outline-primary" value="로그인"></a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</th:block>
+
+</html>
