@@ -10,6 +10,7 @@ import javax.persistence.Id;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.boot.config.BaseEntity;
 import com.boot.constant.Role;
 import com.boot.dto.MemberFormDto;
 
@@ -27,7 +28,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @Entity
-public class Member{
+public class Member extends BaseEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

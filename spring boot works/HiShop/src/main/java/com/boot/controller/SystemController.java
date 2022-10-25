@@ -1,10 +1,16 @@
 package com.boot.controller;
 
 
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,12 +47,18 @@ public class SystemController {
 		AjaxResultDto ajaxResultDto;
 		if(bindingResult.hasErrors()) {
 			System.out.println("/s/up hasError");
-			String errors = bindingResult.getAllErrors().toString();
-			System.out.println(errors);
+			List<FieldError> errors = bindingResult.getFieldErrors();
+			List<String> errorMessages = errors.stream().map(error->{
+				return "name: "+error.getField()+" message: "+error.getDefaultMessage();
+			}).collect(Collectors.toList());
+			String errorMessage = errorMessages.toString();
+			System.out.println(errorMessage.toString());
 			ajaxResultDto = AjaxResultDto.builder()
 					.result(false)
-					.message(errors)
+					.message("입력한 내용을 확인해 주세요.")
+					.errors(errors)
 					.build();
+			return ajaxResultDto;
 		}
 		
 		if(memberService.addMember(memberFormDto)) {

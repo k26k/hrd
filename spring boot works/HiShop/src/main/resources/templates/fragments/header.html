@@ -18,8 +18,20 @@
 						<a class="nav-link active" aria-current="page" href="#">Home</a>
 					</li> -->
 					
-					<th:block th:switch="${#strings.toString(#authentication.authorities[0])}">
-						<th:block th:case="USER">
+					<th:block sec:authorize="isAnonymous()">
+						<li class="nav-item">
+							<a class="nav-link" href="/item/list">상품 목록</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-primary" href="/s/in">로그인</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-success" href="/s/up">회원가입</a>
+						</li>
+					</th:block>
+						
+					<th:block sec:authorize="isAuthenticated()">
+						<th:block sec:authorize="hasAnyAuthority('ROLE_USER')">
 							<li class="nav-item">
 								<a class="nav-link" href="/item/list">상품 목록</a>
 							</li>
@@ -31,7 +43,7 @@
 							</li>
 						</th:block>
 						
-						<th:block th:case="ADMIN">
+						<th:block sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
 							<li class="nav-item">
 								<a class="nav-link" href="/item/list">상품 목록</a>
 							</li>
@@ -49,18 +61,6 @@
 							</li>
 							<li class="nav-item">
 								<a class="nav-link text-danger" href="/s/out">로그아웃</a>
-							</li>
-						</th:block>
-						
-						<th:block th:case="*">
-							<li class="nav-item">
-								<a class="nav-link" href="/item/list">상품 목록</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link text-primary" href="/s/in">로그인</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link text-success" href="/s/up">회원가입</a>
 							</li>
 						</th:block>
 					</th:block>

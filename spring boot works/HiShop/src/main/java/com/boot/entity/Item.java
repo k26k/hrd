@@ -10,11 +10,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import com.boot.constant.Role;
+import com.boot.config.BaseEntity;
 import com.boot.constant.SellStatus;
 
 import lombok.AllArgsConstructor;
@@ -31,7 +32,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @Entity
-public class Item {
+public class Item extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -53,11 +54,5 @@ public class Item {
 	
 	@Enumerated(EnumType.STRING)
 	private SellStatus sellStatus;
-
-	@CreatedDate
-	private LocalDate regDate;
-
-	@LastModifiedDate
-	private LocalDate updateDate;
-
+	
 }

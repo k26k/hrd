@@ -1,4 +1,4 @@
-package com.boot.config;
+package com.boot.SecurityConfig;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,6 +29,8 @@ public class SrcurityLoginSuccessHandler implements AuthenticationSuccessHandler
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
+		
+		System.out.println(authentication.toString());
 		
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");

@@ -2,7 +2,7 @@ package com.boot.dto;
 
 import java.util.List;
 
-import org.springframework.validation.ObjectError;
+import org.springframework.validation.FieldError;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,6 +21,6 @@ public class AjaxResultDto {
 	
 	private String redirectLink;
 	
-	private List<ObjectError> errors;
+	private List<FieldError> errors;
 	
 }
