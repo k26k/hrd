@@ -48,11 +48,11 @@ public class SystemController {
 		if(bindingResult.hasErrors()) {
 			System.out.println("/s/up hasError");
 			List<FieldError> errors = bindingResult.getFieldErrors();
-			List<String> errorMessages = errors.stream().map(error->{
-				return "name: "+error.getField()+" message: "+error.getDefaultMessage();
-			}).collect(Collectors.toList());
-			String errorMessage = errorMessages.toString();
-			System.out.println(errorMessage.toString());
+//			List<String> errorMessages = errors.stream().map(error->{
+//				return "name: "+error.getField()+" message: "+error.getDefaultMessage();
+//			}).collect(Collectors.toList());
+//			String errorMessage = errorMessages.toString();
+//			System.out.println(errorMessage.toString());
 			ajaxResultDto = AjaxResultDto.builder()
 					.result(false)
 					.message("입력한 내용을 확인해 주세요.")

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html 	xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layouts/layoutFull}">
+	<meta charset="UTF-8">
+
+	<th:block layout:fragment="meta">
+		<meta id="csrf_header" th:content="${_csrf.headerName}"/>
+		<meta id="csrf_parameter" th:content="${_csrf.parameterName}"/>
+		<meta id="csrf_token" th:content="${_csrf.token}"/>
+	</th:block>
+	<th:block layout:fragment="headTitle">상품 목록</th:block>
+	
+	<th:block layout:fragment="script">
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+			
+			function ajaxSaveItem(){
+				let fmData = new FormData($("#itemForm")[0]);
+				
+				/* let title = $("#title");
+				let titleV = title.val();
+				let content = $("#content");
+				let contentV = content.val();
+				
+				if(titleV===""){
+					alert("제목을 입력해 주세요.");
+					title.focus();
+					return;
+				}
+				if(contentV===""){
+					alert("내용을 입력해 주세요.");
+					content.focus();
+					return;
+				} */
+				let csrfH = csrf_header.content;
+				let csrfP = csrf_parameter.content;
+				let csrfT = csrf_token.content;
+				console.log("csrfH : "+csrfH);
+				console.log("csrfP : "+csrfP);
+				console.log("csrfT : "+csrfT);
+				console.log("fmdata : ", fmData);
+				
+				$.ajax({
+					type:"post",
+					enctype:"multipart/form-data",
+				    url:$("#itemForm").attr("action"),
+				    dataType:"json",
+				    processData:false,
+				    contentType:false,
+				    cache:false,
+					data: fmData,        
+			        timeout: 600000, 
+					beforeSend : function(xhr)
+		            {   
+						/*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+						xhr.setRequestHeader(csrfH, csrfT);
+		            },
+					success:function(data){
+						console.log(data);
+						if(data.result){
+							alert(data.message);
+							location.href=data.redirectLink;
+						}else{
+							alert(data.message);
+						}
+					},
+					error:function(error){
+						alert("다시 시도해 주세요.");
+						console.error(error);
+						console.error(error.responseText);
+					}
+				});
+				return false;
+				colsole.log("false");
+			};
+			
+			function changeAction(){
+				$("#itemForm").attr("action", $(submit).attr("formaction"));
+			}
+			
+			$(function(){
+				console.log($(":file"))
+				$(":file").each(function(obj){
+					obj.change(console.log(obj));
+					console.log(obj);
+				})
+			});
+				
+			/*]]>*/
+		</script>
+	</th:block>
+	
+	<th:block layout:fragment="mainTitle">
+		<h2>상품 목록</h2>
+	</th:block>
+	
+	<th:block layout:fragment="content">
+		<div th:object="${itemSearchDto}">
+			<form role="search" th:action="@{/admin/item/list/}" method="get">
+				<div class="row">
+					<div>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="p-1">
+									<select th:field="*{sellStatus}" class="form-select w-100" name="sellStatus">
+										<option value="ALL">판매 상태</option>
+										<option value="SELL">판매중</option>
+										<option value="SOLD_OUT">품절</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="p-1">
+									<select th:field="*{searchDateType}" class="form-select w-100" name="searchDateType">
+										<option value="">등록일</option>
+										<option value="1d">하루 전</option>
+										<option value="1w">일주일 전</option>
+										<option value="1m">한달 전</option>
+										<option value="6m">반년 전</option>
+										<option value="1y">일년 전</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="d-flex">
+						<select th:field="*{searchBy}" class="form-select w-auto m-1" name="searchBy">
+							<option value="itemName">제목</option>
+							<option value="price">가격</option>
+							<option value="itemDetail">상세설명</option>
+							<option value="createdBy">상품 등록자</option>
+						</select>
+						<input th:field="*{searchQuery}" class="form-control m-1" type="search" placeholder="Search" aria-label="Search" name="searchQuery">
+						<button class="btn btn-outline-success m-1" type="submit">Search</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<hr>
+		<div class="row px-2">
+			<th:block th:each="item : ${itemPage}">
+				<!-- <div class="col-12 col-sm-6 col-lg-4 col-xxl-3 p-1">
+					<div style="padding=">
+					</div>
+				</div> -->
+			
+				<div class="col-12 col-sm-6 col-lg-4 col-xxl-3 p-1" >
+					<a th:href="'/admin/item/view/' + ${item.id}" class="nav-link">
+						<div class="card" style="height: 350px;">
+							<div class="h-50 card-img overflow-hidden text-center">
+								<div th:if="${item.itemImageDtoList} eq null" class="text-center">사진이 없어용</div>
+								<th:block th:unless="${item.itemImageDtoList} eq null">
+									<img alt="" th:src="${item.itemImageDtoList[0].imageUrl}" class="w-100 h-100" style="object-fit: contain;" onerror="this.src='/images/not_found_image.png'">
+								</th:block>
+							</div>
+							<hr class="m-0">
+							<div class="card-body h-50 py-2 px-2">
+								<h5 th:text="${item.itemName}" class="card-title"></h5>
+    							<p class="card-text">상세설명: <span th:text="${item.itemDetail}"></span></p>
+							</div>
+						</div></a>
+				</div>
+			</th:block>
+		</div>
+		<hr>
+		<div>
+			<nav th:with="pageNow=${itemPage.number}+1, start=1, end= ${itemPage.totalPages} >= 1 ? ${itemPage.totalPages} : 1 " class="w-auto">
+				<ul class="nav w-auto">
+					<li class="nav-item">
+						<a th:if="${start} >= ${pageNow}" class="btn btn-outline-secondary disabled m-1">&lt;&lt;</a>
+						<a th:unless="${start} eq ${pageNow}" th:href="'/admin/item/list/' + ${start}" class="btn btn-outline-secondary m-1">&lt;&lt;</a>
+					</li>
+					<li th:each="page : ${#numbers.sequence(start, end)}" class="nav-item">
+						<a th:if="${page} eq ${pageNow}" th:text="${page}" class="btn btn-outline-secondary disabled m-1"></a>
+						<a th:unless="${page} eq ${pageNow}" th:href="'/admin/item/list/' + ${page}" th:text="${page}" class="btn btn-outline-secondary m-1"></a>
+					</li>
+					<li class="nav-item">
+						<a th:if="${end} <= ${pageNow}" class="btn btn-outline-secondary disabled m-1">&gt;&gt;</a>
+						<a th:unless="${end} <= ${pageNow}" th:href="'/admin/item/list/' + ${end}" class="btn btn-outline-secondary m-1">&gt;&gt;</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</th:block>
+
+</html>

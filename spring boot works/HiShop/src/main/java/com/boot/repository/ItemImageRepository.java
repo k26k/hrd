@@ -8,6 +8,8 @@ import com.boot.entity.ItemImage;
 
 public interface ItemImageRepository extends JpaRepository<ItemImage, Long> {
 
-	List<ItemImage> findByItemIdOrderById(Long Id);
+	List<ItemImage> findByItemIdOrderById(Long id);
+	
+	List<ItemImage> findByItemId(Long id);
 	
 }

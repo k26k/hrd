@@ -2,5 +2,6 @@ package com.boot.constant;
 
 public enum SellStatus {
 	SELL,
-	SOLD_OUT
+	SOLD_OUT,
+	ALL
 }

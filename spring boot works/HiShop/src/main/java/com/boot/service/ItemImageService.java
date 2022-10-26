@@ -84,4 +84,12 @@ public class ItemImageService {
         return true;
 	}
 	
+	public boolean deleteItemImage(Long id) {
+		List<ItemImage> itemImageList = itemImageRepository.findByItemId(id);
+		itemImageList.forEach(imageImage->{
+			itemImageRepository.deleteById(imageImage.getId());
+		});
+		return true;
+	}
+	
 }

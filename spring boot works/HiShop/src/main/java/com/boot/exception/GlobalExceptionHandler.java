@@ -28,6 +28,7 @@ public class GlobalExceptionHandler {
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	@ExceptionHandler(NoHandlerFoundException.class)
 	public String handle404(NoHandlerFoundException exception, Model model) {
+		System.out.println(exception.getRequestURL());
 		model.addAttribute("exception", exception);
 		return "/system/globalError";
 	}
