@@ -51,8 +51,12 @@ public class ItemServiceTest {
 //				.sellStatus(SellStatus.SELL)
 //				.build();
 //		
-//		Long itemId = itemService.saveItem(itemFormDto, this.createMultipartFileList());
-//		System.out.println("TEST saveItem() itemId: "+itemId);
+//		for(int i=1; i<10; i++) {
+//			itemFormDto.setItemName("테스트 상품 "+i+"번");
+//			Long itemId = itemService.saveItem(itemFormDto, this.createMultipartFileList());
+//			System.out.println("TEST saveItem() itemId: "+itemId);
+//		}
+//		
 //	}
 	
 //	@Test

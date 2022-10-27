@@ -1,12 +1,15 @@
 package com.boot.controller;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,8 +32,24 @@ public class ItemController {
 
 	private final ItemService itemService;
 	
-	@GetMapping("/item/list")
-	public String showItemList(Model model) {
+	@GetMapping({"/item/list", "/item/list/{page}"})
+	public String showItemList(@PathVariable(required = false) Integer page, ItemSearchDto itemSearchDto, Model model) {
+		page = page==null? 1:page;
+		
+		Pageable pageable = PageRequest.of(page-1, 12, Sort.Direction.DESC, "id");
+		
+		System.out.println(itemSearchDto.toString());
+		
+		Page<ItemFormDto> itemFormDtoPage = itemService.getAdminItemPage(itemSearchDto, pageable);
+		itemFormDtoPage.forEach(itemFormDto->{
+			System.out.println(itemFormDto.toString());
+		});
+		System.out.println(itemFormDtoPage.getNumber());
+		System.out.println(itemFormDtoPage.getTotalPages());
+		model.addAttribute("itemPage", itemFormDtoPage);
+		model.addAttribute("itemSearch", itemSearchDto);
+//		model.addAttribute("page", pageable);
+		
 		return "item/itemList";
 	}
 	
@@ -87,9 +106,14 @@ public class ItemController {
 		return ajaxResultDto;
 	}
 	
+	@GetMapping("/item/view/{itemId}")
+	public String viewItemForm(@PathVariable(name = "itemId") Long itemId, Authentication authentication, Model model) {
+		model.addAttribute("itemFormDto", itemService.getItemFormDtoById(itemId));
+		return "item/itemDetail";
+	}
 	
 	@GetMapping("/admin/item/view/{itemId}")
-	public String viewItemForm(@PathVariable(name = "itemId") Long itemId, Model model) {
+	public String viewAdminItemForm(@PathVariable(name = "itemId") Long itemId, Model model) {
 		model.addAttribute("itemFormDto", itemService.getItemFormDtoById(itemId));
 		return "item/itemForm";
 	}

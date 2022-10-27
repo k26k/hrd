@@ -109,12 +109,7 @@ public class ItemService {
 			return false;
 		}
 		Item originItem = optional.get();
-		Item item = itemFormDto.createItem();
-		originItem.setSellStatus(item.getSellStatus());
-		originItem.setItemName(item.getItemName());
-		originItem.setPrice(item.getPrice());
-		originItem.setStockNumber(item.getStockNumber());
-		originItem.setItemDetail(item.getItemDetail());
+		originItem.updateItem(itemFormDto);
 		itemRepository.save(originItem);
 		
 		List<ItemImage> itemImageList = itemImageService.getItemImageListByItemId(originItem.getId());

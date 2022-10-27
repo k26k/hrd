@@ -75,7 +75,7 @@
 				colsole.log("false");
 			};
 			
-			function changeAction(){
+			/* function changeAction(){
 				$("#itemForm").attr("action", $(submit).attr("formaction"));
 			}
 			
@@ -85,7 +85,7 @@
 					obj.change(console.log(obj));
 					console.log(obj);
 				})
-			});
+			}); */
 				
 			/*]]>*/
 		</script>
@@ -97,7 +97,7 @@
 	
 	<th:block layout:fragment="content">
 		<div th:object="${itemSearchDto}">
-			<form role="search" th:action="@{/admin/item/list/}" method="get">
+			<form role="search" th:action="@{/item/list/}" method="get">
 				<div class="row">
 					<div>
 						<div class="row">
@@ -146,13 +146,10 @@
 				</div> -->
 			
 				<div class="col-12 col-sm-6 col-lg-4 col-xxl-3 p-1" >
-					<a th:href="'/admin/item/view/' + ${item.id}" class="nav-link">
+					<a th:href="'/item/view/' + ${item.id}" class="nav-link">
 						<div class="card" style="height: 350px;">
 							<div class="h-50 card-img overflow-hidden text-center">
-								<div th:if="${item.itemImageDtoList} eq null" class="text-center">사진이 없어용</div>
-								<th:block th:unless="${item.itemImageDtoList} eq null">
-									<img alt="" th:src="${item.itemImageDtoList[0].imageUrl}" class="w-100 h-100" style="object-fit: contain;" onerror="this.src='/images/not_found_image.png'">
-								</th:block>
+								<img alt="" th:src="${item.itemImageDtoList[0].imageUrl}" class="w-100 h-100" style="object-fit: contain;" onerror="this.src='/images/not_found_image.png'">
 							</div>
 							<hr class="m-0">
 							<div class="card-body h-50 py-2 px-2">
@@ -165,19 +162,19 @@
 		</div>
 		<hr>
 		<div>
-			<nav th:with="pageNow=${itemPage.number}+1, start=1, end= ${itemPage.totalPages} >= 1 ? ${itemPage.totalPages} : 1 " class="w-auto">
-				<ul class="nav w-auto">
-					<li class="nav-item">
-						<a th:if="${start} >= ${pageNow}" class="btn btn-outline-secondary disabled m-1">&lt;&lt;</a>
-						<a th:unless="${start} eq ${pageNow}" th:href="'/admin/item/list/' + ${start}" class="btn btn-outline-secondary m-1">&lt;&lt;</a>
+			<nav th:with="pageNow=${itemPage.number}+1, start=1, end= ${itemPage.totalPages} >= 1 ? ${itemPage.totalPages} : 1 " class="w-auto row justify-content-center m-0">
+				<ul class="nav row w-auto m-0">
+					<li class="w-auto nav-item p-0">
+						<a th:if="${start} >= ${pageNow}" class=" btn btn-outline-secondary disabled m-1">&lt;&lt;</a>
+						<a th:unless="${start} eq ${pageNow}" th:href="'/item/list/' + ${start}" class="btn btn-outline-secondary m-1">&lt;&lt;</a>
 					</li>
-					<li th:each="page : ${#numbers.sequence(start, end)}" class="nav-item">
+					<li th:each="page : ${#numbers.sequence(start, end)}" class="w-auto nav-item p-0">
 						<a th:if="${page} eq ${pageNow}" th:text="${page}" class="btn btn-outline-secondary disabled m-1"></a>
-						<a th:unless="${page} eq ${pageNow}" th:href="'/admin/item/list/' + ${page}" th:text="${page}" class="btn btn-outline-secondary m-1"></a>
+						<a th:unless="${page} eq ${pageNow}" th:href="'/item/list/' + ${page}" th:text="${page}" class="btn btn-outline-secondary m-1"></a>
 					</li>
-					<li class="nav-item">
+					<li class="w-auto nav-item p-0">
 						<a th:if="${end} <= ${pageNow}" class="btn btn-outline-secondary disabled m-1">&gt;&gt;</a>
-						<a th:unless="${end} <= ${pageNow}" th:href="'/admin/item/list/' + ${end}" class="btn btn-outline-secondary m-1">&gt;&gt;</a>
+						<a th:unless="${end} <= ${pageNow}" th:href="'/item/list/' + ${end}" class="btn btn-outline-secondary m-1">&gt;&gt;</a>
 					</li>
 				</ul>
 			</nav>

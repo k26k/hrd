@@ -1,6 +1,6 @@
 package com.boot.config;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
@@ -21,10 +21,10 @@ public class BaseTimeEntity {
 
 	@CreatedDate
 	@Column(name="reg_time", updatable = false)
-	private LocalDate regTime;
+	private LocalDateTime regTime;
 
 	@LastModifiedDate
 	@Column(name="update_time")
-	private LocalDate updateTime;
+	private LocalDateTime updateTime;
 	
 }

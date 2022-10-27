@@ -1,6 +1,6 @@
 package com.boot.repository;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -35,7 +35,7 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom {
 	}
 	
 	private BooleanExpression searchRegTimeAfter(String searchDateType) {
-		LocalDate localDate = LocalDate.now();
+		LocalDateTime localDate = LocalDateTime.now();
 		
 		if(StringUtils.equals("all", searchDateType)) {
 			return null;

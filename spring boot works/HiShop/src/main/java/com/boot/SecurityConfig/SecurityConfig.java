@@ -1,28 +1,30 @@
 package com.boot.SecurityConfig;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
+import com.boot.config.CustomAuthenticaionEntryPoint;
 
-//	@Autowired
-//	private SecurityUserDetailsService securityUserDetailsService;
-	
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
  
 		http.authorizeRequests()
-					.antMatchers("/").permitAll()
+					.antMatchers("/", "/item/**").permitAll()
 					.antMatchers("/s/**").anonymous()
-					.antMatchers("/item/**", "/member/**").hasAnyRole("USER", "ADMIN")
+					.antMatchers("/order/**","/member/**").hasAnyRole("USER", "ADMIN")
 					.antMatchers("/admin/**").hasAnyRole("ADMIN");
+		
+		http.exceptionHandling().authenticationEntryPoint(new CustomAuthenticaionEntryPoint());
 		
 		http.formLogin()
 					.loginPage("/s/in")
@@ -36,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 					.logoutSuccessUrl("/");
 		
 //		http.userDetailsService(securityUserDetailsService);
+		return http.build();
 	}
 
 	@Bean

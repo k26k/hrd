@@ -11,6 +11,8 @@ import javax.persistence.Lob;
 
 import com.boot.config.BaseEntity;
 import com.boot.constant.SellStatus;
+import com.boot.dto.ItemFormDto;
+import com.boot.exception.OutOfStockException;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -48,5 +50,26 @@ public class Item extends BaseEntity {
 	
 	@Enumerated(EnumType.STRING)
 	private SellStatus sellStatus;
+	
+	//상품 수정 메서드
+	public void updateItem(ItemFormDto itemFormDto) {
+		this.itemName = itemFormDto.getItemName();
+		this.price = itemFormDto.getPrice();
+		this.stockNumber = itemFormDto.getStockNumber();
+		this.itemDetail = itemFormDto.getItemDetail();
+		this.sellStatus = itemFormDto.getSellStatus();	
+	}
+	
+	public void removeStock(int buyNumber) {
+		if(this.stockNumber < buyNumber) {
+			throw new OutOfStockException("재고 수량 부족 오류. 재고: "
+					+this.stockNumber+", 구매량: "+buyNumber);
+		}
+		this.stockNumber -= buyNumber;
+	}
+	
+	public void addStock(int addNumber) {
+		this.stockNumber += addNumber;
+	}
 	
 }

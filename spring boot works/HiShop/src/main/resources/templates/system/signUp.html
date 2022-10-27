@@ -20,6 +20,7 @@
 			function ajaxCheckId(){
 				let email = $("#email");
 				let emailV = email.val();
+				let password = $("#password");
 				if(emailV===""){
 					alert("이메일을 입력해 주세요.");
 					email.focus();
@@ -55,6 +56,7 @@
 							alert(data.message);
 							$("#checkBtn").removeClass("btn-secondary btn-warning").addClass("btn-primary");
 							checkEmailDuplicate = true;
+							password.focus();
 						}
 					},
 					error:function(error){
@@ -76,7 +78,7 @@
 				let name = $("#name");
 				let nameV = name.val();
 				let address = $("#address");
-				let addressV = name.val();
+				let addressV = address.val();
 				
 				if(!checkEmailDuplicate){
 					ajaxCheckId();
@@ -141,7 +143,15 @@
 							alert(data.message);
 							location.href=data.redirectLink;
 						}else{
-							alert(data.message);
+							//alert(data.message);
+							//console.error(data.errors);
+							//data.errors[0].defaultMessage
+							let text= "";
+							for(let i=0; i<data.errors.length; i++){
+								text = i>0? text+"\n":text;
+								text+=data.errors[i].defaultMessage;
+							}
+							alert(text);
 						}
 					},
 					error:function(error){
