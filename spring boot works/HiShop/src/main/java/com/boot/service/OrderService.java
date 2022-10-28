@@ -2,13 +2,19 @@ package com.boot.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
-import javax.transaction.Transactional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.boot.constant.OrderStatus;
 import com.boot.dto.OrderDto;
+import com.boot.dto.OrderHistoryDto;
 import com.boot.entity.Item;
 import com.boot.entity.Member;
 import com.boot.entity.OrderItem;
@@ -35,13 +41,38 @@ public class OrderService {
 		Member member = memberRepository.findByEmail(email).get();
 		
 		List<OrderItem> orderItemList = new ArrayList<OrderItem>();
-		OrderItem orderItem = OrderItem.createOrderItem(item, orderDto.getCount());
+		OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), orderDto.getCount());
 		orderItemList.add(orderItem);
 		
 		Orders order = Orders.createOrder(member, orderItemList);
 		ordersRepository.save(order);
 		
 		return order.getId();
+	}
+	
+	public Page<OrderHistoryDto> getOrderList(String email, Pageable pageable){
+		Member member = memberRepository.findByEmail(email).get();
+		Page<Orders> page = ordersRepository.findByMemberIdAndOrderStatusOrderByIdDesc(member.getId(), OrderStatus.ORDER, pageable);
+		List<OrderHistoryDto> dtoList = page.getContent().stream().map(order->{return OrderHistoryDto.crateDto(order);}).collect(Collectors.toList());	
+		Page<OrderHistoryDto> dtoPage = new PageImpl<OrderHistoryDto>(dtoList, pageable, page.getTotalElements());
+		return dtoPage;
+	}
+	
+	@Transactional(readOnly = false)
+	public boolean cancleOrder(String email, Long id) {
+		Member member = memberRepository.findByEmail(email).get();
+		Orders orders = ordersRepository.findById(id).get();
+		if(!orders.getMember().getId().equals(member.getId())) {
+			return false;
+		}
+		
+		orders.setOrderStatus(OrderStatus.CANCEL);
+		for(int i=0; i<orders.getOrderItemList().size(); i++) {
+			orders.getOrderItemList().get(i).cancle();
+		}
+		ordersRepository.save(orders);
+		
+		return true;
 	}
 	
 }

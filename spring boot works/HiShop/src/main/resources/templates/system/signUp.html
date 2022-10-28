@@ -58,6 +58,7 @@
 							checkEmailDuplicate = true;
 							password.focus();
 						}
+						console.log(checkEmailDuplicate);
 					},
 					error:function(error){
 						alert("다시 시도해 주세요.");
@@ -81,10 +82,10 @@
 				let addressV = address.val();
 				
 				if(!checkEmailDuplicate){
+					console.log(checkEmailDuplicate);
 					ajaxCheckId();
-					console.log(0);
+					console.log(checkEmailDuplicate);
 					if(!checkEmailDuplicate){
-						console.log(2);
 						return false;
 					}
 				}

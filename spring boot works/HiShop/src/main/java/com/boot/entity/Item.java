@@ -64,12 +64,17 @@ public class Item extends BaseEntity {
 		if(this.stockNumber < buyNumber) {
 			throw new OutOfStockException("재고 수량 부족 오류. 재고: "
 					+this.stockNumber+", 구매량: "+buyNumber);
+		}else if(stockNumber == buyNumber) {
+			this.sellStatus = SellStatus.SOLD_OUT;
 		}
 		this.stockNumber -= buyNumber;
 	}
 	
 	public void addStock(int addNumber) {
 		this.stockNumber += addNumber;
+		if(this.stockNumber>0) {
+			this.sellStatus = SellStatus.SELL;
+		}
 	}
 	
 }

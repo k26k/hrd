@@ -44,9 +44,10 @@ public class OrderItem extends BaseEntity {
 	@JoinColumn(name = "orders_id")
 	private Orders orders;
 	
-	public static OrderItem createOrderItem(Item item, int count) {
+	public static OrderItem createOrderItem(Item item, int price, int count) {
 		OrderItem orderItem = OrderItem.builder()
 				.item(item)
+				.orderPrice(price)
 				.count(count)
 				.build();
 		item.removeStock(count);

@@ -47,7 +47,6 @@ public class Orders extends BaseEntity{
 	@JoinColumn(name = "member_id")
 	private Member member;
 	
-	@CreatedDate
 	private LocalDateTime orderDate;
 	
 	@Enumerated(EnumType.STRING)
@@ -65,6 +64,7 @@ public class Orders extends BaseEntity{
 	public static Orders createOrder(Member member, List<OrderItem> orderItemList) {
 		Orders orders = new Orders();
 		orders.setMember(member);
+		orders.setOrderDate(LocalDateTime.now());
 		orders.setOrderStatus(OrderStatus.ORDER);
 		
 		System.out.println("orderItemList: "+orders.getOrderItemList().toString());
