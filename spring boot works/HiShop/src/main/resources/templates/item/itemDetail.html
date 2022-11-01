@@ -9,30 +9,15 @@
 		<meta id="csrf_parameter" th:content="${_csrf.parameterName}"/>
 		<meta id="csrf_token" th:content="${_csrf.token}"/>
 	</th:block>
-	<th:block layout:fragment="headTitle">상품 등록</th:block>
+	<th:block layout:fragment="headTitle">상품 보기</th:block>
 	
 	<th:block layout:fragment="script">
 		<script th:inline="javascript">
 			/*<![CDATA[*/
 			
-			function ajaxSaveItem(){
+			function ajaxOrderItem(){
 				let fmData = new FormData($("#itemForm")[0]);
-				
-				/* let title = $("#title");
-				let titleV = title.val();
-				let content = $("#content");
-				let contentV = content.val();
-				
-				if(titleV===""){
-					alert("제목을 입력해 주세요.");
-					title.focus();
-					return;
-				}
-				if(contentV===""){
-					alert("내용을 입력해 주세요.");
-					content.focus();
-					return;
-				} */
+
 				let csrfH = csrf_header.content;
 				let csrfP = csrf_parameter.content;
 				let csrfT = csrf_token.content;
@@ -56,27 +41,60 @@
 						/*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
 						xhr.setRequestHeader(csrfH, csrfT);
 		            },
-					/* success:function(data){
-						console.log(data);
-						alert(data+"번 주문 완료");
-						/* if(data.result){
-							alert(data.message);
-							location.href=data.redirectLink;
-						}else{
-							alert(data.message);
-						} 
-					},
-					error:function(error){
-						if(error.status == 400){
-							alert(error.responseText);
-						}else{
-							console.error(error);
-						}
-						/* console.error(error.responseText);
-					} */
 		            success  : function(result, status){
 	                    alert("상품 구매 성공! 오더 번호는 "+result+"번 입니다.");
 	                    location.href='/';
+	                },
+	                error : function(jqXHR, status, error){
+						console.error(jqXHR);
+						console.error(status);
+						console.error(error);
+	                    if(jqXHR.status == '401'){
+	                        alert('로그인 후 이용해주세요');
+	                        location.href='/s/in';
+	                    } else{
+	                        alert(jqXHR.responseText);
+	                    }
+
+	                }
+				});
+				return false;
+				colsole.log("false");
+			};
+			
+			
+			function ajaxCartItem(){
+				let fmData = new FormData($("#itemForm")[0]);
+
+				let csrfH = csrf_header.content;
+				let csrfP = csrf_parameter.content;
+				let csrfT = csrf_token.content;
+				console.log("csrfH : "+csrfH);
+				console.log("csrfP : "+csrfP);
+				console.log("csrfT : "+csrfT);
+				console.log("fmdata : ", fmData);
+				
+				$.ajax({
+					type:"post",
+					enctype:"multipart/form-data",
+				    url:"/cart/add",
+				    dataType:"json",
+				    processData:false,
+				    contentType:false,
+				    cache:false,
+					data: fmData,        
+			        timeout: 600000, 
+					beforeSend : function(xhr)
+		            {   
+						/*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+						xhr.setRequestHeader(csrfH, csrfT);
+		            },
+		            success  : function(result, status){
+	                    if(confirm("장바구니 등록 성공!\n장바구니 상품 번호는 "+result+"번 입니다.\n\n장바구니 보러가기 >>")){
+	                    	location.href='/cart/list';
+	                    }
+	                    
+	                    //;
 	                },
 	                error : function(jqXHR, status, error){
 						console.error(jqXHR);
@@ -117,7 +135,7 @@
 	</th:block>
 	
 	<th:block layout:fragment="mainTitle">
-		<h2>상품 등록 페이지</h2>
+		<h2>상품 상세 페이지</h2>
 	</th:block>
 	
 	<th:block layout:fragment="content">
@@ -181,7 +199,7 @@
 				</div>
 			</form> -->
 			
-			<form id="itemForm" action="/order" class="form-control px-3 py-2" role="form" method="post" enctype="multipart/form-data" th:object="${itemFormDto}" onsubmit="return ajaxSaveItem()">
+			<form id="itemForm" action="/order" class="form-control px-3 py-2" role="form" method="post" enctype="multipart/form-data" th:object="${itemFormDto}" onsubmit="return ajaxOrderItem()">
 		
 		        <input type="hidden" th:field="*{id}">
 		        
@@ -266,10 +284,13 @@
 		        <div>
 				</div>
 				<div class="row justify-content-end">
-			        <div class="col-auto">
-			        	<button type="submit" class="btn btn-secondary" >구매</button>
+			        <div class="col-auto p-1">
+			        	<button type="submit" class="btn btn-primary" >구매</button>
 			        </div>
-			        <div class="col-auto">
+			        <div class="col-auto p-1">
+			        	<button type="button" class="btn btn-warning" onclick="ajaxCartItem()" >장바구니</button>
+			        </div>
+			        <div class="col-auto p-1">
 			        	<button type="button" class="btn btn-secondary" onclick="history.back(-1)">뒤로가기</button>
 			        </div>
 		        </div>

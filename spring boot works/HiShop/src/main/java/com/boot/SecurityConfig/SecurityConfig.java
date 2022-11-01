@@ -21,7 +21,7 @@ public class SecurityConfig {
 		http.authorizeRequests()
 					.antMatchers("/", "/item/**").permitAll()
 					.antMatchers("/s/**").anonymous()
-					.antMatchers("/order/**","/member/**").hasAnyRole("USER", "ADMIN")
+					.antMatchers("/order/**", "/member/**", "/cart/**").hasAnyRole("USER", "ADMIN")
 					.antMatchers("/admin/**").hasAnyRole("ADMIN");
 		
 		http.exceptionHandling().authenticationEntryPoint(new CustomAuthenticaionEntryPoint());

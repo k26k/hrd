@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html 	xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layouts/layoutSmall}">
+	<meta charset="UTF-8">
+
+	<th:block layout:fragment="meta">
+		<meta id="csrf_header" th:content="${_csrf.headerName}"/>
+		<meta id="csrf_parameter" th:content="${_csrf.parameterName}"/>
+		<meta id="csrf_token" th:content="${_csrf.token}"/>
+	</th:block>
+	<th:block layout:fragment="headTitle">장바구니</th:block>
+	
+	<th:block layout:fragment="script">
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+			
+			function ajaxCartOrder(){
+				let data = new Array();
+				$(".itemCheck").each((index, obj)=>{if($(obj).prop("checked")==true){data.push(parseInt($(obj).val()))}});
+				
+				let csrfH = csrf_header.content;
+				let csrfP = csrf_parameter.content;
+				let csrfT = csrf_token.content;
+				console.log("csrfH : "+csrfH);
+				console.log("csrfP : "+csrfP);
+				console.log("csrfT : "+csrfT);
+				console.log({"data": data});
+				
+				$.ajax({
+					type:"post",
+					enctype:"multipart/form-data",
+				    url:"/cart/order",
+				    dataType:"json",
+				    processData:false,
+				    contentType:false,
+				    cache:false,
+					data: {"data":data},        
+			        timeout: 600000, 
+					beforeSend : function(xhr)
+		            {   
+						/*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+						xhr.setRequestHeader(csrfH, csrfT);
+		            },
+					success:function(data){
+						console.log(data);
+						alert(data);
+						//location.href="/";
+					},
+					error:function(error){
+						alert("다시 시도해 주세요.");
+						console.error(error);
+						console.error(error.responseText);
+					}
+				});
+				return false;
+				colsole.log("false");
+			};
+			
+			
+			
+			let total = 0;
+			
+			function cangeTotal(){
+				total = 0;
+				$(".itemCheck").each((index, obj)=>{if($(obj).prop("checked")==true){
+					//console.log(".total"+$(obj).val());
+					//console.log($(".total"+$(obj).val()).text());
+					total += parseInt($(".total"+$(obj).val()).text());
+				}});
+				
+				//$('.total').each((index, obj) => total += parseInt($(obj).text()));
+				//console.log(total);
+				$("#totalPrice").text(total);
+			}
+			
+			$(function(){
+				cangeTotal();
+			});
+			/* function changeAction(){
+				$("#itemForm").attr("action", $(submit).attr("formaction"));
+			}
+			
+			/* $(function(){
+				console.log($(":file"))
+				$(":file").each(function(obj){
+					obj.change(console.log(obj));
+					console.log(obj);
+				})
+			}); */ 
+				
+			/*]]>*/
+		</script>
+	</th:block>
+	
+	<th:block layout:fragment="mainTitle">
+		<h2>장바구니</h2>
+	</th:block>
+	
+	<th:block layout:fragment="content">
+		<!-- <div th:object="${itemSearchDto}">
+			<form role="search" th:action="@{/item/list/}" method="get">
+				<div class="row">
+					<div class="d-flex">
+						<select th:field="*{searchBy}" class="form-select w-auto m-1" name="searchBy">
+							<option value="itemName">제목</option>
+							<option value="price">가격</option>
+							<option value="itemDetail">상세설명</option>
+							<option value="createdBy">상품 등록자</option>
+						</select>
+						<input th:field="*{searchQuery}" class="form-control m-1" type="search" placeholder="Search" aria-label="Search" name="searchQuery">
+						<button class="btn btn-outline-success m-1" type="submit">Search</button>
+					</div>
+				</div>
+			</form>
+		</div> -->
+		<!-- <hr> -->
+		<div class="row px-2">
+			<th:block th:each="cart : ${cartList}">
+				<div class="px-1 py-2">
+					<div class="card">
+						<div class="row mx-0">
+							<div class="col-6 px-2 py-1">
+								<span th:text="${cart.cartItemId}"></span>번 상품
+							</div>
+							<div class="col-6 form-check-reverse text-end px-2 py-1">
+								<label th:for="'check'+${cart.cartItemId}" >구매하기</label>
+								<input type="checkbox" th:id="'check'+${cart.cartItemId}" class="itemCheck form-check-input m-1" th:value="${cart.cartItemId}" checked="checked" onchange="cangeTotal()">
+							</div>
+						</div>
+						<hr class="my-1">
+						<div class="row mx-0 align-items-center">
+							<div class="col-5 px-2 py-1">
+								<img alt="" th:src="${cart.imgUrl}" class="w-100" onerror="this.src='/images/not_found_image.png'">
+							</div>
+							<div class="col-7 text-end px-2 py-1">
+									상품명: <span th:text="${cart.itemNm}"></span>
+									<br>
+									<br>
+									<span th:text="${cart.price}"></span>원 <span th:text="${cart.count}"></span>개 주문 총 <span th:class="'total total'+${cart.cartItemId}" th:text="${cart.price} * ${cart.count} "></span>원
+							</div>
+						</div>
+						<hr class="my-1">
+						<div class="row justify-content-end mx-0">
+							<div class="col-sm-auto px-2 py-1">
+								<input th:id="count + ${cart.cartItemId}" type="number" th:value="${cart.count}" class="form-control">
+							</div>
+							<div class="col-sm-auto p-0">
+								<div class="row mx-0">
+									<div class="col-6 col-sm-auto px-2 py-1">
+										<a th:href="'/cart/update/'+${cart.cartItemId}" class="btn btn-warning w-100" th:onclick="'this.href = this.href + \'/\' + $(\'#count'+${cart.cartItemId}+'\').val()'">수정</a>
+									</div>
+									<div class="col-6 col-sm-auto px-2 py-1">
+										<a th:href="'/cart/delete/'+${cart.cartItemId}" class="btn btn-danger  w-100" >삭제</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</th:block>
+		</div>
+		<hr>
+		<div class="row justify-content-end px-2 py-1">
+			<div class="col-sm-auto text-end">
+				총 금액 <span id="totalPrice"></span>원
+			</div>
+			<div class="col-sm-auto p-0">
+				<div class="row mx-0">
+					<div class="col-6 col-sm-auto px-2 py-1">
+						<input type="button" class="btn btn-primary  w-100" onclick="ajaxCartOrder()" value="결제하기">
+					</div>
+					<div class="col-6 col-sm-auto px-2 py-1">
+						<a href="/cart/deleteAll" class="btn btn-danger w-100">전체 삭제</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- <div>
+			<nav th:with="pageNow=${itemPage.number}+1, start=1, end= ${itemPage.totalPages} >= 1 ? ${itemPage.totalPages} : 1 " class="w-auto row justify-content-center m-0">
+				<ul class="nav row w-auto m-0">
+					<li class="w-auto nav-item p-0">
+						<a th:if="${start} >= ${pageNow}" class=" btn btn-outline-secondary disabled m-1">&lt;&lt;</a>
+						<a th:unless="${start} eq ${pageNow}" th:href="'/item/list/' + ${start}" class="btn btn-outline-secondary m-1">&lt;&lt;</a>
+					</li>
+					<li th:each="page : ${#numbers.sequence(start, end)}" class="w-auto nav-item p-0">
+						<a th:if="${page} eq ${pageNow}" th:text="${page}" class="btn btn-outline-secondary disabled m-1"></a>
+						<a th:unless="${page} eq ${pageNow}" th:href="'/item/list/' + ${page}" th:text="${page}" class="btn btn-outline-secondary m-1"></a>
+					</li>
+					<li class="w-auto nav-item p-0">
+						<a th:if="${end} <= ${pageNow}" class="btn btn-outline-secondary disabled m-1">&gt;&gt;</a>
+						<a th:unless="${end} <= ${pageNow}" th:href="'/item/list/' + ${end}" class="btn btn-outline-secondary m-1">&gt;&gt;</a>
+					</li>
+				</ul>
+			</nav>
+		</div> -->
+	</th:block>
+
+</html>
